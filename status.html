@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIACOMO — EMERGENCY ID</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <style>
+        :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #06070a; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; line-height: 1.4; }
+        
+        .emergency-header { 
+            border: 3px solid var(--danger); padding: 25px; border-radius: 20px; 
+            margin-bottom: 25px; text-align: center; background: rgba(255, 46, 67, 0.05);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 46, 67, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0); }
+        }
+
+        .emergency-header h1 { margin: 0; color: var(--danger); font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+        #rider-name { font-size: 20px; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
+        
+        .section-title { color: var(--accent); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin: 25px 0 10px 5px; display: block; }
+
+        .info-card { background: #0f111a; padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 12px; }
+        .info-card .val { font-size: 22px; font-weight: 800; color: #fff; }
+        .info-card .desc { font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; font-weight: 600; }
+
+        .contact-btn { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            width: 100%; padding: 20px; background: var(--danger); 
+            color: white; text-decoration: none; border-radius: 15px; 
+            font-weight: 900; margin-bottom: 12px; transition: 0.2s;
+        }
+        .contact-btn span { font-size: 12px; opacity: 0.8; font-weight: 400; margin-bottom: 4px; }
+        .contact-btn:active { transform: scale(0.98); background: #e62236; }
+
+        #error-screen { display: none; text-align: center; padding: 50px 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="status-content">
+        <div class="emergency-header">
+            <h1>CRITICAL MEDICAL INFO</h1>
+            <div id="rider-name">INITIALIZING...</div>
+        </div>
+
+        <span class="section-title">Medical Profile</span>
+        <div class="info-card">
+            <div id="blood-type" class="val">--</div>
+            <div class="desc">Blood Group</div>
+        </div>
+
+        <div class="info-card">
+            <div id="allergies" class="val">--</div>
+            <div class="desc">Active Allergies</div>
+        </div>
+
+        <div class="info-card">
+            <div id="conditions" class="val">--</div>
+            <div class="desc">Chronic Conditions</div>
+        </div>
+
+        <span class="section-title">Emergency Response</span>
+        <div id="contacts-container"></div>
+    </div>
+
+    <div id="error-screen">
+        <h1 style="color: var(--danger);">INVALID ID</h1>
+        <p>This Giacomo Unit is not recognized or the profile is private.</p>
+    </div>
+
+    <script type="module">
+        import { supabase } from './js/supabaseClient.js'; // Fixed path for root folder
+
+        async function fetchStatus() {
+            const sn = new URLSearchParams(window.location.search).get('sn');
+            if (!sn) { showErr(); return; }
+
+            // Step 1: Resolve Serial to User
+            const { data: profile, error: pErr } = await supabase
+                .from('profiles')
+                .select('id, full_name')
+                .eq('serial_number', sn.toUpperCase())
+                .single();
+
+            if (pErr || !profile) { showErr(); return; }
+            document.getElementById('rider-name').innerText = profile.full_name;
+
+            // Step 2: Get Medical Details
+            const { data: med } = await supabase
+                .from('medical_profiles')
+                .select('*')
+                .eq('user_id', profile.id)
+                .single();
+
+            if (med) {
+                document.getElementById('blood-type').innerText = med.blood_type || 'N/A';
+                document.getElementById('allergies').innerText = med.allergies || 'NONE';
+                document.getElementById('conditions').innerText = med.chronic_conditions || 'NONE';
+
+                const container = document.getElementById('contacts-container');
+                for (let i = 1; i <= 3; i++) {
+                    const name = med[`contact_${i}_name`];
+                    const phone = med[`contact_${i}_phone`];
+                    if (name && phone) {
+                        container.innerHTML += `
+                            <a href="tel:${phone}" class="contact-btn">
+                                <span>EMERGENCY CONTACT</span>
+                                CALL ${name.toUpperCase()}
+                            </a>`;
+                    }
+                }
+            }
+        }
+
+        function showErr() {
+            document.getElementById('status-content').style.display = 'none';
+            document.getElementById('error-screen').style.display = 'block';
+        }
+
+        fetchStatus();
+    </script>
+</body>
+</html>

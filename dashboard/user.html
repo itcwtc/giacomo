@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIACOMO — Tactical Terminal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #0a0c14; --sidebar: #0f111a; --glass: rgba(255,255,255,0.03); }
+        body, html { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background: var(--bg); font-family: 'Inter', sans-serif; color: white; }
+        .layout { display: flex; width: 100vw; height: 100vh; position: relative; }
+        .sidebar { 
+            width: 300px; min-width: 300px; max-width: 300px;
+            background: var(--sidebar); border-right: 1px solid rgba(255,255,255,0.08); 
+            padding: 30px 20px; display: flex; flex-direction: column; box-sizing: border-box; 
+            z-index: 10; height: 100%; overflow-y: auto;
+        }
+        .logo { color: var(--danger); font-size: 24px; font-weight: 900; letter-spacing: 4px; margin: 0; }
+        .device-id { font-size: 9px; color: #475569; letter-spacing: 2px; margin-top: 5px; text-transform: uppercase; }
+        #live-coords { font-size: 8px; color: var(--accent); opacity: 0.6; margin-top: 4px; font-family: monospace; }
+        .stat-card { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px; }
+        .label { font-size: 9px; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; display: block; font-weight: 700; }
+        .stat-val { font-size: 26px; font-weight: 900; }
+        .nav-links { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .nav-btn { background: none; border: 1px solid rgba(255,255,255,0.05); padding: 14px; color: #64748b; text-align: left; font-size: 11px; font-weight: 800; cursor: pointer; border-radius: 8px; text-transform: uppercase; transition: 0.2s; }
+        .nav-btn:hover { background: rgba(255,255,255,0.05); color: white; }
+        .sim-btn { background: rgba(255, 46, 67, 0.1); color: var(--danger); border: 1px solid var(--danger); padding: 15px; border-radius: 8px; font-size: 11px; font-weight: 900; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
+        
+        /* New QR Section Style */
+        .qr-section { background: var(--glass); padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px dashed rgba(255,255,255,0.1); text-align: center; }
+        .qr-section h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--accent); }
+        #qrcode img { border: 5px solid white; border-radius: 4px; }
+        .btn-qr { background: var(--accent); color: #000; border: none; padding: 8px; width: 100%; border-radius: 5px; font-size: 9px; font-weight: 900; cursor: pointer; margin-top: 10px; text-transform: uppercase; }
+
+        #emergency-overlay { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; background: #120305; z-index: 1000; border: 2px solid var(--danger); border-radius: 20px; padding: 30px; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 50px rgba(255, 46, 67, 0.4); backdrop-filter: blur(10px); }
+        #map { flex: 1; height: 100%; width: 100%; background: #000; z-index: 1; }
+        .panic-mode .sidebar { background: #1a0507 !important; border-right: 2px solid var(--danger) !important; }
+        #overlay-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 999; }
+    </style>
+</head>
+<body>
+    <div id="overlay-bg"></div>
+    <div id="emergency-overlay">
+        <span style="color: var(--danger); font-size: 10px; font-weight: 900; letter-spacing: 2px;">CRASH DETECTED</span>
+        <div id="countdown-timer">10</div>
+        <p style="font-size: 11px; color: #64748b; margin-bottom: 20px;">Emergency signals will deploy automatically.</p>
+        <button class="cancel-btn" id="cancel-crash" style="background:var(--danger); color:white; width:100%; padding:10px; border:none; border-radius:5px; cursor:pointer;">Abort Protocol</button>
+    </div>
+
+    <div class="layout" id="main-layout">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <h1 class="logo">GIACOMO</h1>
+                <div class="device-id" id="display-sn">SIGNAL SEARCHING...</div>
+                <div id="live-coords">0.0000° N, 0.0000° E</div>
+            </div>
+
+            <div class="nav-links">
+                <div class="stat-card">
+                    <span class="label">Velocity</span>
+                    <div class="stat-val" id="vel-display">0 <span style="font-size:12px; color:#475569;">KM/H</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="label">Elevation</span>
+                    <div class="stat-val" id="elev-display">0 <span style="font-size:12px; color:#475569;">M</span></div>
+                </div>
+
+                <button class="sim-btn" id="sim-crash">Simulate Crash</button>
+
+                <div class="qr-section">
+                    <h3>Helmet Emergency QR</h3>
+                    <div id="qrcode" style="display: flex; justify-content: center; margin-bottom: 10px;"></div>
+                    <button id="download-qr" class="btn-qr">Save to Device</button>
+                </div>
+
+                <button id="settings-btn" class="nav-btn" style="margin-top:20px;">Settings</button>
+                <button id="logout-btn" class="nav-btn">Logout</button>
+            </div>
+        </aside>
+        <main id="map"></main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="../js/userDashboard.js"></script>
+</body>
+</html>

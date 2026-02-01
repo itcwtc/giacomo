@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIACOMO — Login</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex; align-items: center; justify-content: center; height: 100vh;
+      background: radial-gradient(circle at center, #0a0c14 0%, #05060a 100%);
+    }
+    .login-card {
+      width: 100%; max-width: 400px; padding: 40px;
+      background: var(--glass); border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+      text-align: center;
+    }
+    .system-dot {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80; margin-right: 5px; box-shadow: 0 0 10px #4ade80;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-card">
+  <div style="margin-bottom: 10px; font-size: 10px; letter-spacing: 2px; color: var(--muted);">
+    <span class="system-dot"></span> SYSTEM ONLINE
+  </div>
+  <h1 style="color: var(--neon); margin: 0 0 5px 0; font-size: 32px;">GIACOMO</h1>
+  <p class="muted" style="margin-bottom: 30px; font-size: 14px;">Smart Motorcycle Crash Detection</p>
+
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email Address" required style="width: 100%; margin-bottom: 15px;">
+    <input type="password" id="password" placeholder="Password" required style="width: 100%; margin-bottom: 25px;">
+    
+    <button type="submit" class="btn btn-cta" style="width: 100%; justify-content: center; padding: 15px;">
+      Initialize Dashboard
+    </button>
+  </form>
+
+  <div style="margin-top: 25px; font-size: 13px;">
+    <span class="muted">New rider?</span> 
+    <a href="register.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">Register Device</a>
+  </div>
+</div>
+
+<script type="module" src="js/indexAuth.js"></script>
+</body>
+</html>

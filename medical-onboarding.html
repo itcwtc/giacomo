@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIACOMO — Medical Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            display: flex; justify-content: center; align-items: flex-start;
+            min-height: 100vh; padding: 40px 20px; background: #05060a; 
+        }
+
+        .onboarding-card {
+            width: 100%; max-width: 500px;
+            background: #0b0f18; border: 1px solid rgba(255,46,67,0.1);
+            padding: 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        select, input, textarea {
+            background: #161b22 !important;
+            color: #fff !important;
+            border: 1px solid #30363d !important;
+            transition: all 0.3s ease;
+        }
+
+        select option { background: #161b22; color: white; }
+
+        .form-section-title {
+            color: #00e5ff; font-size: 11px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 25px 0 15px; display: block;
+        }
+
+        /* Strength Meter Styles */
+        .valid-input { border-color: #16a34a !important; box-shadow: 0 0 8px rgba(22, 163, 74, 0.1); }
+        .input-wrapper { position: relative; flex: 1; }
+        .check-icon { 
+            position: absolute; right: 12px; top: 12px; 
+            color: #16a34a; font-size: 14px; display: none; 
+        }
+
+        .submit-wrap { display: flex; justify-content: center; margin-top: 40px; }
+        
+        .btn-finalize {
+            width: 100%; max-width: 280px; height: 50px;
+            background: #ff2e43; color: #fff; font-weight: 700; 
+            border-radius: 8px; cursor: pointer; border: none; 
+            transition: 0.2s; text-transform: uppercase;
+        }
+        .btn-finalize:hover { background: #ff4d5d; transform: translateY(-2px); }
+        .btn-finalize:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="onboarding-card">
+    <h2 style="color: #fff; margin:0 0 5px;">RIDER MEDICAL PROFILE</h2>
+    <p class="muted" style="margin-bottom:30px;">Complete this to link your helmet and medical data.</p>
+
+    <form id="profile-form">
+        <label>Helmet Serial Number</label>
+        <div class="input-wrapper">
+            <input type="text" id="serial_number" placeholder="GCMO-XXXXXX" maxlength="11" required>
+            <span id="serial-check" class="check-icon">✓</span>
+        </div>
+        <p class="muted" style="font-size: 10px; margin-top: 5px;">Format: [TYPE]-[6 DIGITS]</p>
+
+        <span class="form-section-title">Medical Details</span>
+        <div class="form-row">
+            <div style="flex:2">
+                <label>Blood Type</label>
+                <select id="blood_type" required>
+                    <option value="">Select...</option>
+                    <option value="A+">A+</option><option value="A-">A-</option>
+                    <option value="B+">B+</option><option value="B-">B-</option>
+                    <option value="O+">O+</option><option value="O-">O-</option>
+                    <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                </select>
+            </div>
+            <div style="flex:1.2; display:flex; align-items:center; gap:8px; padding-top:25px;">
+                <input type="checkbox" id="organ_donor" style="width:18px; height:18px;">
+                <label style="margin:0; font-size: 12px;">Organ Donor</label>
+            </div>
+        </div>
+
+        <label>Allergies</label>
+        <textarea id="allergies" rows="2" placeholder="e.g. Peanuts, Aspirin, or None"></textarea>
+
+        <span class="form-section-title">Emergency Contacts</span>
+        
+        <div class="form-row">
+            <input type="text" id="contact_name_1" placeholder="Name 1" required style="flex: 1;">
+            <div class="input-wrapper">
+                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
+                <input type="tel" class="phone-input" id="contact_phone_1" placeholder="9123456789" maxlength="10" required style="padding-left: 45px !important;">
+                <span class="check-icon">✓</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <input type="text" id="contact_name_2" placeholder="Name 2 (Optional)" style="flex: 1;">
+            <div class="input-wrapper">
+                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
+                <input type="tel" class="phone-input" id="contact_phone_2" placeholder="9123456789" maxlength="10" style="padding-left: 45px !important;">
+                <span class="check-icon">✓</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <input type="text" id="contact_name_3" placeholder="Name 3 (Optional)" style="flex: 1;">
+            <div class="input-wrapper">
+                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
+                <input type="tel" class="phone-input" id="contact_phone_3" placeholder="9123456789" maxlength="10" style="padding-left: 45px !important;">
+                <span class="check-icon">✓</span>
+            </div>
+        </div>
+
+        <div class="submit-wrap">
+            <button type="submit" class="btn-finalize" id="submit-btn">Complete Setup</button>
+        </div>
+    </form>
+</div>
+
+<script type="module" src="js/medical-onboarding.js"></script>
+</body>
+</html>
