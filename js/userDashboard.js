@@ -138,19 +138,21 @@ async function saveBlackBoxData(userId) {
         final_elevation: finalElev
     });
 }
-
 function generateRiderQR(serialNumber) {
-    const publicUrl = `http://127.0.0.1:5500/status.html?sn=${serialNumber}`;
+    // UPDATED: Points to your new Vercel production URL
+    const publicUrl = `https://giacomo-beta.vercel.app/status.html?sn=${serialNumber}`;
+    
     const qrcodeContainer = document.getElementById("qrcode");
     if (!qrcodeContainer) return;
     
     qrcodeContainer.innerHTML = ""; 
-    
     new QRCode(qrcodeContainer, {
-        text: publicUrl, width: 120, height: 120,
+        text: publicUrl, 
+        width: 120, height: 120,
         colorDark : "#000000", colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
     });
+}
 
     // Handle Download
     const downloadBtn = document.getElementById('download-qr');
@@ -165,6 +167,4 @@ function generateRiderQR(serialNumber) {
             }
         };
     }
-}
-
 document.addEventListener('DOMContentLoaded', initDashboard);
