@@ -6,97 +6,91 @@
     <title>GIACOMO — EMERGENCY ID</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
     <style>
-        :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #06070a; }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; line-height: 1.4; }
+        :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #06070a; --card: #12141c; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; line-height: 1.4; -webkit-tap-highlight-color: transparent; }
         
+        /* Header Polish */
         .emergency-header { 
-            border: 3px solid var(--danger); padding: 25px; border-radius: 20px; 
+            border: 2px solid var(--danger); padding: 25px; border-radius: 24px; 
             margin-bottom: 25px; text-align: center; background: rgba(255, 46, 67, 0.05);
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 46, 67, 0.1);
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 46, 67, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0); }
-        }
-
-        .emergency-header h1 { margin: 0; color: var(--danger); font-size: 24px; font-weight: 900; letter-spacing: 1px; }
-        #rider-name { font-size: 20px; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
+        .emergency-header h1 { margin: 0; color: var(--danger); font-size: 10px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+        #rider-name { font-size: 24px; font-weight: 900; margin-top: 8px; text-transform: uppercase; letter-spacing: -0.5px; }
         
-        .section-title { color: var(--accent); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin: 25px 0 10px 5px; display: block; }
+        .section-title { color: var(--accent); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin: 25px 0 12px 5px; opacity: 0.8; }
 
-        .info-card { background: #0f111a; padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 12px; }
-        .info-card .val { font-size: 22px; font-weight: 800; color: #fff; }
-        .info-card .desc { font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; font-weight: 600; }
+        /* Card & Skeleton Polish */
+        .info-card { background: var(--card); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px; }
+        .info-card .val { font-size: 20px; font-weight: 800; color: #fff; min-height: 24px; }
+        .info-card .desc { font-size: 10px; color: #64748b; margin-top: 6px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
 
-        /* Location Tool Styling */
-        .location-box { 
-            border: 1px solid var(--accent); 
-            background: rgba(0, 229, 255, 0.03); 
-            animation: glow 2s infinite;
+        .skeleton { 
+            background: linear-gradient(90deg, #1a1d29 25%, #24283b 50%, #1a1d29 75%); 
+            background-size: 200% 100%; animation: shimmer 1.5s infinite;
+            border-radius: 4px; height: 20px; width: 60%;
         }
-        @keyframes glow {
-            0% { border-color: rgba(0, 229, 255, 0.3); }
-            50% { border-color: rgba(0, 229, 255, 1); box-shadow: 0 0 10px rgba(0, 229, 255, 0.2); }
-            100% { border-color: rgba(0, 229, 255, 0.3); }
-        }
-        .btn-location {
-            width: 100%; padding: 16px; background: var(--accent); color: #000;
-            border: none; border-radius: 12px; font-weight: 900; cursor: pointer;
-            text-transform: uppercase; font-size: 13px; transition: 0.2s;
-            letter-spacing: 1px;
-        }
-        .btn-location:active { transform: scale(0.96); }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
+        /* Emergency Tool Polish */
+        .location-box { border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(0, 229, 255, 0.02); }
+        .btn-location { 
+            width: 100%; padding: 18px; background: var(--accent); color: #000;
+            border: none; border-radius: 14px; font-weight: 900; cursor: pointer;
+            font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        /* Contact Button Polish */
         .contact-btn { 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            width: 100%; padding: 20px; background: var(--danger); 
-            color: white; text-decoration: none; border-radius: 15px; 
-            font-weight: 900; margin-bottom: 12px; transition: 0.2s;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; padding: 20px; background: #fff; color: #000;
+            text-decoration: none; border-radius: 18px; font-weight: 900; margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .contact-btn span { font-size: 12px; opacity: 0.8; font-weight: 400; margin-bottom: 4px; }
-        .contact-btn:active { transform: scale(0.98); background: #e62236; }
+        .contact-info { display: flex; flex-direction: column; }
+        .contact-info span { font-size: 10px; color: #64748b; font-weight: 700; }
+        .call-icon { background: var(--danger); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
 
-        #error-screen { display: none; text-align: center; padding: 50px 20px; }
+        #error-screen { display: none; text-align: center; padding: 80px 20px; }
     </style>
 </head>
 <body>
 
     <div id="status-content">
         <div class="emergency-header">
-            <h1>CRITICAL MEDICAL INFO</h1>
-            <div id="rider-name">INITIALIZING...</div>
+            <h1>Medical Alert System</h1>
+            <div id="rider-name"><div class="skeleton" style="margin: auto;"></div></div>
         </div>
 
-        <span class="section-title">Medical Profile</span>
+        <span class="section-title">Critical Information</span>
         <div class="info-card">
-            <div id="blood-type" class="val">--</div>
+            <div id="blood-type" class="val"><div class="skeleton"></div></div>
             <div class="desc">Blood Group</div>
         </div>
 
         <div class="info-card">
-            <div id="allergies" class="val">--</div>
-            <div class="desc">Active Allergies</div>
-        </div>
-
-        <div class="info-card">
-            <div id="conditions" class="val">--</div>
-            <div class="desc">Chronic Conditions</div>
+            <div id="allergies" class="val"><div class="skeleton" style="width: 80%;"></div></div>
+            <div class="desc">Medical Allergies</div>
         </div>
 
         <span class="section-title">Emergency Tools</span>
         <div class="info-card location-box">
-            <button id="share-location" class="btn-location">📍 SHARE CURRENT LOCATION</button>
-            <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Send GPS to responders</div>
+            <button id="share-location" class="btn-location">
+                <span id="loc-icon">📍</span> SHARE GPS LOCATION
+            </button>
+            <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Help responders find the rider</div>
         </div>
 
-        <span class="section-title">Emergency Response</span>
-        <div id="contacts-container"></div>
+        <span class="section-title">Contacts</span>
+        <div id="contacts-container">
+            <div class="info-card"><div class="skeleton"></div></div>
+        </div>
     </div>
 
     <div id="error-screen">
-        <h1 style="color: var(--danger);">INVALID ID</h1>
-        <p>This Giacomo Unit is not recognized or the profile is private.</p>
+        <h1 style="color: var(--danger); font-size: 40px;">⚠️</h1>
+        <h2 style="margin: 10px 0;">PROFILE NOT FOUND</h2>
+        <p style="color: #64748b;">This Giacomo serial number is not active.</p>
     </div>
 
     <script type="module">
@@ -113,6 +107,8 @@
                 .single();
 
             if (pErr || !profile) { showErr(); return; }
+            
+            // Populate Name
             document.getElementById('rider-name').innerText = profile.full_name;
 
             const { data: med } = await supabase
@@ -122,58 +118,47 @@
                 .single();
 
             if (med) {
-                document.getElementById('blood-type').innerText = med.blood_type || 'N/A';
-                document.getElementById('allergies').innerText = med.allergies || 'NONE';
-                document.getElementById('conditions').innerText = med.chronic_conditions || 'NONE';
-
+                // Update Medical Data
+                document.getElementById('blood-type').innerText = med.blood_type || 'NOT SPECIFIED';
+                document.getElementById('allergies').innerText = med.allergies || 'NO KNOWN ALLERGIES';
+                
+                // Populate Contacts
                 const container = document.getElementById('contacts-container');
+                container.innerHTML = ""; 
                 for (let i = 1; i <= 3; i++) {
                     const name = med[`contact_${i}_name`];
                     const phone = med[`contact_${i}_phone`];
                     if (name && phone) {
                         container.innerHTML += `
                             <a href="tel:${phone}" class="contact-btn">
-                                <span>EMERGENCY CONTACT</span>
-                                CALL ${name.toUpperCase()}
+                                <div class="contact-info">
+                                    <span>EMERGENCY CONTACT ${i}</span>
+                                    <div>${name.toUpperCase()}</div>
+                                </div>
+                                <div class="call-icon">📞</div>
                             </a>`;
                     }
                 }
             }
         }
 
-        // --- Location Share Implementation ---
+        // --- Location Logic ---
         document.getElementById('share-location').onclick = () => {
             const statusText = document.getElementById('location-status');
+            if (!navigator.geolocation) { statusText.innerText = "GPS NOT SUPPORTED"; return; }
             
-            if (!navigator.geolocation) {
-                statusText.innerText = "GPS NOT SUPPORTED";
-                return;
-            }
-
-            statusText.innerText = "FETCHING GPS...";
-
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-                const message = `EMERGENCY: I found a rider. My location: ${mapLink}`;
-
+            statusText.innerText = "ACCESSING SATELLITES...";
+            
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const mapLink = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+                const msg = `EMERGENCY ALERT: I found a rider. My location: ${mapLink}`;
+                
                 if (navigator.share) {
-                    navigator.share({
-                        title: 'Giacomo Emergency',
-                        text: message,
-                        url: mapLink
-                    }).then(() => {
-                        statusText.innerText = "LOCATION SHARED";
-                    }).catch(() => {
-                        statusText.innerText = "SHARE CANCELLED";
-                    });
-                } else {
-                    window.open(`sms:?body=${encodeURIComponent(message)}`, '_blank');
-                    statusText.innerText = "OPENING SMS...";
-                }
-            }, () => {
-                statusText.innerText = "ENABLE LOCATION ACCESS";
+                    navigator.share({ title: 'Giacomo Emergency', text: msg, url: mapLink });
+                } else { window.open(`sms:?body=${encodeURIComponent(msg)}`, '_blank'); }
+                statusText.innerText = "LOCATION CAPTURED";
+            }, (err) => {
+                statusText.innerText = "PERMISSION DENIED. Check Safari Settings.";
             }, { enableHighAccuracy: true });
         };
 
@@ -181,6 +166,7 @@
             document.getElementById('status-content').style.display = 'none';
             document.getElementById('error-screen').style.display = 'block';
         }
+
         fetchStatus();
     </script>
 </body>
