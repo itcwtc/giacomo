@@ -100,89 +100,66 @@
     </div>
 
     <script type="module">
-        import { supabase } from './js/supabaseClient.js';
+        // --- Refined Location Share Implementation ---
+document.getElementById('share-location').onclick = async () => {
+    const statusText = document.getElementById('location-status');
+    const btn = document.getElementById('share-location');
+    
+    // Check if site is secure (Geolocation requires HTTPS)
+    if (window.location.protocol !== 'https:') {
+        statusText.innerText = "INSECURE CONNECTION (USE HTTPS)";
+        return;
+    }
 
-        async function fetchStatus() {
-            const sn = new URLSearchParams(window.location.search).get('sn');
-            if (!sn) { showErr(); return; }
+    statusText.innerText = "REQUESTING ACCESS...";
 
-            const { data: profile, error: pErr } = await supabase
-                .from('profiles')
-                .select('id, full_name')
-                .eq('serial_number', sn.toUpperCase())
-                .single();
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000, // 10 seconds timeout
+        maximumAge: 0
+    };
 
-            if (pErr || !profile) { showErr(); return; }
-            document.getElementById('rider-name').innerText = profile.full_name;
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            const message = `EMERGENCY: I found a rider. My location: ${mapLink}`;
 
-            const { data: med } = await supabase
-                .from('medical_profiles')
-                .select('*')
-                .eq('user_id', profile.id)
-                .single();
-
-            if (med) {
-                document.getElementById('blood-type').innerText = med.blood_type || 'N/A';
-                document.getElementById('allergies').innerText = med.allergies || 'NONE';
-                document.getElementById('conditions').innerText = med.chronic_conditions || 'NONE';
-
-                const container = document.getElementById('contacts-container');
-                for (let i = 1; i <= 3; i++) {
-                    const name = med[`contact_${i}_name`];
-                    const phone = med[`contact_${i}_phone`];
-                    if (name && phone) {
-                        container.innerHTML += `
-                            <a href="tel:${phone}" class="contact-btn">
-                                <span>EMERGENCY CONTACT</span>
-                                CALL ${name.toUpperCase()}
-                            </a>`;
-                    }
-                }
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Giacomo Emergency',
+                    text: message,
+                    url: mapLink
+                }).then(() => {
+                    statusText.innerText = "LOCATION SHARED";
+                }).catch(() => {
+                    statusText.innerText = "SHARE CANCELLED";
+                });
+            } else {
+                window.open(`sms:?body=${encodeURIComponent(message)}`, '_blank');
+                statusText.innerText = "OPENING SMS...";
             }
-        }
-
-        // --- Location Share Implementation ---
-        document.getElementById('share-location').onclick = () => {
-            const statusText = document.getElementById('location-status');
-            
-            if (!navigator.geolocation) {
-                statusText.innerText = "GPS NOT SUPPORTED";
-                return;
+        }, 
+        (error) => {
+            // SPECIFIC ERROR FEEDBACK
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    statusText.innerHTML = "🔴 ACCESS BLOCKED. <br>Tap the 'Lock' icon in URL bar to Allow Location.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    statusText.innerText = "GPS SIGNAL LOST. TRY AGAIN.";
+                    break;
+                case error.TIMEOUT:
+                    statusText.innerText = "REQUEST TIMED OUT.";
+                    break;
+                default:
+                    statusText.innerText = "UNKNOWN GPS ERROR.";
             }
-
-            statusText.innerText = "FETCHING GPS...";
-
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-                const message = `EMERGENCY: I found a rider. My location: ${mapLink}`;
-
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Giacomo Emergency',
-                        text: message,
-                        url: mapLink
-                    }).then(() => {
-                        statusText.innerText = "LOCATION SHARED";
-                    }).catch(() => {
-                        statusText.innerText = "SHARE CANCELLED";
-                    });
-                } else {
-                    window.open(`sms:?body=${encodeURIComponent(message)}`, '_blank');
-                    statusText.innerText = "OPENING SMS...";
-                }
-            }, () => {
-                statusText.innerText = "ENABLE LOCATION ACCESS";
-            }, { enableHighAccuracy: true });
-        };
-
-        function showErr() {
-            document.getElementById('status-content').style.display = 'none';
-            document.getElementById('error-screen').style.display = 'block';
-        }
-
-        fetchStatus();
+        }, 
+        options
+    );
+};
     </script>
 </body>
 </html>
