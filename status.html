@@ -29,6 +29,25 @@
         .info-card .val { font-size: 22px; font-weight: 800; color: #fff; }
         .info-card .desc { font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; font-weight: 600; }
 
+        /* Location Tool Styling */
+        .location-box { 
+            border: 1px solid var(--accent); 
+            background: rgba(0, 229, 255, 0.03); 
+            animation: glow 2s infinite;
+        }
+        @keyframes glow {
+            0% { border-color: rgba(0, 229, 255, 0.3); }
+            50% { border-color: rgba(0, 229, 255, 1); box-shadow: 0 0 10px rgba(0, 229, 255, 0.2); }
+            100% { border-color: rgba(0, 229, 255, 0.3); }
+        }
+        .btn-location {
+            width: 100%; padding: 16px; background: var(--accent); color: #000;
+            border: none; border-radius: 12px; font-weight: 900; cursor: pointer;
+            text-transform: uppercase; font-size: 13px; transition: 0.2s;
+            letter-spacing: 1px;
+        }
+        .btn-location:active { transform: scale(0.96); }
+
         .contact-btn { 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             width: 100%; padding: 20px; background: var(--danger); 
@@ -65,6 +84,12 @@
             <div class="desc">Chronic Conditions</div>
         </div>
 
+        <span class="section-title">Emergency Tools</span>
+        <div class="info-card location-box">
+            <button id="share-location" class="btn-location">📍 SHARE CURRENT LOCATION</button>
+            <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Send GPS to responders</div>
+        </div>
+
         <span class="section-title">Emergency Response</span>
         <div id="contacts-container"></div>
     </div>
@@ -75,13 +100,12 @@
     </div>
 
     <script type="module">
-        import { supabase } from './js/supabaseClient.js'; // Fixed path for root folder
+        import { supabase } from './js/supabaseClient.js';
 
         async function fetchStatus() {
             const sn = new URLSearchParams(window.location.search).get('sn');
             if (!sn) { showErr(); return; }
 
-            // Step 1: Resolve Serial to User
             const { data: profile, error: pErr } = await supabase
                 .from('profiles')
                 .select('id, full_name')
@@ -91,7 +115,6 @@
             if (pErr || !profile) { showErr(); return; }
             document.getElementById('rider-name').innerText = profile.full_name;
 
-            // Step 2: Get Medical Details
             const { data: med } = await supabase
                 .from('medical_profiles')
                 .select('*')
@@ -117,6 +140,42 @@
                 }
             }
         }
+
+        // --- Location Share Implementation ---
+        document.getElementById('share-location').onclick = () => {
+            const statusText = document.getElementById('location-status');
+            
+            if (!navigator.geolocation) {
+                statusText.innerText = "GPS NOT SUPPORTED";
+                return;
+            }
+
+            statusText.innerText = "FETCHING GPS...";
+
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
+                const message = `EMERGENCY: I found a rider. My location: ${mapLink}`;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Giacomo Emergency',
+                        text: message,
+                        url: mapLink
+                    }).then(() => {
+                        statusText.innerText = "LOCATION SHARED";
+                    }).catch(() => {
+                        statusText.innerText = "SHARE CANCELLED";
+                    });
+                } else {
+                    window.open(`sms:?body=${encodeURIComponent(message)}`, '_blank');
+                    statusText.innerText = "OPENING SMS...";
+                }
+            }, () => {
+                statusText.innerText = "ENABLE LOCATION ACCESS";
+            }, { enableHighAccuracy: true });
+        };
 
         function showErr() {
             document.getElementById('status-content').style.display = 'none';
