@@ -40,20 +40,49 @@ async function showCrashNotification(user) {
 
     document.getElementById(`go-${user.id}`).onclick = async () => {
         map.flyTo([user.lat, user.lon], 18);
-        const { data: log } = await supabase.from('incident_logs').select('*').eq('user_id', user.id).order('timestamp', { ascending: false }).limit(1).single();
-        if (log) {
+        
+        const { data: log } = await supabase
+            .from('incident_logs')
+            .select('*')
+            .eq('user_id', user.id)
+            .order('timestamp', { ascending: false })
+            .limit(1)
+            .single();
+
+        let displayData;
+
+        if (!log && user.id.startsWith('D-')) {
+            displayData = {
+                velocity: (Math.random() * (4.5 - 2.1) + 2.1).toFixed(1),
+                elevation: Math.floor(Math.random() * 50) + 10,
+                timestamp: new Date().toISOString() // Fallback timestamp for dummy users
+            };
+        } else if (log) {
+            displayData = log;
+        }
+
+        if (displayData) {
+            // --- ADDED: Clock Logic for Incident Time ---
+            const incidentTime = new Date(displayData.timestamp).toLocaleTimeString([], { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+
             markers[user.id].bindPopup(`
-                <div style="text-align:center;">
-                    <b style="color:var(--danger);">IMPACT DATA</b><br>
-                    <span style="font-size:16px;">${log.velocity || 'N/A'} G</span><br>
-                    <span style="font-size:10px; color:#64748b;">Elev: ${log.elevation || 0}m</span>
+                <div style="text-align:center; font-family: 'Inter', sans-serif; min-width:130px;">
+                    <b style="color:var(--danger); letter-spacing:1px; font-size:10px;">IMPACT DETECTED</b><br>
+                    <span style="font-size:22px; font-weight:900; color:#fff;">${displayData.velocity} G</span><br>
+                    <span style="font-size:11px; color:#64748b;">Elev: ${displayData.elevation}m</span>
+                    <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
+                    <span style="font-size:10px; color:#00e5ff; font-weight:bold;">🕒 TIME: ${incidentTime}</span>
                 </div>
             `).openPopup();
         }
     };
 
     document.getElementById(`street-${user.id}`).onclick = () => {
-        window.open(`https://www.google.com/maps?q=${user.lat},${user.lon}`, '_blank');
+        window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${user.lat},${user.lon}`, '_blank');
     };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
@@ -62,19 +91,13 @@ async function showCrashNotification(user) {
 async function renderUI(users) {
     userContainer.innerHTML = '';
     const term = searchInput.value.toLowerCase();
-    
-    // 1. Get the current logged-in Admin's ID
     const { data: { user: adminAuth } } = await supabase.auth.getUser();
 
     const allUsers = [...users, ...dummyUsers];
     const sorted = allUsers.sort((a, b) => b.is_crashed - a.is_crashed);
 
     sorted.filter(u => u.full_name.toLowerCase().includes(term)).forEach(user => {
-        
-        // 2. HARD FILTER: If this user is actually the Admin, SKIP them
-        if (adminAuth && user.id === adminAuth.id) {
-            return; 
-        }
+        if (adminAuth && user.id === adminAuth.id) return; 
 
         const isEm = user.is_crashed;
         let color = isEm ? '#ff2e43' : (user.status === 'ACTIVE' || user.lat ? '#4ade80' : '#64748b');
@@ -120,7 +143,6 @@ searchInput.oninput = () => {
 };
 
 async function init() {
-    // 3. Zoom Out to level 11 to see the spread
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.95, 125.54], 11);
     L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
     
