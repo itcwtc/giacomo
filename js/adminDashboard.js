@@ -82,7 +82,8 @@ async function showCrashNotification(user) {
     };
 
     document.getElementById(`street-${user.id}`).onclick = () => {
-        window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${user.lat},${user.lon}`, '_blank');
+        // Change the '0' to nothing
+window.open(`https://www.google.com/maps?q=&layer=c&cbll=${user.lat},${user.lon}`, '_blank');
     };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
@@ -143,8 +144,13 @@ searchInput.oninput = () => {
 };
 
 async function init() {
-    map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.95, 125.54], 11);
+    // 8.95, 125.53 is exactly Butuan City. 
+    map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.9500, 125.5300], 13);
+    
     L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
+    
+    // FIX: Force the map to fill the container properly
+    setTimeout(() => { map.invalidateSize(); }, 500);
     
     const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
     currentRiders = profiles || [];

@@ -51,6 +51,18 @@
     .layout { display: flex; height: 100vh; width: 100vw; }
 
     /* Sidebar */
+    .sidebar { 
+    width: 340px; 
+    min-width: 340px; 
+    background: var(--card); 
+    border-right: 1px solid rgba(255,255,255,0.05); 
+    display: flex; 
+    flex-direction: column; 
+    z-index: 20; 
+    height: 100%; 
+    left: 0 !important; /* <--- ADD THIS to force it to show */
+    position: relative !important; /* <--- ADD THIS to keep it in the flex flow */
+}
     .sidebar { width: 340px; min-width: 340px; background: var(--card); border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; z-index: 20; height: 100%; }
     .side-header { padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .logo { color: var(--danger); font-size: 18px; font-weight: 900; letter-spacing: 3px; }
@@ -70,8 +82,13 @@
     #users-container, #logs-container { flex-grow: 1; overflow-y: auto; padding: 0 20px; }
 
     /* FIXED MAP CONTAINER: Removed ::before and ::after pseudo-elements */
-    #admin-map { flex-grow: 1; height: 100%; background: #1a1a1a; position: relative; z-index: 1; }
-    
+    #admin-map { 
+    flex: 1; /* This tells the map to take up ALL remaining horizontal space */
+    height: 100vh; 
+    background: #1a1a1a; 
+    position: relative; 
+    z-index: 1; 
+}
     .crash-popup {
         position: fixed; top: 20px; right: 20px; z-index: 9999; 
         background: #120305; border: 1px solid var(--danger);
