@@ -61,10 +61,10 @@ async function showCrashNotification(user) {
         }
     };
 
-    // Corrected Street View Logic
     document.getElementById(`street-${user.id}`).onclick = () => {
         const lat = user.lat || 8.22;
         const lon = user.lon || 125.75;
+        // Fixed URL syntax
         window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lon}`, '_blank');
     };
 
@@ -83,7 +83,7 @@ function renderUI(users) {
         const card = document.createElement('div');
         card.style.cssText = `border-left:4px solid ${color}; background:rgba(255,255,255,0.02); margin-bottom:8px; padding:15px; border-radius:8px; cursor:pointer;`;
         
-        const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'REAL-TIME HARDWARE';
+        const serialLabel = user.id && user.id.startsWith('D-') ? user.serial_number : 'REAL-TIME HARDWARE';
         card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
         card.onclick = () => {
@@ -130,16 +130,31 @@ searchInput.oninput = () => {
 
 async function init() {
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.22, 125.75], 13);
-    L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
     
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed');
+    // Updated to Dark Mode Tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        subdomains: 'abcd',
+        maxZoom: 20
+    }).addTo(map);
+    
+    // --- ADMIN FILTER APPLIED HERE ---
+    const { data: profiles } = await supabase
+        .from('profiles')
+        .select('id, full_name, lat, lon, is_crashed')
+        .eq('role', 'user'); // This ensures only riders show up
+
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     supabase.channel('admin-chan')
         .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async (payload) => {
             console.log("Update received:", payload.new);
-            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed');
+            // Re-fetch only users to keep the list clean
+            const { data: refreshed } = await supabase
+                .from('profiles')
+                .select('id, full_name, lat, lon, is_crashed')
+                .eq('role', 'user');
+                
             currentRiders = refreshed || [];
             renderUI(currentRiders);
         })
