@@ -17,6 +17,7 @@ const dummyUsers = [
     { id: 'D-05', full_name: 'Giacongot Bajao', is_crashed: false, serial_number: 'GCMO-1005', lat: 8.215, lon: 125.790, status: 'PENDING' },
 ];
 
+// --- 🛠️ RESET FUNCTION ---
 async function resetAllCrashes() {
     const { error } = await supabase
         .from('profiles')
@@ -53,7 +54,7 @@ async function showCrashNotification(user) {
     document.getElementById(`street-${user.id}`).onclick = () => {
         const lat = user.lat || 8.22;
         const lon = user.lon || 125.75;
-        window.open(`https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}`, '_blank');
+        window.open(`https://www.google.com/maps?q&layer=c&cbll=${lat},${lon}`, '_blank');
     };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
@@ -90,6 +91,7 @@ function renderUI(users) {
                 })
             }).addTo(map);
         }
+
         if (isEm) showCrashNotification(user);
     });
     statRiders.innerText = allUsers.length;
@@ -107,26 +109,39 @@ async function loadHistory() {
     });
 }
 
-searchInput.oninput = () => renderUI(currentRiders);
+searchInput.oninput = () => { 
+    renderUI(currentRiders); 
+};
 
 async function init() {
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.22, 125.75], 13);
     
-    // Optimized Stadia Dark Mode (Much faster than CartoDB Tron)
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-        maxZoom: 20
+    // BACK TO STANDARD GOOGLE HYBRID (Reliable and Fast)
+    L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0','mt1','mt2','mt3']
     }).addTo(map);
     
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
+    // --- ADMIN FILTER PRESERVED ---
+    const { data: profiles } = await supabase
+        .from('profiles')
+        .select('id, full_name, lat, lon, is_crashed')
+        .eq('role', 'user'); 
+
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     supabase.channel('admin-chan')
         .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async () => {
-            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
+            const { data: refreshed } = await supabase
+                .from('profiles')
+                .select('id, full_name, lat, lon, is_crashed')
+                .eq('role', 'user');
+                
             currentRiders = refreshed || [];
             renderUI(currentRiders);
-        }).subscribe();
+        })
+        .subscribe();
 }
 
 document.getElementById('btn-tab-live').onclick = (e) => { 
