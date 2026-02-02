@@ -10,11 +10,11 @@ let map, markers = {}, currentRiders = [];
 
 // Static Data for simulation/UI testing
 const dummyUsers = [
-    { id: 'D-01', full_name: 'Yani Vegafria', is_crashed: false, serial_number: 'GCMO-1001', lat: 8.235, lon: 125.765, status: 'ACTIVE' },
-    { id: 'D-02', full_name: 'Harold Jarina', is_crashed: false, serial_number: 'GCMO-1002', lat: 8.210, lon: 125.740, status: 'ACTIVE' },
-    { id: 'D-03', full_name: 'Clint Lloyd Bando', is_crashed: false, serial_number: 'GCMO-1003', lat: 8.245, lon: 125.780, status: 'STATIONARY' },
-    { id: 'D-04', full_name: 'Drex Villanueva', is_crashed: false, serial_number: 'GCMO-1004', lat: 8.225, lon: 125.755, status: 'ACTIVE' },
-    { id: 'D-05', full_name: 'Giacongot Bajao', is_crashed: false, serial_number: 'GCMO-1005', lat: 8.215, lon: 125.790, status: 'PENDING' },
+    { id: 'D-01', full_name: 'Angelo Vegafria', is_crashed: false, serial_number: 'GCMO-1001', lat: 8.235, lon: 125.765, status: 'ACTIVE' },
+    { id: 'D-02', full_name: 'Harold Baja', is_crashed: false, serial_number: 'GCMO-1002', lat: 8.210, lon: 125.740, status: 'ACTIVE' },
+    { id: 'D-03', full_name: 'Clint Lloyd', is_crashed: false, serial_number: 'GCMO-1003', lat: 8.245, lon: 125.780, status: 'STATIONARY' },
+    { id: 'D-04', full_name: 'Drex Parba', is_crashed: false, serial_number: 'GCMO-1004', lat: 8.225, lon: 125.755, status: 'ACTIVE' },
+    { id: 'D-05', full_name: 'Augustus Moongot', is_crashed: false, serial_number: 'GCMO-1005', lat: 8.215, lon: 125.790, status: 'PENDING' },
 ];
 
 async function resetAllCrashes() {
