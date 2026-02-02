@@ -8,62 +8,20 @@ const searchInput = document.getElementById('admin-search');
 
 let map, markers = {}, currentRiders = [];
 
-// --- UPDATED: Spaced Dummy Data (Philippines/Butuan Region) ---
+// --- 🎯 ACCURATE DUMMY DATA (Your Names + PH Coordinates) ---
 const dummyUsers = [
-    { 
-        id: 'D-01', 
-        full_name: 'Angelo Vegafria', 
-        is_crashed: false, 
-        serial_number: 'GCMO-1001', 
-        lat: 8.9475, lon: 125.5430, // Near Butuan City Hall
-        status: 'ACTIVE' 
-    },
-    { 
-        id: 'D-02', 
-        full_name: 'Harold Baja', 
-        is_crashed: false, 
-        serial_number: 'GCMO-1002', 
-        lat: 8.9550, lon: 125.5970, // Near Ampayon / CSU Area
-        status: 'ACTIVE' 
-    },
-    { 
-        id: 'D-03', 
-        full_name: 'Clint Lloyd Garcia', 
-        is_crashed: false, 
-        serial_number: 'GCMO-1003', 
-        lat: 8.9200, lon: 125.5200, // Near Libertad
-        status: 'STATIONARY' 
-    },
-    { 
-        id: 'D-04', 
-        full_name: 'Drex Parba', 
-        is_crashed: false, 
-        serial_number: 'GCMO-1004', 
-        lat: 9.0500, lon: 125.5200, // Magallanes Area (Coastal)
-        status: 'ACTIVE' 
-    },
-    { 
-        id: 'D-05', 
-        full_name: 'Augustus Moongot', 
-        is_crashed: true, // Emergency for demo
-        serial_number: 'GCMO-1005', 
-        lat: 8.9700, lon: 125.5000, // Near Bonbon
-        status: 'EMERGENCY' 
-    },
+    { id: 'D-01', full_name: 'Angelo Vegafria', is_crashed: false, serial_number: 'GCMO-1001', lat: 8.9475, lon: 125.5430, status: 'ACTIVE' },
+    { id: 'D-02', full_name: 'Harold Baja', is_crashed: false, serial_number: 'GCMO-1002', lat: 8.9550, lon: 125.5970, status: 'ACTIVE' },
+    { id: 'D-03', full_name: 'Clint Lloyd', is_crashed: false, serial_number: 'GCMO-1003', lat: 8.9200, lon: 125.5200, status: 'STATIONARY' },
+    { id: 'D-04', full_name: 'Drex Parba', is_crashed: false, serial_number: 'GCMO-1004', lat: 9.0500, lon: 125.5200, status: 'ACTIVE' },
+    { id: 'D-05', full_name: 'Augustus Moongot', is_crashed: true, serial_number: 'GCMO-1005', lat: 8.9700, lon: 125.5000, status: 'PENDING' },
 ];
 
 // --- 🛠️ RESET FUNCTION ---
 async function resetAllCrashes() {
-    const { error } = await supabase
-        .from('profiles')
-        .update({ is_crashed: false })
-        .eq('is_crashed', true);
-
-    if (error) {
-        console.error("Error resetting crashes:", error);
-    } else {
-        alert("All crash alerts cleared.");
-    }
+    const { error } = await supabase.from('profiles').update({ is_crashed: false }).eq('is_crashed', true);
+    if (error) console.error("Error resetting crashes:", error);
+    else alert("All crash alerts cleared.");
 }
 
 async function showCrashNotification(user) {
@@ -81,9 +39,7 @@ async function showCrashNotification(user) {
     document.body.appendChild(notif);
 
     document.getElementById(`go-${user.id}`).onclick = async () => {
-        const lat = user.lat;
-        const lon = user.lon;
-        map.flyTo([lat, lon], 18);
+        map.flyTo([user.lat, user.lon], 18);
         const { data: log } = await supabase.from('incident_logs').select('*').eq('user_id', user.id).order('timestamp', { ascending: false }).limit(1).single();
         if (log) {
             markers[user.id].bindPopup(`
@@ -97,9 +53,7 @@ async function showCrashNotification(user) {
     };
 
     document.getElementById(`street-${user.id}`).onclick = () => {
-        const lat = user.lat;
-        const lon = user.lon;
-        window.open(`https://www.google.com/maps/@?api=1&map_action=panoid&viewpoint=${lat},${lon}`, '_blank');
+        window.open(`https://www.google.com/maps?q=${user.lat},${user.lon}`, '_blank');
     };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
@@ -109,7 +63,7 @@ async function renderUI(users) {
     userContainer.innerHTML = '';
     const term = searchInput.value.toLowerCase();
     
-    // ADDED: Admin Auth check for filtering
+    // 1. Get the current logged-in Admin's ID
     const { data: { user: adminAuth } } = await supabase.auth.getUser();
 
     const allUsers = [...users, ...dummyUsers];
@@ -117,8 +71,10 @@ async function renderUI(users) {
 
     sorted.filter(u => u.full_name.toLowerCase().includes(term)).forEach(user => {
         
-        // ADDED: Skip the Admin's own profile in the list
-        if (adminAuth && user.id === adminAuth.id) return;
+        // 2. HARD FILTER: If this user is actually the Admin, SKIP them
+        if (adminAuth && user.id === adminAuth.id) {
+            return; 
+        }
 
         const isEm = user.is_crashed;
         let color = isEm ? '#ff2e43' : (user.status === 'ACTIVE' || user.lat ? '#4ade80' : '#64748b');
@@ -128,16 +84,10 @@ async function renderUI(users) {
         const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'REAL-TIME HARDWARE';
         card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
-        card.onclick = () => {
-            if (user.lat && user.lon) {
-                map.flyTo([user.lat, user.lon], 17);
-            }
-        };
-
+        card.onclick = () => { if (user.lat && user.lon) map.flyTo([user.lat, user.lon], 17); };
         userContainer.appendChild(card);
         
         if (markers[user.id]) map.removeLayer(markers[user.id]);
-        
         if (user.lat && user.lon) {
             markers[user.id] = L.marker([user.lat, user.lon], {
                 icon: L.divIcon({ 
@@ -147,10 +97,8 @@ async function renderUI(users) {
                 })
             }).addTo(map);
         }
-
         if (isEm) showCrashNotification(user);
     });
-    // Adjust stats to exclude the admin
     statRiders.innerText = adminAuth ? allUsers.length - 1 : allUsers.length;
     statAlerts.innerText = allUsers.filter(u => u.is_crashed).length;
 }
@@ -172,17 +120,16 @@ searchInput.oninput = () => {
 };
 
 async function init() {
-    // UPDATED: Adjusted Map View to [8.95, 125.54] and Zoom 11
+    // 3. Zoom Out to level 11 to see the spread
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.95, 125.54], 11);
     L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
     
-    // Filter out Admin accounts from initial load
     const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     supabase.channel('admin-chan')
-        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async (payload) => {
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async () => {
             const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
             currentRiders = refreshed || [];
             renderUI(currentRiders);
@@ -190,7 +137,6 @@ async function init() {
         .subscribe();
 }
 
-// --- Navigation & Controls ---
 document.getElementById('btn-tab-live').onclick = (e) => { 
     userContainer.style.display = 'block'; logContainer.style.display = 'none'; 
     e.target.className = 'active-tab'; document.getElementById('btn-tab-logs').className = 'inactive-tab'; 
