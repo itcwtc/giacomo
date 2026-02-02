@@ -17,7 +17,6 @@ const dummyUsers = [
     { id: 'D-05', full_name: 'Giacongot Bajao', is_crashed: false, serial_number: 'GCMO-1005', lat: 8.215, lon: 125.790, status: 'PENDING' },
 ];
 
-// --- 🛠️ RESET FUNCTION ---
 async function resetAllCrashes() {
     const { error } = await supabase
         .from('profiles')
@@ -49,23 +48,12 @@ async function showCrashNotification(user) {
         const lat = user.lat || 8.22;
         const lon = user.lon || 125.75;
         map.flyTo([lat, lon], 18);
-        const { data: log } = await supabase.from('incident_logs').select('*').eq('user_id', user.id).order('timestamp', { ascending: false }).limit(1).single();
-        if (log) {
-            markers[user.id].bindPopup(`
-                <div style="text-align:center;">
-                    <b style="color:var(--danger);">IMPACT DATA</b><br>
-                    <span style="font-size:16px;">${log.velocity || 'N/A'} G</span><br>
-                    <span style="font-size:10px; color:#64748b;">Elev: ${log.elevation || 0}m</span>
-                </div>
-            `).openPopup();
-        }
     };
 
     document.getElementById(`street-${user.id}`).onclick = () => {
         const lat = user.lat || 8.22;
         const lon = user.lon || 125.75;
-        // Fixed URL syntax
-        window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lon}`, '_blank');
+        window.open(`https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}`, '_blank');
     };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
@@ -87,13 +75,10 @@ function renderUI(users) {
         card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
         card.onclick = () => {
-            if (user.lat && user.lon) {
-                map.flyTo([user.lat, user.lon], 17);
-            }
+            if (user.lat && user.lon) map.flyTo([user.lat, user.lon], 17);
         };
 
         userContainer.appendChild(card);
-        
         if (markers[user.id]) map.removeLayer(markers[user.id]);
         
         if (user.lat && user.lon) {
@@ -105,7 +90,6 @@ function renderUI(users) {
                 })
             }).addTo(map);
         }
-
         if (isEm) showCrashNotification(user);
     });
     statRiders.innerText = allUsers.length;
@@ -123,45 +107,28 @@ async function loadHistory() {
     });
 }
 
-searchInput.oninput = () => { 
-    renderUI(currentRiders); 
-    setTimeout(highlightMatches, 10);
-};
+searchInput.oninput = () => renderUI(currentRiders);
 
 async function init() {
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.22, 125.75], 13);
     
-    // Updated to Dark Mode Tiles
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd',
+    // Optimized Stadia Dark Mode (Much faster than CartoDB Tron)
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
         maxZoom: 20
     }).addTo(map);
     
-    // --- ADMIN FILTER APPLIED HERE ---
-    const { data: profiles } = await supabase
-        .from('profiles')
-        .select('id, full_name, lat, lon, is_crashed')
-        .eq('role', 'user'); // This ensures only riders show up
-
+    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     supabase.channel('admin-chan')
-        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async (payload) => {
-            console.log("Update received:", payload.new);
-            // Re-fetch only users to keep the list clean
-            const { data: refreshed } = await supabase
-                .from('profiles')
-                .select('id, full_name, lat, lon, is_crashed')
-                .eq('role', 'user');
-                
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async () => {
+            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
             currentRiders = refreshed || [];
             renderUI(currentRiders);
-        })
-        .subscribe();
+        }).subscribe();
 }
 
-// --- Navigation & Controls ---
 document.getElementById('btn-tab-live').onclick = (e) => { 
     userContainer.style.display = 'block'; logContainer.style.display = 'none'; 
     e.target.className = 'active-tab'; document.getElementById('btn-tab-logs').className = 'inactive-tab'; 
@@ -179,23 +146,9 @@ document.getElementById('admin-logout').onclick = async () => {
 
 document.getElementById('btn-reset-all').onclick = resetAllCrashes;
 
-// Mission Clock Interval
 setInterval(() => {
     const clock = document.getElementById('mission-clock');
     if (clock) clock.innerText = new Date().toTimeString().split(' ')[0];
 }, 1000);
-
-const highlightMatches = () => {
-    const term = searchInput.value.trim();
-    if (!term) return;
-    const cards = userContainer.querySelectorAll('b, span');
-    cards.forEach(el => {
-        const text = el.textContent;
-        if (text.toLowerCase().includes(term.toLowerCase())) {
-            const regex = new RegExp(`(${term})`, 'gi');
-            el.innerHTML = text.replace(regex, `<mark style="background:rgba(0,229,255,0.3); color:#fff; border-radius:2px; padding:0 2px;">$1</mark>`);
-        }
-    });
-};
 
 document.addEventListener('DOMContentLoaded', init);
