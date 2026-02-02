@@ -1,3 +1,36 @@
+<script type="module">
+    import { supabase } from '../js/supabaseClient.js';
+
+    // 1. Instantly hide the page
+    document.documentElement.style.display = 'none';
+
+    async function checkSecurity() {
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            window.location.href = "../index.html";
+            return;
+        }
+
+        // 2. Fetch role from database (the ultimate truth)
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', user.id)
+            .single();
+
+        if (profile?.role === 'admin') {
+            // 3. Success: Show the page
+            document.documentElement.style.display = 'block';
+        } else {
+            // 4. Failure: Boot them
+            window.location.href = "../userDashboard.html";
+        }
+    }
+
+    checkSecurity();
+</script>
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,45 +39,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script type="module">
-        import { supabase } from '../js/supabaseClient.js';
-
-        // 1. Instantly hide the page to prevent unauthorized viewing
-        document.documentElement.style.display = 'none';
-
-        async function checkSecurity() {
-            try {
-                const { data: { user } } = await supabase.auth.getUser();
-
-                if (!user) {
-                    window.location.href = "../index.html";
-                    return;
-                }
-
-                // 2. Fetch role from database
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('role')
-                    .eq('id', user.id)
-                    .single();
-
-                if (profile?.role === 'admin') {
-                    // 3. Success: Show the page
-                    document.documentElement.style.display = 'block';
-                } else {
-                    // 4. Failure: Boot to user dashboard
-                    window.location.href = "../userDashboard.html";
-                }
-            } catch (err) {
-                console.error("Security Check Error:", err);
-                window.location.href = "../index.html";
-            }
-        }
-
-        checkSecurity();
-    </script>
-
     <style>
         :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #05060a; --card: #0f111a; }
         body, html { margin: 0; padding: 0; height: 100vh; width: 100vw; background: var(--bg); font-family: 'Inter', sans-serif; color: white; overflow: hidden; }
@@ -85,12 +79,15 @@
         .view-btn { background: var(--danger); color: white; }
         .ack-btn { background: transparent; color: #475569; border: 1px solid rgba(255,255,255,0.1); }
         
+        /* NEW: Street View Button Style */
         .street-btn { background: rgba(0, 229, 255, 0.1); color: var(--accent); border: 1px solid rgba(0, 229, 255, 0.3) !important; }
         .street-btn:hover { background: var(--accent); color: #000; }
 
+        /* Tactical Marker Pulse */
         .pulse-icon { background: var(--danger); border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 46, 67, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 46, 67, 0); } }
 
+        /* Map Popup Polish */
         .leaflet-popup-content-wrapper { background: #000 !important; color: #fff !important; border: 1px solid var(--danger); border-radius: 8px !important; }
         .leaflet-popup-tip { background: var(--danger) !important; }
         
@@ -101,6 +98,7 @@
             100% { opacity: 1; text-shadow: 0 0 5px #4ade80; }
         }
 
+        /* Tactical Grid Overlay */
         #admin-map::after {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1000; opacity: 0.3;
@@ -109,18 +107,12 @@
             background-size: 100% 2px, 3px 100%;
         }
 
+        /* Subtle Vignette */
         #admin-map::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 1001;
             background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%);
         }
-
-        .logout-btn { 
-            width: calc(100% - 40px); margin: 20px; padding: 12px; background: transparent; 
-            border: 1px solid rgba(255,255,255,0.1); color: #64748b; font-weight: 800; 
-            font-size: 10px; cursor: pointer; text-transform: uppercase; border-radius: 8px;
-        }
-        .logout-btn:hover { background: var(--danger); color: white; border-color: var(--danger); }
     </style>
 </head>
 <body>
@@ -142,7 +134,7 @@
             <div class="tab-nav">
                 <button id="btn-tab-live" class="active-tab">Live Feed</button>
                 <button id="btn-tab-logs" class="inactive-tab">History</button>
-                <button id="btn-reset-all" style=" color:rgb(115, 104, 104); border:none; padding:10px; border-radius:5px; cursor:pointer;">Reset</button>
+                <button id="btn-reset-all" style=" color:rgb(115, 104, 104); border:none; padding:10px; border-radius:5px; cursor:pointer;">Reset Crash Alerts</button>
             </div>
             <div class="search-box"><input type="text" id="admin-search" placeholder="Search User..."></div>
             <div id="users-container"></div>
