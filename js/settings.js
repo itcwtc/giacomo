@@ -3,7 +3,6 @@ import { supabase } from './supabaseClient.js';
 const serialRegex = /^(GCMO|ELIT|PROT)-[0-9]{6}$/;
 const phoneRegex = /^[0-9]{10}$/;
 
-// --- Validation UI Helper ---
 function validateField(input, regex) {
     const check = input.parentNode.querySelector('.check-icon');
     if (regex.test(input.value.trim())) {
@@ -17,7 +16,6 @@ function validateField(input, regex) {
     }
 }
 
-// --- Initialize and Load ---
 async function loadSettings() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
@@ -38,10 +36,9 @@ async function loadSettings() {
         const m = medRes.data;
         document.getElementById('blood-type').value = m.blood_type || '';
         document.getElementById('allergies').value = m.allergies || '';
-        document.getElementById('chronic-conditions').value = m.chronic_conditions || ''; // ADDED
-        document.getElementById('organ-donor').checked = m.organ_donor || false; // ADDED
+        document.getElementById('chronic-conditions').value = m.chronic_conditions || '';
+        document.getElementById('organ-donor').checked = m.organ_donor || false;
         
-        // Loop updated to 3 contacts
         for (let i = 1; i <= 3; i++) {
             const nameEl = document.getElementById(`c${i}-name`);
             const phoneEl = document.getElementById(`c${i}-phone`);
@@ -54,7 +51,6 @@ async function loadSettings() {
     }
 }
 
-// --- Event Listeners for Live Feedback ---
 document.getElementById('serial-num').addEventListener('input', (e) => {
     let val = e.target.value.toUpperCase();
     if (["GCMO", "ELIT", "PROT"].includes(val) && !val.includes("-")) val += "-";
@@ -70,7 +66,6 @@ document.querySelectorAll('.phone-edit').forEach(input => {
     });
 });
 
-// --- Save Action ---
 document.getElementById('save-all').onclick = async () => {
     const btn = document.getElementById('save-all');
     const { data: { user } } = await supabase.auth.getUser();
@@ -93,23 +88,23 @@ document.getElementById('save-all').onclick = async () => {
         user_id: user.id,
         blood_type: document.getElementById('blood-type').value,
         allergies: document.getElementById('allergies').value || "None",
-        chronic_conditions: document.getElementById('chronic-conditions').value || "None", // ADDED
-        organ_donor: document.getElementById('organ-donor').checked, // ADDED
+        chronic_conditions: document.getElementById('chronic-conditions').value || "None",
+        organ_donor: document.getElementById('organ-donor').checked,
         contact_1_name: document.getElementById('c1-name').value,
         contact_1_phone: getPhone('c1-phone'),
         contact_2_name: document.getElementById('c2-name').value,
         contact_2_phone: getPhone('c2-phone'),
-        contact_3_name: document.getElementById('c3-name').value, // ADDED
-        contact_3_phone: getPhone('c3-phone'), // ADDED
+        contact_3_name: document.getElementById('c3-name').value,
+        contact_3_phone: getPhone('c3-phone'),
         updated_at: new Date().toISOString()
     }, { onConflict: 'user_id' });
 
     const [r1, r2] = await Promise.all([profileUpdate, medicalUpdate]);
 
     if (!r1.error && !r2.error) {
-        alert("SYNC COMPLETE: Profile and Medical data are now identical across all systems.");
+        alert("SYNC COMPLETE: Emergency data updated.");
     } else {
-        alert("Sync Failed: Check your connection.");
+        alert("Sync Failed: Check connection.");
     }
 
     btn.innerText = "Save All Changes";

@@ -164,15 +164,21 @@
             const container = document.getElementById('contacts-container');
             container.innerHTML = ""; 
             
-            if (rider.contact_1_name && rider.contact_1_phone) {
-                container.innerHTML += `
-                    <a href="tel:${rider.contact_1_phone}" class="contact-btn">
-                        <div class="contact-info">
-                            <span>PRIMARY EMERGENCY CONTACT</span>
-                            <div>${rider.contact_1_name.toUpperCase()}</div>
-                        </div>
-                        <div class="call-icon">📞</div>
-                    </a>`;
+            // Updated loop for all 3 contacts from your medical_profiles columns
+            for (let i = 1; i <= 3; i++) {
+                const name = rider[`contact_${i}_name`];
+                const phone = rider[`contact_${i}_phone`];
+                
+                if (name && phone) {
+                    container.innerHTML += `
+                        <a href="tel:${phone}" class="contact-btn">
+                            <div class="contact-info">
+                                <span>EMERGENCY CONTACT ${i}</span>
+                                <div>${name.toUpperCase()}</div>
+                            </div>
+                            <div class="call-icon">📞</div>
+                        </a>`;
+                }
             }
         }
 

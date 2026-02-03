@@ -26,7 +26,6 @@ loginForm.onsubmit = async (e) => {
 
 async function redirectByRole(userId, email) {
     // 2. HARDCODED ADMIN CHECK (Your email)
-    // Replace the email below with your actual admin email
     const myAdminEmail = "jamieralcheon30@gmail.com"; 
 
     if (email === myAdminEmail) {
