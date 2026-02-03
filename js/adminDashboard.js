@@ -26,6 +26,23 @@ async function resetAllCrashes() {
 
 async function showCrashNotification(user) {
     if (document.getElementById(`notif-${user.id}`)) return;
+    // --- TRIGGER AUDIO ALERT ---
+    const alertSound = document.getElementById('crash-alert-sound');
+    if (alertSound) {
+        alertSound.currentTime = 0; // Reset to start if multiple crashes happen
+        alertSound.play().catch(e => console.log("Audio play blocked until user interaction."));
+    }
+    // Inside showCrashNotification...
+document.body.classList.add('emergency-flash');
+
+// Remove the flash only when the admin dismisses the alert
+document.getElementById(`dismiss-${user.id}`).onclick = () => {
+    notif.remove();
+    // Only stop flashing if no other crash notifications exist
+    if (document.querySelectorAll('.crash-popup').length === 0) {
+        document.body.classList.remove('emergency-flash');
+    }
+};
     const notif = document.createElement('div');
     notif.id = `notif-${user.id}`;
     notif.className = 'crash-popup';
@@ -83,8 +100,7 @@ async function showCrashNotification(user) {
 
     document.getElementById(`street-${user.id}`).onclick = () => {
         // Change the '0' to nothing
-window.open(`https://www.google.com/maps?q=&layer=c&cbll=${user.lat},${user.lon}`, '_blank');
-    };
+window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${user.lat},${user.lon}`, '_blank'); };
 
     document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
 }
