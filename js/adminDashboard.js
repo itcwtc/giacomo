@@ -8,7 +8,7 @@ const searchInput = document.getElementById('admin-search');
 
 let map, markers = {}, currentRiders = [];
 
-// --- 🎯 ACCURATE DUMMY DATA (Your Names + PH Coordinates) ---
+// --- 🎯 DUMMY DATA ---
 const dummyUsers = [
     { id: 'D-01', full_name: 'Angelo Vegafria', is_crashed: false, serial_number: 'GCMO-1001', lat: 8.9475, lon: 125.5430, status: 'ACTIVE' },
     { id: 'D-02', full_name: 'Harold Baja', is_crashed: false, serial_number: 'GCMO-1002', lat: 8.9550, lon: 125.5970, status: 'ACTIVE' },
@@ -17,32 +17,26 @@ const dummyUsers = [
     { id: 'D-05', full_name: 'Augustus Moongot', is_crashed: true, serial_number: 'GCMO-1005', lat: 8.9700, lon: 125.5000, status: 'PENDING' },
 ];
 
-// --- 🛠️ RESET FUNCTION ---
 async function resetAllCrashes() {
     const { error } = await supabase.from('profiles').update({ is_crashed: false }).eq('is_crashed', true);
     if (error) console.error("Error resetting crashes:", error);
     else alert("All crash alerts cleared.");
 }
 
+// --- 🛠️ FIXED NOTIFICATION LOGIC ---
 async function showCrashNotification(user) {
     if (document.getElementById(`notif-${user.id}`)) return;
-    // --- TRIGGER AUDIO ALERT ---
+
+    // 1. Audio Alert
     const alertSound = document.getElementById('crash-alert-sound');
     if (alertSound) {
-        alertSound.currentTime = 0; // Reset to start if multiple crashes happen
-        alertSound.play().catch(e => console.log("Audio play blocked until user interaction."));
+        alertSound.currentTime = 0;
+        alertSound.play().catch(() => console.log("Click page once to enable audio."));
     }
-    // Inside showCrashNotification...
-document.body.classList.add('emergency-flash');
 
-// Remove the flash only when the admin dismisses the alert
-document.getElementById(`dismiss-${user.id}`).onclick = () => {
-    notif.remove();
-    // Only stop flashing if no other crash notifications exist
-    if (document.querySelectorAll('.crash-popup').length === 0) {
-        document.body.classList.remove('emergency-flash');
-    }
-};
+    // 2. Visual Alert
+    document.body.classList.add('emergency-flash');
+
     const notif = document.createElement('div');
     notif.id = `notif-${user.id}`;
     notif.className = 'crash-popup';
@@ -55,54 +49,54 @@ document.getElementById(`dismiss-${user.id}`).onclick = () => {
     `;
     document.body.appendChild(notif);
 
-    document.getElementById(`go-${user.id}`).onclick = async () => {
-        map.flyTo([user.lat, user.lon], 18);
-        
-        const { data: log } = await supabase
-            .from('incident_logs')
-            .select('*')
-            .eq('user_id', user.id)
-            .order('timestamp', { ascending: false })
-            .limit(1)
-            .single();
+    // 3. Button Assignments (Wrapped in Timeout to avoid 'null' errors)
+    setTimeout(() => {
+        const goBtn = document.getElementById(`go-${user.id}`);
+        const streetBtn = document.getElementById(`street-${user.id}`);
+        const dismissBtn = document.getElementById(`dismiss-${user.id}`);
 
-        let displayData;
+        if (goBtn) goBtn.onclick = async () => {
+            map.flyTo([user.lat, user.lon], 18);
+            
+            // Telemetry Popup Logic
+            const { data: log } = await supabase
+                .from('incident_logs')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('timestamp', { ascending: false })
+                .limit(1).single();
 
-        if (!log && user.id.startsWith('D-')) {
-            displayData = {
+            let displayData = log || (user.id.startsWith('D-') ? {
                 velocity: (Math.random() * (4.5 - 2.1) + 2.1).toFixed(1),
                 elevation: Math.floor(Math.random() * 50) + 10,
-                timestamp: new Date().toISOString() // Fallback timestamp for dummy users
-            };
-        } else if (log) {
-            displayData = log;
-        }
+                timestamp: new Date().toISOString()
+            } : null);
 
-        if (displayData) {
-            // --- ADDED: Clock Logic for Incident Time ---
-            const incidentTime = new Date(displayData.timestamp).toLocaleTimeString([], { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit' 
-            });
+            if (displayData && markers[user.id]) {
+                const incidentTime = new Date(displayData.timestamp).toLocaleTimeString();
+                markers[user.id].bindPopup(`
+                    <div style="text-align:center; min-width:130px;">
+                        <b style="color:var(--danger); font-size:10px;">IMPACT DETECTED</b><br>
+                        <span style="font-size:22px; font-weight:900;">${displayData.velocity} G</span><br>
+                        <span style="font-size:11px; color:#64748b;">Elev: ${displayData.elevation}m</span>
+                        <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
+                        <span style="font-size:10px; color:#00e5ff;">🕒 ${incidentTime}</span>
+                    </div>
+                `).openPopup();
+            }
+        };
 
-            markers[user.id].bindPopup(`
-                <div style="text-align:center; font-family: 'Inter', sans-serif; min-width:130px;">
-                    <b style="color:var(--danger); letter-spacing:1px; font-size:10px;">IMPACT DETECTED</b><br>
-                    <span style="font-size:22px; font-weight:900; color:#fff;">${displayData.velocity} G</span><br>
-                    <span style="font-size:11px; color:#64748b;">Elev: ${displayData.elevation}m</span>
-                    <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
-                    <span style="font-size:10px; color:#00e5ff; font-weight:bold;">🕒 TIME: ${incidentTime}</span>
-                </div>
-            `).openPopup();
-        }
-    };
+        if (streetBtn) streetBtn.onclick = () => {
+            window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${user.lat},${user.lon}`, '_blank');
+        };
 
-    document.getElementById(`street-${user.id}`).onclick = () => {
-        // Change the '0' to nothing
-window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${user.lat},${user.lon}`, '_blank'); };
-
-    document.getElementById(`dismiss-${user.id}`).onclick = () => notif.remove();
+        if (dismissBtn) dismissBtn.onclick = () => {
+            notif.remove();
+            if (document.querySelectorAll('.crash-popup').length === 0) {
+                document.body.classList.remove('emergency-flash');
+            }
+        };
+    }, 100);
 }
 
 async function renderUI(users) {
@@ -117,11 +111,12 @@ async function renderUI(users) {
         if (adminAuth && user.id === adminAuth.id) return; 
 
         const isEm = user.is_crashed;
-        let color = isEm ? '#ff2e43' : (user.status === 'ACTIVE' || user.lat ? '#4ade80' : '#64748b');
+        let color = isEm ? '#ff2e43' : (user.lat ? '#4ade80' : '#64748b');
+        
         const card = document.createElement('div');
         card.style.cssText = `border-left:4px solid ${color}; background:rgba(255,255,255,0.02); margin-bottom:8px; padding:15px; border-radius:8px; cursor:pointer;`;
         
-        const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'REAL-TIME HARDWARE';
+        const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'HARDWARE LINKED';
         card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
         card.onclick = () => { if (user.lat && user.lon) map.flyTo([user.lat, user.lon], 17); };
@@ -139,7 +134,7 @@ async function renderUI(users) {
         }
         if (isEm) showCrashNotification(user);
     });
-    statRiders.innerText = adminAuth ? allUsers.length - 1 : allUsers.length;
+    statRiders.innerText = allUsers.length;
     statAlerts.innerText = allUsers.filter(u => u.is_crashed).length;
 }
 
@@ -154,18 +149,12 @@ async function loadHistory() {
     });
 }
 
-searchInput.oninput = () => { 
-    renderUI(currentRiders); 
-    setTimeout(highlightMatches, 10);
-};
+searchInput.oninput = () => { renderUI(currentRiders); setTimeout(highlightMatches, 10); };
 
 async function init() {
-    // 8.95, 125.53 is exactly Butuan City. 
     map = L.map('admin-map', { zoomControl: false, attributionControl: false }).setView([8.9500, 125.5300], 13);
-    
     L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
     
-    // FIX: Force the map to fill the container properly
     setTimeout(() => { map.invalidateSize(); }, 500);
     
     const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
@@ -177,10 +166,10 @@ async function init() {
             const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
             currentRiders = refreshed || [];
             renderUI(currentRiders);
-        })
-        .subscribe();
+        }).subscribe();
 }
 
+// Tab Switching
 document.getElementById('btn-tab-live').onclick = (e) => { 
     userContainer.style.display = 'block'; logContainer.style.display = 'none'; 
     e.target.className = 'active-tab'; document.getElementById('btn-tab-logs').className = 'inactive-tab'; 
