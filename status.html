@@ -3,171 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIACOMO — EMERGENCY ID</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <title>GIACOMO — Emergency Medical Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap">
     <style>
-        :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #06070a; --card: #12141c; }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; line-height: 1.4; -webkit-tap-highlight-color: transparent; }
-        
-        /* Header Polish */
-        .emergency-header { 
-            border: 2px solid var(--danger); padding: 25px; border-radius: 24px; 
-            margin-bottom: 25px; text-align: center; background: rgba(255, 46, 67, 0.05);
-            box-shadow: 0 0 20px rgba(255, 46, 67, 0.1);
+        /* Essential styles for the Impact Clock */
+        .impact-clock-box {
+            background: rgba(255, 46, 67, 0.1);
+            border: 1px solid var(--danger);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none; /* Hidden by default */
         }
-        .emergency-header h1 { margin: 0; color: var(--danger); font-size: 10px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
-        #rider-name { font-size: 24px; font-weight: 900; margin-top: 8px; text-transform: uppercase; letter-spacing: -0.5px; }
-        
-        .section-title { color: var(--accent); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin: 25px 0 12px 5px; opacity: 0.8; }
-
-        /* Card & Skeleton Polish */
-        .info-card { background: var(--card); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px; }
-        .info-card .val { font-size: 20px; font-weight: 800; color: #fff; min-height: 24px; }
-        .info-card .desc { font-size: 10px; color: #64748b; margin-top: 6px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
-
-        .skeleton { 
-            background: linear-gradient(90deg, #1a1d29 25%, #24283b 50%, #1a1d29 75%); 
-            background-size: 200% 100%; animation: shimmer 1.5s infinite;
-            border-radius: 4px; height: 20px; width: 60%;
-        }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        /* Emergency Tool Polish */
-        .location-box { border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(0, 229, 255, 0.02); }
-        .btn-location { 
-            width: 100%; padding: 18px; background: var(--accent); color: #000;
-            border: none; border-radius: 14px; font-weight: 900; cursor: pointer;
-            font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-
-        /* Contact Button Polish */
-        .contact-btn { 
-            display: flex; align-items: center; justify-content: space-between;
-            width: 100%; padding: 20px; background: #fff; color: #000;
-            text-decoration: none; border-radius: 18px; font-weight: 900; margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .contact-info { display: flex; flex-direction: column; }
-        .contact-info span { font-size: 10px; color: #64748b; font-weight: 700; }
-        .call-icon { background: var(--danger); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
-
-        #error-screen { display: none; text-align: center; padding: 80px 20px; }
+        .clock-label { font-size: 10px; font-weight: 800; color: var(--danger); letter-spacing: 1px; }
+        .clock-time { font-size: 24px; font-weight: 900; color: #fff; display: block; }
     </style>
 </head>
-<body>
+<body class="emergency-body">
+    <div class="emergency-card">
+        <div id="impact-section" class="impact-clock-box">
+            <span class="clock-label">⚠️ IMPACT DETECTED AT</span>
+            <span id="impact-time" class="clock-time">--:--:--</span>
+        </div>
 
-    <div id="status-content">
         <div class="emergency-header">
-            <h1>Medical Alert System</h1>
-            <div id="rider-name"><div class="skeleton" style="margin: auto;"></div></div>
+            <div class="medical-icon">🏥</div>
+            <h1 id="rider-name">Loading...</h1>
+            <p>EMERGENCY MEDICAL PROFILE</p>
         </div>
 
-        <span class="section-title">Critical Information</span>
-        <div class="info-card">
-            <div id="blood-type" class="val"><div class="skeleton"></div></div>
-            <div class="desc">Blood Group</div>
-        </div>
+        <div class="info-box">
+            <div class="info-row">
+                <span class="info-label">Blood Type</span>
+                <div id="blood-type" class="blood-badge">--</div>
+            </div>
 
-        <div class="info-card">
-            <div id="allergies" class="val"><div class="skeleton" style="width: 80%;"></div></div>
-            <div class="desc">Medical Allergies</div>
-        </div>
+            <div class="info-row">
+                <span class="info-label">Medical Allergies</span>
+                <div id="allergies" class="info-value">--</div>
+            </div>
 
-        <span class="section-title">Emergency Tools</span>
-        <div class="info-card location-box">
-            <button id="share-location" class="btn-location">
-                <span id="loc-icon">📍</span> SHARE GPS LOCATION
-            </button>
-            <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Help responders find the rider</div>
-        </div>
+            <div class="info-row">
+                <span class="info-label">Chronic Conditions</span>
+                <div id="chronic-conditions" class="info-value">--</div>
+            </div>
 
-        <span class="section-title">Contacts</span>
-        <div id="contacts-container">
-            <div class="info-card"><div class="skeleton"></div></div>
-        </div>
-    </div>
+            <div class="info-row">
+                <span class="info-label">Organ Donor</span>
+                <div id="organ-donor" class="info-value">--</div>
+            </div>
 
-    <div id="error-screen">
-        <h1 style="color: var(--danger); font-size: 40px;">⚠️</h1>
-        <h2 style="margin: 10px 0;">PROFILE NOT FOUND</h2>
-        <p style="color: #64748b;">This Giacomo serial number is not active.</p>
+            <div class="contact-box">
+                <span class="info-label" style="color:var(--danger)">Emergency Contacts</span>
+                
+                <div id="contact-1" class="ice-entry">
+                    <div id="c1-name" class="info-value">--</div>
+                    <a id="c1-link" href="#" class="call-btn">📞 CALL</a>
+                </div>
+
+                <div id="contact-2" class="ice-entry" style="margin-top:10px; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px;">
+                    <div id="c2-name" class="info-value">--</div>
+                    <a id="c2-link" href="#" class="call-btn">📞 CALL</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { supabase } from './js/supabaseClient.js';
 
-        async function fetchStatus() {
-            const sn = new URLSearchParams(window.location.search).get('sn');
-            if (!sn) { showErr(); return; }
+        const urlParams = new URLSearchParams(window.location.search);
+        const riderId = urlParams.get('id');
 
-            const { data: profile, error: pErr } = await supabase
+        async function loadEmergencyData() {
+            if (!riderId) return;
+
+            // 1. Fetch Profile (for crash status and name)
+            const { data: profile } = await supabase
                 .from('profiles')
-                .select('id, full_name')
-                .eq('serial_number', sn.toUpperCase())
+                .select('full_name, is_crashed')
+                .eq('id', riderId)
                 .single();
 
-            if (pErr || !profile) { showErr(); return; }
-            
-            // Populate Name
-            document.getElementById('rider-name').innerText = profile.full_name;
+            if (profile) {
+                document.getElementById('rider-name').innerText = profile.full_name;
 
-            const { data: med } = await supabase
+                // 2. Handle Impact Clock (Option A)
+                if (profile.is_crashed) {
+                    const { data: log } = await supabase
+                        .from('incident_logs')
+                        .select('timestamp')
+                        .eq('user_id', riderId)
+                        .order('timestamp', { ascending: false })
+                        .limit(1)
+                        .single();
+
+                    if (log) {
+                        const time = new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                        document.getElementById('impact-time').innerText = time;
+                        document.getElementById('impact-section').style.display = 'block';
+                    }
+                }
+            }
+
+            // 3. Fetch Medical Detailed Profile
+            const { data: medical } = await supabase
                 .from('medical_profiles')
                 .select('*')
-                .eq('user_id', profile.id)
+                .eq('user_id', riderId)
                 .single();
 
-            if (med) {
-                // Update Medical Data
-                document.getElementById('blood-type').innerText = med.blood_type || 'NOT SPECIFIED';
-                document.getElementById('allergies').innerText = med.allergies || 'NO KNOWN ALLERGIES';
+            if (medical) {
+                document.getElementById('blood-type').innerText = medical.blood_type || 'N/A';
+                document.getElementById('allergies').innerText = medical.allergiestext || medical.allergies || 'None'; // Handling potential column naming variations
+                document.getElementById('chronic-conditions').innerText = medical.chronic_conditions || 'None Reported';
+                document.getElementById('organ-donor').innerText = medical.organ_donor ? 'YES' : 'NO';
                 
-                // Populate Contacts
-                const container = document.getElementById('contacts-container');
-                container.innerHTML = ""; 
-                for (let i = 1; i <= 3; i++) {
-                    const name = med[`contact_${i}_name`];
-                    const phone = med[`contact_${i}_phone`];
-                    if (name && phone) {
-                        container.innerHTML += `
-                            <a href="tel:${phone}" class="contact-btn">
-                                <div class="contact-info">
-                                    <span>EMERGENCY CONTACT ${i}</span>
-                                    <div>${name.toUpperCase()}</div>
-                                </div>
-                                <div class="call-icon">📞</div>
-                            </a>`;
-                    }
+                // Contact 1
+                document.getElementById('c1-name').innerText = medical.contact_1_nametext || medical.contact_1_name || 'No Contact';
+                document.getElementById('c1-link').href = `tel:${medical.contact_1_phonetext || medical.contact_1_phone}`;
+                
+                // Contact 2
+                if (medical.contact_2_nametext || medical.contact_2_name) {
+                    document.getElementById('c2-name').innerText = medical.contact_2_nametext || medical.contact_2_name;
+                    document.getElementById('c2-link').href = `tel:${medical.contact_2_phonetext || medical.contact_2_phone}`;
                 }
             }
         }
 
-        // --- Location Logic ---
-        document.getElementById('share-location').onclick = () => {
-            const statusText = document.getElementById('location-status');
-            if (!navigator.geolocation) { statusText.innerText = "GPS NOT SUPPORTED"; return; }
-            
-            statusText.innerText = "ACCESSING SATELLITES...";
-            
-            navigator.geolocation.getCurrentPosition((pos) => {
-                const mapLink = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                const msg = `EMERGENCY ALERT: I found a rider. My location: ${mapLink}`;
-                
-                if (navigator.share) {
-                    navigator.share({ title: 'Giacomo Emergency', text: msg, url: mapLink });
-                } else { window.open(`sms:?body=${encodeURIComponent(msg)}`, '_blank'); }
-                statusText.innerText = "LOCATION CAPTURED";
-            }, (err) => {
-                statusText.innerText = "PERMISSION DENIED. Check Safari Settings.";
-            }, { enableHighAccuracy: true });
-        };
-
-        function showErr() {
-            document.getElementById('status-content').style.display = 'none';
-            document.getElementById('error-screen').style.display = 'block';
-        }
-
-        fetchStatus();
+        loadEmergencyData();
     </script>
 </body>
 </html>
