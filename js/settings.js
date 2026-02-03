@@ -38,11 +38,18 @@ async function loadSettings() {
         const m = medRes.data;
         document.getElementById('blood-type').value = m.blood_type || '';
         document.getElementById('allergies').value = m.allergies || '';
-        for (let i = 1; i <= 2; i++) {
-            document.getElementById(`c${i}-name`).value = m[`contact_${i}_name`] || '';
-            const pInput = document.getElementById(`c${i}-phone`);
-            pInput.value = (m[`contact_${i}_phone`] || '').replace('+63', '');
-            validateField(pInput, phoneRegex);
+        document.getElementById('chronic-conditions').value = m.chronic_conditions || ''; // ADDED
+        document.getElementById('organ-donor').checked = m.organ_donor || false; // ADDED
+        
+        // Loop updated to 3 contacts
+        for (let i = 1; i <= 3; i++) {
+            const nameEl = document.getElementById(`c${i}-name`);
+            const phoneEl = document.getElementById(`c${i}-phone`);
+            if(nameEl) nameEl.value = m[`contact_${i}_name`] || '';
+            if(phoneEl) {
+                phoneEl.value = (m[`contact_${i}_phone`] || '').replace('+63', '');
+                validateField(phoneEl, phoneRegex);
+            }
         }
     }
 }
@@ -72,7 +79,8 @@ document.getElementById('save-all').onclick = async () => {
     btn.disabled = true;
 
     const getPhone = (id) => {
-        const val = document.getElementById(id).value.trim();
+        const el = document.getElementById(id);
+        const val = el ? el.value.trim() : "";
         return val ? `+63${val}` : "";
     };
 
@@ -85,10 +93,14 @@ document.getElementById('save-all').onclick = async () => {
         user_id: user.id,
         blood_type: document.getElementById('blood-type').value,
         allergies: document.getElementById('allergies').value || "None",
+        chronic_conditions: document.getElementById('chronic-conditions').value || "None", // ADDED
+        organ_donor: document.getElementById('organ-donor').checked, // ADDED
         contact_1_name: document.getElementById('c1-name').value,
         contact_1_phone: getPhone('c1-phone'),
         contact_2_name: document.getElementById('c2-name').value,
         contact_2_phone: getPhone('c2-phone'),
+        contact_3_name: document.getElementById('c3-name').value, // ADDED
+        contact_3_phone: getPhone('c3-phone'), // ADDED
         updated_at: new Date().toISOString()
     }, { onConflict: 'user_id' });
 

@@ -27,11 +27,15 @@
         .nav-btn:hover { background: rgba(255,255,255,0.05); color: white; }
         .sim-btn { background: rgba(255, 46, 67, 0.1); color: var(--danger); border: 1px solid var(--danger); padding: 15px; border-radius: 8px; font-size: 11px; font-weight: 900; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
         
-        /* New QR Section Style */
+        /* QR Section Style */
         .qr-section { background: var(--glass); padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px dashed rgba(255,255,255,0.1); text-align: center; }
-        .qr-section h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--accent); }
-        #qrcode img { border: 5px solid white; border-radius: 4px; }
-        .btn-qr { background: var(--accent); color: #000; border: none; padding: 8px; width: 100%; border-radius: 5px; font-size: 9px; font-weight: 900; cursor: pointer; margin-top: 10px; text-transform: uppercase; }
+        .qr-section h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; color: var(--accent); }
+        #qrcode { display: flex; justify-content: center; margin-bottom: 10px; min-height: 100px; }
+        #qrcode img, #qrcode canvas { border: 6px solid white; border-radius: 4px; }
+        .qr-controls { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+        .btn-qr { background: var(--accent); color: #000; border: none; padding: 10px; border-radius: 5px; font-size: 9px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
+        .btn-qr:hover { opacity: 0.8; }
+        .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
 
         #emergency-overlay { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; background: #120305; z-index: 1000; border: 2px solid var(--danger); border-radius: 20px; padding: 30px; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 50px rgba(255, 46, 67, 0.4); backdrop-filter: blur(10px); }
         #map { flex: 1; height: 100%; width: 100%; background: #000; z-index: 1; }
@@ -70,9 +74,21 @@
                 <button class="sim-btn" id="sim-crash">Simulate Crash</button>
 
                 <div class="qr-section">
-                    <h3>Helmet Emergency QR</h3>
-                    <div id="qrcode" style="display: flex; justify-content: center; margin-bottom: 10px;"></div>
-                    <button id="download-qr" class="btn-qr">Save to Device</button>
+                    <h3>Helmet & Bike ID</h3>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <span class="label" id="size-label" style="font-size: 8px;">Size: 120px</span>
+                        <input type="range" id="qr-size-slider" min="100" max="250" value="120" style="width: 100%; cursor: pointer;">
+                    </div>
+
+                    <div id="qrcode"></div>
+                    
+                    <div class="qr-controls">
+                        <div style="display: flex; gap: 5px;">
+                            <button id="download-qr" class="btn-qr" style="flex: 1;">Save</button>
+                            <button id="print-qr" class="btn-qr btn-outline" style="flex: 1;">Print</button>
+                        </div>
+                    </div>
                 </div>
 
                 <button id="settings-btn" class="nav-btn" style="margin-top:20px;">Settings</button>

@@ -51,7 +51,6 @@ document.querySelectorAll('.phone-input').forEach(input => {
 });
 
 // --- Submission Logic ---
-// --- Submission Logic ---
 onboardingForm.onsubmit = async (e) => {
     e.preventDefault();
     const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -88,18 +87,17 @@ onboardingForm.onsubmit = async (e) => {
             blood_type: getVal('blood_type'),
             organ_donor: document.getElementById('organ_donor')?.checked || false,
             allergies: getVal('allergies') || "None",
-            chronic_conditions: getVal('chronic_conditions') || "None",
+            chronic_conditions: getVal('chronic_conditions') || "None", // ADDED
             current_medications: "None", 
             contact_1_name: getVal('contact_name_1'),
             contact_1_phone: p1 ? `+63${p1}` : "",
             contact_2_name: getVal('contact_name_2'),
             contact_2_phone: p2 ? `+63${p2}` : "",
-            contact_3_name: getVal('contact_name_3'),
-            contact_3_phone: p3 ? `+63${p3}` : ""
-        }, { onConflict: 'user_id' }); // This line prevents the "Duplicate Key" error
+            contact_3_name: getVal('contact_name_3'), // ADDED
+            contact_3_phone: p3 ? `+63${p3}` : ""   // ADDED
+        }, { onConflict: 'user_id' });
 
     if (!profileErr && !medErr) {
-        // Use replace instead of href to prevent "back button" loops
         window.location.replace('dashboard/user.html'); 
     } else {
         console.error("--- GIACOMO DIAGNOSTIC ---");

@@ -10,14 +10,12 @@ const simBtn = document.getElementById('sim-crash');
 async function checkOnboarding() {
     const { data: { user } } = await supabase.auth.getUser();
     
-    // FIXED: Changed 'id' to 'user_id' to match your database column
     const { data: profile, error } = await supabase
         .from('medical_profiles')
         .select('user_id') 
         .eq('user_id', user.id) 
         .single();
     
-    // If no profile is found, or if there's an error finding it
     if (!profile || error) {
         console.log("No medical profile found. Redirecting to onboarding...");
         window.location.replace('../medical-onboarding.html');
@@ -30,18 +28,16 @@ async function initDashboard() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) { window.location.href = '../index.html'; return; }
     
-    await checkOnboarding(); // Security check
+    await checkOnboarding();
 
     const { data: profile } = await supabase.from('profiles').select('serial_number').eq('id', user.id).single();
     
-    // Safety check for display-sn element
     const snDisplay = document.getElementById('display-sn');
     if (profile?.serial_number && snDisplay) {
         snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
-        generateRiderQR(profile.serial_number); // Generate QR once serial is confirmed
+        generateRiderQR(profile.serial_number); 
     }
 
-    // Leaflet Map Initialization
     const mapElement = document.getElementById('map');
     if (mapElement) {
         map = L.map('map', { zoomControl: false, attributionControl: false }).setView([8.2200, 125.7500], 16);
@@ -55,7 +51,6 @@ async function initDashboard() {
 
     startTelemetry();
 
-    // --- LISTENERS ---
     const settingsBtn = document.getElementById('settings-btn');
     if (settingsBtn) {
         settingsBtn.onclick = () => window.location.href = 'settings.html';
@@ -107,16 +102,11 @@ function startTelemetry() {
     let currentElev = 152; 
 
     setInterval(() => {
-        // Add layout check to prevent error if layout is missing
         if (layout && !layout.classList.contains('panic-mode')) {
             let speed = Math.floor(Math.random() * 5) + 60; 
-            
-            // Safety checks for each innerText/innerHTML assignment
             if (velVal) velVal.innerHTML = `${speed} <span style="font-size:12px; color:#475569;">KM/H</span>`;
-            
             currentElev += (Math.random() - 0.5) * 0.4; 
             if (elevVal) elevVal.innerHTML = `${currentElev.toFixed(0)} <span style="font-size:12px; color:#475569;">M</span>`;
-            
             if (latencyVal) latencyVal.innerText = Math.floor(Math.random() * 15) + 30;
             if (coordsVal) coordsVal.innerText = `8.22${Math.floor(Math.random()*99)}° N, 125.75${Math.floor(Math.random()*99)}° E`;
         }
@@ -126,7 +116,6 @@ function startTelemetry() {
 async function saveBlackBoxData(userId) {
     const velDisp = document.getElementById('vel-display');
     const elevDisp = document.getElementById('elev-display');
-    
     const finalVel = velDisp ? velDisp.innerText : "0 KM/H";
     const finalElev = elevDisp ? elevDisp.innerText : "0 M";
     
@@ -138,33 +127,78 @@ async function saveBlackBoxData(userId) {
         final_elevation: finalElev
     });
 }
+
 function generateRiderQR(serialNumber) {
-    // UPDATED: Points to your new Vercel production URL
     const publicUrl = `https://giacomo-beta.vercel.app/status.html?sn=${serialNumber}`;
-    
     const qrcodeContainer = document.getElementById("qrcode");
+    const sizeSlider = document.getElementById("qr-size-slider");
+    const sizeLabel = document.getElementById("size-label");
+    
     if (!qrcodeContainer) return;
     
-    qrcodeContainer.innerHTML = ""; 
-    new QRCode(qrcodeContainer, {
-        text: publicUrl, 
-        width: 120, height: 120,
-        colorDark : "#000000", colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
+    const renderQR = (size) => {
+        qrcodeContainer.innerHTML = ""; 
+        return new QRCode(qrcodeContainer, {
+            text: publicUrl, 
+            width: parseInt(size), height: parseInt(size),
+            colorDark : "#000000", colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    };
+
+    // Initial Render
+    renderQR(sizeSlider.value);
+
+    // Live Resize
+    sizeSlider.oninput = (e) => {
+        sizeLabel.innerText = `Size: ${e.target.value}px`;
+        renderQR(e.target.value);
+    };
+
+    // Print Handler with Emergency Instructions
+    document.getElementById('print-qr').onclick = () => {
+        const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
+        const imgData = qrContent.src || qrContent.toDataURL("image/png");
+        
+        const printWin = window.open('', '_blank');
+        printWin.document.write(`
+            <html>
+            <head>
+                <style>
+                    body { font-family: 'Inter', sans-serif; text-align: center; padding: 40px; }
+                    .print-card { border: 2px solid #000; padding: 20px; display: inline-block; border-radius: 10px; }
+                    h1 { margin: 0; letter-spacing: 4px; font-size: 24px; }
+                    .sub { font-size: 10px; text-transform: uppercase; font-weight: bold; margin-bottom: 20px; }
+                    .instructions { font-size: 12px; max-width: 250px; margin: 20px auto; line-height: 1.5; color: #333; }
+                    .sn { font-family: monospace; font-size: 12px; margin-top: 10px; font-weight: bold; }
+                    @media print { .no-print { display: none; } }
+                </style>
+            </head>
+            <body onload="window.print(); window.close();">
+                <div class="print-card">
+                    <h1>GIACOMO</h1>
+                    <div class="sub">Medical ID Protocol</div>
+                    <img src="${imgData}" style="width: 200px; height: 200px;" />
+                    <div class="sn">DEVICE SN: ${serialNumber}</div>
+                    <div class="instructions">
+                        <strong>BYSTANDER NOTICE:</strong><br>
+                        In case of emergency, scan this code to access the rider's medical profile and emergency contacts.
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+        printWin.document.close();
+    };
+
+    // Download Handler
+    document.getElementById('download-qr').onclick = () => {
+        const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
+        const link = document.createElement('a');
+        link.href = qrContent.src || qrContent.toDataURL("image/png");
+        link.download = `Giacomo-QR-${serialNumber}.png`;
+        link.click();
+    };
 }
 
-    // Handle Download
-    const downloadBtn = document.getElementById('download-qr');
-    if (downloadBtn) {
-        downloadBtn.onclick = () => {
-            const qrImage = qrcodeContainer.querySelector('img');
-            if (qrImage) {
-                const link = document.createElement('a');
-                link.href = qrImage.src;
-                link.download = `Giacomo-QR-${serialNumber}.png`;
-                link.click();
-            }
-        };
-    }
 document.addEventListener('DOMContentLoaded', initDashboard);

@@ -84,8 +84,15 @@
         <div class="input-wrapper">
             <textarea id="allergies" placeholder="Allergies (e.g., Peanuts, None)"></textarea>
         </div>
+        <div class="input-wrapper">
+            <textarea id="chronic-conditions" placeholder="Chronic Conditions (e.g., Asthma, None)"></textarea>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom: 20px;">
+            <input type="checkbox" id="organ-donor" style="width:18px; height:18px;">
+            <label style="font-size: 11px; font-weight:bold; text-transform:uppercase; color:var(--accent);">Organ Donor</label>
+        </div>
 
-        <span class="label">Emergency Contacts (Safety Circle)</span>
+        <span class="label">Emergency Contacts</span>
         <div class="form-row">
             <input type="text" id="c1-name" placeholder="Name 1" style="flex:1;">
             <div class="input-wrapper" style="flex:1;">
@@ -99,6 +106,14 @@
             <div class="input-wrapper" style="flex:1;">
                 <span class="prefix">+63</span>
                 <input type="tel" class="phone-edit" id="c2-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
+                <span class="check-icon">✓</span>
+            </div>
+        </div>
+        <div class="form-row">
+            <input type="text" id="c3-name" placeholder="Name 3" style="flex:1;">
+            <div class="input-wrapper" style="flex:1;">
+                <span class="prefix">+63</span>
+                <input type="tel" class="phone-edit" id="c3-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
                 <span class="check-icon">✓</span>
             </div>
         </div>
