@@ -162,24 +162,25 @@
             }
 
             const container = document.getElementById('contacts-container');
-            container.innerHTML = ""; 
-            
-            // Updated loop for all 3 contacts from your medical_profiles columns
-            for (let i = 1; i <= 3; i++) {
-                const name = rider[`contact_${i}_name`];
-                const phone = rider[`contact_${i}_phone`];
-                
-                if (name && phone) {
-                    container.innerHTML += `
-                        <a href="tel:${phone}" class="contact-btn">
-                            <div class="contact-info">
-                                <span>EMERGENCY CONTACT ${i}</span>
-                                <div>${name.toUpperCase()}</div>
-                            </div>
-                            <div class="call-icon">📞</div>
-                        </a>`;
-                }
-            }
+container.innerHTML = ""; 
+
+// This loop checks for all 3 contact slots in the returned data
+for (let i = 1; i <= 3; i++) {
+    const name = rider[`contact_${i}_name`];
+    const phone = rider[`contact_${i}_phone`];
+    
+    // Only create a button if the contact actually has a name and phone saved
+    if (name && phone) {
+        container.innerHTML += `
+            <a href="tel:${phone}" class="contact-btn">
+                <div class="contact-info">
+                    <span>EMERGENCY CONTACT ${i}</span>
+                    <div>${name.toUpperCase()}</div>
+                </div>
+                <div class="call-icon">📞</div>
+            </a>`;
+    }
+}
         }
 
         document.getElementById('share-location').onclick = () => {
