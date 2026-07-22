@@ -15,9 +15,9 @@ loginForm.onsubmit = async (e) => {
     });
 
     if (error) {
-        alert("Login failed: " + error.message);
-        return;
-    }
+    alert("Login failed: " + (error.message || JSON.stringify(error)));
+    return;
+}
 
     if (data.user) {
         redirectByRole(data.user.id, data.user.email);
