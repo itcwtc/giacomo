@@ -23,7 +23,7 @@ registerForm.onsubmit = async (e) => {
         return;
     }
 
-    // 2. Insert profile record using corrected variable names (data.user and name)
+    // 2. Insert profile record (without 'email')
     if (data && data.user) {
         const { error: profileError } = await supabase
             .from('profiles')
@@ -31,7 +31,6 @@ registerForm.onsubmit = async (e) => {
                 { 
                     id: data.user.id, 
                     full_name: name, 
-                    email: email,
                     is_crashed: false 
                 }
             ]);
