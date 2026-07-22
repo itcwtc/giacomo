@@ -9,6 +9,7 @@ registerForm.onsubmit = async (e) => {
     const email = document.getElementById('reg-email').value;
     const password = document.getElementById('reg-password').value;
 
+    // 1. Register user in Supabase Auth
     const { data, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -22,25 +23,25 @@ registerForm.onsubmit = async (e) => {
         return;
     }
 
-    // Inside your registration submit handler, after successful supabase.auth.signUp
-if (signUpData.user) {
-    const { error: profileError } = await supabase
-        .from('profiles')
-        .insert([
-            { 
-                id: signUpData.user.id, 
-                full_name: fullName, // Use the name from your form
-                email: email,
-                is_crashed: false 
-            }
-        ]);
+    // 2. Insert profile record using corrected variable names (data.user and name)
+    if (data && data.user) {
+        const { error: profileError } = await supabase
+            .from('profiles')
+            .insert([
+                { 
+                    id: data.user.id, 
+                    full_name: name, 
+                    email: email,
+                    is_crashed: false 
+                }
+            ]);
 
-    if (profileError) {
-        console.error("Profile creation failed:", profileError);
-        alert("Account created, but profile initialization failed.");
-    } else {
-        alert("Account created! Redirecting to medical setup...");
-        window.location.href = 'medical-onboarding.html';
+        if (profileError) {
+            console.error("Profile creation failed:", profileError);
+            alert("Account created, but profile initialization failed: " + profileError.message);
+        } else {
+            alert("Account created! Redirecting to medical setup...");
+            window.location.href = 'medical-onboarding.html';
+        }
     }
-}
 };
