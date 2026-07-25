@@ -42,7 +42,7 @@ async function showCrashNotification(user) {
     notif.className = 'crash-popup';
     notif.innerHTML = `
         <div class="popup-title">⚠️ CRASH ALERT</div>
-        <div class="popup-name">${user.full_name}</div>
+        <div class="popup-name">${user.full_name || 'Rider'}</div>
         <button class="popup-btn view-btn" id="go-${user.id}">Locate Signal</button>
         <button class="popup-btn street-btn" id="street-${user.id}">Street View</button>
         <button class="popup-btn ack-btn" id="dismiss-${user.id}">Dismiss</button>
@@ -107,7 +107,7 @@ async function renderUI(users) {
     const allUsers = [...users, ...dummyUsers];
     const sorted = allUsers.sort((a, b) => b.is_crashed - a.is_crashed);
 
-    sorted.filter(u => u.full_name.toLowerCase().includes(term)).forEach(user => {
+    sorted.filter(u => (u.full_name || 'Rider').toLowerCase().includes(term)).forEach(user => {
         if (adminAuth && user.id === adminAuth.id) return; 
 
         const isEm = user.is_crashed;
@@ -117,7 +117,7 @@ async function renderUI(users) {
         card.style.cssText = `border-left:4px solid ${color}; background:rgba(255,255,255,0.02); margin-bottom:8px; padding:15px; border-radius:8px; cursor:pointer;`;
         
         const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'HARDWARE LINKED';
-        card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
+        card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name || 'Rider'}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
         card.onclick = () => { if (user.lat && user.lon) map.flyTo([user.lat, user.lon], 17); };
         userContainer.appendChild(card);
@@ -161,8 +161,9 @@ async function init() {
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
+    // Listens to ALL events (INSERTs for new users and UPDATEs for crash status)
     supabase.channel('admin-chan')
-        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, async () => {
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, async () => {
             const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
             currentRiders = refreshed || [];
             renderUI(currentRiders);

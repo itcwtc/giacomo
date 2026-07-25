@@ -98,7 +98,7 @@ onboardingForm.onsubmit = async (e) => {
         }, { onConflict: 'user_id' });
 
     if (!profileErr && !medErr) {
-        window.location.replace('dashboard/user.html'); 
+        window.location.replace('./dashboard/user.html');
     } else {
         console.error("--- GIACOMO DIAGNOSTIC ---");
         console.error("Profile Error:", profileErr);
