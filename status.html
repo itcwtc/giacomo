@@ -11,20 +11,49 @@
 </head>
 <body class="emergency-page">
 
+    <!-- NIGHTTIME ROAD STROBE OVERLAY (HIDDEN BY DEFAULT) -->
+    <div id="strobe-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; text-align:center; padding-top:40vh; font-weight:900; font-size:22px; cursor:pointer; box-sizing:border-box;">
+        🚨 EMERGENCY ROAD BEACON ACTIVE<br>
+        <span style="font-size:14px; font-weight:400; display:block; margin-top:10px;">(Tap anywhere on screen to turn off)</span>
+    </div>
+
+    <!-- TOP UTILITY BAR: BRANDING + LANGUAGE SWITCHER -->
+    <div class="top-utility-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="font-weight: 900; letter-spacing: 1.5px; font-size: 13px; color: var(--theme-color, #ff2e43); display: flex; align-items: center; gap: 6px;">
+            <span>🛡️</span> GIACOMO SAFETY NETWORK
+        </div>
+        <div class="lang-switch-group" style="display: flex; gap: 4px; background: #0f172a; padding: 3px; border-radius: 6px; border: 1px solid #334155;">
+            <button class="lang-btn active" data-lang="en" style="background: #ff2e43; color: #fff; border: none; font-weight: 900; font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer;">EN</button>
+            <button class="lang-btn" data-lang="tl" style="background: transparent; color: #94a3b8; border: none; font-weight: 900; font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer;">TL</button>
+            <button class="lang-btn" data-lang="ceb" style="background: transparent; color: #94a3b8; border: none; font-weight: 900; font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer;">CEB</button>
+        </div>
+    </div>
+
     <!-- FIRST-AID SAFETY WARNING BANNER -->
     <div id="first-aid-banner" class="first-aid-banner">
         <div class="banner-content">
             <span class="banner-icon">🛑</span>
             <div class="banner-text">
-                <strong>CRITICAL FIRST RESPONDER NOTICE</strong>
-                <p>Do <strong>NOT</strong> remove helmet or move rider's neck unless breathing is blocked. Incorrect removal causes permanent spinal paralysis.</p>
+                <strong id="banner-title-text">CRITICAL FIRST RESPONDER NOTICE</strong>
+                <p id="banner-body-text">Do <strong>NOT</strong> remove helmet or move rider's neck unless breathing is blocked. Incorrect removal causes permanent spinal paralysis.</p>
             </div>
         </div>
+
+        <!-- BYSTANDER TRIAGE QUICK SELECTOR -->
+        <div style="padding: 0 12px 10px 12px;">
+            <div style="font-size: 10px; font-weight: 900; color: #94a3b8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">Rider Status Triage (Tap to adjust instructions)</div>
+            <div style="display: flex; gap: 6px;">
+                <button id="triage-conscious" style="flex: 1; background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; font-weight: 700; font-size: 11px; padding: 8px 4px; border-radius: 6px; cursor: pointer;">🟢 Conscious</button>
+                <button id="triage-unconscious" style="flex: 1; background: rgba(234, 179, 8, 0.15); border: 1px solid #eab308; color: #fde047; font-weight: 700; font-size: 11px; padding: 8px 4px; border-radius: 6px; cursor: pointer;">🟡 Unconscious</button>
+                <button id="triage-bleeding" style="flex: 1; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fca5a5; font-weight: 700; font-size: 11px; padding: 8px 4px; border-radius: 6px; cursor: pointer;">🔴 Bleeding</button>
+            </div>
+        </div>
+
         <button id="toggle-guidance-btn" class="btn-guidance-toggle">
             <span>SHOW FIRST-AID STEPS</span> ▼
         </button>
         <div id="guidance-drawer" class="guidance-drawer">
-            <ol class="guidance-list">
+            <ol class="guidance-list" id="guidance-list-container">
                 <li><strong>Airway Check:</strong> Look through visor for breathing movement without tilting the rider's head.</li>
                 <li><strong>Relieve Strain:</strong> Unclip the helmet chin strap if accessible, but leave the outer shell on.</li>
                 <li><strong>Vomiting Protocol:</strong> If the rider vomits, log-roll (turn the head, neck, and torso as one solid unit) to prevent choking.</li>
@@ -34,7 +63,7 @@
 
     <div id="status-content" class="status-container">
         <!-- CRASH IMPACT CLOCK -->
-        <div id="impact-section" class="impact-clock-box">
+        <div id="impact-section" class="impact-clock-box" style="display:none;">
             <span class="clock-label">⚠️ AUTOMATED CRASH DETECTED AT</span>
             <span id="impact-time" class="clock-time">--:--:--</span>
         </div>
@@ -43,7 +72,7 @@
         <div class="emergency-header">
             <h1>Emergency Medical Profile</h1>
             <div id="rider-name"><div class="skeleton" style="margin: auto;"></div></div>
-            <div id="donor-badge">Organ Donor</div>
+            <div id="donor-badge" style="display:none;">Organ Donor</div>
         </div>
 
         <!-- MEDICAL DATA CARDS -->
@@ -63,18 +92,27 @@
             <div class="desc">Chronic Conditions / Medications</div>
         </div>
 
-        <!-- BYSTANDER GPS TOOL -->
+        <!-- BYSTANDER GPS & EMERGENCY TOOLS -->
         <span class="section-title">Bystander Tools</span>
         <div class="info-card tool-card">
             <button id="share-location" class="btn-location">
                 📍 SEND MY GPS TO RESCUERS & SORT HOTLINES
             </button>
             <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Tap to recalculate nearest emergency hospitals</div>
+            
+            <button id="toggle-strobe-btn" style="width: 100%; margin-top: 12px; background: #dc2626; color: #fff; font-weight: 900; padding: 12px; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                🚨 ACTIVATE NIGHTTIME ROAD BEACON
+            </button>
         </div>
 
         <!-- PERSONAL EMERGENCY CONTACTS (PINNED) -->
-        <span class="section-title">Personal Emergency Contacts</span>
-        <div id="contacts-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+            <span class="section-title" style="margin: 0;">Personal Emergency Contacts</span>
+            <button id="download-vcard-btn" style="display:none; background: #1e293b; border: 1px solid #475569; color: #cbd5e1; font-weight: 700; font-size: 11px; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+                💾 Save VCard
+            </button>
+        </div>
+        <div id="contacts-container" style="margin-top: 10px;">
             <div class="info-card"><div class="skeleton"></div></div>
         </div>
 
@@ -92,8 +130,8 @@
     </div>
 
     <!-- ERROR SCREEN -->
-    <div id="error-screen">
-        <h1 style="color: var(--danger); font-size: 40px;">⚠️</h1>
+    <div id="error-screen" style="display:none;">
+        <h1 style="color: var(--danger, #ef4444); font-size: 40px;">⚠️</h1>
         <h2 style="margin: 10px 0;">PROFILE NOT FOUND</h2>
         <p style="color: #64748b;">This Giacomo serial number is invalid or inactive.</p>
     </div>

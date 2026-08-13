@@ -1,5 +1,13 @@
 import { supabase } from './supabaseClient.js';
 
+// STATE STORAGE
+let currentRider = {
+    fullName: "Rider",
+    phone: "",
+    serialNumber: "",
+    bloodType: "--"
+};
+
 // CARAGA REGION INSTITUTIONAL HOTLINE DATASET (WITH GPS COORDINATES)
 const CARAGA_HOTLINES = [
     { name: "Manuel J. Santos Hospital (Butuan)", category: "Trauma Hospital", phone: "0858152222", lat: 8.9482, lng: 125.5431 },
@@ -13,6 +21,39 @@ const CARAGA_HOTLINES = [
     { name: "Siargao Island Medical Center (Dapa)", category: "District Hospital", phone: "09489006922", lat: 9.7571, lng: 126.0526 },
     { name: "PNP Regional Command 13", category: "Police Command", phone: "09985987321", lat: 8.9450, lng: 125.5410 }
 ];
+
+// LANGUAGE DICTIONARIES
+const TRANSLATIONS = {
+    en: {
+        bannerTitle: "CRITICAL FIRST RESPONDER NOTICE",
+        bannerBody: "Do <strong>NOT</strong> remove helmet or move rider's neck unless breathing is blocked. Incorrect removal causes permanent spinal paralysis.",
+        guidance: [
+            "<strong>Airway Check:</strong> Look through visor for breathing movement without tilting the rider's head.",
+            "<strong>Relieve Strain:</strong> Unclip the helmet chin strap if accessible, but leave the outer shell on.",
+            "<strong>Vomiting Protocol:</strong> If the rider vomits, log-roll (turn the head, neck, and torso as one solid unit) to prevent choking."
+        ]
+    },
+    tl: {
+        bannerTitle: "BABALA SA UNANG PAPAALAM / BYSTANDER",
+        bannerBody: "<strong>HUWAG</strong> alisin ang helmet o igalaw ang leeg ng rider maliban kung hindi siya humihinga. Ang maling pag-alis ay nagdudulot ng permanenteng paralisis.",
+        guidance: [
+            "<strong>Pagsuri ng Hininga:</strong> Tumingin sa visor kung tumataas ang dibdib nang hindi ginagalaw ang ulo.",
+            "<strong>Bawasan ang Sakal:</strong> Tanggalin lamang ang lock ng strap ng helmet kung abot, ngunit iwanan ang helmet sa ulo.",
+            "<strong>Kapag Sumusuka:</strong> Kung sumusuka ang rider, iikot ang buong katawan (ulo, leeg, at katawan bilang isang buo) upang hindi mabulunan."
+        ]
+    },
+    ceb: {
+        bannerTitle: "PAHAMGNO SA UNANG TABANG",
+        bannerBody: "<strong>AYAW</strong> kuhaa ang helmet o lihoka ang liog sa rider gawas kon dili siya naginhawa. Ang sayop nga pagkuha makadaut sa bukit ug kasina.",
+        guidance: [
+            "<strong>Susiha ang Ginhawa:</strong> Tan-awa sa visor kon naglihok ang dughan nga wala gilihok ang ulo.",
+            "<strong>Luhagi ang Strap:</strong> Tangtanga ang lock sa strap kon maabot, apan ibabilin ang helmet sa ulo.",
+            "<strong>Kon Magsuka:</strong> Kon mag-suka ang rider, ilingin ang tibuok lawas (ulo, liog, ug lawas nga magtinabangay) para dili matuk-an."
+        ]
+    }
+};
+
+let currentLang = 'en';
 
 // HAVERSINE DISTANCE FORMULA IN KILOMETERS
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -74,28 +115,63 @@ function renderRegionalHotlines(userLat = null, userLng = null) {
     });
 }
 
+// ZERO-SIGNAL OFFLINE URL FALLBACK PARSER
+function parseUrlFallback() {
+    const params = new URLSearchParams(window.location.search);
+    const sn = params.get('sn');
+    const blood = params.get('blood');
+    const contact = params.get('contact');
+
+    if (sn) currentRider.serialNumber = sn.toUpperCase();
+    if (blood) {
+        document.getElementById('blood-type').innerText = blood.toUpperCase();
+        currentRider.bloodType = blood.toUpperCase();
+    }
+    if (contact) {
+        currentRider.phone = contact;
+        const container = document.getElementById('contacts-container');
+        container.innerHTML = `
+            <a href="tel:${contact}" class="contact-btn personal-contact">
+                <div class="contact-info">
+                    <span>PRIMARY EMERGENCY CONTACT (OFFLINE DATA)</span>
+                    <div>EMERGENCY CALL</div>
+                </div>
+                <div class="call-icon">📞</div>
+            </a>`;
+        document.getElementById('download-vcard-btn').style.display = 'block';
+    }
+}
+
 // MAIN DATA FETCHING FUNCTION
 async function fetchStatus() {
     const params = new URLSearchParams(window.location.search);
     const sn = params.get('sn');
-    if (!sn) { showErr(); return; }
+    
+    // Parse offline URL parameters immediately for zero-signal fallback
+    parseUrlFallback();
+
+    if (!sn) { 
+        if (!currentRider.phone) showErr(); 
+        return; 
+    }
 
     const { data, error } = await supabase.rpc('get_rider_status_by_sn', { target_sn: sn.toUpperCase() });
 
     if (error || !data || data.length === 0) { 
-        showErr(); 
+        if (!currentRider.phone) showErr(); 
         return; 
     }
 
     const rider = data[0];
 
+    currentRider.fullName = rider.full_name;
     document.getElementById('rider-name').innerText = rider.full_name;
     document.getElementById('blood-type').innerText = rider.blood_type || 'UNKNOWN';
     document.getElementById('allergies').innerText = rider.allergies || 'NONE';
     document.getElementById('chronic-conditions').innerText = rider.chronic_conditions || 'NONE';
     
     if (rider.organ_donor) {
-        document.getElementById('donor-badge').style.display = 'block';
+        document.getElementById('donor-badge').style.display = 'inline-block';
     }
 
     if (rider.is_crashed) {
@@ -118,11 +194,14 @@ async function fetchStatus() {
     const container = document.getElementById('contacts-container');
     container.innerHTML = ""; 
 
+    let hasContact = false;
     for (let i = 1; i <= 3; i++) {
         const name = rider[`contact_${i}_name`];
         const phone = rider[`contact_${i}_phone`];
         
         if (name && phone) {
+            if (i === 1) currentRider.phone = phone;
+            hasContact = true;
             container.innerHTML += `
                 <a href="tel:${phone}" class="contact-btn personal-contact">
                     <div class="contact-info">
@@ -134,6 +213,10 @@ async function fetchStatus() {
         }
     }
 
+    if (hasContact) {
+        document.getElementById('download-vcard-btn').style.display = 'block';
+    }
+
     renderRegionalHotlines();
 }
 
@@ -141,6 +224,95 @@ function showErr() {
     document.getElementById('status-content').style.display = 'none';
     document.getElementById('error-screen').style.display = 'block';
 }
+
+// LANGUAGE SWITCHER HANDLER
+function applyLanguage(lang) {
+    currentLang = lang;
+    const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    
+    document.getElementById('banner-title-text').innerText = t.bannerTitle;
+    document.getElementById('banner-body-text').innerHTML = t.bannerBody;
+
+    const guidanceList = document.getElementById('guidance-list-container');
+    guidanceList.innerHTML = t.guidance.map(item => `<li>${item}</li>`).join('');
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+            btn.style.background = '#ff2e43';
+            btn.style.color = '#ffffff';
+        } else {
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+        }
+    });
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.onclick = () => applyLanguage(btn.dataset.lang);
+});
+
+// TRIAGE QUICK SELECTOR HANDLERS
+document.getElementById('triage-conscious').onclick = () => {
+    document.getElementById('banner-title-text').innerText = "🟢 TRIAGE: CONSCIOUS RIDER";
+    document.getElementById('banner-body-text').innerHTML = "Keep the rider seated and calm. Do <strong>NOT</strong> remove helmet unless requested. Check for hidden fractures or numbness.";
+};
+
+document.getElementById('triage-unconscious').onclick = () => {
+    document.getElementById('banner-title-text').innerText = "🟡 TRIAGE: UNCONSCIOUS RIDER";
+    document.getElementById('banner-body-text').innerHTML = "CRITICAL: Do <strong>NOT</strong> move head or neck. Check if chest is rising. Call 911 / Caraga Emergency Hospital immediately!";
+};
+
+document.getElementById('triage-bleeding').onclick = () => {
+    document.getElementById('banner-title-text').innerText = "🔴 TRIAGE: SEVERE BLEEDING";
+    document.getElementById('banner-body-text').innerHTML = "Apply firm, direct pressure on the bleeding wound using a clean cloth immediately. Keep rider still and elevated if possible.";
+};
+
+// NIGHTTIME ROAD STROBE BEACON
+let strobeInterval = null;
+let strobeState = false;
+
+document.getElementById('toggle-strobe-btn').onclick = () => toggleStrobe();
+document.getElementById('strobe-overlay').onclick = () => toggleStrobe();
+
+function toggleStrobe() {
+    const overlay = document.getElementById('strobe-overlay');
+    if (strobeInterval) {
+        clearInterval(strobeInterval);
+        strobeInterval = null;
+        overlay.style.display = 'none';
+    } else {
+        overlay.style.display = 'block';
+        strobeInterval = setInterval(() => {
+            if (strobeState) {
+                overlay.style.backgroundColor = '#dc2626';
+                overlay.style.color = '#ffffff';
+            } else {
+                overlay.style.backgroundColor = '#ffffff';
+                overlay.style.color = '#000000';
+            }
+            strobeState = !strobeState;
+        }, 180);
+    }
+}
+
+// VCARD GENERATOR
+document.getElementById('download-vcard-btn').onclick = () => {
+    const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:ICE - ${currentRider.fullName}
+TEL;TYPE=CELL:${currentRider.phone}
+NOTE:Giacomo Emergency Contact | Blood Type: ${currentRider.bloodType} | SN: ${currentRider.serialNumber}
+END:VCARD`;
+
+    const blob = new Blob([vcardData], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ICE-${currentRider.fullName.replace(/\s+/g, '_')}.vcf`;
+    a.click();
+    URL.revokeObjectURL(url);
+};
 
 // FIRST-AID GUIDANCE DRAWER TOGGLE
 document.getElementById('toggle-guidance-btn').onclick = () => {
@@ -168,7 +340,7 @@ document.getElementById('share-location').onclick = () => {
         renderRegionalHotlines(lat, lng);
 
         const mapLink = `https://www.google.com/maps?q=${lat},${lng}`;
-        const msg = `EMERGENCY: I found a crashed rider. Location: ${mapLink}`;
+        const msg = `EMERGENCY: I found a crashed rider (${currentRider.fullName}). Location: ${mapLink}`;
         
         if (navigator.share) {
             navigator.share({ title: 'Giacomo Emergency Location', text: msg, url: mapLink });
@@ -186,4 +358,5 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// INITIALIZE
 fetchStatus();
