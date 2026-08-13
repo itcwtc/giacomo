@@ -12,7 +12,7 @@ async function checkOnboarding(user) {
     const { data: profile, error } = await supabase
         .from('medical_profiles')
         .select('*')
-        .eq('id', user.id)
+        .eq('user_id', user.id)
         .maybeSingle();
 
     console.log("Logged In User ID:", user.id);
