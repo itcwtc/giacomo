@@ -11,10 +11,16 @@ async function checkOnboarding() {
     const { data: { user } } = await supabase.auth.getUser();
     
     const { data: profile, error } = await supabase
-        .from('medical_profiles')
-        .select('user_id') 
-        .eq('user_id', user.id) 
-        .single();
+    .from('medical_profiles')
+    .select('*')
+    .eq('id', user.id)
+    .maybeSingle();
+
+if (error || !profile) {
+    console.log("No medical profile found. Redirecting to onboarding...");
+    window.location.href = '../medical-onboarding.html';
+    return;
+}
     
     if (!profile || error) {
         console.log("No medical profile found. Redirecting to onboarding...");
