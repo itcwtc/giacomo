@@ -27,7 +27,7 @@ registerForm.onsubmit = async (e) => {
     if (data && data.user) {
         const { error: profileError } = await supabase
             .from('profiles')
-            .insert([
+            .upsert([
                 { 
                     id: data.user.id, 
                     full_name: name, 
