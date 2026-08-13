@@ -20,21 +20,11 @@ loginForm.onsubmit = async (e) => {
 }
 
     if (data.user) {
-        redirectByRole(data.user.id, data.user.email);
+        redirectByRole(data.user.id);
     }
 };
 
-async function redirectByRole(userId, email) {
-    // 2. HARDCODED ADMIN CHECK (Your email)
-    const myAdminEmail = "jamieralcheon30@gmail.com"; 
-
-    if (email === myAdminEmail) {
-        console.log("Admin detected. Redirecting to Command Center...");
-        window.location.href = 'dashboard/admin.html';
-        return;
-    }
-
-    // 3. Check Database Role for others
+async function redirectByRole(userId) {
     const { data: profile, error } = await supabase
         .from('profiles')
         .select('role')
@@ -43,12 +33,10 @@ async function redirectByRole(userId, email) {
 
     if (error || !profile) {
         console.error("Error fetching profile:", error);
-        // Fallback: If no profile exists yet, treat as user
         window.location.href = 'dashboard/user.html';
         return;
     }
 
-    // 4. Redirect based on the 'role' column in your 'profiles' table
     if (profile.role === 'admin') {
         window.location.href = 'dashboard/admin.html';
     } else {
