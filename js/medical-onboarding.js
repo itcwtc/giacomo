@@ -74,10 +74,13 @@ onboardingForm.onsubmit = async (e) => {
     submitBtn.disabled = true;
 
     // 1. Update Profiles (Serial Number)
-    const { error: profileErr } = await supabase
-        .from('profiles')
-        .update({ serial_number: serial })
-        .eq('id', user.id);
+   // TO THIS:
+const { error: profileErr } = await supabase
+    .from('profiles')
+    .upsert({ 
+        id: user.id, 
+        serial_number: serial 
+    });
 
     // 2. Save Medical Data - FIXED UPSERT
     const { error: medErr } = await supabase
