@@ -16,6 +16,10 @@ async function checkOnboarding() {
     .eq('id', user.id)
     .maybeSingle();
 
+console.log("Logged In User ID:", user.id);
+console.log("Returned Profile Data:", profile);
+console.log("Returned Error:", error);
+
 if (error || !profile) {
     console.log("No medical profile found. Redirecting to onboarding...");
     window.location.href = '../medical-onboarding.html';
