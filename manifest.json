@@ -1,0 +1,10 @@
+{
+  "short_name": "Giacomo ID",
+  "name": "Giacomo Emergency Medical ID",
+  "icons": [],
+  "start_url": "/status.html",
+  "background_color": "#05060a",
+  "theme_color": "#ff2e43",
+  "display": "standalone",
+  "orientation": "portrait"
+}
