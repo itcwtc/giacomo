@@ -3,196 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIACOMO | Emergency Medical ID</title>
-    <!-- Font & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* EXTREME HIGH-CONTRAST SUNLIGHT MODE */
-        :root {
-            --bg-black: #000000;
-            --card-bg: #0d1117;
-            --border-color: #30363d;
-            --text-main: #ffffff;
-            --text-sub: #9198a1;
-            --alert-red: #ff3b30;
-            --alert-bg: rgba(255, 59, 48, 0.15);
-            --accent-cyan: #00e5ff;
-            --accent-green: #30d158;
-            --accent-yellow: #ffd60a;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-black); color: var(--text-main); padding-bottom: 90px; }
-
-        .container { max-width: 480px; margin: 0 auto; padding: 12px; }
-
-        /* LANGUAGE TOGGLE BAR */
-        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color); margin-bottom: 12px; }
-        .brand-label { font-weight: 900; font-size: 14px; letter-spacing: 2px; color: var(--accent-cyan); }
-        .lang-switch { display: flex; gap: 4px; background: #161b22; padding: 4px; border-radius: 8px; border: 1px solid var(--border-color); }
-        .lang-btn { background: none; border: none; color: var(--text-sub); font-weight: 700; font-size: 12px; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .lang-btn.active { background: var(--accent-cyan); color: #000; }
-
-        /* CRITICAL HELMET WARNING BANNER */
-        .warning-box { background: var(--alert-bg); border: 2px solid var(--alert-red); border-radius: 12px; padding: 14px; text-align: center; margin-bottom: 12px; }
-        .warning-title { color: var(--alert-red); font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .warning-text { font-size: 13px; font-weight: 700; color: #fff; margin-top: 6px; line-height: 1.4; }
-
-        /* RIDER NAME & GOLDEN HOUR TIMER */
-        .rider-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-        .rider-header { display: flex; justify-content: space-between; align-items: flex-start; }
-        .rider-name { font-size: 20px; font-weight: 900; color: #fff; }
-        .serial-tag { font-family: monospace; font-size: 11px; color: var(--text-sub); margin-top: 2px; }
-        .golden-hour { background: rgba(255, 214, 10, 0.15); border: 1px solid var(--accent-yellow); color: var(--accent-yellow); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 900; text-align: right; }
-
-        /* MEDICAL SNAPSHOT GRID */
-        .med-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .med-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; }
-        .med-label { font-size: 10px; font-weight: 900; text-transform: uppercase; color: var(--text-sub); letter-spacing: 1px; }
-        .med-value-huge { font-size: 28px; font-weight: 900; color: var(--accent-cyan); margin-top: 2px; }
-        .badge-pill { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 900; margin-top: 6px; }
-        .badge-donor { background: rgba(48, 209, 88, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
-        .badge-allergy { background: var(--alert-bg); color: var(--alert-red); border: 1px solid var(--alert-red); word-break: break-word; }
-
-        /* PROGRESSIVE DISCLOSURE ACCORDIONS */
-        .accordion { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
-        .accordion-header { width: 100%; background: none; border: none; padding: 14px; text-align: left; color: #fff; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .accordion-content { padding: 0 14px 14px 14px; display: none; font-size: 13px; color: var(--text-sub); border-top: 1px solid rgba(255,255,255,0.05); }
-        .accordion.open .accordion-content { display: block; }
-        .accordion.open .chevron { transform: rotate(180deg); }
-
-        /* UTILITY BUTTONS INSIDE ACCORDIONS */
-        .action-btn { width: 100%; background: #21262d; border: 1px solid var(--border-color); color: #fff; font-weight: 700; padding: 12px; border-radius: 8px; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; text-decoration: none; font-size: 13px; }
-        .action-btn:active { background: #30363d; }
-
-        /* FIXED BOTTOM CALL BAR */
-        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #161b22; border-top: 2px solid var(--border-color); padding: 10px 12px; display: flex; gap: 8px; z-index: 999; }
-        .btn-call-ice { flex: 1; background: var(--accent-green); color: #000; font-weight: 900; font-size: 14px; border: none; border-radius: 8px; padding: 14px; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .btn-call-911 { flex: 1; background: var(--alert-red); color: #fff; font-weight: 900; font-size: 14px; border: none; border-radius: 8px; padding: 14px; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
-
-        /* FIRST AID STEP LIST */
-        .step-list { list-style: none; margin-top: 8px; }
-        .step-list li { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .step-list li strong { color: #fff; }
-    </style>
+    <title>GIACOMO — EMERGENCY ID</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff2e43">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="emergency-page">
 
-    <div class="container">
-        
-        <!-- TOP BAR & LANGUAGE SWITCHER -->
-        <div class="top-bar">
-            <div class="brand-label"><i class="fa-solid fa-shield-halved"></i> GIACOMO ID</div>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-                <button class="lang-btn" onclick="setLanguage('tl')">TL</button>
-                <button class="lang-btn" onclick="setLanguage('ceb')">CEB</button>
+    <!-- FIRST-AID SAFETY WARNING BANNER -->
+    <div id="first-aid-banner" class="first-aid-banner">
+        <div class="banner-content">
+            <span class="banner-icon">🛑</span>
+            <div class="banner-text">
+                <strong>CRITICAL FIRST RESPONDER NOTICE</strong>
+                <p>Do <strong>NOT</strong> remove helmet or move rider's neck unless breathing is blocked. Incorrect removal causes permanent spinal paralysis.</p>
             </div>
         </div>
-
-        <!-- 1. CRITICAL HELMET WARNING BANNER -->
-        <div class="warning-box">
-            <div class="warning-title"><i class="fa-solid fa-triangle-exclamation"></i> <span id="warn-title">WARNING TO BYSTANDER</span></div>
-            <div class="warning-text" id="warn-text">DO NOT remove the rider's helmet unless they are not breathing. Risk of severe spinal injury!</div>
+        <button id="toggle-guidance-btn" class="btn-guidance-toggle">
+            <span>SHOW FIRST-AID STEPS</span> ▼
+        </button>
+        <div id="guidance-drawer" class="guidance-drawer">
+            <ol class="guidance-list">
+                <li><strong>Airway Check:</strong> Look through visor for breathing movement without tilting the rider's head.</li>
+                <li><strong>Relieve Strain:</strong> Unclip the helmet chin strap if accessible, but leave the outer shell on.</li>
+                <li><strong>Vomiting Protocol:</strong> If the rider vomits, log-roll (turn the head, neck, and torso as one solid unit) to prevent choking.</li>
+            </ol>
         </div>
-
-        <!-- 2. RIDER IDENTIFICATION & GOLDEN HOUR TIMER -->
-        <div class="rider-card">
-            <div class="rider-header">
-                <div>
-                    <div class="rider-name" id="rider-name">Rider (Loading...)</div>
-                    <div class="serial-tag" id="display-sn">SN: FETCHING...</div>
-                </div>
-                <div class="golden-hour" id="golden-hour-box">
-                    <i class="fa-solid fa-stopwatch"></i> <span id="timer-val">OFFLINE DATA</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. MEDICAL SNAPSHOT GRID -->
-        <div class="med-grid">
-            <div class="med-card">
-                <div class="med-label" id="label-blood">Blood Type</div>
-                <div class="med-value-huge" id="val-blood">--</div>
-            </div>
-            <div class="med-card">
-                <div class="med-label" id="label-donor">Organ Donor</div>
-                <div class="badge-pill badge-donor" id="val-donor">UNKNOWN</div>
-            </div>
-            <div class="med-card" style="grid-column: span 2;">
-                <div class="med-label" id="label-allergies">Severe Allergies</div>
-                <div class="badge-pill badge-allergy" id="val-allergies" style="margin-top:6px; display:inline-block;">None Listed</div>
-            </div>
-        </div>
-
-        <!-- 4. PROGRESSIVE DISCLOSURE ACCORDIONS -->
-        
-        <!-- ACCORDION: BYSTANDER FIRST AID -->
-        <div class="accordion" id="acc-firstaid">
-            <button class="accordion-header" onclick="toggleAccordion('acc-firstaid')">
-                <span><i class="fa-solid fa-kit-medical" style="color:var(--alert-red);"></i> <span id="acc-title-aid">Bystander First-Aid Steps</span></span>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </button>
-            <div class="accordion-content">
-                <ul class="step-list" id="aid-steps-content">
-                    <li><strong>1. Airway:</strong> Ensure rider is breathing. Do NOT move their neck.</li>
-                    <li><strong>2. Bleeding:</strong> Apply firm, direct pressure to heavy bleeding using a clean cloth.</li>
-                    <li><strong>3. Seizures:</strong> Clear hazards around the rider. Do not put anything in their mouth.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ACCORDION: LOCATION & GPS TOOLS -->
-        <div class="accordion" id="acc-location">
-            <button class="accordion-header" onclick="toggleAccordion('acc-location')">
-                <span><i class="fa-solid fa-location-dot" style="color:var(--accent-cyan);"></i> <span id="acc-title-loc">Location & GPS Dispatch</span></span>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </button>
-            <div class="accordion-content">
-                <p style="margin-bottom:8px;" id="loc-coords-display">Live Coords: Accessing GPS...</p>
-                <button class="action-btn" onclick="shareLocationSMS()"><i class="fa-solid fa-comment-sms"></i> <span id="btn-text-sms">Text My GPS Location to Family</span></button>
-                <button class="action-btn" onclick="openGoogleMaps()"><i class="fa-solid fa-map-location-dot"></i> <span id="btn-text-maps">Open Scene in Google Maps</span></button>
-                <button class="action-btn" onclick="copyCoordinates()"><i class="fa-solid fa-copy"></i> <span id="btn-text-copy">Copy GPS Coordinates</span></button>
-            </div>
-        </div>
-
-        <!-- ACCORDION: BLACKBOX TELEMETRY -->
-        <div class="accordion" id="acc-telemetry">
-            <button class="accordion-header" onclick="toggleAccordion('acc-telemetry')">
-                <span><i class="fa-solid fa-microchip" style="color:var(--accent-yellow);"></i> <span id="acc-title-telemetry">BlackBox Crash Telemetry</span></span>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </button>
-            <div class="accordion-content">
-                <p><strong>Impact Velocity:</strong> <span id="tele-speed">N/A</span></p>
-                <p style="margin-top:4px;"><strong>Elevation:</strong> <span id="tele-elev">N/A</span></p>
-                <p style="margin-top:4px;"><strong>Impact Status:</strong> <span id="tele-status" style="color:var(--alert-red); font-weight:bold;">Crash Detected</span></p>
-            </div>
-        </div>
-
-        <!-- ACCORDION: EMERGENCY HOTLINES & VCARD -->
-        <div class="accordion" id="acc-contacts">
-            <button class="accordion-header" onclick="toggleAccordion('acc-contacts')">
-                <span><i class="fa-solid fa-phone-volume" style="color:var(--accent-green);"></i> <span id="acc-title-contacts">PH Hotlines & Save Contact</span></span>
-                <i class="fa-solid fa-chevron-down chevron"></i>
-            </button>
-            <div class="accordion-content">
-                <button class="action-btn" onclick="downloadVCard()"><i class="fa-solid fa-address-card"></i> Save Rider ICE Contact to Phone</button>
-                <a href="tel:911" class="action-btn" style="border-color:var(--alert-red);"><i class="fa-solid fa-phone"></i> Call National 911 Emergency</a>
-                <a href="tel:143" class="action-btn" style="border-color:var(--accent-yellow);"><i class="fa-solid fa-phone"></i> Call Red Cross (143)</a>
-            </div>
-        </div>
-
     </div>
 
-    <!-- 5. DOCKED BOTTOM ACTION BAR -->
-    <div class="bottom-bar">
-        <a id="btn-main-ice" href="#" class="btn-call-ice"><i class="fa-solid fa-phone"></i> CALL ICE</a>
-        <a href="tel:911" class="btn-call-911"><i class="fa-solid fa-truck-medical"></i> CALL 911</a>
+    <div id="status-content" class="status-container">
+        <!-- CRASH IMPACT CLOCK -->
+        <div id="impact-section" class="impact-clock-box">
+            <span class="clock-label">⚠️ AUTOMATED CRASH DETECTED AT</span>
+            <span id="impact-time" class="clock-time">--:--:--</span>
+        </div>
+
+        <!-- RIDER IDENTIFICATION HEADER -->
+        <div class="emergency-header">
+            <h1>Emergency Medical Profile</h1>
+            <div id="rider-name"><div class="skeleton" style="margin: auto;"></div></div>
+            <div id="donor-badge">Organ Donor</div>
+        </div>
+
+        <!-- MEDICAL DATA CARDS -->
+        <span class="section-title">Critical Information</span>
+        <div class="info-card border-danger">
+            <div id="blood-type" class="val"><div class="skeleton"></div></div>
+            <div class="desc">Blood Group</div>
+        </div>
+
+        <div class="info-card">
+            <div id="allergies" class="val"><div class="skeleton" style="width: 80%;"></div></div>
+            <div class="desc">Medical Allergies</div>
+        </div>
+
+        <div class="info-card">
+            <div id="chronic-conditions" class="val"><div class="skeleton" style="width: 50%;"></div></div>
+            <div class="desc">Chronic Conditions / Medications</div>
+        </div>
+
+        <!-- BYSTANDER GPS TOOL -->
+        <span class="section-title">Bystander Tools</span>
+        <div class="info-card tool-card">
+            <button id="share-location" class="btn-location">
+                📍 SEND MY GPS TO RESCUERS & SORT HOTLINES
+            </button>
+            <div class="desc" id="location-status" style="text-align: center; margin-top: 10px;">Tap to recalculate nearest emergency hospitals</div>
+        </div>
+
+        <!-- PERSONAL EMERGENCY CONTACTS (PINNED) -->
+        <span class="section-title">Personal Emergency Contacts</span>
+        <div id="contacts-container">
+            <div class="info-card"><div class="skeleton"></div></div>
+        </div>
+
+        <!-- RECOMMENDED NEAREST INSTITUTIONAL RESPONDER -->
+        <div id="recommended-responder-section" style="display: none;">
+            <span class="section-title">Recommended Nearest Responder</span>
+            <div id="recommended-responder-card"></div>
+        </div>
+
+        <!-- REGIONAL EMERGENCY HOTLINES -->
+        <span class="section-title">Caraga Regional Hotlines</span>
+        <div id="regional-hotlines-container" class="hotlines-list">
+            <div class="info-card"><div class="skeleton"></div></div>
+        </div>
     </div>
 
-    <!-- Supabase Module Script -->
-    <script type="module" src="js/status.js"></script>
+    <!-- ERROR SCREEN -->
+    <div id="error-screen">
+        <h1 style="color: var(--danger); font-size: 40px;">⚠️</h1>
+        <h2 style="margin: 10px 0;">PROFILE NOT FOUND</h2>
+        <p style="color: #64748b;">This Giacomo serial number is invalid or inactive.</p>
+    </div>
+
+    <!-- MAIN CONTROLLER SCRIPT -->
+    <script type="module" src="./js/status.js"></script>
 </body>
 </html>
