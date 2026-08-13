@@ -7,39 +7,52 @@ const timerDisplay = document.getElementById('countdown-timer');
 const layout = document.getElementById('main-layout');
 const simBtn = document.getElementById('sim-crash');
 
-async function checkOnboarding() {
-    const { data: { user } } = await supabase.auth.getUser();
-    
+async function checkOnboarding(user) {
+    // Check medical_profiles table for user record
     const { data: profile, error } = await supabase
-    .from('medical_profiles')
-    .select('*')
-    .eq('id', user.id)
-    .maybeSingle();
+        .from('medical_profiles')
+        .select('*')
+        .eq('id', user.id)
+        .maybeSingle();
 
-console.log("Logged In User ID:", user.id);
-console.log("Returned Profile Data:", profile);
-console.log("Returned Error:", error);
+    console.log("Logged In User ID:", user.id);
+    console.log("Returned Profile Data:", profile);
+    console.log("Returned Error:", error);
 
-if (error || !profile) {
-    console.log("No medical profile found. Redirecting to onboarding...");
-    window.location.href = '../medical-onboarding.html';
-    return;
-}
-    
-    if (!profile || error) {
-        console.log("No medical profile found. Redirecting to onboarding...");
-        window.location.replace('../medical-onboarding.html');
-    } else {
-        console.log("Medical profile verified for user:", profile.user_id);
+    // If an RLS or database error occurs, alert without blindly redirecting
+    if (error) {
+        console.error("Supabase query error:", error.message);
+        return false;
     }
+
+    // If no medical profile row exists in Supabase, redirect to onboarding
+    if (!profile) {
+        console.log("No medical profile found. Redirecting to onboarding...");
+        window.location.href = '../medical-onboarding.html';
+        return false;
+    }
+
+    console.log("Medical profile verified.");
+    return true;
 }
 
 async function initDashboard() {
+    // 1. Verify user is logged in
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) { window.location.href = '../index.html'; return; }
+    if (!user) { 
+        window.location.href = '../index.html'; 
+        return; 
+    }
     
-    await checkOnboarding();
+    // 2. Verify medical profile exists
+    const hasProfile = await checkOnboarding(user);
+    if (!hasProfile) return; // Stop initialization if no profile exists
 
+    // 3. Reveal Dashboard UI (removes the initial hidden state)
+    const wrapper = document.getElementById('dashboard-wrapper');
+    if (wrapper) wrapper.style.display = 'block';
+
+    // 4. Fetch device serial number and setup QR Code
     const { data: profile } = await supabase.from('profiles').select('serial_number').eq('id', user.id).single();
     
     const snDisplay = document.getElementById('display-sn');
@@ -48,6 +61,7 @@ async function initDashboard() {
         generateRiderQR(profile.serial_number); 
     }
 
+    // 5. Initialize Leaflet Map
     const mapElement = document.getElementById('map');
     if (mapElement) {
         map = L.map('map', { zoomControl: false, attributionControl: false }).setView([8.2200, 125.7500], 16);
@@ -59,8 +73,10 @@ async function initDashboard() {
         }).addTo(map);
     }
 
+    // 6. Start Live Telemetry Simulation
     startTelemetry();
 
+    // 7. Navigation & Event Handlers
     const settingsBtn = document.getElementById('settings-btn');
     if (settingsBtn) {
         settingsBtn.onclick = () => window.location.href = 'settings.html';
@@ -68,9 +84,13 @@ async function initDashboard() {
 
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
-        logoutBtn.onclick = async () => { await supabase.auth.signOut(); window.location.href = '../index.html'; };
+        logoutBtn.onclick = async () => { 
+            await supabase.auth.signOut(); 
+            window.location.href = '../index.html'; 
+        };
     }
 
+    // 8. Crash Simulation Handler
     if (simBtn) {
         simBtn.onclick = async () => {
             let timeLeft = 10;
@@ -157,58 +177,68 @@ function generateRiderQR(serialNumber) {
     };
 
     // Initial Render
-    renderQR(sizeSlider.value);
+    if (sizeSlider) renderQR(sizeSlider.value);
 
     // Live Resize
-    sizeSlider.oninput = (e) => {
-        sizeLabel.innerText = `Size: ${e.target.value}px`;
-        renderQR(e.target.value);
-    };
+    if (sizeSlider && sizeLabel) {
+        sizeSlider.oninput = (e) => {
+            sizeLabel.innerText = `Size: ${e.target.value}px`;
+            renderQR(e.target.value);
+        };
+    }
 
     // Print Handler with Emergency Instructions
-    document.getElementById('print-qr').onclick = () => {
-        const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
-        const imgData = qrContent.src || qrContent.toDataURL("image/png");
-        
-        const printWin = window.open('', '_blank');
-        printWin.document.write(`
-            <html>
-            <head>
-                <style>
-                    body { font-family: 'Inter', sans-serif; text-align: center; padding: 40px; }
-                    .print-card { border: 2px solid #000; padding: 20px; display: inline-block; border-radius: 10px; }
-                    h1 { margin: 0; letter-spacing: 4px; font-size: 24px; }
-                    .sub { font-size: 10px; text-transform: uppercase; font-weight: bold; margin-bottom: 20px; }
-                    .instructions { font-size: 12px; max-width: 250px; margin: 20px auto; line-height: 1.5; color: #333; }
-                    .sn { font-family: monospace; font-size: 12px; margin-top: 10px; font-weight: bold; }
-                    @media print { .no-print { display: none; } }
-                </style>
-            </head>
-            <body onload="window.print(); window.close();">
-                <div class="print-card">
-                    <h1>GIACOMO</h1>
-                    <div class="sub">Medical ID Protocol</div>
-                    <img src="${imgData}" style="width: 200px; height: 200px;" />
-                    <div class="sn">DEVICE SN: ${serialNumber}</div>
-                    <div class="instructions">
-                        <strong>BYSTANDER NOTICE:</strong><br>
-                        In case of emergency, scan this code to access the rider's medical profile and emergency contacts.
+    const printBtn = document.getElementById('print-qr');
+    if (printBtn) {
+        printBtn.onclick = () => {
+            const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
+            if (!qrContent) return;
+            const imgData = qrContent.src || qrContent.toDataURL("image/png");
+            
+            const printWin = window.open('', '_blank');
+            printWin.document.write(`
+                <html>
+                <head>
+                    <style>
+                        body { font-family: 'Inter', sans-serif; text-align: center; padding: 40px; }
+                        .print-card { border: 2px solid #000; padding: 20px; display: inline-block; border-radius: 10px; }
+                        h1 { margin: 0; letter-spacing: 4px; font-size: 24px; }
+                        .sub { font-size: 10px; text-transform: uppercase; font-weight: bold; margin-bottom: 20px; }
+                        .instructions { font-size: 12px; max-width: 250px; margin: 20px auto; line-height: 1.5; color: #333; }
+                        .sn { font-family: monospace; font-size: 12px; margin-top: 10px; font-weight: bold; }
+                        @media print { .no-print { display: none; } }
+                    </style>
+                </head>
+                <body onload="window.print(); window.close();">
+                    <div class="print-card">
+                        <h1>GIACOMO</h1>
+                        <div class="sub">Medical ID Protocol</div>
+                        <img src="${imgData}" style="width: 200px; height: 200px;" />
+                        <div class="sn">DEVICE SN: ${serialNumber}</div>
+                        <div class="instructions">
+                            <strong>BYSTANDER NOTICE:</strong><br>
+                            In case of emergency, scan this code to access the rider's medical profile and emergency contacts.
+                        </div>
                     </div>
-                </div>
-            </body>
-            </html>
-        `);
-        printWin.document.close();
-    };
+                </body>
+                </html>
+            `);
+            printWin.document.close();
+        };
+    }
 
     // Download Handler
-    document.getElementById('download-qr').onclick = () => {
-        const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
-        const link = document.createElement('a');
-        link.href = qrContent.src || qrContent.toDataURL("image/png");
-        link.download = `Giacomo-QR-${serialNumber}.png`;
-        link.click();
-    };
+    const downloadBtn = document.getElementById('download-qr');
+    if (downloadBtn) {
+        downloadBtn.onclick = () => {
+            const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
+            if (!qrContent) return;
+            const link = document.createElement('a');
+            link.href = qrContent.src || qrContent.toDataURL("image/png");
+            link.download = `Giacomo-QR-${serialNumber}.png`;
+            link.click();
+        };
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initDashboard);
