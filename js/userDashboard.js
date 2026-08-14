@@ -52,13 +52,29 @@ async function initDashboard() {
     const wrapper = document.getElementById('dashboard-wrapper');
     if (wrapper) wrapper.style.display = 'block';
 
-    // 4. Fetch device serial number and setup QR Code
-    const { data: profile } = await supabase.from('profiles').select('serial_number').eq('id', user.id).single();
+    // 4. Fetch device serial number & medical data for dynamic QR Code
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('serial_number')
+        .eq('id', user.id)
+        .single();
+
+    const { data: medProfile } = await supabase
+        .from('medical_profiles')
+        .select('blood_type, contact_1_phone')
+        .eq('user_id', user.id)
+        .maybeSingle();
     
     const snDisplay = document.getElementById('display-sn');
-    if (profile?.serial_number && snDisplay) {
-        snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
-        generateRiderQR(profile.serial_number); 
+    if (profile?.serial_number) {
+        if (snDisplay) snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
+        
+        // Pass serial number, blood type, and primary contact for offline fallback
+        generateRiderQR(
+            profile.serial_number, 
+            medProfile?.blood_type || '', 
+            medProfile?.contact_1_phone || ''
+        ); 
     }
 
     // 5. Initialize Leaflet Map
@@ -158,8 +174,12 @@ async function saveBlackBoxData(userId) {
     });
 }
 
-function generateRiderQR(serialNumber) {
-    const publicUrl = `https://giacomo-beta.vercel.app/status.html?sn=${serialNumber}`;
+function generateRiderQR(serialNumber, bloodType = '', contactPhone = '') {
+    // Construct dynamic payload URL with offline fallback parameters
+    let publicUrl = `https://giacomo-beta.vercel.app/status.html?sn=${serialNumber}`;
+    if (bloodType) publicUrl += `&blood=${encodeURIComponent(bloodType)}`;
+    if (contactPhone) publicUrl += `&contact=${encodeURIComponent(contactPhone)}`;
+
     const qrcodeContainer = document.getElementById("qrcode");
     const sizeSlider = document.getElementById("qr-size-slider");
     const sizeLabel = document.getElementById("size-label");
