@@ -53,12 +53,6 @@ document.querySelectorAll('.phone-input').forEach(input => {
 // --- Submission Logic ---
 onboardingForm.onsubmit = async (e) => {
     e.preventDefault();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
-    
-    if (!user || userError) {
-        alert("Session expired. Please log in again.");
-        return;
-    }
 
     const getVal = (id) => {
         const el = document.getElementById(id);
@@ -70,19 +64,35 @@ onboardingForm.onsubmit = async (e) => {
     const p2 = getVal('contact_phone_2');
     const p3 = getVal('contact_phone_3');
 
+    // --- VALIDATION GUARDS (Stop submit if invalid) ---
+    if (!serialRegex.test(serial)) {
+        alert("Please enter a valid Helmet Serial Number (e.g. GCMO-123456).");
+        return;
+    }
+    if (!phoneRegex.test(p1)) {
+        alert("Please enter a valid 10-digit primary phone number.");
+        return;
+    }
+
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (!user || userError) {
+        alert("Session expired. Please log in again.");
+        return;
+    }
+
     submitBtn.innerText = "Saving...";
     submitBtn.disabled = true;
 
     // 1. Update Profiles (Serial Number)
-   // TO THIS:
-const { error: profileErr } = await supabase
-    .from('profiles')
-    .upsert({ 
-        id: user.id, 
-        serial_number: serial 
-    });
+    const { error: profileErr } = await supabase
+        .from('profiles')
+        .upsert({ 
+            id: user.id, 
+            serial_number: serial 
+        });
 
-    // 2. Save Medical Data - FIXED UPSERT
+    // 2. Save Medical Data
     const { error: medErr } = await supabase
         .from('medical_profiles')
         .upsert({
@@ -90,14 +100,14 @@ const { error: profileErr } = await supabase
             blood_type: getVal('blood_type'),
             organ_donor: document.getElementById('organ_donor')?.checked || false,
             allergies: getVal('allergies') || "None",
-            chronic_conditions: getVal('chronic_conditions') || "None", // ADDED
+            chronic_conditions: getVal('chronic_conditions') || "None",
             current_medications: "None", 
             contact_1_name: getVal('contact_name_1'),
             contact_1_phone: p1 ? `+63${p1}` : "",
             contact_2_name: getVal('contact_name_2'),
             contact_2_phone: p2 ? `+63${p2}` : "",
-            contact_3_name: getVal('contact_name_3'), // ADDED
-            contact_3_phone: p3 ? `+63${p3}` : ""   // ADDED
+            contact_3_name: getVal('contact_name_3'),
+            contact_3_phone: p3 ? `+63${p3}` : ""
         }, { onConflict: 'user_id' });
 
     if (!profileErr && !medErr) {
