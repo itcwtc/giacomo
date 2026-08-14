@@ -354,7 +354,9 @@ document.getElementById('share-location').onclick = () => {
 // REGISTER SERVICE WORKER FOR OFFLINE PWA CACHING
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+        navigator.serviceWorker
+            .register('./js/sw.js', { scope: '/' })
+            .catch(err => console.log('SW registration failed:', err));
     });
 }
 
