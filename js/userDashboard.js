@@ -9,6 +9,21 @@ const layout = document.getElementById('main-layout');
 const simBtn = document.getElementById('sim-crash');
 
 async function checkOnboarding(user) {
+    // Admin accounts were never meant to have a medical profile — without
+    // this check, an admin landing on user.html (e.g. via a role-check
+    // race on refresh) gets bounced to medical-onboarding.html forever,
+    // since they'll never have a medical_profiles row to satisfy it.
+    const { data: profileRow } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .maybeSingle();
+
+    if (profileRow?.role === 'admin') {
+        console.log("Admin account — skipping medical onboarding gate.");
+        return true;
+    }
+
     // Check medical_profiles table for user record
     const { data: profile, error } = await supabase
         .from('medical_profiles')
@@ -71,11 +86,7 @@ async function initDashboard() {
         if (snDisplay) snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
         
         // Pass serial number, blood type, and primary contact for offline fallback
-        generateRiderQR(
-            profile.serial_number, 
-            medProfile?.blood_type || '', 
-            medProfile?.contact_1_phone || ''
-        ); 
+        generateRiderQR(profile.serial_number);
     }
 
     // 5. Initialize Leaflet Map
@@ -229,11 +240,15 @@ async function saveBlackBoxData(userId) {
     });
 }
 
-function generateRiderQR(serialNumber, bloodType = '', contactPhone = '') {
-    // Construct dynamic payload URL with offline fallback parameters
+function generateRiderQR(serialNumber) {
+    // Only the serial number goes in the QR. Blood type and contact phone
+    // used to be appended directly as URL params — that put them in
+    // plaintext on a permanently-printed sticker (and in every server/CDN
+    // access log this link ever hits), completely bypassing the RLS/RPC
+    // protection the status page already has. status.js now fetches all
+    // rider details exclusively via get_rider_status_by_sn(), which is
+    // the only trustworthy source for this data.
     let publicUrl = `https://giacomo-beta.vercel.app/status.html?sn=${serialNumber}`;
-    if (bloodType) publicUrl += `&blood=${encodeURIComponent(bloodType)}`;
-    if (contactPhone) publicUrl += `&contact=${encodeURIComponent(contactPhone)}`;
 
     const qrcodeContainer = document.getElementById("qrcode");
     const sizeSlider = document.getElementById("qr-size-slider");

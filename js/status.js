@@ -115,31 +115,25 @@ function renderRegionalHotlines(userLat = null, userLng = null) {
     });
 }
 
-// ZERO-SIGNAL OFFLINE URL FALLBACK PARSER
+// URL PARAM PARSER (serial number only — see note below)
+//
+// This used to also read `blood`/`contact` params and display them
+// directly, as an attempt at zero-signal offline fallback. Two problems
+// with that: (1) it meant a rider's blood type and emergency contact
+// number lived in plaintext on a permanently-printed sticker and in
+// every server/CDN log this link ever hit, regardless of whether the
+// fallback was ever actually needed; (2) it was unverifiable — anyone
+// could hand someone a link with an edited &blood= or &contact= value,
+// and there was nothing to catch it, especially in the exact no-network
+// scenario where it mattered most. Real offline capability (per the
+// original eCall MSD concept) needs a self-contained payload decoded
+// without a network fetch at all, not extra URL params riding along
+// with an online lookup — that's a separate feature to design
+// deliberately, not a side effect of this parser.
 function parseUrlFallback() {
     const params = new URLSearchParams(window.location.search);
     const sn = params.get('sn');
-    const blood = params.get('blood');
-    const contact = params.get('contact');
-
     if (sn) currentRider.serialNumber = sn.toUpperCase();
-    if (blood) {
-        document.getElementById('blood-type').innerText = blood.toUpperCase();
-        currentRider.bloodType = blood.toUpperCase();
-    }
-    if (contact) {
-        currentRider.phone = contact;
-        const container = document.getElementById('contacts-container');
-        container.innerHTML = `
-            <a href="tel:${contact}" class="contact-btn personal-contact">
-                <div class="contact-info">
-                    <span>PRIMARY EMERGENCY CONTACT (OFFLINE DATA)</span>
-                    <div>EMERGENCY CALL</div>
-                </div>
-                <div class="call-icon">📞</div>
-            </a>`;
-        document.getElementById('download-vcard-btn').style.display = 'block';
-    }
 }
 
 // MAIN DATA FETCHING FUNCTION
