@@ -73,6 +73,10 @@ onboardingForm.onsubmit = async (e) => {
         alert("Please enter a valid 10-digit primary phone number.");
         return;
     }
+    if (!document.getElementById('consent-checkbox').checked) {
+        alert("Please agree to the Data Collection & Consent Statement before continuing.");
+        return;
+    }
 
     const { data: { user }, error: userError } = await supabase.auth.getUser();
     

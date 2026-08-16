@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIACOMO — Data Collection &amp; Consent Statement</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: block;
+      height: auto;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #0a0c14 0%, #05060a 100%);
+      padding: 60px 20px;
+    }
+    .privacy-card {
+      width: 100%; max-width: 700px; margin: 0 auto; padding: 48px;
+      background: var(--glass); border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+      line-height: 1.6;
+    }
+    .privacy-card h1 { color: var(--neon); font-size: 26px; margin: 0 0 6px 0; }
+    .privacy-card h2 { color: var(--accent); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 10px 0; }
+    .privacy-card p, .privacy-card li { color: #e6eef6; font-size: 14px; }
+    .privacy-card ul, .privacy-card ol { padding-left: 20px; margin: 10px 0; }
+    .privacy-card li { margin-bottom: 8px; }
+    .privacy-card a { color: var(--accent); font-weight: bold; text-decoration: none; }
+    .privacy-card a:hover { text-decoration: underline; }
+    .disclaimer {
+      font-style: italic; color: var(--muted); font-size: 13px;
+      border-left: 3px solid rgba(255,255,255,0.1); padding-left: 14px; margin: 20px 0 30px 0;
+    }
+    .todo {
+      background: rgba(234,179,8,0.15); color: #eab308; font-style: normal;
+      font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 13px;
+    }
+    .back-link { display: block; text-align: center; margin-top: 30px; font-size: 13px; }
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 32px 0; }
+    .footnote { color: var(--muted); font-size: 12px; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div class="privacy-card">
+  <h1>Data Collection &amp; Consent Statement</h1>
+  <p class="disclaimer">
+    Draft for academic/research competition use. This is not legal advice — have a
+    teacher, mentor, or your fair's compliance process review this before treating
+    it as final.
+  </p>
+
+  <h2>What this document is</h2>
+  <p>
+    Giacomo is a research prototype built for <span class="todo">[TODO: competition name]</span>,
+    not a certified or commercially deployed medical device. This statement explains what
+    personal and medical information the system collects, why, who can see it,
+    how it's protected, and what rights you have over your own data. You should
+    read this before registering.
+  </p>
+
+  <h2>What we collect</h2>
+  <p><strong>Account information:</strong> your name and login credentials.</p>
+  <p><strong>Medical information (optional but required to activate emergency
+    features):</strong> blood type, known allergies, chronic conditions, current
+    medications, organ donor status, and up to three emergency contacts (name and
+    phone number).</p>
+  <p><strong>Device information:</strong> your helmet's serial number, linked to your account
+    once set (this cannot be changed afterward, to prevent a printed QR code from
+    pointing to the wrong record).</p>
+  <p><strong>Location and motion data, only while the rider dashboard is actively open
+    in your browser:</strong> GPS coordinates, used to show your position on the safety
+    dashboard and, if a crash is detected, to relay your location to your
+    emergency contacts and to anyone who scans your helmet's QR code afterward.</p>
+  <p><strong>Incident records:</strong> if a crash is detected (or manually simulated for
+    testing), we log the time, estimated impact force, and your location at that
+    moment.</p>
+
+  <h2>Why we collect it</h2>
+  <p>
+    Every field above exists to support one purpose: getting the right
+    information to the right person — you, your emergency contact, or a bystander
+    or first responder at the scene — during a real emergency. We don't use this
+    data for advertising, analytics unrelated to safety, or any purpose beyond
+    operating the emergency-response features described in the project.
+  </p>
+
+  <h2>Who can see what</h2>
+  <ul>
+    <li><strong>You</strong> can always see and edit your own full profile.</li>
+    <li><strong>A bystander or first responder</strong> who scans your helmet's QR code sees
+      only a minimal emergency-triage view: your name, blood type, allergies, and
+      emergency contact numbers. They do not see your chronic conditions,
+      medications, or account login details, and they do not need to be logged
+      in to see this — the whole point is that it works for a stranger at the
+      scene.</li>
+    <li><strong>Project administrators</strong> (for this prototype: the research team) can see
+      your device status, live location while your dashboard is open, and
+      whether a crash has been flagged, for the purpose of monitoring and
+      demonstrating the system. Administrators do not have a separate view into
+      your medical details beyond what's needed to operate the dashboard.</li>
+    <li><strong>No one else.</strong> Your data is not shared with third parties, sold, or used
+      for any purpose outside this project.</li>
+  </ul>
+
+  <h2>How it's protected</h2>
+  <p>
+    Your data is stored in a database with row-level access controls, meaning
+    the database itself — not just the app's interface — enforces who can read
+    which records. The public emergency lookup uses a dedicated, restricted
+    function rather than open access to the full database. As a research
+    prototype under active development, we cannot guarantee the same security
+    assurances as a certified commercial medical device, and we treat any
+    discovered issue as something to fix and disclose, not hide.
+  </p>
+
+  <h2>Your rights</h2>
+  <ul>
+    <li><strong>You can review or correct your medical information at any time</strong> through
+      your account settings.</li>
+    <li><strong>You can request deletion of your account and all associated data</strong> by
+      contacting <span class="todo">[TODO: researcher name / project contact email]</span>. As of this version
+      of the prototype, deletion is a manual process handled by the research
+      team rather than a self-service button — this is a known limitation we
+      intend to address.</li>
+    <li><strong>Providing medical information is optional</strong>, but the emergency-response
+      features (QR-based lookup, automated alerts) will not function without at
+      least an emergency contact and basic medical information on file.</li>
+  </ul>
+
+  <h2>If you are under 18</h2>
+  <p>
+    If you are a minor, we ask that a parent or guardian review this statement
+    and be aware of your registration, since the emergency contact and medical
+    information you provide may be accessed by strangers in an emergency
+    situation by design.
+  </p>
+
+  <h2>Consent</h2>
+  <p>By completing registration and medical onboarding, you confirm that:</p>
+  <ol>
+    <li>You have read and understood what data is collected and why.</li>
+    <li>You consent to that data being stored and used as described above,
+      including being shown to bystanders/first responders via QR scan in an
+      emergency.</li>
+    <li>You understand this is a research prototype, not a certified medical or
+      safety device, and that you are participating as part of an academic
+      research project.</li>
+  </ol>
+
+  <h2>Contact</h2>
+  <p>
+    Questions, concerns, or deletion requests: <span class="todo">[TODO: researcher name / email]</span><br>
+    Project/institution: <span class="todo">[TODO: your school or research program]</span>
+  </p>
+
+  <hr>
+  <p class="footnote">
+    Last updated: <span class="todo">[TODO: date]</span>. This document should be reviewed and updated whenever
+    the system's data handling changes — for example, if data storage,
+    sharing, or retention practices are modified.
+  </p>
+
+  <a href="medical-onboarding.html" class="back-link">← Back to Medical Profile</a>
+</div>
+
+</body>
+</html>
