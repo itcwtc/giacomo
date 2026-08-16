@@ -32,7 +32,7 @@ async function redirectByRole(userId) {
         .single();
 
     if (error || !profile) {
-        console.error("Error fetching profile:", error);
+        console.error("Error fetching profile role:", error);
         window.location.href = 'dashboard/user.html';
         return;
     }
