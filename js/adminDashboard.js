@@ -8,19 +8,18 @@ const searchInput = document.getElementById('admin-search');
 
 let map, markers = {}, currentRiders = [];
 
-// --- 🎯 DUMMY DATA ---
-const dummyUsers = [
-    { id: 'D-01', full_name: 'Angelo Vegafria', is_crashed: false, serial_number: 'GCMO-1001', lat: 8.9475, lon: 125.5430, status: 'ACTIVE' },
-    { id: 'D-02', full_name: 'Harold Baja', is_crashed: false, serial_number: 'GCMO-1002', lat: 8.9550, lon: 125.5970, status: 'ACTIVE' },
-    { id: 'D-03', full_name: 'Clint Lloyd', is_crashed: false, serial_number: 'GCMO-1003', lat: 8.9200, lon: 125.5200, status: 'STATIONARY' },
-    { id: 'D-04', full_name: 'Drex Parba', is_crashed: false, serial_number: 'GCMO-1004', lat: 9.0500, lon: 125.5200, status: 'ACTIVE' },
-    { id: 'D-05', full_name: 'Augustus Moongot', is_crashed: true, serial_number: 'GCMO-1005', lat: 8.9700, lon: 125.5000, status: 'PENDING' },
-];
-
 async function resetAllCrashes() {
     const { error } = await supabase.from('profiles').update({ is_crashed: false }).eq('is_crashed', true);
     if (error) console.error("Error resetting crashes:", error);
     else alert("All crash alerts cleared.");
+}
+
+// Clears only simulated/demo data via the reset_simulation_data() RPC
+// (server-side admin-role check happens inside the function itself).
+async function resetSimulationData() {
+    const { error } = await supabase.rpc('reset_simulation_data');
+    if (error) console.error("Error resetting simulation data:", error);
+    else alert("Simulated riders and incidents reset to baseline.");
 }
 
 // --- 🛠️ FIXED NOTIFICATION LOGIC ---
@@ -66,23 +65,27 @@ async function showCrashNotification(user) {
                 .order('timestamp', { ascending: false })
                 .limit(1).single();
 
-            let displayData = log || (user.id.startsWith('D-') ? {
-                velocity: (Math.random() * (4.5 - 2.1) + 2.1).toFixed(1),
-                elevation: Math.floor(Math.random() * 50) + 10,
-                timestamp: new Date().toISOString()
-            } : null);
-
-            if (displayData && markers[user.id]) {
-                const incidentTime = new Date(displayData.timestamp).toLocaleTimeString();
-                markers[user.id].bindPopup(`
-                    <div style="text-align:center; min-width:130px;">
-                        <b style="color:var(--danger); font-size:10px;">IMPACT DETECTED</b><br>
-                        <span style="font-size:22px; font-weight:900;">${displayData.velocity} G</span><br>
-                        <span style="font-size:11px; color:#64748b;">Elev: ${displayData.elevation}m</span>
-                        <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
-                        <span style="font-size:10px; color:#00e5ff;">🕒 ${incidentTime}</span>
-                    </div>
-                `).openPopup();
+            if (markers[user.id]) {
+                if (log) {
+                    const incidentTime = new Date(log.timestamp).toLocaleTimeString();
+                    const simTag = log.is_simulated ? `<div style="font-size:9px; color:#eab308; margin-top:4px;">⚠ SIMULATED DATA</div>` : '';
+                    markers[user.id].bindPopup(`
+                        <div style="text-align:center; min-width:130px;">
+                            <b style="color:var(--danger); font-size:10px;">IMPACT DETECTED</b><br>
+                            <span style="font-size:22px; font-weight:900;">${log.velocity} G</span><br>
+                            <span style="font-size:11px; color:#64748b;">Elev: ${log.elevation}m</span>
+                            <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
+                            <span style="font-size:10px; color:#00e5ff;">🕒 ${incidentTime}</span>
+                            ${simTag}
+                        </div>
+                    `).openPopup();
+                } else {
+                    markers[user.id].bindPopup(`
+                        <div style="text-align:center; min-width:130px; font-size:11px; color:#64748b;">
+                            No telemetry recorded for this incident yet.
+                        </div>
+                    `).openPopup();
+                }
             }
         };
 
@@ -104,8 +107,7 @@ async function renderUI(users) {
     const term = searchInput.value.toLowerCase();
     const { data: { user: adminAuth } } = await supabase.auth.getUser();
 
-    const allUsers = [...users, ...dummyUsers];
-    const sorted = allUsers.sort((a, b) => b.is_crashed - a.is_crashed);
+    const sorted = [...users].sort((a, b) => b.is_crashed - a.is_crashed);
 
     sorted.filter(u => (u.full_name || 'Rider').toLowerCase().includes(term)).forEach(user => {
         if (adminAuth && user.id === adminAuth.id) return; 
@@ -116,8 +118,9 @@ async function renderUI(users) {
         const card = document.createElement('div');
         card.style.cssText = `border-left:4px solid ${color}; background:rgba(255,255,255,0.02); margin-bottom:8px; padding:15px; border-radius:8px; cursor:pointer;`;
         
-        const serialLabel = user.id.startsWith('D-') ? user.serial_number : 'HARDWARE LINKED';
-        card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name || 'Rider'}</b><br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
+        const serialLabel = user.serial_number || 'NO DEVICE LINKED';
+        const simBadge = user.is_simulated ? `<span style="background:#eab308; color:#1a1500; font-size:8px; font-weight:900; padding:1px 5px; border-radius:3px; margin-left:6px;">SIMULATED</span>` : '';
+        card.innerHTML = `<b style="color:#fff; font-size:13px;">${user.full_name || 'Rider'}</b>${simBadge}<br><span style="font-size:9px; color:#475569;">${serialLabel}</span>`;
         
         card.onclick = () => { if (user.lat && user.lon) map.flyTo([user.lat, user.lon], 17); };
         userContainer.appendChild(card);
@@ -134,8 +137,8 @@ async function renderUI(users) {
         }
         if (isEm) showCrashNotification(user);
     });
-    statRiders.innerText = allUsers.length;
-    statAlerts.innerText = allUsers.filter(u => u.is_crashed).length;
+    statRiders.innerText = users.length;
+    statAlerts.innerText = users.filter(u => u.is_crashed).length;
 }
 
 async function loadHistory() {
@@ -144,7 +147,8 @@ async function loadHistory() {
     logs?.forEach(l => {
         const div = document.createElement('div');
         div.style.cssText = `background:rgba(255,46,67,0.05); padding:12px; border-radius:8px; margin-bottom:8px; border-left:2px solid var(--danger); font-size:11px;`;
-        div.innerHTML = `<b>UID: ${l.user_id.substring(0,8)}</b><br>Impact: ${l.velocity}G | Elev: ${l.elevation}m<br><span style="color:#475569; font-size:9px;">${new Date(l.timestamp).toLocaleString()}</span>`;
+        const simTag = l.is_simulated ? ` <span style="color:#eab308;">(SIMULATED)</span>` : '';
+        div.innerHTML = `<b>UID: ${l.user_id.substring(0,8)}</b>${simTag}<br>Impact: ${l.velocity}G | Elev: ${l.elevation}m<br><span style="color:#475569; font-size:9px;">${new Date(l.timestamp).toLocaleString()}</span>`;
         logContainer.appendChild(div);
     });
 }
@@ -157,14 +161,14 @@ async function init() {
     
     setTimeout(() => { map.invalidateSize(); }, 500);
     
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
+    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user');
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     // Listens to ALL events (INSERTs for new users and UPDATEs for crash status)
     supabase.channel('admin-chan')
         .on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, async () => {
-            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed').eq('role', 'user');
+            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user');
             currentRiders = refreshed || [];
             renderUI(currentRiders);
         }).subscribe();
@@ -187,6 +191,11 @@ document.getElementById('admin-logout').onclick = async () => {
 };
 
 document.getElementById('btn-reset-all').onclick = resetAllCrashes;
+
+// Optional: wire this up once you add a matching button to admin.html
+// e.g. <button id="btn-reset-sim">Reset Simulation Data</button>
+const resetSimBtn = document.getElementById('btn-reset-sim');
+if (resetSimBtn) resetSimBtn.onclick = resetSimulationData;
 
 setInterval(() => {
     const clock = document.getElementById('mission-clock');

@@ -1,6 +1,7 @@
 import { supabase } from './supabaseClient.js';
 
 let map, userMarker, countdownInterval;
+let lastKnownLat = null, lastKnownLon = null;
 const overlay = document.getElementById('emergency-overlay');
 const overlayBg = document.getElementById('overlay-bg');
 const timerDisplay = document.getElementById('countdown-timer');
@@ -89,8 +90,8 @@ async function initDashboard() {
         }).addTo(map);
     }
 
-    // 6. Start Live Telemetry Simulation
-    startTelemetry();
+    // 6. Start Live Telemetry (real GPS when available, simulated fallback otherwise)
+    startTelemetry(user.id);
 
     // 7. Navigation & Event Handlers
     const settingsBtn = document.getElementById('settings-btn');
@@ -140,21 +141,68 @@ async function initDashboard() {
     }
 }
 
-function startTelemetry() {
+function startTelemetry(userId) {
     const velVal = document.getElementById('vel-display');
     const elevVal = document.getElementById('elev-display');
     const latencyVal = document.getElementById('latency-val');
     const coordsVal = document.getElementById('live-coords');
-    let currentElev = 152; 
+    const gpsStatusVal = document.getElementById('gps-status'); // optional element, see report
 
-    setInterval(() => {
-        if (layout && !layout.classList.contains('panic-mode')) {
-            let speed = Math.floor(Math.random() * 5) + 60; 
-            if (velVal) velVal.innerHTML = `${speed} <span style="font-size:12px; color:#475569;">KM/H</span>`;
-            currentElev += (Math.random() - 0.5) * 0.4; 
-            if (elevVal) elevVal.innerHTML = `${currentElev.toFixed(0)} <span style="font-size:12px; color:#475569;">M</span>`;
-            if (latencyVal) latencyVal.innerText = Math.floor(Math.random() * 15) + 30;
-            if (coordsVal) coordsVal.innerText = `8.22${Math.floor(Math.random()*99)}° N, 125.75${Math.floor(Math.random()*99)}° E`;
+    let currentElev = 152;
+    let currentLat = 8.2200;
+    let currentLon = 125.7500;
+    let currentSpeedKmh = null;
+    let usingRealGPS = false;
+    let tickCount = 0;
+
+    // Try the browser/phone's real GPS first. Until the physical ESP32 +
+    // Quectel GNSS module is integrated, this is a legitimate stand-in for
+    // hardware location (real coordinates), not fabricated data. Falls back
+    // to a labeled simulated random-walk only if permission is denied or
+    // geolocation isn't supported.
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition((pos) => {
+            usingRealGPS = true;
+            currentLat = pos.coords.latitude;
+            currentLon = pos.coords.longitude;
+            if (pos.coords.altitude !== null) currentElev = pos.coords.altitude;
+            if (pos.coords.speed !== null) currentSpeedKmh = pos.coords.speed * 3.6;
+            if (gpsStatusVal) gpsStatusVal.innerText = 'GPS: LIVE';
+        }, () => {
+            usingRealGPS = false;
+            if (gpsStatusVal) gpsStatusVal.innerText = 'GPS: SIMULATED (permission denied)';
+        }, { enableHighAccuracy: true });
+    } else if (gpsStatusVal) {
+        gpsStatusVal.innerText = 'GPS: SIMULATED (unsupported)';
+    }
+
+    setInterval(async () => {
+        if (layout && layout.classList.contains('panic-mode')) return;
+        tickCount++;
+
+        const speed = currentSpeedKmh !== null ? currentSpeedKmh : Math.floor(Math.random() * 5) + 60;
+
+        if (!usingRealGPS) {
+            // Simulated random-walk fallback only — never silently mixed with real data
+            currentElev += (Math.random() - 0.5) * 0.4;
+            currentLat += (Math.random() - 0.5) * 0.001;
+            currentLon += (Math.random() - 0.5) * 0.001;
+        }
+
+        if (velVal) velVal.innerHTML = `${speed.toFixed(0)} <span style="font-size:12px; color:#475569;">KM/H</span>`;
+        if (elevVal) elevVal.innerHTML = `${currentElev.toFixed(0)} <span style="font-size:12px; color:#475569;">M</span>`;
+        if (latencyVal) latencyVal.innerText = Math.floor(Math.random() * 15) + 30;
+        if (coordsVal) coordsVal.innerText = `${currentLat.toFixed(4)}° N, ${currentLon.toFixed(4)}° E`;
+
+        if (userMarker) userMarker.setLatLng([currentLat, currentLon]);
+
+        lastKnownLat = currentLat;
+        lastKnownLon = currentLon;
+
+        // Push to profiles every ~5s (not every tick) so the admin live map
+        // reflects this rider's position without hammering Supabase.
+        if (userId && tickCount % 5 === 0) {
+            await supabase.from('profiles').update({ lat: currentLat, lon: currentLon }).eq('id', userId);
         }
     }, 1000);
 }
@@ -162,15 +210,22 @@ function startTelemetry() {
 async function saveBlackBoxData(userId) {
     const velDisp = document.getElementById('vel-display');
     const elevDisp = document.getElementById('elev-display');
-    const finalVel = velDisp ? velDisp.innerText : "0 KM/H";
-    const finalElev = elevDisp ? elevDisp.innerText : "0 M";
-    
+    const finalVelocity = velDisp ? parseFloat(velDisp.innerText) : null;
+    const finalElevation = elevDisp ? parseFloat(elevDisp.innerText) : null;
+
     const { data: profile } = await supabase.from('profiles').select('full_name').eq('id', userId).single();
+
+    // This path only runs from the manual "Simulate Crash" test button, so
+    // it's always marked is_simulated — a real hardware-triggered incident
+    // would be written by the device itself, not through this UI control.
     await supabase.from('incident_logs').insert({
         user_id: userId,
         rider_name: profile?.full_name || 'Unknown Rider',
-        final_velocity: finalVel,
-        final_elevation: finalElev
+        velocity: finalVelocity,
+        elevation: finalElevation,
+        latitude: lastKnownLat,
+        longitude: lastKnownLon,
+        is_simulated: true
     });
 }
 
