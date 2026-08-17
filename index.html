@@ -1,51 +1,684 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIACOMO — Login</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      display: flex; align-items: center; justify-content: center; height: 100vh;
-      background: radial-gradient(circle at center, #0a0c14 0%, #05060a 100%);
-    }
-    .login-card {
-      width: 100%; max-width: 400px; padding: 40px;
-      background: var(--glass); border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px);
-      text-align: center;
-    }
-    .system-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-      background: #4ade80; margin-right: 5px; box-shadow: 0 0 10px #4ade80;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giacomo — Rider Safety Registry</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Page-level reset + base type — scoped to this page only (not style.css)
+     so the older neon-red theme used by dashboard/auth pages is untouched. */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{background:var(--ink);color:var(--paper);font-family:var(--ed-sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--signal);color:var(--paper)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  /* ===== CHROME ===== */
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--signal);width:0;z-index:80;transition:width .1s linear}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 5vw;background:rgba(13,21,15,.82);backdrop-filter:blur(10px);border-bottom:1px solid transparent;
+    transition:border-color .4s,transform .5s var(--ease);transform:translateY(-100%)}
+  .nav.ready{transform:none}
+  .nav.stuck{border-bottom-color:#22331f}
+  .nav .mark{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-decoration:none}
+  .nav .mark svg,.nav .mark img{width:19px;height:19px;flex:none;border-radius:3px}
+  .toc{display:flex;gap:26px;align-items:center}
+  .toc a{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7d8a7b;text-decoration:none;
+    padding:6px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap}
+  .toc a:hover{color:var(--paper)}
+  .toc a.on{color:var(--paper);border-bottom-color:var(--signal)}
+  .toc a.cta{color:var(--brass)}
+  .navtoggle{display:none;background:none;border:1px solid #2c3f30;color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:.18em;padding:8px 12px;cursor:pointer}
+
+  /* ===== 1 · STAKES ===== */
+  .stakes{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 5vw 90px;position:relative}
+  .stakes::after{content:'';position:absolute;left:5vw;right:5vw;bottom:0;height:1px;background:linear-gradient(90deg,transparent,#2c3f30,transparent)}
+  .stakes .q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(27px,4.3vw,54px);line-height:1.28;max-width:19ch;margin-top:28px}
+  .bignum{font-family:var(--mono);font-size:clamp(44px,7vw,92px);font-weight:500;color:var(--signal-lt);line-height:1;margin-top:46px;letter-spacing:-.02em}
+  .bignum-cap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#8fa08c;margin-top:14px;max-width:40ch;line-height:1.8}
+  .cite{margin-top:16px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--muted-ed)}
+
+  /* ===== 2 · HERO ===== */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1.1fr;gap:5vw;align-items:center;padding:100px 5vw 70px}
+  .hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(68px,10.5vw,168px);line-height:.86;letter-spacing:-.02em}
+  .hero .rule-line{width:66px;height:2px;background:var(--signal);margin:26px 0 22px}
+  .hero .tag{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.55vw,22px);color:#c3cec0;max-width:26ch}
+  .hero .body{font-size:14px;line-height:1.85;color:#a9b5a7;margin-top:24px;max-width:42ch}
+  .whyname{margin-top:30px;border-left:2px solid var(--moss);padding-left:16px;font-size:12.5px;line-height:1.8;color:#8fa08c;max-width:38ch}
+  .hero-fig{will-change:transform}
+  .hero-fig svg{width:100%;height:auto;display:block}
+  .fig-cap{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted-ed);text-align:center;margin-top:16px;font-style:italic}
+
+  /* ===== 3 · ASSEMBLY ===== */
+  .assembly{position:relative;background:var(--ink-2)}
+  .assembly-inner{display:grid;grid-template-columns:1.12fr .88fr}
+  .assembly-stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 3vw 40px}
+  .assembly-stage svg{width:100%;max-width:530px;height:auto;will-change:transform}
+  .assembly-track{padding:20vh 5vw 20vh 0}
+  .astep{min-height:74vh;display:flex;flex-direction:column;justify-content:center;opacity:.16;transform:translateX(14px);
+    transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .astep.on{opacity:1;transform:none}
+  .astep .num{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--signal-lt);margin-bottom:16px}
+  .astep h3{font-family:var(--serif);font-weight:700;font-size:clamp(26px,2.7vw,38px);margin-bottom:14px}
+  .astep p{font-size:13.5px;line-height:1.8;color:#a3afa1;max-width:38ch}
+  .astep ul{list-style:none;margin-top:20px;border-top:1px solid #2c3f30;padding-top:15px}
+  .astep li{font-size:12.5px;color:#93a091;padding:7px 0;display:flex;gap:14px;line-height:1.55}
+  .astep li b{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--brass);font-weight:500;min-width:100px;flex:none;padding-top:1px}
+  [data-layer]{transition:transform .1s linear}
+  .lyr-label{opacity:0;transition:opacity .5s ease}
+  .lyr-label.on{opacity:1}
+  .manifest-link{padding:0 5vw 100px;text-align:right}
+  .manifest-link a{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);
+    text-decoration:none;border-bottom:1px solid #4a5f43;padding-bottom:5px;transition:color .3s,border-color .3s}
+  .manifest-link a:hover{color:var(--paper);border-bottom-color:var(--brass)}
+
+  /* ===== 4 · SEQUENCE ===== */
+  .sequence{padding:110px 5vw;border-top:1px solid #2c3f30}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:56px}
+  .step{border-top:2px solid var(--moss);padding-top:18px}
+  .step .n{font-family:var(--serif);font-size:32px;color:var(--signal-lt);line-height:1;margin-bottom:12px}
+  .step h4{font-size:15px;font-weight:700;margin-bottom:9px}
+  .step p{font-size:12.5px;line-height:1.7;color:#93a091}
+
+  /* ===== 5 · THE SCAN ===== */
+  .scan{padding:120px 5vw 130px;background:var(--ink-2);border-top:1px solid #2c3f30;
+    display:grid;grid-template-columns:1fr 380px;gap:6vw;align-items:center}
+  .scan h2{font-family:var(--serif);font-weight:800;font-size:clamp(32px,4.4vw,62px);line-height:1.03;max-width:15ch}
+  .scan .body{font-size:14px;line-height:1.85;color:#a3afa1;margin-top:26px;max-width:44ch}
+  .scan .pts{margin-top:32px;border-top:1px solid #2c3f30;padding-top:8px}
+  .scan .pt{display:flex;gap:16px;padding:12px 0;font-size:12.5px;color:#93a091;line-height:1.6;border-bottom:1px solid #1d2e22}
+  .scan .pt b{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--brass);font-weight:500;min-width:74px;flex:none;padding-top:2px}
+
+  .phone{width:100%;max-width:340px;justify-self:center;background:#050906;border:1px solid #2f4133;border-radius:34px;
+    padding:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .screen{background:#f4efe2;border-radius:22px;overflow:hidden;min-height:520px;position:relative;color:#141b15}
+  .scr-idle{padding:44px 26px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:520px}
+  .scr-idle .hint{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:#8a7d61;margin-top:26px;line-height:2}
+  .qr{width:150px;height:150px}
+  .scan-btn{margin-top:30px;background:var(--ink-3);color:var(--paper);border:none;padding:13px 22px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+  .scan-btn:hover{background:var(--moss)}
+
+  .scr-card{position:absolute;inset:0;display:none;flex-direction:column;background:#f4efe2}
+  .scr-card.show{display:flex}
+  .cardhead{background:var(--signal);color:#fff;padding:16px 20px}
+  .cardhead .t{font-family:var(--mono);font-size:10px;letter-spacing:.26em}
+  .cardhead .n{font-family:var(--serif);font-weight:700;font-size:22px;margin-top:5px}
+  .cardbody{padding:20px;flex:1;overflow:hidden}
+  .row{border-bottom:1px solid #ddd2b8;padding:13px 0}
+  .row .l{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:#8a7d61}
+  .row .v{font-size:17px;font-weight:700;color:#141b15;margin-top:5px}
+  .row .v.big{font-size:34px;font-family:var(--mono);font-weight:500;color:var(--signal)}
+  /* CALL rows are illustrative specimen data only — deliberately styled as inert
+     labels (no accent color, no hover, no pointer cursor) so they never read as
+     working buttons. Was previously ambiguous; see index.html changelog note. */
+  .callbtn{display:flex;align-items:center;justify-content:space-between;background:var(--ink-3);color:var(--paper);
+    padding:12px 15px;margin-top:9px;font-size:12.5px;cursor:default}
+  .callbtn span:last-child{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:#6b7870;text-transform:uppercase}
+  .specimen{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:#6b5d47;text-align:center;padding:10px}
+  .stagger{opacity:0;transform:translateY(10px)}
+  .scr-card.show .stagger{animation:rise .55s var(--ease) forwards}
+  .scr-card.show .s1{animation-delay:.06s}.scr-card.show .s2{animation-delay:.14s}
+  .scr-card.show .s3{animation-delay:.22s}.scr-card.show .s4{animation-delay:.3s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .resetline{text-align:center;margin-top:16px}
+  .resetline button{background:none;border:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:#7d8a7b;cursor:pointer;text-transform:uppercase}
+  .resetline button:hover{color:var(--paper)}
+
+  /* ===== 6 · AUDIENCES ===== */
+  .audiences{padding:110px 5vw;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#1d2e22}
+  .aud{background:var(--ink);padding:44px 34px;transition:background .4s}
+  .aud:hover{background:var(--ink-3)}
+  .aud .idx{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--signal-lt);margin-bottom:20px}
+  .aud h3{font-family:var(--serif);font-weight:700;font-size:25px;margin-bottom:14px}
+  .aud p{font-size:13px;line-height:1.8;color:#98a596}
+
+  /* ===== 7 · REGISTRY ===== */
+  .registry{padding:110px 5vw 120px;display:grid;grid-template-columns:1fr 452px;gap:6vw;align-items:start;border-top:1px solid #2c3f30}
+  .registry h2{font-family:var(--serif);font-weight:900;font-size:clamp(38px,4.6vw,66px);line-height:1.02;max-width:13ch;margin-top:16px}
+  .registry .body{font-size:14px;line-height:1.85;color:#a3afa1;margin-top:26px;max-width:40ch}
+  .assure{margin-top:32px;border-left:2px solid var(--moss);padding-left:18px}
+  .assure p{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:#8fa08c;line-height:2}
+  .prototype{margin-top:30px;border:1px solid #2c3f30;padding:18px 20px;background:#101b13;max-width:44ch}
+  .prototype p{font-size:12.5px;line-height:1.7;color:#a3afa1}
+  .prototype a{color:var(--brass);text-decoration:none;border-bottom:1px solid #4a5f43}
+  .card{background:var(--paper);color:var(--txt-dark);padding:42px 40px 38px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .card .cap{font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;color:#9a8c6e;margin-bottom:22px}
+  .tabs{display:flex;border-bottom:1px solid #bcae91;margin-bottom:28px}
+  .tabs button{flex:1;background:none;border:none;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:#9a8c6e;padding:11px 0;cursor:pointer;border-bottom:2px solid transparent;transition:color .25s,border-color .25s}
+  .tabs button.active{color:var(--txt-dark);border-bottom-color:var(--signal)}
+  .fld{margin-bottom:24px}
+  .fld.hidden{display:none}
+  .fld label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#8a7d61;margin-bottom:8px}
+  .fld input{width:100%;border:none;border-bottom:1px solid #bcae91;background:transparent;padding:7px 2px;
+    font-family:var(--ed-sans);font-size:15px;color:var(--txt-dark);transition:border-color .3s}
+  .fld input:focus{outline:none;border-bottom-color:var(--signal)}
+  .nextstep{font-size:11.5px;line-height:1.6;color:#6f6550;border-left:2px solid #d3c7ac;padding-left:12px;margin-bottom:22px}
+  .nextstep.hidden{display:none}
+  .submit{width:100%;background:var(--ink-3);color:var(--paper);border:none;padding:15px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+  .submit:hover{background:var(--moss)}
+  .submit:disabled{opacity:.55;cursor:not-allowed}
+  .submit.stamp{animation:stamp .42s cubic-bezier(.3,1.4,.5,1)}
+  @keyframes stamp{0%{transform:scale(1)}35%{transform:scale(1.07) rotate(-1.4deg)}65%{transform:scale(.975)}100%{transform:scale(1)}}
+  .auth-error{display:none;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;line-height:1.6;
+    color:var(--signal);background:rgba(200,52,43,0.08);border:1px solid rgba(200,52,43,0.3);padding:10px 12px;border-radius:4px}
+  .card .foot{text-align:center;margin-top:20px;font-family:var(--mono);font-size:10px;color:#8a7d61}
+  .card .foot a{color:var(--signal);text-decoration:none;border-bottom:1px solid transparent}
+  .card .foot a:hover{border-bottom-color:var(--signal)}
+
+  footer{padding:36px 5vw;border-top:1px solid #2c3f30;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted-ed)}
+  footer a{color:var(--muted-ed);text-decoration:none;border-bottom:1px solid #2c3f30}
+  footer a:hover{color:var(--paper)}
+
+  @media (max-width:640px){
+    /* mono captions under ~10px are hard to read on a phone at arm's length —
+       bump the whole family up, desktop sizes are untouched above 640px */
+    .cite,.fig-cap,.resetline button,.card .cap,.fld label,footer{font-size:11px!important}
+    .row .l{font-size:10.5px!important}
+    .specimen{font-size:9.5px!important}
+    .astep li b{min-width:88px}
+    .phone{max-width:100%}
+    .screen,.scr-idle{min-height:460px}
+    /* tap targets: keep every interactive control at a comfortable minimum */
+    .tabs button,.submit,.scan-btn,.navtoggle,.toc a{min-height:44px;display:flex;align-items:center;justify-content:center}
+    .fld input{min-height:40px}
+  }
+
+  @media (max-width:1000px){
+    .toc{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--ink-2);
+      border-bottom:1px solid #22331f;padding:0 5vw;max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+    .toc.open{max-height:300px;padding:14px 5vw 20px}
+    .toc a{padding:11px 0;width:100%}
+    .navtoggle{display:block}
+    .hero{grid-template-columns:1fr;gap:40px;padding-top:120px}
+    .assembly-inner{grid-template-columns:1fr}
+    .assembly-stage{position:relative;height:auto;padding:60px 5vw 10px}
+    .assembly-track{padding:0 5vw 50px}
+    .astep{min-height:auto;opacity:1;transform:none;padding:34px 0;border-top:1px solid #2c3f30}
+    .manifest-link{text-align:left}
+    .steps,.audiences{grid-template-columns:1fr;gap:26px}
+    .scan,.registry{grid-template-columns:1fr;gap:44px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;transition-duration:.001s!important}
+    .astep{opacity:1;transform:none}.nav{transform:none}
+  }
+</style>
 </head>
 <body>
 
-<div class="login-card">
-  <div style="margin-bottom: 10px; font-size: 10px; letter-spacing: 2px; color: var(--muted);">
-    <span class="system-dot"></span> SYSTEM ONLINE
+<a href="#top" class="ed-skip-link">Skip to content</a>
+<div class="progress" id="progress"></div>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="mark">
+    <img src="assets/logo.svg" alt="Giacomo" width="19" height="19">
+    GIACOMO
+  </a>
+  <button class="navtoggle" id="navtoggle" aria-expanded="false">Menu</button>
+  <div class="toc" id="toc">
+    <a href="#apparatus" data-spy="apparatus">I. The Apparatus</a>
+    <a href="#sequence" data-spy="sequence">II. The Sequence</a>
+    <a href="#scan" data-spy="scan">III. The Scan</a>
+    <a href="manual.html">IV. The Manual</a>
+    <a href="#registry" data-spy="registry" class="cta">Registry</a>
   </div>
-  <h1 style="color: var(--neon); margin: 0 0 5px 0; font-size: 32px;">GIACOMO</h1>
-  <p class="muted" style="margin-bottom: 30px; font-size: 14px;">Smart Motorcycle Crash Detection</p>
+</nav>
 
-  <form id="login-form">
-    <input type="email" id="email" placeholder="Email Address" required style="width: 100%; margin-bottom: 15px;">
-    <input type="password" id="password" placeholder="Password" required style="width: 100%; margin-bottom: 25px;">
-    
-    <button type="submit" class="btn btn-cta" style="width: 100%; justify-content: center; padding: 15px;">
-      Initialize Dashboard
-    </button>
-  </form>
+<!-- ===== 1 · STAKES ===== -->
+<section class="stakes" id="top">
+  <div class="kicker fade">The problem on record</div>
+  <p class="q"><span class="m m1"><span>A rider lying unconscious</span></span><span class="m m2"><span>on a road at night cannot</span></span><span class="m m3"><span>tell anyone where they are.</span></span></p>
+  <div class="bignum" data-count="[NUMBER]" id="bignum"><span class="ed-todo">[NUMBER]</span></div>
+  <div class="bignum-cap fade fd2"><span class="ed-todo">[INSERT THE STATISTIC THIS NUMBER REPRESENTS — e.g. average time to emergency response, or share of motorcycle fatalities where delay was a factor, in your region]</span></div>
+  <div class="cite fade fd3">SOURCE — <span class="ed-todo">[CITATION]</span></div>
+</section>
 
-  <div style="margin-top: 25px; font-size: 13px;">
-    <span class="muted">New rider?</span> 
-    <a href="register.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">Register Device</a>
+<!-- ===== 2 · HERO ===== -->
+<section class="hero" id="apparatus">
+  <div>
+    <div class="kicker fade">Plate no. 1 — the apparatus</div>
+    <h1><span class="m m1"><span>GIACOMO</span></span></h1>
+    <div class="rule-line grow"></div>
+    <p class="tag fade fd1">an emergency-response system for motorcycle riders</p>
+    <p class="body fade fd2">A helmet-mounted device that detects a crash on its own and alerts your emergency contacts with your location — without depending on your phone, or on you being conscious. Anyone who reaches you first can scan the helmet's code and see your medical details immediately, with no app and no login.</p>
+    <div class="whyname fade fd3">
+      A registry is one of the oldest instruments in emergency medicine: a record kept in advance, so that a stranger can act on it without knowing you. Giacomo is that record, carried on the helmet.
+      <br><br>
+      <span class="ed-todo">[WHY THE NAME "GIACOMO" — one or two sentences on where the name comes from]</span>
+    </div>
   </div>
-</div>
+  <div class="hero-fig fade fd2" id="heroFig">
+    <svg viewBox="0 0 480 320" role="img" aria-label="Schematic side view of the Giacomo helmet module with labelled components">
+      <defs><linearGradient id="shellg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4d8f44"/><stop offset="1" stop-color="#2c5c2c"/></linearGradient></defs>
+      <path d="M78 214 C78 178 104 156 152 138 L318 78 C346 68 380 82 384 114 L384 196 C384 208 376 216 364 217 L96 228 C85 229 78 223 78 214 Z" fill="url(#shellg)" stroke="#8fbe86" stroke-width="1.2"/>
+      <path d="M84 206 C84 176 108 156 154 139 L318 88 C342 80 372 92 375 118" fill="none" stroke="#a9d3a0" stroke-width=".9" opacity=".55"/>
+      <path d="M96 228 L364 217 L364 232 C364 240 357 246 348 246 L112 250 C102 250 96 244 96 236 Z" fill="#245024" stroke="#8fbe86" stroke-width="1"/>
+      <path d="M300 124a26 26 0 1 0 8 50.5L300 184l26-30-22 2 6.5 8.2A16 16 0 1 1 312 138l6-6a25.9 25.9 0 0 0-18-8z" fill="#c8342b"/>
+      <circle cx="366" cy="104" r="6" fill="none" stroke="#c9e3c2" stroke-width="1.1"/><circle cx="366" cy="104" r="2" fill="#c9e3c2"/>
+      <circle cx="366" cy="206" r="6" fill="none" stroke="#c9e3c2" stroke-width="1.1"/><circle cx="366" cy="206" r="2" fill="#c9e3c2"/>
+      <circle cx="132" cy="205" r="6" fill="none" stroke="#c9e3c2" stroke-width="1.1"/><circle cx="132" cy="205" r="2" fill="#c9e3c2"/>
+      <rect x="196" y="112" width="34" height="9" rx="4" fill="#e2c877" stroke="#8fbe86" stroke-width=".8"/>
+      <circle cx="150" cy="186" r="9" fill="#1d3f1e" stroke="#c9e3c2" stroke-width="1.1"/>
+      <rect x="238" y="228" width="34" height="18" rx="4" fill="#1d3f1e" stroke="#c9e3c2" stroke-width="1.1"/>
+      <g stroke="#7f8d7c" stroke-width=".7" fill="none">
+        <path class="draw hero-draw" style="--len:130" d="M213 112 L213 62 L150 62"/>
+        <path class="draw hero-draw" style="--len:170" d="M372 140 L432 108 L470 108"/>
+        <path class="draw hero-draw" style="--len:180" d="M141 186 L60 168 L14 168"/>
+        <path class="draw hero-draw" style="--len:110" d="M255 246 L255 282 L322 282"/>
+        <path class="draw hero-draw" style="--len:160" d="M124 226 L60 246 L14 246"/>
+      </g>
+      <g font-family="IBM Plex Mono" font-size="8.2" fill="#aab7a7" letter-spacing=".7" class="fade fd4" id="heroLabels">
+        <text x="146" y="59" text-anchor="end">WS2812B STATUS LED</text>
+        <text x="474" y="105" text-anchor="end">LSM6DSOX IMU</text>
+        <text x="10" y="165">PIEZO BUZZER</text>
+        <text x="326" y="285">ABORT BUTTON, SEALED</text>
+        <text x="10" y="243">IP67 GASKET SEAM</text>
+      </g>
+    </svg>
+    <div class="fig-cap fade fd4">fig. 1 — schematic representation, not to scale · <span class="ed-todo">[REPLACE WITH PHOTOGRAPH OF THE BUILT UNIT WHEN AVAILABLE]</span></div>
+  </div>
+</section>
 
+<!-- ===== 3 · ASSEMBLY ===== -->
+<section class="assembly" id="assembly">
+  <div class="assembly-inner">
+    <div class="assembly-stage">
+      <svg viewBox="0 0 460 600" id="asmSvg" role="img" aria-label="Exploded assembly view of the module: shell, interface parts, weather seal, circuit board, battery, base plate">
+        <defs>
+          <linearGradient id="shl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4d8f44"/><stop offset="1" stop-color="#2f6330"/></linearGradient>
+          <linearGradient id="bse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6330"/><stop offset="1" stop-color="#1d4420"/></linearGradient>
+        </defs>
+        <line x1="230" y1="30" x2="230" y2="560" stroke="#243527" stroke-width="1" stroke-dasharray="3 7"/>
+
+        <g data-layer="base" data-dist="98" data-rot="-1.6">
+          <path d="M96 420 C96 404 112 394 136 392 L336 382 C356 381 368 390 368 404 C368 418 356 428 336 430 L136 440 C112 442 96 434 96 420 Z" fill="url(#bse)" stroke="#8fbe86" stroke-width="1.1"/>
+          <text data-lbl class="lyr-label" x="386" y="410" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">BASE PLATE</text>
+        </g>
+
+        <g data-layer="batt" data-dist="48" data-rot="1.2">
+          <rect x="140" y="346" width="184" height="34" rx="7" fill="#243a2a" stroke="#8fbe86" stroke-width="1.1"/>
+          <rect x="152" y="356" width="58" height="13" rx="3" fill="#3c5a42"/>
+          <text x="230" y="368" font-family="IBM Plex Mono" font-size="8" fill="#b9c9b5" text-anchor="middle">3.7V LiPo</text>
+          <text data-lbl class="lyr-label" x="386" y="366" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">POWER CELL</text>
+        </g>
+
+        <g data-layer="pcb" data-dist="0" data-rot="0">
+          <path d="M104 292 C104 278 118 270 140 268 L332 258 C350 257 360 265 360 277 C360 289 350 298 332 300 L140 310 C118 312 104 306 104 292 Z" fill="#17421f" stroke="#7fd07a" stroke-width="1.2"/>
+          <g fill="#0f2d15" stroke="#7fd07a" stroke-width=".8">
+            <rect x="130" y="276" width="46" height="20" rx="2"/><rect x="188" y="272" width="30" height="17" rx="2"/>
+            <rect x="230" y="269" width="34" height="17" rx="2"/><rect x="276" y="266" width="26" height="15" rx="2"/>
+            <rect x="312" y="264" width="22" height="13" rx="2"/>
+          </g>
+          <g font-family="IBM Plex Mono" font-size="5.4" fill="#9fe09a">
+            <text x="134" y="288">ESP32-S3</text><text x="192" y="283">A7670C</text><text x="234" y="280">L76K</text>
+            <text x="279" y="276">IP5306</text><text x="315" y="273">µSD</text>
+          </g>
+          <path d="M348 268 L372 246" stroke="#8fbe86" stroke-width="1.4"/><circle cx="374" cy="244" r="3" fill="#8fbe86"/>
+          <text data-lbl class="lyr-label" x="386" y="284" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">CIRCUIT BOARD</text>
+          <text data-lbl class="lyr-label" x="386" y="246" font-family="IBM Plex Mono" font-size="7.6" fill="#8fa08c">U.FL ANTENNAS</text>
+        </g>
+
+        <g data-layer="gask" data-dist="-52" data-rot="-1">
+          <path d="M100 238 C100 224 116 214 140 212 L334 202 C354 201 366 210 366 224 C366 238 354 248 334 250 L140 260 C116 262 100 252 100 238 Z" fill="none" stroke="#c8342b" stroke-width="3.4" stroke-linejoin="round"/>
+          <text data-lbl class="lyr-label" x="386" y="230" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">WEATHER SEAL</text>
+        </g>
+
+        <g data-layer="iface" data-dist="-104" data-rot="1.8">
+          <rect x="150" y="168" width="40" height="12" rx="6" fill="#e2c877" stroke="#8fbe86" stroke-width="1"/>
+          <circle cx="232" cy="174" r="11" fill="#1d3f1e" stroke="#c9e3c2" stroke-width="1.2"/>
+          <circle cx="232" cy="174" r="4" fill="#c9e3c2" opacity=".5"/>
+          <circle cx="290" cy="172" r="9" fill="none" stroke="#8fbe86" stroke-width="1.2"/>
+          <path d="M285 172 h10 M290 167 v10" stroke="#8fbe86" stroke-width=".8"/>
+          <rect x="320" y="166" width="20" height="13" rx="2" fill="#243a2a" stroke="#8fbe86" stroke-width="1"/>
+          <text data-lbl class="lyr-label" x="386" y="176" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">RIDER INTERFACE</text>
+          <text data-lbl class="lyr-label" x="140" y="162" font-family="IBM Plex Mono" font-size="7" fill="#8fa08c" text-anchor="end">LED</text>
+          <text data-lbl class="lyr-label" x="232" y="196" font-family="IBM Plex Mono" font-size="7" fill="#8fa08c" text-anchor="middle">ABORT</text>
+          <text data-lbl class="lyr-label" x="290" y="196" font-family="IBM Plex Mono" font-size="7" fill="#8fa08c" text-anchor="middle">BUZZER</text>
+          <text data-lbl class="lyr-label" x="330" y="196" font-family="IBM Plex Mono" font-size="7" fill="#8fa08c" text-anchor="middle">MIC</text>
+        </g>
+
+        <g data-layer="shell" data-dist="-158" data-rot="-2.4">
+          <path d="M92 150 C92 116 116 96 158 82 L318 34 C346 26 376 40 380 70 L380 132 C380 146 370 154 354 156 L118 168 C104 169 92 162 92 150 Z" fill="url(#shl)" stroke="#8fbe86" stroke-width="1.2"/>
+          <path d="M98 144 C98 116 120 98 160 84 L318 42 C342 34 370 46 374 74" fill="none" stroke="#a9d3a0" stroke-width=".9" opacity=".5"/>
+          <path d="M300 74a20 20 0 1 0 6 39L300 121l20-23-17 1.5 5 6.3A12.3 12.3 0 1 1 309 84l4.6-4.6A19.9 19.9 0 0 0 300 74z" fill="#c8342b"/>
+          <circle cx="362" cy="62" r="5" fill="none" stroke="#c9e3c2" stroke-width="1"/>
+          <circle cx="362" cy="142" r="5" fill="none" stroke="#c9e3c2" stroke-width="1"/>
+          <circle cx="140" cy="146" r="5" fill="none" stroke="#c9e3c2" stroke-width="1"/>
+          <text data-lbl class="lyr-label" x="386" y="100" font-family="IBM Plex Mono" font-size="8.4" fill="#aab7a7">OUTER SHELL</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="assembly-track">
+      <div class="astep" data-astep="0">
+        <div class="num">LAYER I</div><h3>The shell</h3>
+        <p>The housing survives what the rider survives — sun, rain, road heat, constant vibration — while staying light enough that you forget it's on your helmet.</p>
+        <ul>
+          <li><b>ASA / PETG</b><span>Holds its shape in direct sun and road heat without warping.</span></li>
+          <li><b>FASTENERS</b><span>Opens with a screwdriver, so the battery is serviceable instead of disposable.</span></li>
+        </ul>
+      </div>
+      <div class="astep" data-astep="1">
+        <div class="num">LAYER II</div><h3>The interface</h3>
+        <p>Everything the rider actually touches or hears. A crash alert that can't be cancelled by a conscious rider is a system that will eventually be ignored.</p>
+        <ul>
+          <li><b>ABORT BUTTON</b><span>One sealed press cancels a false alarm — usable with a glove on.</span></li>
+          <li><b>BUZZER + LED</b><span>Tells you an alert is counting down, by sound and by sight.</span></li>
+          <li><b>MIC + SPEAKER</b><span>Carries voice through the helmet when a call is connected.</span></li>
+        </ul>
+      </div>
+      <div class="astep" data-astep="2">
+        <div class="num">LAYER III</div><h3>The seal</h3>
+        <p>Weatherproofing isn't a feature, it's a precondition. A device that fails in the rain fails on exactly the kind of day a rider is most likely to need it.</p>
+        <ul>
+          <li><b>GASKETS</b><span>Sealed against rain, road spray and dust at every seam.</span></li>
+          <li><b>IP67</b><span>Rated to keep working after full submersion, not just a shower.</span></li>
+        </ul>
+      </div>
+      <div class="astep" data-astep="3">
+        <div class="num">LAYER IV</div><h3>The board</h3>
+        <p>One custom circuit board carries the whole system: sensing the crash, judging that it was real, finding where you are, and reaching the outside world alone.</p>
+        <ul>
+          <li><b>ESP32-S3</b><span>Runs the entire device independently — no phone in the loop.</span></li>
+          <li><b>LSM6DSOX</b><span>Judges whether you've actually crashed, on the chip itself, in milliseconds.</span></li>
+          <li><b>SIM A7670C</b><span>Reaches the mobile network directly to send the alert.</span></li>
+          <li><b>QUECTEL L76K</b><span>Fixes your position using four satellite systems at once.</span></li>
+          <li><b>MICROSD</b><span>Keeps a record of the seconds before and after impact.</span></li>
+        </ul>
+      </div>
+      <div class="astep" data-astep="4">
+        <div class="num">LAYER V</div><h3>The power</h3>
+        <p>Transmitting over a mobile network draws a hard spike of current the instant it fires. This stage exists so the moment of the alert is never the moment the device gives out.</p>
+        <ul>
+          <li><b>IP5306</b><span>Holds the supply steady through the transmission spike.</span></li>
+          <li><b>REGULATION</b><span>Clean, stable power to every chip on the board.</span></li>
+          <li><b>LiPo CELL</b><span>Rechargeable, sized to sit on a helmet without weighing it down.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="manifest-link fade"><a href="manual.html">See the full technical manifest →</a></div>
+
+<!-- ===== 4 · SEQUENCE ===== -->
+<section class="sequence" id="sequence">
+  <div class="kicker fade">Plate no. 2 — the sequence</div>
+  <h2 class="sec-title"><span class="m m1"><span>What happens in a crash</span></span></h2>
+  <div class="steps">
+    <div class="step fade fd1"><div class="n">01</div><h4>Impact detected</h4><p>The sensor's on-chip classifier separates an ordinary road shock from a genuine collision.</p></div>
+    <div class="step fade fd2"><div class="n">02</div><h4>Grace period</h4><p>A buzzer and status light count down, giving a conscious rider time to cancel a false alarm with one press.</p></div>
+    <div class="step fade fd3"><div class="n">03</div><h4>Alert dispatched</h4><p>If nobody cancels, the device sends your position to your emergency contacts over the mobile network — no phone involved.</p></div>
+    <div class="step fade fd4"><div class="n">04</div><h4>On-scene lookup</h4><p>Whoever arrives first scans the helmet's code and sees blood type, allergies and contacts in seconds.</p></div>
+  </div>
+</section>
+
+<!-- ===== 5 · THE SCAN ===== -->
+<section class="scan" id="scan">
+  <div>
+    <div class="kicker fade">Plate no. 3 — the scan</div>
+    <h2><span class="m m1"><span>The stranger who</span></span><span class="m m2"><span>finds you first.</span></span></h2>
+    <p class="body fade fd2">Most people who reach a crash aren't paramedics. They're whoever was driving behind you. They have a phone, no training, and no idea who you are — and the single most useful thing they can do is tell an ambulance your blood type before it arrives.</p>
+    <p class="body fade fd3">So the helmet carries a code anyone can scan. No app to install, no account, no permission to request. It opens to the only facts that matter in the first minutes.</p>
+    <div class="pts">
+      <div class="pt fade fd3"><b>NO APP</b><span>Opens in the phone camera, in any browser, on any handset.</span></div>
+      <div class="pt fade fd3"><b>NO LOGIN</b><span>A bystander needs no account and no relationship to the rider.</span></div>
+      <div class="pt fade fd4"><b>NO EXCESS</b><span>Only triage-critical fields are shown. The rest of the record stays private.</span></div>
+    </div>
+  </div>
+
+  <div class="fade fd2">
+    <div class="phone">
+      <div class="screen">
+        <div class="scr-idle" id="scrIdle">
+          <svg class="qr" viewBox="0 0 100 100" aria-hidden="true">
+            <rect width="100" height="100" fill="#f4efe2"/>
+            <g fill="#141b15">
+              <rect x="6" y="6" width="24" height="24"/><rect x="12" y="12" width="12" height="12" fill="#f4efe2"/>
+              <rect x="70" y="6" width="24" height="24"/><rect x="76" y="12" width="12" height="12" fill="#f4efe2"/>
+              <rect x="6" y="70" width="24" height="24"/><rect x="12" y="76" width="12" height="12" fill="#f4efe2"/>
+              <rect x="38" y="8" width="6" height="6"/><rect x="50" y="8" width="6" height="6"/><rect x="44" y="20" width="6" height="6"/>
+              <rect x="38" y="32" width="6" height="6"/><rect x="56" y="32" width="6" height="6"/><rect x="8" y="38" width="6" height="6"/>
+              <rect x="20" y="44" width="6" height="6"/><rect x="32" y="38" width="6" height="6"/><rect x="44" y="44" width="6" height="6"/>
+              <rect x="56" y="50" width="6" height="6"/><rect x="68" y="38" width="6" height="6"/><rect x="80" y="44" width="6" height="6"/>
+              <rect x="88" y="56" width="6" height="6"/><rect x="38" y="56" width="6" height="6"/><rect x="26" y="62" width="6" height="6"/>
+              <rect x="50" y="68" width="6" height="6"/><rect x="62" y="74" width="6" height="6"/><rect x="74" y="68" width="6" height="6"/>
+              <rect x="86" y="80" width="6" height="6"/><rect x="38" y="86" width="6" height="6"/><rect x="56" y="88" width="6" height="6"/>
+              <rect x="68" y="88" width="6" height="6"/><rect x="44" y="74" width="6" height="6"/>
+            </g>
+          </svg>
+          <div class="hint">STICKER ON THE HELMET<br>POINT ANY PHONE CAMERA</div>
+          <button class="scan-btn" id="scanBtn" type="button">Scan the code</button>
+        </div>
+
+        <div class="scr-card" id="scrCard">
+          <div class="cardhead stagger s1">
+            <div class="t">EMERGENCY MEDICAL RECORD</div>
+            <div class="n"><span class="ed-todo">[RIDER NAME]</span></div>
+          </div>
+          <div class="cardbody">
+            <div class="row stagger s2"><div class="l">BLOOD TYPE</div><div class="v big"><span class="ed-todo">[TYPE]</span></div></div>
+            <div class="row stagger s3"><div class="l">ALLERGIES</div><div class="v"><span class="ed-todo">[ALLERGIES]</span></div></div>
+            <div class="row stagger s4" style="border:none">
+              <div class="l">EMERGENCY CONTACTS</div>
+              <div class="callbtn"><span><span class="ed-todo">[CONTACT 1 NAME]</span></span><span>CALL</span></div>
+              <div class="callbtn"><span><span class="ed-todo">[CONTACT 2 NAME]</span></span><span>CALL</span></div>
+            </div>
+          </div>
+          <div class="specimen">SPECIMEN RECORD — ILLUSTRATIVE ONLY, NOT INTERACTIVE</div>
+        </div>
+      </div>
+    </div>
+    <div class="resetline"><button id="scanReset" type="button">Reset</button></div>
+  </div>
+</section>
+
+<!-- ===== 6 · AUDIENCES ===== -->
+<section class="audiences">
+  <div class="aud fade fd1"><div class="idx">FOR — I</div><h3>Riders</h3><p>Register once, print your code, and ride knowing a call for help doesn't depend on you being able to make it.</p></div>
+  <div class="aud fade fd2"><div class="idx">FOR — II</div><h3>Families</h3><p>Be the first to know, automatically, with a location attached — instead of waiting on a call that may never come.</p></div>
+  <div class="aud fade fd3"><div class="idx">FOR — III</div><h3>First responders</h3><p>Arrive already knowing blood type, allergies and who to contact, from a single scan and no login.</p></div>
+</section>
+
+<!-- ===== 7 · REGISTRY ===== -->
+<section class="registry" id="registry">
+  <div>
+    <div class="kicker fade">New entry</div>
+    <h2><span class="m m1"><span>Open your</span></span><span class="m m2"><span>registry file.</span></span></h2>
+    <p class="body fade fd2">Your medical details, your emergency contacts and your device — kept in one record, ready the moment somebody needs to read it.</p>
+    <div class="assure fade fd3">
+      <p>MEDICAL DETAILS ARE ENTERED AFTER REGISTRATION</p>
+      <p>ONLY TRIAGE-CRITICAL FIELDS ARE SHOWN ON A SCAN</p>
+      <p>YOUR RECORD IS REACHABLE ONLY THROUGH YOUR OWN DEVICE CODE</p>
+    </div>
+    <div class="prototype fade fd4">
+      <p>Giacomo is a research prototype — devices are currently limited to the study build. If you don't have one yet, you can still <a href="manual.html">read how the system works</a>.</p>
+    </div>
+  </div>
+
+  <div class="card fade fd2">
+    <div class="cap">RIDER SAFETY REGISTRY</div>
+    <div class="tabs">
+      <button id="tabIn" class="active" type="button">Sign in</button>
+      <button id="tabUp" type="button">Register</button>
+    </div>
+    <div class="fld hidden" id="fldName"><label for="inName">Full name</label><input id="inName" type="text" autocomplete="name"></div>
+    <div class="fld"><label for="inEmail">Email</label><input id="inEmail" type="email" autocomplete="email"></div>
+    <div class="fld"><label for="inPass">Password</label><input id="inPass" type="password" autocomplete="current-password"></div>
+    <div class="nextstep hidden" id="nextStep">Next you'll enter your device serial number and medical details — have your Giacomo unit nearby.</div>
+    <button class="submit" id="submitBtn" type="button">Sign in</button>
+    <div class="auth-error" id="authError"></div>
+    <div class="foot" id="cardFoot">Have a device? <a href="#" id="footSwap">Register it</a></div>
+  </div>
+</section>
+
+<footer>
+  <div>GIACOMO — RIDER SAFETY REGISTRY</div>
+  <div><span class="ed-todo">[TEAM NAME]</span> · <span class="ed-todo">[SCHOOL / INSTITUTION]</span></div>
+  <div><a href="privacy.html">Data &amp; consent</a> · <span class="ed-todo">[COMPETITION NAME]</span> · <span class="ed-todo">[YEAR]</span></div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* — page-load sequence — */
+  window.addEventListener('load', function(){
+    document.getElementById('nav').classList.add('ready');
+    var st = document.querySelector('.stakes');
+    setTimeout(function(){ st.querySelectorAll('.m,.fade,.grow').forEach(function(e){ e.classList.add('on'); }); }, 180);
+  });
+
+  /* — generic in-view activation — */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var t = e.target;
+      t.classList.add('on');
+      t.querySelectorAll('.m,.fade,.grow,.draw,.wipe').forEach(function(c){ c.classList.add('on'); });
+      io.unobserve(t);
+    });
+  },{threshold:.16});
+  document.querySelectorAll('section,.manifest-link,.hero-fig').forEach(function(s){ io.observe(s); });
+
+  /* — count-up (skips gracefully if the value is still a placeholder) — */
+  var bn = document.getElementById('bignum');
+  var target = parseFloat((bn.getAttribute('data-count')||'').replace(/[^\d.]/g,''));
+  if(!isNaN(target) && !reduce){
+    var seen = new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting) return;
+      seen.disconnect();
+      var t0 = null, dur = 1500;
+      function tick(ts){
+        if(!t0) t0 = ts;
+        var p = Math.min((ts - t0)/dur, 1), e = 1 - Math.pow(1-p, 3);
+        bn.textContent = Math.round(target * e).toLocaleString();
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    },{threshold:.5});
+    seen.observe(bn);
+  }
+
+  /* — nav — */
+  var nav = document.getElementById('nav'), toc = document.getElementById('toc'), navtoggle = document.getElementById('navtoggle');
+  navtoggle.addEventListener('click', function(){
+    var open = toc.classList.toggle('open');
+    navtoggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  toc.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ toc.classList.remove('open'); navtoggle.setAttribute('aria-expanded','false'); });
+  });
+
+  var spyIds = ['apparatus','sequence','scan','registry'];
+  var progress = document.getElementById('progress');
+  function spy(){
+    nav.classList.toggle('stuck', window.scrollY > 20);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    var best = null, bestTop = -Infinity;
+    spyIds.forEach(function(id){
+      var el = document.getElementById(id); if(!el) return;
+      var top = el.getBoundingClientRect().top - 110;
+      if(top <= 0 && top > bestTop){ bestTop = top; best = id; }
+    });
+    toc.querySelectorAll('[data-spy]').forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-spy') === best); });
+  }
+
+  /* — exploded assembly: translate + rotate, staggered — */
+  var sec = document.getElementById('assembly');
+  var layers = document.querySelectorAll('[data-layer]');
+  var labels = document.querySelectorAll('[data-lbl]');
+  var asteps = document.querySelectorAll('.astep');
+
+  function drawAssembly(){
+    if(!sec) return;
+    var r = sec.getBoundingClientRect();
+    var span = sec.offsetHeight - window.innerHeight;
+    var p = span > 0 ? Math.min(Math.max(-r.top / span, 0), 1) : 1;
+    var wide = window.innerWidth > 1000 && !reduce;
+
+    layers.forEach(function(l, i){
+      var d = parseFloat(l.getAttribute('data-dist')) || 0;
+      var rot = parseFloat(l.getAttribute('data-rot')) || 0;
+      if(!wide){ l.setAttribute('transform','translate(0,' + d + ')'); return; }
+      var lead = i * 0.05;
+      var lp = Math.min(Math.max((p - lead) / (1 - lead), 0), 1);
+      var e = lp * lp * (3 - 2 * lp);
+      l.setAttribute('transform','translate(0,' + (d*e).toFixed(2) + ') rotate(' + (rot*e).toFixed(2) + ' 230 300)');
+    });
+    labels.forEach(function(t){ t.classList.toggle('on', wide ? p > .3 : true); });
+    var active = Math.min(asteps.length - 1, Math.floor(p * asteps.length + .0001));
+    asteps.forEach(function(s,i){ s.classList.toggle('on', i === active); });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(function(){ drawAssembly(); spy(); ticking = false; }); ticking = true; }
+  },{passive:true});
+  window.addEventListener('resize', function(){ drawAssembly(); spy(); });
+  drawAssembly(); spy();
+
+  /* — cursor response — */
+  if(!reduce && window.matchMedia('(hover:hover)').matches){
+    var fig = document.getElementById('heroFig'), asm = document.getElementById('asmSvg');
+    window.addEventListener('mousemove', function(ev){
+      var cx = (ev.clientX / window.innerWidth - .5), cy = (ev.clientY / window.innerHeight - .5);
+      if(fig) fig.style.transform = 'translate3d(' + (cx*16).toFixed(1) + 'px,' + (cy*12).toFixed(1) + 'px,0)';
+      if(asm) asm.style.transform = 'translate3d(' + (cx*10).toFixed(1) + 'px,' + (cy*8).toFixed(1) + 'px,0)';
+    },{passive:true});
+  }
+
+  /* — the scan — */
+  var scrIdle = document.getElementById('scrIdle'), scrCard = document.getElementById('scrCard');
+  document.getElementById('scanBtn').addEventListener('click', function(){
+    scrIdle.style.display = 'none'; scrCard.classList.add('show');
+  });
+  document.getElementById('scanReset').addEventListener('click', function(){
+    scrCard.classList.remove('show'); scrIdle.style.display = 'flex';
+  });
+
+  /* — auth tab toggle (UI state only; js/indexAuth.js owns the actual sign-in/register calls) — */
+  var tabIn = document.getElementById('tabIn'), tabUp = document.getElementById('tabUp');
+  var fldName = document.getElementById('fldName'), submitBtn = document.getElementById('submitBtn');
+  var cardFoot = document.getElementById('cardFoot'), pass = document.getElementById('inPass'), nextStep = document.getElementById('nextStep');
+
+  function bindSwap(mode){
+    var el = document.getElementById('footSwap');
+    if(el) el.addEventListener('click', function(e){ e.preventDefault(); setMode(mode); });
+  }
+  function setMode(mode){
+    var up = mode === 'up';
+    tabUp.classList.toggle('active', up); tabIn.classList.toggle('active', !up);
+    fldName.classList.toggle('hidden', !up);
+    nextStep.classList.toggle('hidden', !up);
+    submitBtn.textContent = up ? 'Register your device' : 'Sign in';
+    pass.setAttribute('autocomplete', up ? 'new-password' : 'current-password');
+    cardFoot.innerHTML = up ? 'Already on the registry? <a href="#" id="footSwap">Sign in</a>'
+                            : 'Have a device? <a href="#" id="footSwap">Register it</a>';
+    bindSwap(up ? 'in' : 'up');
+    var err = document.getElementById('authError');
+    if(err){ err.style.display = 'none'; err.textContent = ''; }
+  }
+  tabIn.addEventListener('click', function(){ setMode('in'); });
+  tabUp.addEventListener('click', function(){ setMode('up'); });
+  bindSwap('up');
+  if(new URLSearchParams(window.location.search).get('mode') === 'register') setMode('up');
+
+  submitBtn.addEventListener('click', function(){
+    submitBtn.classList.remove('stamp'); void submitBtn.offsetWidth; submitBtn.classList.add('stamp');
+  });
+})();
+</script>
 <script type="module" src="js/indexAuth.js"></script>
 </body>
 </html>

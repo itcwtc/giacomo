@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giacomo — Technical Manual</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{background:var(--ink);color:var(--paper);font-family:var(--ed-sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  .nav{position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 5vw;background:rgba(13,21,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid #22331f}
+  .nav .mark{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-decoration:none}
+  .nav .mark svg,.nav .mark img{width:19px;height:19px;flex:none;border-radius:3px}
+  .toc{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .toc a{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7d8a7b;text-decoration:none}
+  .toc a:hover{color:var(--paper)}
+  .toc a.cta{color:var(--brass)}
+
+  .doc{max-width:920px;margin:0 auto;padding:90px 5vw 120px}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
+  .doc h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,5vw,58px);line-height:1.05;margin-top:14px}
+  .doc .lede{font-family:var(--serif);font-style:italic;font-size:17px;color:#c3cec0;max-width:56ch;margin-top:20px;line-height:1.6}
+
+  .doc section{margin-top:74px;padding-top:36px;border-top:1px solid #22331f}
+  .doc h2{font-family:var(--serif);font-weight:800;font-size:clamp(24px,3vw,34px);margin-bottom:16px}
+  .doc h3{font-family:var(--serif);font-weight:700;font-size:19px;margin:26px 0 8px}
+  .doc p{font-size:14px;line-height:1.85;color:#a3afa1;max-width:70ch}
+  .doc p + p{margin-top:12px}
+
+  .table-scroll{overflow-x:auto;margin-top:20px}
+  table{width:100%;min-width:520px;border-collapse:collapse;font-size:13px}
+  thead th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+    text-align:left;padding:10px 12px;border-bottom:1px solid var(--moss)}
+  tbody td{padding:12px;border-bottom:1px solid #1d2e22;color:#c3cec0;vertical-align:top}
+  tbody td:first-child{font-family:var(--mono);font-size:12px;color:var(--paper);white-space:nowrap}
+  .placeholder-block{
+    margin-top:20px;padding:20px 22px;border:1px dashed var(--brass);border-radius:6px;
+    background:rgba(184,148,77,0.06);
+  }
+  .placeholder-block .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:8px}
+  .placeholder-block p{color:#c3cec0}
+
+  footer{max-width:920px;margin:0 auto;padding:36px 5vw 60px;border-top:1px solid #22331f;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted-ed)}
+  footer a{color:var(--muted-ed);text-decoration:none;border-bottom:1px solid #2c3f30}
+  footer a:hover{color:var(--paper)}
+
+  @media (max-width:700px){
+    .toc{display:none}
+    table{font-size:12px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="mark">
+    <img src="assets/logo.svg" alt="Giacomo" width="19" height="19">
+    GIACOMO
+  </a>
+  <div class="toc">
+    <a href="index.html#apparatus">The Apparatus</a>
+    <a href="index.html#sequence">The Sequence</a>
+    <a href="index.html#scan">The Scan</a>
+    <a href="index.html#registry" class="cta">Registry</a>
+  </div>
+</nav>
+
+<main class="doc">
+  <div class="kicker">Technical manual</div>
+  <h1>The full manifest</h1>
+  <p class="lede">Everything on the landing page, unpacked: the complete parts list, the reasoning behind each subsystem, and where the validation work currently stands. Written for anyone who wants more than the pitch — including competition judges.</p>
+
+  <section id="bom">
+    <h2>Bill of materials</h2>
+    <p>Every component on the board and in the enclosure, what it does, and why it was chosen.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Part</th><th>Role</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>ESP32-S3-WROOM-1</td><td>Main MCU</td><td>Edge-AI vector acceleration, dual-core, BLE 5.0 / Wi-Fi mesh</td></tr>
+        <tr><td>ST LSM6DSOX</td><td>6-axis IMU</td><td>Hardware MLC for low-power crash sensing</td></tr>
+        <tr><td>SIM A7670C</td><td>4G LTE Cat-1 module</td><td>2G-sunset compliant, standalone SMS/VoLTE</td></tr>
+        <tr><td>Quectel L76K</td><td>GNSS receiver</td><td>Quad-constellation: GPS / GLONASS / Galileo / BeiDou</td></tr>
+        <tr><td>IP5306</td><td>PMIC</td><td>2.4A step-up, charging, LED fuel gauge, LTE spike protection</td></tr>
+        <tr><td>AMS1117-3.3 / AP2112K-3.3</td><td>LDO voltage regulators</td><td>&nbsp;</td></tr>
+        <tr><td>3.7V LiPo battery</td><td>Power cell</td><td>&nbsp;</td></tr>
+        <tr><td>4-layer custom PCB</td><td>Circuit board</td><td>50-ohm RF matching, EMI shielding, vibration durability</td></tr>
+        <tr><td>ASA/PETG 3D-printed enclosure</td><td>Housing</td><td>&gt;85°C heat resistance, UV stable, impact resistant</td></tr>
+        <tr><td>Silicone gaskets / O-rings</td><td>Sealing</td><td>IP67 sealing</td></tr>
+        <tr><td>Piezo buzzer</td><td>Alert</td><td>15s false-alarm countdown alert</td></tr>
+        <tr><td>WS2812B RGB LED</td><td>Status indicator</td><td>Status/countdown indication</td></tr>
+        <tr><td>Waterproof momentary push button</td><td>Manual abort</td><td>&nbsp;</td></tr>
+        <tr><td>U.FL/SMA antennas</td><td>RF</td><td>For LTE + GNSS</td></tr>
+        <tr><td>INMP441</td><td>I2S MEMS microphone</td><td>&nbsp;</td></tr>
+        <tr><td>MAX98357A</td><td>I2S Class-D amplifier</td><td>&nbsp;</td></tr>
+        <tr><td>MicroSD module</td><td>Storage</td><td>Black-box pre/post-impact logging</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="rationale">
+    <h2>Engineering rationale, by subsystem</h2>
+
+    <h3>Sensing — ST LSM6DSOX</h3>
+    <p>Crash detection runs on the IMU's own machine-learning core (MLC) rather than being decided in application code on the ESP32. That matters for two reasons: latency (the classification happens at the sensor, not after a round trip through the main CPU and its scheduler), and power (the ESP32 can stay in a lower-activity state while the IMU watches motion continuously, waking the main processor only when its on-chip classifier flags a likely crash).</p>
+
+    <h3>Connectivity — SIM A7670C</h3>
+    <p>The alert path deliberately does not depend on a paired phone. A cellular modem on the device itself means the crash notification goes out even if the rider's phone is destroyed, out of battery, or simply not on them — which is the scenario the whole system exists to cover.</p>
+
+    <h3>Positioning — Quectel L76K</h3>
+    <p>Multi-constellation GNSS (rather than GPS alone) trades a small amount of additional power draw for a materially faster and more reliable fix, particularly under tree cover, between buildings, or in the kind of road cuts and overpasses common on motorcycle routes.</p>
+
+    <h3>Local record — microSD black-box logging</h3>
+    <p>The seconds immediately before and after an impact are logged locally regardless of whether the cellular alert succeeds. If network conditions fail right when they're needed most, the device still preserves a record that can be recovered afterward.</p>
+
+    <h3>Power — IP5306 PMIC</h3>
+    <p>Transmitting over a cellular network draws a sharp current spike the instant the modem keys up. The power management IC exists specifically to keep the rest of the board's supply stable through that spike, so the exact moment the device needs to send its alert is never the moment it browns out.</p>
+
+    <h3>Enclosure — IP67, abort button, piezo buzzer, RGB LED</h3>
+    <p>The interface layer is built around one constraint: a crash alert that a conscious rider can't quickly cancel is a system people learn to distrust and eventually disable. The sealed abort button, audible buzzer, and status LED exist to make the countdown legible and interruptible — usable with a glove on, in the rain, by someone who may be disoriented.</p>
+  </section>
+
+  <section id="methodology">
+    <h2>Research methodology</h2>
+    <div class="placeholder-block">
+      <span class="tag">[PLACEHOLDER — you'll write this]</span>
+      <p>Reserved for the study design, test protocol, and data collection methodology once bench/drop testing begins. Not drafting this from assumption — it needs your actual protocol.</p>
+    </div>
+  </section>
+
+  <section id="validation">
+    <h2>Crash-detection validation results</h2>
+    <div class="placeholder-block">
+      <span class="tag">[PLACEHOLDER — you'll write this]</span>
+      <p>Reserved for real bench/drop-test results once hardware arrives and is tested, per the project's standing rule: demo and documentation use real captured data, clearly labeled, never fabricated numbers.</p>
+    </div>
+  </section>
+
+  <section id="comparison">
+    <h2>Comparison against existing solutions</h2>
+    <div class="placeholder-block">
+      <span class="tag">[PLACEHOLDER — you'll write this]</span>
+      <p>Reserved for a factual comparison against the Cardo Packtalk Pro and other existing solutions. Not drafting competitor claims without your sign-off on their accuracy.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>GIACOMO — TECHNICAL MANUAL</div>
+  <div><a href="privacy.html">Data &amp; consent</a> · <a href="index.html">Back to registry</a></div>
+</footer>
+
+</body>
+</html>

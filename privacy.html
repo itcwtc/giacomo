@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIACOMO — Data Collection &amp; Consent Statement</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      display: block;
-      height: auto;
-      min-height: 100vh;
-      background: radial-gradient(circle at center, #0a0c14 0%, #05060a 100%);
-      padding: 60px 20px;
-    }
-    .privacy-card {
-      width: 100%; max-width: 700px; margin: 0 auto; padding: 48px;
-      background: var(--glass); border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px);
-      line-height: 1.6;
-    }
-    .privacy-card h1 { color: var(--neon); font-size: 26px; margin: 0 0 6px 0; }
-    .privacy-card h2 { color: var(--accent); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 10px 0; }
-    .privacy-card p, .privacy-card li { color: #e6eef6; font-size: 14px; }
-    .privacy-card ul, .privacy-card ol { padding-left: 20px; margin: 10px 0; }
-    .privacy-card li { margin-bottom: 8px; }
-    .privacy-card a { color: var(--accent); font-weight: bold; text-decoration: none; }
-    .privacy-card a:hover { text-decoration: underline; }
-    .disclaimer {
-      font-style: italic; color: var(--muted); font-size: 13px;
-      border-left: 3px solid rgba(255,255,255,0.1); padding-left: 14px; margin: 20px 0 30px 0;
-    }
-    .todo {
-      background: rgba(234,179,8,0.15); color: #eab308; font-style: normal;
-      font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 13px;
-    }
-    .back-link { display: block; text-align: center; margin-top: 30px; font-size: 13px; }
-    hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 32px 0; }
-    .footnote { color: var(--muted); font-size: 12px; font-style: italic; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giacomo — Data Collection &amp; Consent Statement</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--paper);font-family:var(--ed-sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  .doc{max-width:760px;margin:0 auto;padding:90px 5vw 100px}
+  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
+  .doc h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.4vw,46px);line-height:1.08;margin-top:14px}
+  .disclaimer{
+    font-family:var(--serif);font-style:italic;color:#a3afa1;font-size:14px;line-height:1.7;
+    border-left:2px solid var(--moss);padding-left:16px;margin:26px 0 40px;max-width:60ch;
+  }
+  .doc h2{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);
+    margin:38px 0 12px}
+  .doc p, .doc li{font-size:14px;line-height:1.85;color:#c3cec0;max-width:64ch}
+  .doc ul, .doc ol{padding-left:20px;margin:10px 0}
+  .doc li{margin-bottom:10px}
+  .doc a{color:var(--signal-lt);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(224,69,58,0.35)}
+  .doc a:hover{border-bottom-color:var(--signal-lt)}
+  hr{border:none;border-top:1px solid #22331f;margin:36px 0}
+  .footnote{color:#7d8a7b;font-size:12px;font-style:italic}
+  .back-link{display:block;margin-top:36px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--brass);text-decoration:none;border:none}
+  .back-link:hover{color:var(--paper)}
+</style>
 </head>
 <body>
 
-<div class="privacy-card">
+<main class="doc">
+  <div class="kicker">Trust &amp; consent</div>
   <h1>Data Collection &amp; Consent Statement</h1>
   <p class="disclaimer">
     Draft for academic/research use. This is not legal advice, this is not yet finalized yesboss"
@@ -49,7 +46,7 @@
 
   <h2>What this document is</h2>
   <p>
-    Giacomo is a research prototype built for <span class="todo">DSTF</span>,
+    Giacomo is a research prototype built for <span class="ed-todo">DSTF</span>,
     not a certified or commercially deployed medical device. This statement explains what
     personal and medical information the system collects, why, who can see it,
     how it's protected, and what rights you have over your own data. You should
@@ -116,7 +113,7 @@
     <li><strong>You can review or correct your medical information at any time</strong> through
       your account settings.</li>
     <li><strong>You can request deletion of your account and all associated data</strong> by
-      contacting <span class="todo">Alcheon Velmonte/jamieralcheon30@gmail.com</span>. As of this version
+      contacting <span class="ed-todo">Alcheon Velmonte/jamieralcheon30@gmail.com</span>. As of this version
       of the prototype, deletion is a manual process handled by the research
       team rather than a self-service button — this is a known limitation we
       intend to address.</li>
@@ -147,19 +144,19 @@
 
   <h2>Contact</h2>
   <p>
-    Questions, concerns, or deletion requests: <span class="todo">Alcheon Velmonte/jamieralcheon30@gmail.com</span><br>
-    Project/institution: <span class="todo">ASNHS</span>
+    Questions, concerns, or deletion requests: <span class="ed-todo">Alcheon Velmonte/jamieralcheon30@gmail.com</span><br>
+    Project/institution: <span class="ed-todo">ASNHS</span>
   </p>
 
   <hr>
   <p class="footnote">
-    Last updated: <span class="todo">08/16/2026</span>. This document should be reviewed and updated whenever
+    Last updated: <span class="ed-todo">[TODO: date]</span>. This document should be reviewed and updated whenever
     the system's data handling changes — for example, if data storage,
     sharing, or retention practices are modified.
   </p>
 
-  <a href="medical-onboarding.html" class="back-link">← Back to Medical Profile</a>
-</div>
+  <a href="index.html" class="back-link">← Back to Giacomo</a>
+</main>
 
 </body>
 </html>
