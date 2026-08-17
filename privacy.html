@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var m=document.cookie.match(/(?:^|; )giacomo_prefs=([^;]*)/);if(m){var p=JSON.parse(decodeURIComponent(m[1]));var h=document.documentElement;h.setAttribute('data-text-scale',p.textScale||'normal');h.setAttribute('data-high-contrast',p.highContrast?'true':'false');h.setAttribute('data-reduce-motion',p.reduceMotion?'true':'false');}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giacomo — Data Collection &amp; Consent Statement</title>
 <link rel="stylesheet" href="style.css">
@@ -15,22 +16,29 @@
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 
   .doc{max-width:760px;margin:0 auto;padding:90px 5vw 100px}
-  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
+  .kicker{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
   .doc h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.4vw,46px);line-height:1.08;margin-top:14px}
   .disclaimer{
     font-family:var(--serif);font-style:italic;color:#a3afa1;font-size:14px;line-height:1.7;
     border-left:2px solid var(--moss);padding-left:16px;margin:26px 0 40px;max-width:60ch;
   }
-  .doc h2{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);
+  .doc h2{font-family:var(--mono);font-size:0.6875rem;line-height:1.5;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);
     margin:38px 0 12px}
   .doc p, .doc li{font-size:14px;line-height:1.85;color:#c3cec0;max-width:64ch}
   .doc ul, .doc ol{padding-left:20px;margin:10px 0}
   .doc li{margin-bottom:10px}
   .doc a{color:var(--signal-lt);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(224,69,58,0.35)}
   .doc a:hover{border-bottom-color:var(--signal-lt)}
+
+  @media (max-width:640px){
+    /* this page had no responsive breakpoint at all before Task 5 — .kicker
+       was rendering under the ~10.5-11px mobile floor on every screen size.
+       rem, not px (Task 6), so it stays proportional to the text-scale toggle. */
+    .kicker{font-size:0.6875rem!important}
+  }
   hr{border:none;border-top:1px solid #22331f;margin:36px 0}
   .footnote{color:#7d8a7b;font-size:12px;font-style:italic}
-  .back-link{display:block;margin-top:36px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  .back-link{display:block;margin-top:36px;font-family:var(--mono);font-size:0.6875rem;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;
     color:var(--brass);text-decoration:none;border:none}
   .back-link:hover{color:var(--paper)}
 </style>
@@ -158,5 +166,6 @@
   <a href="index.html" class="back-link">← Back to Giacomo</a>
 </main>
 
+<script type="module">import { syncPreferences } from './js/preferences.js'; syncPreferences();</script>
 </body>
 </html>

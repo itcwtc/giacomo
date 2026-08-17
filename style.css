@@ -704,3 +704,26 @@ label{color:var(--muted);font-size:13px}
   .m>span{transform:none}.fade{opacity:1;transform:none}.wipe{clip-path:none}
   .draw{stroke-dashoffset:0}.grow{transform:none}
 }
+
+/* ================= ACCESSIBILITY PREFERENCES (site-wide) =================
+   Driven by data-* attributes on <html>, set synchronously by a small inline
+   snippet in each page's <head> (reads a cookie, applies before first paint)
+   and reconciled against Supabase by js/preferences.js once auth resolves.
+   Honesty note: root font-size scaling only visibly resizes text authored in
+   rem/em/%. Most of this codebase (including new pages built this session)
+   uses fixed px for body copy, so today this has full effect only on
+   selectors that have been converted to rem — see the per-page changelog for
+   which ones. The dashboard pages inherit this mechanism now so it's ready
+   once their visual redesign (a separate task) adopts relative units too. */
+html{font-size:100%}
+html[data-text-scale="large"]{font-size:112.5%}
+html[data-text-scale="xlarge"]{font-size:125%}
+
+html[data-high-contrast="true"]{filter:contrast(1.12) saturate(1.15)}
+
+html[data-reduce-motion="true"] *{
+  animation-duration:.001s!important;
+  animation-iteration-count:1!important;
+  transition-duration:.001s!important;
+  scroll-behavior:auto!important;
+}

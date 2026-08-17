@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>(function(){try{var m=document.cookie.match(/(?:^|; )giacomo_prefs=([^;]*)/);if(m){var p=JSON.parse(decodeURIComponent(m[1]));var h=document.documentElement;h.setAttribute('data-text-scale',p.textScale||'normal');h.setAttribute('data-high-contrast',p.highContrast?'true':'false');h.setAttribute('data-reduce-motion',p.reduceMotion?'true':'false');}}catch(e){}})();</script>
+    <link rel="stylesheet" href="../accessibility.css">
     <title>GIACOMO — Tactical Settings</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
     <style>
         :root { --danger: #ff2e43; --accent: #00e5ff; --bg: #0a0c14; --card: #0f111a; }
-        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 30px 0; }
         .card { width: 450px; background: var(--card); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         h2 { color: var(--danger); font-weight: 900; letter-spacing: 2px; margin-bottom: 30px; text-transform: uppercase; }
         .label { color: var(--accent); font-size: 10px; font-weight: bold; text-transform: uppercase; margin: 20px 0 10px 0; display: block; letter-spacing: 1.5px; }
@@ -20,60 +22,172 @@
         .btn { width: 100%; padding: 16px; background: var(--accent); color: #000; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 12px; transition: 0.2s; margin-top: 10px; }
         .back-link { display: block; text-align: center; color: #475569; font-size: 11px; margin-top: 30px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
         .form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+
+        .a11y-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+        .a11y-row .a11y-label { font-size: 12px; font-weight: 600; }
+        .a11y-row .a11y-desc { font-size: 10px; color: #64748b; margin-top: 2px; }
+        .scale-group { display: flex; gap: 6px; }
+        .scale-btn { flex: 1; padding: 10px 6px; background: #050505; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase;
+            cursor: pointer; transition: 0.2s; }
+        .scale-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.08); }
+        .switch { position: relative; width: 42px; height: 24px; flex: none; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .switch .track { position: absolute; inset: 0; background: #050505; border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px; cursor: pointer; transition: 0.2s; }
+        .switch .track::before { content: ''; position: absolute; width: 16px; height: 16px; left: 3px; top: 2px;
+            background: #64748b; border-radius: 50%; transition: 0.2s; }
+        .switch input:checked + .track { border-color: var(--accent); background: rgba(0,229,255,0.1); }
+        .switch input:checked + .track::before { transform: translateX(18px); background: var(--accent); }
+        .a11y-status { font-size: 10px; color: #10b981; min-height: 14px; margin-top: 4px; }
+
+        /* ============ ACCORDION — "file-tab" treatment ============
+           Note: I couldn't find a distinct pre-built "file-tab / case-file"
+           motif already implemented anywhere in the dashboard beyond
+           admin.html's .tab-nav (a flat underline-accent tab bar, not a
+           literal folder-tab shape). This draws on that same accent-on-
+           active convention (var(--accent) highlight, matching color
+           language) applied as a protruding colored tab strip down the
+           left edge of each collapsed/expanded header, since a horizontal
+           underline-tab bar doesn't translate to a vertically-stacked
+           accordion. Flag if you had something more specific in mind. */
+        .acc-section { margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+            background: rgba(255,255,255,0.015); overflow: hidden; }
+        .acc-toggle { width: 100%; display: flex; align-items: center; gap: 12px; background: none; border: none;
+            cursor: pointer; text-align: left; padding: 14px 16px; font-family: 'Inter', sans-serif;
+            color: var(--accent); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
+        .acc-toggle .acc-tab { width: 4px; align-self: stretch; min-height: 16px; background: rgba(0,229,255,0.25);
+            border-radius: 2px; flex: none; transition: background .2s; }
+        .acc-toggle[aria-expanded="true"] .acc-tab { background: var(--accent); }
+        .acc-toggle .acc-chev { margin-left: auto; flex: none; color: #64748b; transition: transform .2s, color .2s; }
+        .acc-toggle[aria-expanded="true"] .acc-chev { transform: rotate(90deg); color: var(--accent); }
+        .acc-toggle:hover { background: rgba(255,255,255,0.03); }
+        .acc-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+        .acc-panel { padding: 2px 16px 18px; }
+        .acc-panel[hidden] { display: none; }
+        .acc-panel .label:first-child { margin-top: 0; }
     </style>
 </head>
 <body>
     <div class="card">
         <h2>Tactical Settings</h2>
-        
-        <span class="label">Rider Identity</span>
-        <div class="input-wrapper"><input type="text" id="rider-name" placeholder="Full Name"></div>
-        <div class="input-wrapper">
-            <input type="text" id="serial-num" placeholder="GCMO-XXXXXX" maxlength="11">
-            <span class="check-icon">✓</span>
-        </div>
 
-        <span class="label">Medical Data</span>
-        <div class="input-wrapper">
-            <select id="blood-type">
-                <option value="">Select Blood Type</option>
-                <option value="A+">A+</option><option value="A-">A-</option>
-                <option value="B+">B+</option><option value="B-">B-</option>
-                <option value="O+">O+</option><option value="O-">O-</option>
-                <option value="AB+">AB+</option><option value="AB-">AB-</option>
-            </select>
-        </div>
-        <div class="input-wrapper"><textarea id="allergies" placeholder="Allergies (e.g., Peanuts, None)"></textarea></div>
-        <div class="input-wrapper"><textarea id="chronic-conditions" placeholder="Chronic Conditions (e.g., Asthma, None)"></textarea></div>
-        
-        <div style="display:flex; align-items:center; gap:8px; margin-bottom: 20px;">
-            <input type="checkbox" id="organ-donor" style="width:18px; height:18px;">
-            <label style="font-size: 11px; font-weight:bold; text-transform:uppercase; color:var(--accent);">Organ Donor</label>
-        </div>
-
-        <span class="label">Emergency Contacts</span>
-        <div class="form-row">
-            <input type="text" id="c1-name" placeholder="Name 1" style="flex:1;">
-            <div class="input-wrapper" style="flex:1;">
-                <span class="prefix">+63</span>
-                <input type="tel" class="phone-edit" id="c1-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
-                <span class="check-icon">✓</span>
+        <div class="acc-section">
+            <button type="button" class="acc-toggle" id="accHead1" aria-expanded="false" aria-controls="accPanel1">
+                <span class="acc-tab" aria-hidden="true"></span>
+                Rider Identity
+                <span class="acc-chev" aria-hidden="true">›</span>
+            </button>
+            <div class="acc-panel" id="accPanel1" role="region" aria-labelledby="accHead1" hidden>
+                <div class="input-wrapper"><input type="text" id="rider-name" placeholder="Full Name"></div>
+                <div class="input-wrapper">
+                    <input type="text" id="serial-num" placeholder="GCMO-XXXXXX" maxlength="11">
+                    <span class="check-icon">✓</span>
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <input type="text" id="c2-name" placeholder="Name 2" style="flex:1;">
-            <div class="input-wrapper" style="flex:1;">
-                <span class="prefix">+63</span>
-                <input type="tel" class="phone-edit" id="c2-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
-                <span class="check-icon">✓</span>
+
+        <div class="acc-section">
+            <button type="button" class="acc-toggle" id="accHead2" aria-expanded="false" aria-controls="accPanel2">
+                <span class="acc-tab" aria-hidden="true"></span>
+                Medical Data
+                <span class="acc-chev" aria-hidden="true">›</span>
+            </button>
+            <div class="acc-panel" id="accPanel2" role="region" aria-labelledby="accHead2" hidden>
+                <div class="input-wrapper">
+                    <select id="blood-type">
+                        <option value="">Select Blood Type</option>
+                        <option value="A+">A+</option><option value="A-">A-</option>
+                        <option value="B+">B+</option><option value="B-">B-</option>
+                        <option value="O+">O+</option><option value="O-">O-</option>
+                        <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="input-wrapper"><textarea id="allergies" placeholder="Allergies (e.g., Peanuts, None)"></textarea></div>
+                <div class="input-wrapper"><textarea id="chronic-conditions" placeholder="Chronic Conditions (e.g., Asthma, None)"></textarea></div>
+
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom: 8px;">
+                    <input type="checkbox" id="organ-donor" style="width:18px; height:18px;">
+                    <label style="font-size: 11px; font-weight:bold; text-transform:uppercase; color:var(--accent);">Organ Donor</label>
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <input type="text" id="c3-name" placeholder="Name 3" style="flex:1;">
-            <div class="input-wrapper" style="flex:1;">
-                <span class="prefix">+63</span>
-                <input type="tel" class="phone-edit" id="c3-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
-                <span class="check-icon">✓</span>
+
+        <div class="acc-section">
+            <button type="button" class="acc-toggle" id="accHead3" aria-expanded="false" aria-controls="accPanel3">
+                <span class="acc-tab" aria-hidden="true"></span>
+                Emergency Contacts
+                <span class="acc-chev" aria-hidden="true">›</span>
+            </button>
+            <div class="acc-panel" id="accPanel3" role="region" aria-labelledby="accHead3" hidden>
+                <div class="form-row">
+                    <input type="text" id="c1-name" placeholder="Name 1" style="flex:1;">
+                    <div class="input-wrapper" style="flex:1;">
+                        <span class="prefix">+63</span>
+                        <input type="tel" class="phone-edit" id="c1-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
+                        <span class="check-icon">✓</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="c2-name" placeholder="Name 2" style="flex:1;">
+                    <div class="input-wrapper" style="flex:1;">
+                        <span class="prefix">+63</span>
+                        <input type="tel" class="phone-edit" id="c2-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
+                        <span class="check-icon">✓</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="c3-name" placeholder="Name 3" style="flex:1;">
+                    <div class="input-wrapper" style="flex:1;">
+                        <span class="prefix">+63</span>
+                        <input type="tel" class="phone-edit" id="c3-phone" placeholder="9XXXXXXXXX" maxlength="10" style="padding-left:45px !important;">
+                        <span class="check-icon">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="acc-section">
+            <button type="button" class="acc-toggle" id="accHead4" aria-expanded="false" aria-controls="accPanel4">
+                <span class="acc-tab" aria-hidden="true"></span>
+                Accessibility
+                <span class="acc-chev" aria-hidden="true">›</span>
+            </button>
+            <div class="acc-panel" id="accPanel4" role="region" aria-labelledby="accHead4" hidden>
+                <div class="a11y-row" style="flex-direction:column; align-items:stretch;">
+                    <div>
+                        <div class="a11y-label">Text Size</div>
+                        <div class="a11y-desc">Applies across the whole site, not just this page.</div>
+                    </div>
+                    <div class="scale-group" id="scaleGroup" style="margin-top:8px;">
+                        <button type="button" class="scale-btn" data-scale="normal">Normal</button>
+                        <button type="button" class="scale-btn" data-scale="large">Large</button>
+                        <button type="button" class="scale-btn" data-scale="xlarge">Extra Large</button>
+                    </div>
+                </div>
+
+                <div class="a11y-row">
+                    <div>
+                        <div class="a11y-label">High Contrast</div>
+                        <div class="a11y-desc">Boosts contrast site-wide.</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="highContrastToggle">
+                        <span class="track"></span>
+                    </label>
+                </div>
+
+                <div class="a11y-row">
+                    <div>
+                        <div class="a11y-label">Reduce Motion</div>
+                        <div class="a11y-desc">Turns off animations, independent of your OS setting.</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="reduceMotionToggle">
+                        <span class="track"></span>
+                    </label>
+                </div>
+                <div class="a11y-status" id="a11yStatus" role="status" aria-live="polite"></div>
             </div>
         </div>
 
@@ -81,5 +195,7 @@
         <a href="user.html" class="back-link">← Return to Dashboard</a>
     </div>
     <script type="module" src="../js/settings.js"></script>
+    <script type="module" src="../js/accessibility-controls.js"></script>
+    <script type="module" src="../js/accordion.js"></script>
 </body>
 </html>

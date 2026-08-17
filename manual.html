@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var m=document.cookie.match(/(?:^|; )giacomo_prefs=([^;]*)/);if(m){var p=JSON.parse(decodeURIComponent(m[1]));var h=document.documentElement;h.setAttribute('data-text-scale',p.textScale||'normal');h.setAttribute('data-high-contrast',p.highContrast?'true':'false');h.setAttribute('data-reduce-motion',p.reduceMotion?'true':'false');}}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giacomo — Technical Manual</title>
 <link rel="stylesheet" href="style.css">
@@ -17,15 +18,15 @@
 
   .nav{position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
     padding:16px 5vw;background:rgba(13,21,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid #22331f}
-  .nav .mark{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-decoration:none}
+  .nav .mark{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:0.6875rem;line-height:1.5;letter-spacing:.34em;text-decoration:none}
   .nav .mark svg,.nav .mark img{width:19px;height:19px;flex:none;border-radius:3px}
   .toc{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .toc a{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7d8a7b;text-decoration:none}
+  .toc a{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.18em;text-transform:uppercase;color:#7d8a7b;text-decoration:none}
   .toc a:hover{color:var(--paper)}
   .toc a.cta{color:var(--brass)}
 
   .doc{max-width:920px;margin:0 auto;padding:90px 5vw 120px}
-  .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
+  .kicker{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.4em;color:var(--brass);text-transform:uppercase}
   .doc h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,5vw,58px);line-height:1.05;margin-top:14px}
   .doc .lede{font-family:var(--serif);font-style:italic;font-size:17px;color:#c3cec0;max-width:56ch;margin-top:20px;line-height:1.6}
 
@@ -37,25 +38,33 @@
 
   .table-scroll{overflow-x:auto;margin-top:20px}
   table{width:100%;min-width:520px;border-collapse:collapse;font-size:13px}
-  thead th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
-    text-align:left;padding:10px 12px;border-bottom:1px solid var(--moss)}
+  thead th{font-family:var(--mono);font-size:0.59375rem;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+    text-align:left;padding:0.85em 1em;border-bottom:1px solid var(--moss)}
   tbody td{padding:12px;border-bottom:1px solid #1d2e22;color:#c3cec0;vertical-align:top}
-  tbody td:first-child{font-family:var(--mono);font-size:12px;color:var(--paper);white-space:nowrap}
+  /* white-space:nowrap kept deliberately on part names (e.g. "AMS1117-3.3 /
+     AP2112K-3.3") — wrapping mid-part-number reads worse than scrolling.
+     Safe here specifically because .table-scroll above is overflow-x:auto,
+     not hidden, so at Large/Extra-Large scale this becomes a horizontal
+     scroll, not a silent clip. */
+  tbody td:first-child{font-family:var(--mono);font-size:0.75rem;line-height:1.5;color:var(--paper);white-space:nowrap}
   .placeholder-block{
     margin-top:20px;padding:20px 22px;border:1px dashed var(--brass);border-radius:6px;
     background:rgba(184,148,77,0.06);
   }
-  .placeholder-block .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:8px}
+  .placeholder-block .tag{font-family:var(--mono);font-size:0.59375rem;line-height:1.5;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:8px}
   .placeholder-block p{color:#c3cec0}
 
   footer{max-width:920px;margin:0 auto;padding:36px 5vw 60px;border-top:1px solid #22331f;display:flex;justify-content:space-between;
-    flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--muted-ed)}
+    flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:0.59375rem;line-height:1.5;letter-spacing:.18em;color:var(--muted-ed)}
   footer a{color:var(--muted-ed);text-decoration:none;border-bottom:1px solid #2c3f30}
   footer a:hover{color:var(--paper)}
 
   @media (max-width:700px){
     .toc{display:none}
     table{font-size:12px}
+    /* mobile caption floor, same ~10.5-11px rule as index.html — rem, not
+       px, so it stays proportional to the Task 4 text-scale toggle (Task 6) */
+    thead th,.placeholder-block .tag,footer{font-size:0.6875rem!important}
   }
 </style>
 </head>
@@ -160,5 +169,6 @@
   <div><a href="privacy.html">Data &amp; consent</a> · <a href="index.html">Back to registry</a></div>
 </footer>
 
+<script type="module">import { syncPreferences } from './js/preferences.js'; syncPreferences();</script>
 </body>
 </html>

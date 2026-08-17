@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>(function(){try{var m=document.cookie.match(/(?:^|; )giacomo_prefs=([^;]*)/);if(m){var p=JSON.parse(decodeURIComponent(m[1]));var h=document.documentElement;h.setAttribute('data-text-scale',p.textScale||'normal');h.setAttribute('data-high-contrast',p.highContrast?'true':'false');h.setAttribute('data-reduce-motion',p.reduceMotion?'true':'false');}}catch(e){}})();</script>
+    <link rel="stylesheet" href="../accessibility.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIACOMO — Tactical Terminal</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
@@ -103,5 +105,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="../js/userDashboard.js"></script>
+    <script type="module">import { syncPreferences } from '../js/preferences.js'; syncPreferences();</script>
 </body>
 </html>

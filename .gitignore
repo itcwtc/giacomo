@@ -1,3 +1,26 @@
 .env
 node_modules/
 .DS_Store
+
+# .claude/settings.json is written locally by `graphify claude install` and
+# bakes in this machine's absolute path to the graphify binary — breaks for
+# anyone else who clones the repo. Not committed; see CLAUDE.md for the
+# one-command local setup step instead.
+.claude/settings.json
+
+# graphify: commit the actual knowledge-graph output (graph.json,
+# GRAPH_REPORT.md, graph.html, manifest.json, .graphify_labels.json) so it
+# persists across sessions and clones — that's the entire point of it.
+# Ignore only machine-specific state and ephemeral per-run scratch files:
+# absolute local tool paths, the semantic-extraction cache (large, regenerates
+# automatically), personal token-usage tracking, and leftover .graphify_*
+# temp files (each run creates and deletes these itself; this is just a
+# safety net if a run is ever interrupted mid-pipeline).
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/cache/
+graphify-out/cost.json
+graphify-out/.graphify_*.json
+graphify-out/.graphify_uncached.txt
+graphify-out/.needs_update
+!graphify-out/.graphify_labels.json

@@ -13,42 +13,35 @@ async function checkOnboarding(user) {
     // this check, an admin landing on user.html (e.g. via a role-check
     // race on refresh) gets bounced to medical-onboarding.html forever,
     // since they'll never have a medical_profiles row to satisfy it.
-    const { data: profileRow } = await supabase
+    //
+    // Gate is device_sealed_at, not "does a medical_profiles row exist":
+    // onboarding now saves progressively per step (see medical-onboarding.js),
+    // so a row exists after step 1 alone. device_sealed_at is only set by the
+    // final, irreversible seal action, making it the actual "onboarding
+    // complete" signal.
+    const { data: profileRow, error } = await supabase
         .from('profiles')
-        .select('role')
+        .select('role, device_sealed_at')
         .eq('id', user.id)
         .maybeSingle();
+
+    if (error) {
+        console.error("Supabase query error:", error.message);
+        return false;
+    }
 
     if (profileRow?.role === 'admin') {
         console.log("Admin account — skipping medical onboarding gate.");
         return true;
     }
 
-    // Check medical_profiles table for user record
-    const { data: profile, error } = await supabase
-        .from('medical_profiles')
-        .select('*')
-        .eq('user_id', user.id)
-        .maybeSingle();
-
-    console.log("Logged In User ID:", user.id);
-    console.log("Returned Profile Data:", profile);
-    console.log("Returned Error:", error);
-
-    // If an RLS or database error occurs, alert without blindly redirecting
-    if (error) {
-        console.error("Supabase query error:", error.message);
-        return false;
-    }
-
-    // If no medical profile row exists in Supabase, redirect to onboarding
-    if (!profile) {
-        console.log("No medical profile found. Redirecting to onboarding...");
+    if (!profileRow?.device_sealed_at) {
+        console.log("Onboarding not sealed yet. Redirecting to medical-onboarding...");
         window.location.href = '../medical-onboarding.html';
         return false;
     }
 
-    console.log("Medical profile verified.");
+    console.log("Onboarding verified (device sealed).");
     return true;
 }
 

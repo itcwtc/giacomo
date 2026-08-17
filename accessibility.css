@@ -1,0 +1,18 @@
+/* Standalone accessibility-preference rules for pages that don't load the
+   full style.css (the dashboard pages have their own local theme, and
+   style.css carries bare-tag rules like `input,select,textarea{...}` that
+   would visibly alter their existing design if linked wholesale — so this
+   file exists specifically to avoid that, while still giving the dashboards
+   the same data-attribute mechanism the rest of the site uses).
+   Kept in sync by hand with the identical block in style.css. */
+html[data-text-scale="large"]{font-size:112.5%}
+html[data-text-scale="xlarge"]{font-size:125%}
+
+html[data-high-contrast="true"]{filter:contrast(1.12) saturate(1.15)}
+
+html[data-reduce-motion="true"] *{
+  animation-duration:.001s!important;
+  animation-iteration-count:1!important;
+  transition-duration:.001s!important;
+  scroll-behavior:auto!important;
+}

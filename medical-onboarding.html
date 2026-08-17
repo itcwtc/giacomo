@@ -1,137 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIACOMO — Medical Profile</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body { 
-            display: flex; justify-content: center; align-items: flex-start;
-            min-height: 100vh; padding: 40px 20px; background: #05060a; 
-        }
+<meta charset="UTF-8">
+<script>(function(){try{var m=document.cookie.match(/(?:^|; )giacomo_prefs=([^;]*)/);if(m){var p=JSON.parse(decodeURIComponent(m[1]));var h=document.documentElement;h.setAttribute('data-text-scale',p.textScale||'normal');h.setAttribute('data-high-contrast',p.highContrast?'true':'false');h.setAttribute('data-reduce-motion',p.reduceMotion?'true':'false');}}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giacomo — Complete Your Registry</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--paper);font-family:var(--ed-sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 
-        .onboarding-card {
-            width: 100%; max-width: 500px;
-            background: #0b0f18; border: 1px solid rgba(255,46,67,0.1);
-            padding: 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+  #page-root{display:none;max-width:1080px;margin:0 auto;padding:50px 5vw 90px}
 
-        select, input, textarea {
-            background: #161b22 !important;
-            color: #fff !important;
-            border: 1px solid #30363d !important;
-            transition: all 0.3s ease;
-        }
+  header.onb-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+  header.onb-head .mark{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:0.6875rem;line-height:1.5;letter-spacing:.34em;text-decoration:none}
+  header.onb-head .mark svg{width:19px;height:19px;flex:none}
+  header.onb-head .logout{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:#7d8a7b;background:none;border:1px solid #2c3f30;padding:0.8em 1.4em;cursor:pointer}
+  header.onb-head .logout:hover{color:var(--paper)}
 
-        select option { background: #161b22; color: white; }
+  /* Step indicator */
+  .steps-bar{display:flex;gap:0;margin-bottom:36px;border:1px solid #22331f}
+  .step-tab{flex:1;min-width:70px;padding:1.4em 1em;text-align:center;font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;
+    color:#5c6b62;background:none;border:none;border-right:1px solid #22331f;cursor:not-allowed;position:relative}
+  .step-tab:last-child{border-right:none}
+  .step-tab .n{display:block;font-family:var(--serif);font-size:20px;margin-bottom:4px;font-weight:700}
+  .step-tab.unlocked{cursor:pointer;color:#9aa89f}
+  .step-tab.unlocked:hover{color:var(--paper)}
+  .step-tab.current{color:var(--paper)}
+  .step-tab.current .n{color:var(--signal-lt)}
+  .step-tab.done .n::after{content:' ✓';color:var(--moss)}
 
-        .form-section-title {
-            color: #00e5ff; font-size: 11px; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 1.5px;
-            margin: 25px 0 15px; display: block;
-        }
+  .onb-shell{display:grid;grid-template-columns:1fr 380px;gap:5vw;align-items:start}
 
-        /* Strength Meter Styles */
-        .valid-input { border-color: #16a34a !important; box-shadow: 0 0 8px rgba(22, 163, 74, 0.1); }
-        .input-wrapper { position: relative; flex: 1; }
-        .check-icon { 
-            position: absolute; right: 12px; top: 12px; 
-            color: #16a34a; font-size: 14px; display: none; 
-        }
+  /* Paper stepper card — deliberately sharp-cornered, matches the registry
+     card's document treatment. Do not round these corners. */
+  .stepper-card{background:var(--paper);color:var(--txt-dark);padding:40px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .step-panel{display:none}
+  .step-panel.active{display:block}
+  .step-panel h2{font-family:var(--serif);font-weight:800;font-size:26px;margin-bottom:8px}
+  .step-panel .sub{font-size:13px;color:#6f6550;margin-bottom:28px}
 
-        .submit-wrap { display: flex; justify-content: center; margin-top: 40px; }
-        
-        .btn-finalize {
-            width: 100%; max-width: 280px; height: 50px;
-            background: #ff2e43; color: #fff; font-weight: 700; 
-            border-radius: 8px; cursor: pointer; border: none; 
-            transition: 0.2s; text-transform: uppercase;
-        }
-        .btn-finalize:hover { background: #ff4d5d; transform: translateY(-2px); }
-        .btn-finalize:disabled { opacity: 0.6; cursor: not-allowed; }
+  .fld{margin-bottom:22px}
+  .fld label{display:block;font-family:var(--mono);font-size:0.59375rem;line-height:1.5;letter-spacing:.2em;text-transform:uppercase;color:#8a7d61;margin-bottom:8px}
+  .fld label .req-tag{color:#b0a483;letter-spacing:.1em;font-weight:400;text-transform:none}
+  .fld label .opt-tag{color:#b0a483;letter-spacing:.1em;font-weight:400;text-transform:none}
+  .fld input, .fld select{width:100%;border:none;border-bottom:1px solid #bcae91;background:transparent;padding:8px 2px;
+    font-family:var(--ed-sans);font-size:15px;color:var(--txt-dark)}
+  .fld input:focus, .fld select:focus{outline:none;border-bottom-color:var(--signal)}
+  .fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23141b15'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:20px}
+  /* flex-wrap (Task 6 audit): at narrow width + Large/Extra-Large text-scale
+     together, two flex:1 fields side by side (e.g. name + relationship) were
+     the one place in this file that stayed a fixed two-column row at every
+     breakpoint — now they wrap to full width instead of getting squeezed. */
+  .fld-row{display:flex;flex-wrap:wrap;gap:16px}
+  .fld-row .fld{flex:1;min-width:140px}
+  .phone-fld{position:relative}
+  .phone-fld .prefix{position:absolute;left:2px;bottom:9px;font-size:14px;color:#6f6550;pointer-events:none}
+  .phone-fld input{padding-left:32px}
 
-        .form-row { display: flex; gap: 10px; margin-bottom: 10px; }
-    </style>
+  .why-ask{background:none;border:none;font-family:var(--mono);font-size:0.5625rem;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--brass);cursor:pointer;padding:0;margin-top:6px;text-decoration:underline;text-underline-offset:2px}
+  .why-ask-text{display:none;font-size:12px;color:#6f6550;margin-top:6px;line-height:1.5;max-width:48ch}
+  .why-ask-text.open{display:block}
+
+  .field-hint{font-family:var(--mono);font-size:0.625rem;line-height:1.5;margin-top:6px;min-height:1.3em;color:#8a7d61}
+  .field-hint.field-error{color:var(--signal)}
+  .field-hint.field-ok{color:var(--moss)}
+
+  fieldset{border:none;margin:0 0 26px;padding:0}
+  fieldset legend{font-family:var(--serif);font-weight:700;font-size:16px;margin-bottom:14px;padding:0}
+  fieldset.optional legend .opt-tag{font-family:var(--mono);font-size:0.5625rem;line-height:1.5;color:#b0a483;text-transform:uppercase;letter-spacing:.1em;margin-left:8px;font-weight:400}
+
+  .serial-input{font-family:var(--mono);font-size:18px;letter-spacing:.08em}
+  .serial-help{font-size:12px;color:#6f6550;margin-top:8px;line-height:1.5;max-width:48ch}
+
+  .consent-block{border:1px dashed #bcae91;padding:18px 20px;margin:26px 0;background:rgba(184,148,77,0.05)}
+  .consent-block p{font-size:12.5px;line-height:1.7;color:#4a4433;margin-bottom:10px}
+  .consent-block a{color:var(--signal);font-weight:600}
+  .consent-check{display:flex;align-items:flex-start;gap:10px;margin-top:14px}
+  .consent-check input{width:auto;margin-top:3px}
+  .consent-check label{font-family:var(--ed-sans);font-size:13px;color:var(--txt-dark);text-transform:none;letter-spacing:0}
+
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn-back{background:none;border:1px solid #bcae91;color:#6f6550;padding:1.33em 1.9em;font-family:var(--mono);font-size:0.65625rem;line-height:1.5;
+    letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+  .btn-back:hover{border-color:var(--txt-dark);color:var(--txt-dark)}
+  .btn-continue{flex:1;min-width:160px;background:var(--ink-3);color:var(--paper);border:none;padding:1.36em;font-family:var(--mono);
+    font-size:0.6875rem;line-height:1.5;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+  .btn-continue:hover{background:var(--moss)}
+  .btn-continue:disabled{opacity:.55;cursor:not-allowed}
+  .btn-continue.success{background:var(--moss)}
+
+  .save-status{margin-top:16px;font-family:var(--mono);font-size:0.6875rem;line-height:1.5;padding:0.91em 1.09em;display:none;border-radius:2px}
+  .save-status.show{display:block}
+  .save-status.ok{color:#1f5c2e;background:rgba(47,92,54,0.1);border:1px solid rgba(47,92,54,0.3)}
+  .save-status.err{color:var(--signal);background:rgba(200,52,43,0.08);border:1px solid rgba(200,52,43,0.3)}
+  .save-status.network{color:#8a5a1c;background:rgba(184,148,77,0.12);border:1px solid rgba(184,148,77,0.4)}
+
+  .sealed-state{text-align:center;padding:30px 0}
+  .sealed-state .check{font-size:44px;color:var(--moss);margin-bottom:14px}
+  .sealed-state h2{margin-bottom:10px}
+  .sealed-state p{font-size:13px;color:#6f6550;margin-bottom:24px}
+  .btn-dash{display:inline-block;background:var(--ink-3);color:var(--paper);padding:1.27em 2.36em;font-family:var(--mono);
+    font-size:0.6875rem;line-height:1.5;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+  .btn-dash:hover{background:var(--moss)}
+
+  /* Live preview — same "what a stranger sees" card language as index.html's
+     bystander-scan demo. Stacks under the form on narrow viewports. */
+  .live-preview{position:sticky;top:40px}
+  .live-preview.step3-hidden{display:none}
+  .lp-label{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+  /* overflow:hidden removed (Task 6 audit): this card has no border-radius
+     (sharp-cornered, per Task 5), so the property wasn't clipping anything
+     visually — it was pure downside risk once Large/Extra-Large text pushes
+     .lp-head/.lp-body taller than the card's natural fit. Safe removal. */
+  .lp-card{background:#f4efe2;color:#141b15;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .lp-head{background:var(--signal);color:#fff;padding:16px 20px}
+  .lp-head .t{font-family:var(--mono);font-size:0.625rem;line-height:1.5;letter-spacing:.24em}
+  .lp-head .n{font-family:var(--serif);font-weight:700;font-size:20px;margin-top:5px;min-height:24px}
+  .lp-body{padding:18px 20px}
+  .lp-row{border-bottom:1px solid #ddd2b8;padding:12px 0}
+  .lp-row:last-child{border-bottom:none}
+  .lp-row .l{font-family:var(--mono);font-size:0.5625rem;line-height:1.5;letter-spacing:.2em;color:#8a7d61}
+  .lp-row .v{font-size:15px;font-weight:700;color:#141b15;margin-top:4px;min-height:18px}
+  .lp-row .v.big{font-size:26px;font-family:var(--mono);font-weight:500;color:var(--signal)}
+  .lp-row .v.empty{color:#b0a894;font-weight:400;font-style:italic}
+  .lp-note{font-family:var(--mono);font-size:0.53125rem;line-height:1.5;letter-spacing:.14em;color:#a2957a;text-align:center;padding:1.18em;background:#efe7d4}
+
+  /* In-page confirmation modal for the irreversible seal action — never a
+     native confirm(). */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(5,9,7,0.75);z-index:200;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal-card{background:var(--paper);color:var(--txt-dark);max-width:420px;width:100%;padding:34px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+  .modal-card h3{font-family:var(--serif);font-weight:800;font-size:22px;color:var(--signal);margin-bottom:14px}
+  .modal-card p{font-size:13.5px;line-height:1.7;color:#4a4433;margin-bottom:10px}
+  .modal-card .modal-serial{font-family:var(--mono);font-size:20px;letter-spacing:.1em;background:rgba(200,52,43,0.08);
+    border:1px solid rgba(200,52,43,0.3);padding:10px 14px;margin:14px 0;text-align:center}
+  .modal-btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .modal-btn-row button{flex:1;min-width:110px;padding:1.33em;font-family:var(--mono);font-size:0.65625rem;line-height:1.5;letter-spacing:.16em;text-transform:uppercase;
+    border:none;cursor:pointer}
+  .modal-cancel{background:none;border:1px solid #bcae91 !important;color:#6f6550}
+  .modal-cancel:hover{border-color:var(--txt-dark) !important;color:var(--txt-dark)}
+  .modal-confirm{background:var(--signal);color:#fff}
+  .modal-confirm:hover{background:var(--signal-lt)}
+
+  .sr-announcer{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+
+  @media (max-width:900px){
+    .onb-shell{grid-template-columns:1fr}
+    .live-preview{position:static;order:2}
+    .stepper-card{order:1;padding:28px}
+    /* was 9px — an active regression under the ~10.5-11px mobile floor,
+       inside this file's own mobile breakpoint. Fixed in Task 5's audit.
+       Task 6: switched to rem so this floor stays proportional to the
+       text-scale toggle instead of clamping Large/Extra-Large back down. */
+    .steps-bar .step-tab{font-size:0.6875rem;padding:12px 4px}
+    .why-ask,.field-hint,fieldset.optional legend .opt-tag,
+    .lp-row .l,.lp-note{font-size:0.6875rem!important}
+  }
+</style>
 </head>
 <body>
 
-<div class="onboarding-card">
-    <h2 style="color: #fff; margin:0 0 5px;">RIDER MEDICAL PROFILE</h2>
-    <p class="muted" style="margin-bottom:30px;">Complete this to link your helmet and medical data.</p>
+<div id="page-root">
+  <header class="onb-head">
+    <a href="index.html" class="mark">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6a24 24 0 1 0 8 46.6L32 62l26-30-22 2 6.5 8.2A16 16 0 1 1 44 20l6-6A23.9 23.9 0 0 0 32 6z" fill="#c8342b"/></svg>
+      GIACOMO
+    </a>
+    <button class="logout" id="logoutBtn" type="button">Log out</button>
+  </header>
 
-    <form id="profile-form">
-        <label>Helmet Serial Number</label>
-        <div class="input-wrapper">
-            <input type="text" id="serial_number" placeholder="GCMO-XXXXXX" maxlength="11" required>
-            <span id="serial-check" class="check-icon">✓</span>
+  <div class="steps-bar" role="tablist" aria-label="Onboarding steps">
+    <button class="step-tab" id="tabStep1" data-step="1" type="button"><span class="n">1</span>Medical</button>
+    <button class="step-tab" id="tabStep2" data-step="2" type="button"><span class="n">2</span>Contacts</button>
+    <button class="step-tab" id="tabStep3" data-step="3" type="button"><span class="n">3</span>Device &amp; Consent</button>
+  </div>
+
+  <div class="onb-shell">
+    <div class="stepper-card">
+
+      <!-- STEP 1 — MEDICAL -->
+      <div class="step-panel" id="panel1">
+        <h2>Medical details</h2>
+        <p class="sub">This is what a bystander sees first if you're ever crashed and can't speak for yourself.</p>
+
+        <div class="fld">
+          <label for="bloodType">Blood type <span class="req-tag">Required</span></label>
+          <select id="bloodType">
+            <option value="">Select…</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+          </select>
         </div>
-        <p class="muted" style="font-size: 10px; margin-top: 5px;">Format: [TYPE]-[6 DIGITS]</p>
 
-        <span class="form-section-title">Medical Details</span>
-        <div class="form-row">
-            <div style="flex:2">
-                <label>Blood Type</label>
-                <select id="blood_type" required>
-                    <option value="">Select...</option>
-                    <option value="A+">A+</option><option value="A-">A-</option>
-                    <option value="B+">B+</option><option value="B-">B-</option>
-                    <option value="O+">O+</option><option value="O-">O-</option>
-                    <option value="AB+">AB+</option><option value="AB-">AB-</option>
-                </select>
+        <div class="fld">
+          <label for="allergies">Allergies <span class="req-tag">Required</span></label>
+          <input id="allergies" type="text" placeholder="Peanuts, aspirin, or none">
+          <button type="button" class="why-ask" data-target="allergiesWhy" aria-expanded="false">Why we ask</button>
+          <p class="why-ask-text" id="allergiesWhy">Shown on the bystander card so a first responder avoids giving you something that could trigger a dangerous reaction.</p>
+          <div class="field-hint" id="allergiesHint"></div>
+        </div>
+
+        <div class="fld">
+          <label for="medications">Medications <span class="opt-tag">Optional</span></label>
+          <input id="medications" type="text" placeholder="Insulin, blood thinners, or none">
+          <button type="button" class="why-ask" data-target="medsWhy" aria-expanded="false">Why we ask</button>
+          <p class="why-ask-text" id="medsWhy">Helps responders avoid a dangerous drug interaction when treating you.</p>
+        </div>
+
+        <div class="fld">
+          <label for="chronicConditions">Chronic conditions <span class="opt-tag">Optional</span></label>
+          <input id="chronicConditions" type="text" placeholder="Asthma, diabetes, or none">
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-continue" id="continue1" type="button">Save &amp; Continue</button>
+        </div>
+        <div class="save-status" id="status1"></div>
+      </div>
+
+      <!-- STEP 2 — CONTACTS -->
+      <div class="step-panel" id="panel2">
+        <h2>Emergency contacts</h2>
+        <p class="sub">Up to three people who should be reached if you're crashed.</p>
+
+        <fieldset>
+          <legend>Contact 1</legend>
+          <div class="fld-row">
+            <div class="fld"><label for="c1Name">Name <span class="req-tag">Required</span></label><input id="c1Name" type="text"></div>
+            <div class="fld"><label for="c1Rel">Relationship <span class="req-tag">Required</span></label>
+              <select id="c1Rel"><option value="">Select…</option><option>Parent</option><option>Spouse</option><option>Sibling</option><option>Friend</option><option>Other</option></select>
             </div>
-            <div style="flex:1.2; display:flex; align-items:center; gap:8px; padding-top:25px;">
-                <input type="checkbox" id="organ_donor" style="width:18px; height:18px;">
-                <label style="margin:0; font-size: 12px;">Organ Donor</label>
+          </div>
+          <div class="fld phone-fld"><label for="c1Phone">Phone <span class="req-tag">Required</span></label><span class="prefix">+63</span><input id="c1Phone" type="tel" maxlength="10" placeholder="9123456789"></div>
+          <div class="field-hint" id="c1Hint"></div>
+        </fieldset>
+
+        <fieldset class="optional">
+          <legend>Contact 2 <span class="opt-tag">Optional</span></legend>
+          <div class="fld-row">
+            <div class="fld"><label for="c2Name">Name <span class="opt-tag">Optional</span></label><input id="c2Name" type="text"></div>
+            <div class="fld"><label for="c2Rel">Relationship <span class="opt-tag">Optional</span></label>
+              <select id="c2Rel"><option value="">Select…</option><option>Parent</option><option>Spouse</option><option>Sibling</option><option>Friend</option><option>Other</option></select>
             </div>
-        </div>
+          </div>
+          <div class="fld phone-fld"><label for="c2Phone">Phone <span class="opt-tag">Optional</span></label><span class="prefix">+63</span><input id="c2Phone" type="tel" maxlength="10" placeholder="9123456789"></div>
+        </fieldset>
 
-        <label>Allergies</label>
-        <textarea id="allergies" rows="2" placeholder="e.g. Peanuts, Aspirin, or None"></textarea>
-
-        <label style="margin-top:10px; display:block;">Chronic Conditions</label>
-        <textarea id="chronic_conditions" rows="2" placeholder="e.g. Asthma, Diabetes, or None"></textarea>
-
-        <span class="form-section-title">Emergency Contacts</span>
-        
-        <div class="form-row">
-            <input type="text" id="contact_name_1" placeholder="Name 1" required style="flex: 1;">
-            <div class="input-wrapper">
-                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
-                <input type="tel" class="phone-input" id="contact_phone_1" placeholder="9123456789" maxlength="10" required style="padding-left: 45px !important;">
-                <span class="check-icon">✓</span>
+        <fieldset class="optional">
+          <legend>Contact 3 <span class="opt-tag">Optional</span></legend>
+          <div class="fld-row">
+            <div class="fld"><label for="c3Name">Name <span class="opt-tag">Optional</span></label><input id="c3Name" type="text"></div>
+            <div class="fld"><label for="c3Rel">Relationship <span class="opt-tag">Optional</span></label>
+              <select id="c3Rel"><option value="">Select…</option><option>Parent</option><option>Spouse</option><option>Sibling</option><option>Friend</option><option>Other</option></select>
             </div>
-        </div>
+          </div>
+          <div class="fld phone-fld"><label for="c3Phone">Phone <span class="opt-tag">Optional</span></label><span class="prefix">+63</span><input id="c3Phone" type="tel" maxlength="10" placeholder="9123456789"></div>
+        </fieldset>
 
-        <div class="form-row">
-            <input type="text" id="contact_name_2" placeholder="Name 2 (Optional)" style="flex: 1;">
-            <div class="input-wrapper">
-                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
-                <input type="tel" class="phone-input" id="contact_phone_2" placeholder="9123456789" maxlength="10" style="padding-left: 45px !important;">
-                <span class="check-icon">✓</span>
+        <div class="btn-row">
+          <button class="btn-back" id="back2" type="button">Back</button>
+          <button class="btn-continue" id="continue2" type="button">Save &amp; Continue</button>
+        </div>
+        <div class="save-status" id="status2"></div>
+      </div>
+
+      <!-- STEP 3 — DEVICE + CONSENT + SEAL -->
+      <div class="step-panel" id="panel3">
+        <div id="preSealContent">
+          <h2>Device &amp; consent</h2>
+          <p class="sub">The last step. Sealing links this helmet permanently to your record.</p>
+
+          <div class="fld">
+            <label for="serialInput">Helmet serial number <span class="req-tag">Required</span></label>
+            <input id="serialInput" class="serial-input" type="text" placeholder="GCMO-XXXXXX" maxlength="11" autocomplete="off">
+            <p class="serial-help">Checked against the device registry. This cannot be changed once sealed — it's how a QR scan finds the right record.</p>
+            <div class="field-hint" id="serialHint"></div>
+          </div>
+
+          <div class="consent-block">
+            <p><strong>Before you seal:</strong> completing this step means you've read and agree to the <a href="privacy.html" target="_blank" rel="noopener">Data Collection &amp; Consent Statement</a> — what's collected, who can see it (a bystander sees only blood type, allergies and contacts; nothing else), and that this is a research prototype, not a certified medical device.</p>
+            <div class="consent-check">
+              <input type="checkbox" id="consentCheck">
+              <label for="consentCheck">I have read and agree to the Data Collection &amp; Consent Statement, and I understand sealing my device is permanent.</label>
             </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-back" id="back3" type="button">Back</button>
+            <button class="btn-continue" id="sealBtn" type="button">Seal My Device</button>
+          </div>
+          <div class="save-status" id="status3"></div>
         </div>
 
-        <div class="form-row">
-            <input type="text" id="contact_name_3" placeholder="Name 3 (Optional)" style="flex: 1;">
-            <div class="input-wrapper">
-                <span style="position: absolute; left: 12px; top: 12px; color: #475569; font-size: 14px;">+63</span>
-                <input type="tel" class="phone-input" id="contact_phone_3" placeholder="9123456789" maxlength="10" style="padding-left: 45px !important;">
-                <span class="check-icon">✓</span>
-            </div>
+        <div class="sealed-state" id="sealedState" style="display:none">
+          <div class="check">✓</div>
+          <h2>Device sealed</h2>
+          <p>Your registry is complete. Your QR code is ready on your dashboard.</p>
+          <a href="dashboard/user.html" class="btn-dash">Go to dashboard</a>
         </div>
+      </div>
 
-        <div style="display:flex; align-items:flex-start; gap:8px; margin-top:20px;">
-            <input type="checkbox" id="consent-checkbox" style="width:18px; height:18px; margin-top:2px;">
-            <label style="margin:0; font-size: 12px;">I have read and agree to the <a href="privacy.html" target="_blank" rel="noopener" style="color: #00e5ff; font-weight: bold;">Data Collection &amp; Consent Statement</a></label>
-        </div>
+    </div>
 
-        <div class="submit-wrap">
-            <button type="submit" class="btn-finalize" id="submit-btn">Complete Setup</button>
+    <!-- LIVE PREVIEW -->
+    <div class="live-preview" id="livePreview">
+      <div class="lp-label">What a bystander would see</div>
+      <div class="lp-card">
+        <div class="lp-head">
+          <div class="t">EMERGENCY MEDICAL RECORD</div>
+          <div class="n" id="lpName">—</div>
         </div>
-    </form>
+        <div class="lp-body">
+          <div class="lp-row"><div class="l">BLOOD TYPE</div><div class="v big empty" id="lpBlood">—</div></div>
+          <div class="lp-row"><div class="l">ALLERGIES</div><div class="v empty" id="lpAllergies">—</div></div>
+          <div class="lp-row"><div class="l">EMERGENCY CONTACT</div><div class="v empty" id="lpContact">—</div></div>
+        </div>
+        <div class="lp-note">LIVE PREVIEW — UPDATES AS YOU TYPE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sr-announcer" id="announcer" role="status" aria-live="polite"></div>
+</div>
+
+<!-- SEAL CONFIRMATION MODAL -->
+<div class="modal-overlay" id="sealModal">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">This cannot be undone</h3>
+    <p>You're about to permanently link this helmet to your account. Once sealed, the serial number cannot be changed.</p>
+    <div class="modal-serial" id="modalSerial">—</div>
+    <p>Double-check the sticker on your helmet before confirming.</p>
+    <div class="modal-btn-row">
+      <button class="modal-cancel" id="modalCancel" type="button">Cancel</button>
+      <button class="modal-confirm" id="modalConfirm" type="button">Seal it</button>
+    </div>
+  </div>
 </div>
 
 <script type="module" src="js/medical-onboarding.js"></script>
+<script type="module">import { syncPreferences } from './js/preferences.js'; syncPreferences();</script>
 </body>
 </html>

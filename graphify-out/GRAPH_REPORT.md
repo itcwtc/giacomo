@@ -1,133 +1,133 @@
 # Graph Report - giacomo  (2026-08-17)
 
 ## Corpus Check
-- 6 files · ~28,652 words
+- 23 files · ~34,311 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 166 nodes · 227 edges · 17 communities (10 shown, 7 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 29 edges (avg confidence: 0.84)
-- Token cost: 0 input · 185,481 output
+- 203 nodes · 278 edges · 20 communities (12 shown, 8 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.77)
+- Token cost: 0 input · 138,857 output
 
 ## Community Hubs (Navigation)
-- Helmet Module Hardware Design
-- Data Consent & Onboarding Flow
+- Landing Page Accessibility Fixes
 - Registry Auth Form Logic
-- Landing Page & Manual
+- Settings Accordion & Case-File UI
+- Accessibility Controls Logic
+- Medical Onboarding Flow Logic
+- Dashboard Accessibility Bootstrap
 - Admin Dashboard Logic
 - Public Status Page Logic
 - Rider Dashboard Logic
-- Onboarding, Settings & Supabase Client
 - PWA Manifest
-- Shared Medical Data & Access Control
+- Graphify Meta Documentation
 - Service Worker Caching
 - Emergency Contact Sharing
-- Admin Visibility Scope
-- Crash Simulation
+- Giacomo Brand Logo
+- Register Redirect Stub
 - First-Aid Guidance
+- Public Status Page
 - Bystander Triage Selector
 - VCard Export
 
 ## God Nodes (most connected - your core abstractions)
-1. `Bill of Materials` - 18 edges
-2. `Data Collection & Consent Statement` - 17 edges
-3. `Giacomo Landing & Rider Safety Registry Page (index.html)` - 16 edges
-4. `Exploded 5-Layer Module Assembly Diagram` - 12 edges
-5. `Giacomo Technical Manual (manual.html)` - 12 edges
-6. `Sign In / Register Auth Card` - 10 edges
-7. `supabase` - 7 edges
-8. `Engineering Rationale, by Subsystem` - 7 edges
-9. `Interruptible Crash-Alert Interface Design` - 6 edges
-10. `initDashboard()` - 5 edges
+1. `el()` - 10 edges
+2. `supabase` - 9 edges
+3. `Accessibility accordion section` - 8 edges
+4. `graphify Knowledge Graph` - 7 edges
+5. `handleSignIn()` - 5 edges
+6. `init()` - 5 edges
+7. `savePreferences()` - 5 edges
+8. `initDashboard()` - 5 edges
+9. `js/accordion.js` - 5 edges
+10. `Step 3: Device & consent panel` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `MicroSD Black-Box Storage` --semantically_similar_to--> `MicroSD Module (Black-Box Storage)`  [INFERRED] [semantically similar]
-  index.html → manual.html
-- `Giacomo Landing & Rider Safety Registry Page (index.html)` --references--> `Giacomo Brand Logo (SVG)`  [EXTRACTED]
-  index.html → assets/logo.svg
-- `ESP32-S3 (Main MCU)` --semantically_similar_to--> `ESP32-S3-WROOM-1 (Main MCU)`  [INFERRED] [semantically similar]
-  index.html → manual.html
-- `LSM6DSOX IMU` --semantically_similar_to--> `ST LSM6DSOX (6-Axis IMU)`  [INFERRED] [semantically similar]
-  index.html → manual.html
-- `SIM A7670C Cellular Module` --semantically_similar_to--> `SIM A7670C (4G LTE Cat-1 Module)`  [INFERRED] [semantically similar]
-  index.html → manual.html
+- `Row-level access control / restricted lookup function` --semantically_similar_to--> `checkSecurity admin-role gate`  [INFERRED] [semantically similar]
+  privacy.html → dashboard/admin.html
+- `Rider Identity accordion section` --shares_data_with--> `Step 3: Device & consent panel`  [INFERRED]
+  dashboard/settings.html → medical-onboarding.html
+- `Accessibility accordion section` --conceptually_related_to--> `SHOW/HIDE reserved-width fix`  [INFERRED]
+  dashboard/settings.html → index.html
+- `Accessibility accordion section` --conceptually_related_to--> `Phone-screen overflow:hidden removal`  [INFERRED]
+  dashboard/settings.html → index.html
+- `Accessibility accordion section` --conceptually_related_to--> `Two-column field-row flex-wrap fix`  [INFERRED]
+  dashboard/settings.html → medical-onboarding.html
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Crash-Detection-to-Alert Hardware Chain** — manual_lsm6dsox, manual_esp32_s3_wroom_1, manual_sim_a7670c, manual_ip5306 [INFERRED 0.85]
-- **Bystander QR Emergency-Lookup Flow** — index_qr_scan_demo, privacy_qr_triage_view, privacy_row_level_access_control, privacy_medical_information [INFERRED 0.85]
-- **Interruptible Crash-Alert Interface Pattern** — index_abort_button, index_piezo_buzzer, index_ws2812b_led, manual_enclosure_rationale [INFERRED 0.80]
+- **Settings Page Accordion Restructuring** — dashboard_settings_accordion_js, dashboard_settings_rider_identity_section, dashboard_settings_medical_data_section, dashboard_settings_emergency_contacts_section, dashboard_settings_accessibility_section [EXTRACTED 1.00]
+- **Site-wide Accessibility-Prefs Cookie Bootstrap** — dashboard_admin_cookie_prefs_script, dashboard_user_cookie_prefs_script, dashboard_settings_cookie_prefs_script, index_cookie_prefs_script, medical_onboarding_cookie_prefs_script, manual_cookie_prefs_script, privacy_cookie_prefs_script [EXTRACTED 1.00]
+- **Bystander Emergency-Record Scan Flow** — index_scan_card, medical_onboarding_live_preview, privacy_who_can_see, dashboard_user_qr_section [INFERRED 0.85]
 - **Emergency Bystander Response Flow** — status_triage_selector, status_firstaid_guidance, status_share_location, status_regional_hotlines [EXTRACTED 1.00]
-- **Authentication & Role-Gate Flow** — index_page, register_page, dashboard_admin_checksecurity [INFERRED 0.75]
-- **Shared Medical Profile Data Model (Settings, Onboarding, Public Status)** — dashboard_settings_saveallform, medical_onboarding_profileform, status_page [INFERRED 0.85]
 
-## Communities (17 total, 7 thin omitted)
+## Communities (20 total, 8 thin omitted)
 
-### Community 0 - "Helmet Module Hardware Design"
-Cohesion: 0.08
-Nodes (38): Sealed Abort Button, Exploded 5-Layer Module Assembly Diagram, ESP32-S3 (Main MCU), Interruptible Crash-Alert Interface Design, IP5306 Power Management IC, IP67 Gasket Seam / Weather Seal, 3.7V LiPo Battery, LSM6DSOX IMU (+30 more)
+### Community 0 - "Landing Page Accessibility Fixes"
+Cohesion: 0.09
+Nodes (26): js/accessibility-controls.js, Accessibility accordion section, Scroll-driven exploded hardware assembly view, Registry sign-in/register card, Index accessibility-prefs cookie bootstrap, js/indexAuth.js, rem-based mobile caption floor fix (index), js/preferences.js syncPreferences (index) (+18 more)
 
-### Community 1 - "Data Consent & Onboarding Flow"
-Cohesion: 0.11
-Nodes (21): What Happens in a Crash (4-Step Sequence), No App, No Login, No Excess (Bystander Lookup Design), Bystander QR-Scan Emergency Lookup Demo, Local Black-Box Impact Logging, MicroSD Module (Black-Box Storage), Medical Onboarding Page, Account Information (Name & Login Credentials), Administrator Data Visibility Scope (+13 more)
+### Community 1 - "Registry Auth Form Logic"
+Cohesion: 0.09
+Nodes (25): confirmHint, confirmInput, emailHint, emailInput, errorBox, handleRegister(), handleSignIn(), nameInput (+17 more)
 
-### Community 2 - "Registry Auth Form Logic"
+### Community 2 - "Settings Accordion & Case-File UI"
+Cohesion: 0.12
+Nodes (22): Admin Live Feed/History tab-nav, accessibility.css link (settings), js/accordion.js, File-tab accordion pattern (design rationale), Settings accessibility-prefs cookie bootstrap, Emergency Contacts accordion section, Medical Data accordion section, Rider Identity accordion section (+14 more)
+
+### Community 3 - "Accessibility Controls Logic"
+Cohesion: 0.16
+Nodes (17): contrastToggle, motionToggle, persist(), prefs, scaleButtons, scaleGroup, showStatus(), status (+9 more)
+
+### Community 4 - "Medical Onboarding Flow Logic"
+Cohesion: 0.23
+Nodes (15): announce(), announcer(), bindEnter(), clearStatus(), el(), init(), prefill(), RELATIONSHIPS (+7 more)
+
+### Community 5 - "Dashboard Accessibility Bootstrap"
 Cohesion: 0.13
-Nodes (17): Auth Error Message Box (id=authError), Email Input (id=inEmail), Full Name Input (id=inName), Password Input (id=inPass), Submit Button (id=submitBtn), Register Tab (id=tabUp), emailInput, errorBox (+9 more)
+Nodes (14): accessibility.css link (admin), js/adminDashboard.js, checkSecurity admin-role gate, Admin accessibility-prefs cookie bootstrap, Admin crash-popup alert UI, js/preferences.js syncPreferences (admin), js/supabaseClient.js (admin), accessibility.css link (user) (+6 more)
 
-### Community 3 - "Landing Page & Manual"
-Cohesion: 0.15
-Nodes (18): Giacomo Brand Logo (SVG), checkSecurity() Admin Role Gate, Tactical Settings Page, Rider Tactical Terminal Dashboard, The Apparatus (Hero Section), Audiences: Riders, Families, First Responders, Sign In / Register Auth Card, Giacomo (Helmet-Mounted Emergency-Response System) (+10 more)
-
-### Community 4 - "Admin Dashboard Logic"
+### Community 6 - "Admin Dashboard Logic"
 Cohesion: 0.14
 Nodes (11): currentRiders, init(), logContainer, markers, renderUI(), resetSimBtn, searchInput, showCrashNotification() (+3 more)
 
-### Community 5 - "Public Status Page Logic"
+### Community 7 - "Public Status Page Logic"
 Cohesion: 0.25
 Nodes (8): calculateDistance(), CARAGA_HOTLINES, currentRider, fetchStatus(), parseUrlFallback(), renderRegionalHotlines(), showErr(), TRANSLATIONS
 
-### Community 6 - "Rider Dashboard Logic"
+### Community 8 - "Rider Dashboard Logic"
 Cohesion: 0.25
 Nodes (10): checkOnboarding(), generateRiderQR(), initDashboard(), layout, overlay, overlayBg, saveBlackBoxData(), simBtn (+2 more)
 
-### Community 7 - "Onboarding, Settings & Supabase Client"
-Cohesion: 0.27
-Nodes (6): onboardingForm, serialInput, submitBtn, loadSettings(), validateField(), supabase
-
-### Community 8 - "PWA Manifest"
+### Community 9 - "PWA Manifest"
 Cohesion: 0.22
 Nodes (8): background_color, display, icons, name, orientation, short_name, start_url, theme_color
 
-### Community 9 - "Shared Medical Data & Access Control"
-Cohesion: 0.67
-Nodes (4): Settings Save-All Form, Helmet & Bike QR Code Section, Rider Medical Profile Form, Emergency ID / Status Page
-
-## Ambiguous Edges - Review These
-- `DSTF (Sponsoring Program, Placeholder)` → `ASNHS (Project Institution)`  [AMBIGUOUS]
-  privacy.html · relation: conceptually_related_to
+### Community 10 - "Graphify Meta Documentation"
+Cohesion: 0.46
+Nodes (7): GRAPH_REPORT.md, graphify explain command, graphify Knowledge Graph, graphify path command, graphify query command, graphify update command, graphify wiki index
 
 ## Knowledge Gaps
-- **52 isolated node(s):** `currentRiders`, `logContainer`, `markers`, `resetSimBtn`, `searchInput` (+47 more)
+- **86 isolated node(s):** `ASSETS`, `currentRiders`, `logContainer`, `markers`, `resetSimBtn` (+81 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **What is the exact relationship between `DSTF (Sponsoring Program, Placeholder)` and `ASNHS (Project Institution)`?**
-  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `Giacomo Landing & Rider Safety Registry Page (index.html)` connect `Landing Page & Manual` to `Helmet Module Hardware Design`, `Data Consent & Onboarding Flow`, `Registry Auth Form Logic`?**
-  _High betweenness centrality (0.442) - this node is a cross-community bridge._
-- **Why does `supabase` connect `Onboarding, Settings & Supabase Client` to `Registry Auth Form Logic`, `Admin Dashboard Logic`, `Public Status Page Logic`, `Rider Dashboard Logic`?**
-  _High betweenness centrality (0.192) - this node is a cross-community bridge._
-- **Why does `Giacomo Technical Manual (manual.html)` connect `Landing Page & Manual` to `Helmet Module Hardware Design`, `Data Consent & Onboarding Flow`?**
-  _High betweenness centrality (0.178) - this node is a cross-community bridge._
-- **What connects `currentRiders`, `logContainer`, `markers` to the rest of the system?**
-  _52 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Helmet Module Hardware Design` be split into smaller, more focused modules?**
-  _Cohesion score 0.08392603129445235 - nodes in this community are weakly interconnected._
-- **Should `Data Consent & Onboarding Flow` be split into smaller, more focused modules?**
-  _Cohesion score 0.10952380952380952 - nodes in this community are weakly interconnected._
+- **Why does `supabase` connect `Accessibility Controls Logic` to `Registry Auth Form Logic`, `Medical Onboarding Flow Logic`, `Admin Dashboard Logic`, `Public Status Page Logic`, `Rider Dashboard Logic`?**
+  _High betweenness centrality (0.109) - this node is a cross-community bridge._
+- **Why does `Accessibility accordion section` connect `Landing Page Accessibility Fixes` to `Settings Accordion & Case-File UI`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `js/accordion.js` connect `Settings Accordion & Case-File UI` to `Landing Page Accessibility Fixes`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Are the 6 inferred relationships involving `Accessibility accordion section` (e.g. with `rem-based mobile caption floor fix (index)` and `SHOW/HIDE reserved-width fix`) actually correct?**
+  _`Accessibility accordion section` has 6 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `ASSETS`, `currentRiders`, `logContainer` to the rest of the system?**
+  _86 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Landing Page Accessibility Fixes` be split into smaller, more focused modules?**
+  _Cohesion score 0.08866995073891626 - nodes in this community are weakly interconnected._
+- **Should `Registry Auth Form Logic` be split into smaller, more focused modules?**
+  _Cohesion score 0.09359605911330049 - nodes in this community are weakly interconnected._
