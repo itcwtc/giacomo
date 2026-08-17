@@ -31,6 +31,48 @@
         "source_file": "dashboard/admin.html"
       },
       {
+        "id": "interruptible_alert_interface_pattern",
+        "label": "Interruptible Crash-Alert Interface Pattern",
+        "nodes": [
+          "index_abort_button",
+          "index_piezo_buzzer",
+          "index_ws2812b_led",
+          "manual_enclosure_rationale"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "manual.html"
+      },
+      {
+        "id": "bystander_qr_lookup_flow",
+        "label": "Bystander QR Emergency-Lookup Flow",
+        "nodes": [
+          "index_qr_scan_demo",
+          "privacy_qr_triage_view",
+          "privacy_row_level_access_control",
+          "privacy_medical_information"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "privacy.html"
+      },
+      {
+        "id": "crash_detect_alert_hardware_chain",
+        "label": "Crash-Detection-to-Alert Hardware Chain",
+        "nodes": [
+          "manual_lsm6dsox",
+          "manual_esp32_s3_wroom_1",
+          "manual_sim_a7670c",
+          "manual_ip5306"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "manual.html"
+      },
+      {
         "id": "medical_profile_data_model",
         "label": "Shared Medical Profile Data Model (Settings, Onboarding, Public Status)",
         "nodes": [
@@ -47,16 +89,88 @@
   },
   "nodes": [
     {
+      "label": "clearError()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L16",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_clearerror",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "clearerror()"
+    },
+    {
+      "label": "handleRegister()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L45",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_handleregister",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "handleregister()"
+    },
+    {
+      "label": "handleSignIn()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L90",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_handlesignin",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "handlesignin()"
+    },
+    {
+      "label": "redirectByRole()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L106",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_redirectbyrole",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "redirectbyrole()"
+    },
+    {
+      "label": "setBusy()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_setbusy",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "setbusy()"
+    },
+    {
+      "label": "showError()",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L10",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_indexauth_showerror",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "showerror()"
+    },
+    {
       "label": "highlightMatches()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
       "source_location": "L205",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_highlightmatches",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "highlightmatches()"
+      "norm_label": "highlightmatches()",
+      "id": "js_admindashboard_highlightmatches"
     },
     {
       "label": "init()",
@@ -65,10 +179,10 @@
       "source_location": "L158",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_init",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "init()"
+      "norm_label": "init()",
+      "id": "js_admindashboard_init"
     },
     {
       "label": "loadHistory()",
@@ -77,10 +191,10 @@
       "source_location": "L144",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_loadhistory",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "loadhistory()"
+      "norm_label": "loadhistory()",
+      "id": "js_admindashboard_loadhistory"
     },
     {
       "label": "renderUI()",
@@ -89,10 +203,10 @@
       "source_location": "L105",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_renderui",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "renderui()"
+      "norm_label": "renderui()",
+      "id": "js_admindashboard_renderui"
     },
     {
       "label": "resetAllCrashes()",
@@ -101,10 +215,10 @@
       "source_location": "L11",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_resetallcrashes",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetallcrashes()"
+      "norm_label": "resetallcrashes()",
+      "id": "js_admindashboard_resetallcrashes"
     },
     {
       "label": "resetSimulationData()",
@@ -113,10 +227,10 @@
       "source_location": "L19",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_resetsimulationdata",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetsimulationdata()"
+      "norm_label": "resetsimulationdata()",
+      "id": "js_admindashboard_resetsimulationdata"
     },
     {
       "label": "showCrashNotification()",
@@ -125,58 +239,10 @@
       "source_location": "L26",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_admindashboard_showcrashnotification",
-      "community": 0,
+      "community": 4,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "showcrashnotification()"
-    },
-    {
-      "label": "redirectByRole()",
-      "file_type": "code",
-      "source_file": "js/indexAuth.js",
-      "source_location": "L27",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_indexauth_redirectbyrole",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "redirectbyrole()"
-    },
-    {
-      "label": "validateField()",
-      "file_type": "code",
-      "source_file": "js/medical-onboarding.js",
-      "source_location": "L12",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_medical_onboarding_validatefield",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "validatefield()"
-    },
-    {
-      "label": "loadSettings()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L19",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_settings_loadsettings",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "loadsettings()"
-    },
-    {
-      "label": "validateField()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L6",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_settings_validatefield",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "validatefield()"
+      "norm_label": "showcrashnotification()",
+      "id": "js_admindashboard_showcrashnotification"
     },
     {
       "label": "applyLanguage()",
@@ -185,10 +251,10 @@
       "source_location": "L223",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_applylanguage",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "applylanguage()"
+      "norm_label": "applylanguage()",
+      "id": "js_status_applylanguage"
     },
     {
       "label": "calculateDistance()",
@@ -197,10 +263,10 @@
       "source_location": "L59",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_calculatedistance",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "calculatedistance()"
+      "norm_label": "calculatedistance()",
+      "id": "js_status_calculatedistance"
     },
     {
       "label": "fetchStatus()",
@@ -209,10 +275,10 @@
       "source_location": "L140",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_fetchstatus",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "fetchstatus()"
+      "norm_label": "fetchstatus()",
+      "id": "js_status_fetchstatus"
     },
     {
       "label": "parseUrlFallback()",
@@ -221,10 +287,10 @@
       "source_location": "L133",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_parseurlfallback",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "parseurlfallback()"
+      "norm_label": "parseurlfallback()",
+      "id": "js_status_parseurlfallback"
     },
     {
       "label": "renderRegionalHotlines()",
@@ -233,10 +299,10 @@
       "source_location": "L72",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_renderregionalhotlines",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "renderregionalhotlines()"
+      "norm_label": "renderregionalhotlines()",
+      "id": "js_status_renderregionalhotlines"
     },
     {
       "label": "showErr()",
@@ -245,10 +311,10 @@
       "source_location": "L217",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_showerr",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "showerr()"
+      "norm_label": "showerr()",
+      "id": "js_status_showerr"
     },
     {
       "label": "toggleStrobe()",
@@ -257,10 +323,10 @@
       "source_location": "L271",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_status_togglestrobe",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "togglestrobe()"
+      "norm_label": "togglestrobe()",
+      "id": "js_status_togglestrobe"
     },
     {
       "label": "checkOnboarding()",
@@ -269,10 +335,10 @@
       "source_location": "L11",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_userdashboard_checkonboarding",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "checkonboarding()"
+      "norm_label": "checkonboarding()",
+      "id": "js_userdashboard_checkonboarding"
     },
     {
       "label": "generateRiderQR()",
@@ -281,10 +347,10 @@
       "source_location": "L243",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_userdashboard_generateriderqr",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "generateriderqr()"
+      "norm_label": "generateriderqr()",
+      "id": "js_userdashboard_generateriderqr"
     },
     {
       "label": "initDashboard()",
@@ -293,10 +359,10 @@
       "source_location": "L55",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_userdashboard_initdashboard",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "initdashboard()"
+      "norm_label": "initdashboard()",
+      "id": "js_userdashboard_initdashboard"
     },
     {
       "label": "saveBlackBoxData()",
@@ -305,10 +371,10 @@
       "source_location": "L221",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_userdashboard_saveblackboxdata",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "saveblackboxdata()"
+      "norm_label": "saveblackboxdata()",
+      "id": "js_userdashboard_saveblackboxdata"
     },
     {
       "label": "startTelemetry()",
@@ -317,109 +383,68 @@
       "source_location": "L155",
       "_callable": true,
       "_origin": "ast",
-      "id": "js_userdashboard_starttelemetry",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "starttelemetry()"
+      "norm_label": "starttelemetry()",
+      "id": "js_userdashboard_starttelemetry"
     },
     {
-      "label": "adminDashboard.js",
+      "label": "validateField()",
       "file_type": "code",
-      "source_file": "js/adminDashboard.js",
+      "source_file": "js/medical-onboarding.js",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "validatefield()",
+      "id": "js_medical_onboarding_validatefield"
+    },
+    {
+      "label": "loadSettings()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L19",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "loadsettings()",
+      "id": "js_settings_loadsettings"
+    },
+    {
+      "label": "validateField()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "validatefield()",
+      "id": "js_settings_validatefield"
+    },
+    {
+      "label": "sw.js",
+      "file_type": "code",
+      "source_file": "js/sw.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "js_admindashboard",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "admindashboard.js"
+      "community": 10,
+      "community_name": "Service Worker Caching",
+      "norm_label": "sw.js",
+      "id": "js_sw"
     },
     {
-      "label": "currentRiders",
+      "label": "ASSETS",
       "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L9",
+      "source_file": "js/sw.js",
+      "source_location": "L2",
       "_origin": "ast",
-      "id": "js_admindashboard_currentriders",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "currentriders"
-    },
-    {
-      "label": "logContainer",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "js_admindashboard_logcontainer",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "logcontainer"
-    },
-    {
-      "label": "markers",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "js_admindashboard_markers",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "markers"
-    },
-    {
-      "label": "resetSimBtn",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L197",
-      "_origin": "ast",
-      "id": "js_admindashboard_resetsimbtn",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetsimbtn"
-    },
-    {
-      "label": "searchInput",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "js_admindashboard_searchinput",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "searchinput"
-    },
-    {
-      "label": "statAlerts",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "js_admindashboard_statalerts",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "statalerts"
-    },
-    {
-      "label": "statRiders",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "js_admindashboard_statriders",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "statriders"
-    },
-    {
-      "label": "userContainer",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "js_admindashboard_usercontainer",
-      "community": 0,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "usercontainer"
+      "community": 10,
+      "community_name": "Service Worker Caching",
+      "norm_label": "assets",
+      "id": "js_sw_assets"
     },
     {
       "label": "indexAuth.js",
@@ -428,119 +453,174 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "js_indexauth",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
       "norm_label": "indexauth.js"
     },
     {
-      "label": "loginForm",
+      "label": "emailInput",
       "file_type": "code",
       "source_file": "js/indexAuth.js",
-      "source_location": "L3",
+      "source_location": "L6",
       "_origin": "ast",
-      "id": "js_indexauth_loginform",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "loginform"
+      "id": "js_indexauth_emailinput",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "emailinput"
     },
     {
-      "label": "medical-onboarding.js",
+      "label": "errorBox",
       "file_type": "code",
-      "source_file": "js/medical-onboarding.js",
-      "source_location": "L1",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L8",
       "_origin": "ast",
-      "id": "js_medical_onboarding",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "medical-onboarding.js"
+      "id": "js_indexauth_errorbox",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "errorbox"
     },
     {
-      "label": "onboardingForm",
+      "label": "nameInput",
       "file_type": "code",
-      "source_file": "js/medical-onboarding.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "js_medical_onboarding_onboardingform",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "onboardingform"
-    },
-    {
-      "label": "serialInput",
-      "file_type": "code",
-      "source_file": "js/medical-onboarding.js",
+      "source_file": "js/indexAuth.js",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "js_medical_onboarding_serialinput",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "serialinput"
+      "id": "js_indexauth_nameinput",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "nameinput"
+    },
+    {
+      "label": "passInput",
+      "file_type": "code",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "js_indexauth_passinput",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "passinput"
     },
     {
       "label": "submitBtn",
       "file_type": "code",
-      "source_file": "js/medical-onboarding.js",
-      "source_location": "L4",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L3",
       "_origin": "ast",
-      "id": "js_medical_onboarding_submitbtn",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
+      "id": "js_indexauth_submitbtn",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
       "norm_label": "submitbtn"
     },
     {
-      "label": "register.js",
+      "label": "tabUp",
       "file_type": "code",
-      "source_file": "js/register.js",
-      "source_location": "L1",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L4",
       "_origin": "ast",
-      "id": "js_register",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "register.js"
+      "id": "js_indexauth_tabup",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "tabup"
     },
     {
-      "label": "registerForm",
+      "label": "adminDashboard.js",
       "file_type": "code",
-      "source_file": "js/register.js",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "admindashboard.js",
+      "id": "js_admindashboard"
+    },
+    {
+      "label": "currentRiders",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "currentriders",
+      "id": "js_admindashboard_currentriders"
+    },
+    {
+      "label": "logContainer",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "logcontainer",
+      "id": "js_admindashboard_logcontainer"
+    },
+    {
+      "label": "markers",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "markers",
+      "id": "js_admindashboard_markers"
+    },
+    {
+      "label": "resetSimBtn",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L197",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "resetsimbtn",
+      "id": "js_admindashboard_resetsimbtn"
+    },
+    {
+      "label": "searchInput",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "searchinput",
+      "id": "js_admindashboard_searchinput"
+    },
+    {
+      "label": "statAlerts",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "statalerts",
+      "id": "js_admindashboard_statalerts"
+    },
+    {
+      "label": "statRiders",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "statriders",
+      "id": "js_admindashboard_statriders"
+    },
+    {
+      "label": "userContainer",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "js_register_registerform",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "registerform"
-    },
-    {
-      "label": "settings.js",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "js_settings",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "settings.js"
-    },
-    {
-      "label": "supabaseClient.js",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "js_supabaseclient",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "supabaseclient.js"
-    },
-    {
-      "label": "supabase",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "js_supabaseclient_supabase",
-      "community": 1,
-      "community_name": "Auth & Onboarding Flow",
-      "norm_label": "supabase"
+      "community": 4,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "usercontainer",
+      "id": "js_admindashboard_usercontainer"
     },
     {
       "label": "status.js",
@@ -548,10 +628,10 @@
       "source_file": "js/status.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "js_status",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "status.js"
+      "norm_label": "status.js",
+      "id": "js_status"
     },
     {
       "label": "CARAGA_HOTLINES",
@@ -559,10 +639,10 @@
       "source_file": "js/status.js",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "js_status_caraga_hotlines",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "caraga_hotlines"
+      "norm_label": "caraga_hotlines",
+      "id": "js_status_caraga_hotlines"
     },
     {
       "label": "currentRider",
@@ -570,10 +650,10 @@
       "source_file": "js/status.js",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "js_status_currentrider",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "currentrider"
+      "norm_label": "currentrider",
+      "id": "js_status_currentrider"
     },
     {
       "label": "TRANSLATIONS",
@@ -581,10 +661,10 @@
       "source_file": "js/status.js",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "js_status_translations",
-      "community": 2,
+      "community": 5,
       "community_name": "Public Status Page Logic",
-      "norm_label": "translations"
+      "norm_label": "translations",
+      "id": "js_status_translations"
     },
     {
       "label": "userDashboard.js",
@@ -592,10 +672,10 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "js_userdashboard",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "userdashboard.js"
+      "norm_label": "userdashboard.js",
+      "id": "js_userdashboard"
     },
     {
       "label": "layout",
@@ -603,10 +683,10 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "js_userdashboard_layout",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "layout"
+      "norm_label": "layout",
+      "id": "js_userdashboard_layout"
     },
     {
       "label": "overlay",
@@ -614,10 +694,10 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "js_userdashboard_overlay",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "overlay"
+      "norm_label": "overlay",
+      "id": "js_userdashboard_overlay"
     },
     {
       "label": "overlayBg",
@@ -625,10 +705,10 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "js_userdashboard_overlaybg",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "overlaybg"
+      "norm_label": "overlaybg",
+      "id": "js_userdashboard_overlaybg"
     },
     {
       "label": "simBtn",
@@ -636,10 +716,10 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "js_userdashboard_simbtn",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "simbtn"
+      "norm_label": "simbtn",
+      "id": "js_userdashboard_simbtn"
     },
     {
       "label": "timerDisplay",
@@ -647,10 +727,87 @@
       "source_file": "js/userDashboard.js",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "js_userdashboard_timerdisplay",
-      "community": 3,
+      "community": 6,
       "community_name": "Rider Dashboard Logic",
-      "norm_label": "timerdisplay"
+      "norm_label": "timerdisplay",
+      "id": "js_userdashboard_timerdisplay"
+    },
+    {
+      "label": "medical-onboarding.js",
+      "file_type": "code",
+      "source_file": "js/medical-onboarding.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "medical-onboarding.js",
+      "id": "js_medical_onboarding"
+    },
+    {
+      "label": "onboardingForm",
+      "file_type": "code",
+      "source_file": "js/medical-onboarding.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "onboardingform",
+      "id": "js_medical_onboarding_onboardingform"
+    },
+    {
+      "label": "serialInput",
+      "file_type": "code",
+      "source_file": "js/medical-onboarding.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "serialinput",
+      "id": "js_medical_onboarding_serialinput"
+    },
+    {
+      "label": "submitBtn",
+      "file_type": "code",
+      "source_file": "js/medical-onboarding.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "submitbtn",
+      "id": "js_medical_onboarding_submitbtn"
+    },
+    {
+      "label": "settings.js",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "settings.js",
+      "id": "js_settings"
+    },
+    {
+      "label": "supabaseClient.js",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "supabaseclient.js",
+      "id": "js_supabaseclient"
+    },
+    {
+      "label": "supabase",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Onboarding, Settings & Supabase Client",
+      "norm_label": "supabase",
+      "id": "js_supabaseclient_supabase"
     },
     {
       "label": "manifest.json",
@@ -658,10 +815,10 @@
       "source_file": "manifest.json",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "manifest",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "manifest.json"
+      "norm_label": "manifest.json",
+      "id": "manifest"
     },
     {
       "label": "background_color",
@@ -669,10 +826,10 @@
       "source_file": "manifest.json",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "manifest_background_color",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "background_color"
+      "norm_label": "background_color",
+      "id": "manifest_background_color"
     },
     {
       "label": "display",
@@ -680,10 +837,10 @@
       "source_file": "manifest.json",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "manifest_display",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "display"
+      "norm_label": "display",
+      "id": "manifest_display"
     },
     {
       "label": "icons",
@@ -691,10 +848,10 @@
       "source_file": "manifest.json",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "manifest_icons",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "icons"
+      "norm_label": "icons",
+      "id": "manifest_icons"
     },
     {
       "label": "name",
@@ -702,10 +859,10 @@
       "source_file": "manifest.json",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "manifest_name",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "name"
+      "norm_label": "name",
+      "id": "manifest_name"
     },
     {
       "label": "orientation",
@@ -713,10 +870,10 @@
       "source_file": "manifest.json",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "manifest_orientation",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "orientation"
+      "norm_label": "orientation",
+      "id": "manifest_orientation"
     },
     {
       "label": "short_name",
@@ -724,10 +881,10 @@
       "source_file": "manifest.json",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "manifest_short_name",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "short_name"
+      "norm_label": "short_name",
+      "id": "manifest_short_name"
     },
     {
       "label": "start_url",
@@ -735,10 +892,10 @@
       "source_file": "manifest.json",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "manifest_start_url",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "start_url"
+      "norm_label": "start_url",
+      "id": "manifest_start_url"
     },
     {
       "label": "theme_color",
@@ -746,32 +903,10 @@
       "source_file": "manifest.json",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "manifest_theme_color",
-      "community": 4,
+      "community": 8,
       "community_name": "PWA Manifest",
-      "norm_label": "theme_color"
-    },
-    {
-      "label": "sw.js",
-      "file_type": "code",
-      "source_file": "js/sw.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "js_sw",
-      "community": 9,
-      "community_name": "Service Worker Caching",
-      "norm_label": "sw.js"
-    },
-    {
-      "label": "ASSETS",
-      "file_type": "code",
-      "source_file": "js/sw.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "js_sw_assets",
-      "community": 9,
-      "community_name": "Service Worker Caching",
-      "norm_label": "assets"
+      "norm_label": "theme_color",
+      "id": "manifest_theme_color"
     },
     {
       "label": "Medical Onboarding Page",
@@ -782,24 +917,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_page",
-      "community": 10,
-      "community_name": "Consent & Onboarding Docs",
-      "norm_label": "medical onboarding page"
-    },
-    {
-      "label": "Data Collection & Consent Statement",
-      "file_type": "document",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_page",
-      "community": 10,
-      "community_name": "Consent & Onboarding Docs",
-      "norm_label": "data collection & consent statement"
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "medical onboarding page",
+      "_origin": "semantic",
+      "id": "medical_onboarding_page"
     },
     {
       "label": "Caraga Regional Emergency Hotlines List",
@@ -810,10 +932,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "status_regional_hotlines",
       "community": 11,
       "community_name": "Emergency Contact Sharing",
-      "norm_label": "caraga regional emergency hotlines list"
+      "norm_label": "caraga regional emergency hotlines list",
+      "_origin": "semantic",
+      "id": "status_regional_hotlines"
     },
     {
       "label": "Share GPS to Rescuers Feature",
@@ -824,10 +947,26 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "status_share_location",
       "community": 11,
       "community_name": "Emergency Contact Sharing",
-      "norm_label": "share gps to rescuers feature"
+      "norm_label": "share gps to rescuers feature",
+      "_origin": "semantic",
+      "id": "status_share_location"
+    },
+    {
+      "label": "Admin Command Terminal Dashboard",
+      "file_type": "code",
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 12,
+      "community_name": "Admin Visibility Scope",
+      "norm_label": "admin command terminal dashboard",
+      "_origin": "semantic",
+      "id": "dashboard_admin_page"
     },
     {
       "label": "Simulate Crash Button",
@@ -838,180 +977,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_simulatecrash_button",
-      "community": 12,
-      "community_name": "Crash Simulation",
-      "norm_label": "simulate crash button"
-    },
-    {
-      "label": "Download Emergency Contacts VCard",
-      "file_type": "code",
-      "source_file": "status.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "status_vcard_download",
       "community": 13,
-      "community_name": "VCard Export",
-      "norm_label": "download emergency contacts vcard"
-    },
-    {
-      "label": "checkSecurity() Admin Role Gate",
-      "file_type": "code",
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_admin_checksecurity",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "checksecurity() admin role gate"
-    },
-    {
-      "label": "Tactical Settings Page",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_settings_page",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "tactical settings page"
-    },
-    {
-      "label": "Rider Tactical Terminal Dashboard",
-      "file_type": "code",
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_user_page",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "rider tactical terminal dashboard"
-    },
-    {
-      "label": "Login Page (index.html)",
-      "file_type": "code",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_page",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "login page (index.html)"
-    },
-    {
-      "label": "Registration Page",
-      "file_type": "code",
-      "source_file": "register.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "register_page",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "registration page"
-    },
-    {
-      "label": "Manual Account Deletion Process",
-      "file_type": "rationale",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "Deletion is currently a manual process handled by the research team rather than a self-service control, called out as a known limitation to be addressed later \u2014 a deliberate scope cut for the prototype stage rather than an oversight.",
-      "id": "privacy_data_deletion_process",
-      "community": 5,
-      "community_name": "Auth & Page Navigation",
-      "norm_label": "manual account deletion process"
-    },
-    {
-      "label": "Settings Save-All Form",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_settings_saveallform",
-      "community": 6,
-      "community_name": "Shared Medical Data & Access Control",
-      "norm_label": "settings save-all form"
-    },
-    {
-      "label": "Helmet & Bike QR Code Section",
-      "file_type": "code",
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_user_qrcode_section",
-      "community": 6,
-      "community_name": "Shared Medical Data & Access Control",
-      "norm_label": "helmet & bike qr code section"
-    },
-    {
-      "label": "Rider Medical Profile Form",
-      "file_type": "code",
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "medical_onboarding_profileform",
-      "community": 6,
-      "community_name": "Shared Medical Data & Access Control",
-      "norm_label": "rider medical profile form"
-    },
-    {
-      "label": "Emergency ID / Status Page",
-      "file_type": "code",
-      "source_file": "status.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "status_page",
-      "community": 6,
-      "community_name": "Shared Medical Data & Access Control",
-      "norm_label": "emergency id / status page"
-    },
-    {
-      "label": "Row-Level Access Control / Restricted Public Lookup Function",
-      "file_type": "rationale",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "rationale": "The database enforces access control at the row level rather than relying solely on the app UI, and the public emergency QR lookup goes through a dedicated restricted function instead of open database access, so a stranger scanning a helmet only ever sees a minimal, deliberately limited slice of data.",
-      "id": "privacy_row_level_access_control",
-      "community": 6,
-      "community_name": "Shared Medical Data & Access Control",
-      "norm_label": "row-level access control / restricted public lookup function"
+      "community_name": "Crash Simulation",
+      "norm_label": "simulate crash button",
+      "_origin": "semantic",
+      "id": "dashboard_user_simulatecrash_button"
     },
     {
       "label": "First-Aid Guidance Drawer",
@@ -1022,10 +992,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "status_firstaid_guidance",
-      "community": 7,
-      "community_name": "Emergency Triage Concept",
-      "norm_label": "first-aid guidance drawer"
+      "community": 14,
+      "community_name": "First-Aid Guidance",
+      "norm_label": "first-aid guidance drawer",
+      "_origin": "semantic",
+      "id": "status_firstaid_guidance"
     },
     {
       "label": "Bystander Triage Quick Selector",
@@ -1036,10 +1007,826 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "status_triage_selector",
-      "community": 7,
-      "community_name": "Emergency Triage Concept",
-      "norm_label": "bystander triage quick selector"
+      "community": 15,
+      "community_name": "Bystander Triage Selector",
+      "norm_label": "bystander triage quick selector",
+      "_origin": "semantic",
+      "id": "status_triage_selector"
+    },
+    {
+      "label": "Download Emergency Contacts VCard",
+      "file_type": "code",
+      "source_file": "status.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 16,
+      "community_name": "VCard Export",
+      "norm_label": "download emergency contacts vcard",
+      "_origin": "semantic",
+      "id": "status_vcard_download"
+    },
+    {
+      "label": "checkSecurity() Admin Role Gate",
+      "file_type": "code",
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "checksecurity() admin role gate",
+      "_origin": "semantic",
+      "id": "dashboard_admin_checksecurity"
+    },
+    {
+      "label": "Tactical Settings Page",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "tactical settings page",
+      "_origin": "semantic",
+      "id": "dashboard_settings_page"
+    },
+    {
+      "label": "Rider Tactical Terminal Dashboard",
+      "file_type": "code",
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "rider tactical terminal dashboard",
+      "_origin": "semantic",
+      "id": "dashboard_user_page"
+    },
+    {
+      "label": "Settings Save-All Form",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 9,
+      "community_name": "Shared Medical Data & Access Control",
+      "norm_label": "settings save-all form",
+      "_origin": "semantic",
+      "id": "dashboard_settings_saveallform"
+    },
+    {
+      "label": "Helmet & Bike QR Code Section",
+      "file_type": "code",
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 9,
+      "community_name": "Shared Medical Data & Access Control",
+      "norm_label": "helmet & bike qr code section",
+      "_origin": "semantic",
+      "id": "dashboard_user_qrcode_section"
+    },
+    {
+      "label": "Rider Medical Profile Form",
+      "file_type": "code",
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 9,
+      "community_name": "Shared Medical Data & Access Control",
+      "norm_label": "rider medical profile form",
+      "_origin": "semantic",
+      "id": "medical_onboarding_profileform"
+    },
+    {
+      "label": "Emergency ID / Status Page",
+      "file_type": "code",
+      "source_file": "status.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 9,
+      "community_name": "Shared Medical Data & Access Control",
+      "norm_label": "emergency id / status page",
+      "_origin": "semantic",
+      "id": "status_page"
+    },
+    {
+      "label": "Sealed Abort Button",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_abort_button",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "sealed abort button"
+    },
+    {
+      "label": "Exploded 5-Layer Module Assembly Diagram",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_assembly_exploded_diagram",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "exploded 5-layer module assembly diagram"
+    },
+    {
+      "label": "ESP32-S3 (Main MCU)",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_esp32_s3",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "esp32-s3 (main mcu)"
+    },
+    {
+      "label": "IP5306 Power Management IC",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_ip5306",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ip5306 power management ic"
+    },
+    {
+      "label": "IP67 Gasket Seam / Weather Seal",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_ip67_gasket",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ip67 gasket seam / weather seal"
+    },
+    {
+      "label": "3.7V LiPo Battery",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_lipo_battery",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "3.7v lipo battery"
+    },
+    {
+      "label": "LSM6DSOX IMU",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_lsm6dsox",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "lsm6dsox imu"
+    },
+    {
+      "label": "MicroSD Black-Box Storage",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_microsd",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "microsd black-box storage"
+    },
+    {
+      "label": "Piezo Buzzer",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_piezo_buzzer",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "piezo buzzer"
+    },
+    {
+      "label": "Quectel L76K GNSS Receiver",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_quectel_l76k",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "quectel l76k gnss receiver"
+    },
+    {
+      "label": "SIM A7670C Cellular Module",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_sim_a7670c",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "sim a7670c cellular module"
+    },
+    {
+      "label": "WS2812B Status LED",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_ws2812b_led",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ws2812b status led"
+    },
+    {
+      "label": "Waterproof Momentary Push Button (Manual Abort)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_abort_button",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "waterproof momentary push button (manual abort)"
+    },
+    {
+      "label": "U.FL/SMA Antennas (LTE + GNSS)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_antennas",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "u.fl/sma antennas (lte + gnss)"
+    },
+    {
+      "label": "ASA/PETG 3D-Printed Enclosure",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_enclosure",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "asa/petg 3d-printed enclosure"
+    },
+    {
+      "label": "ESP32-S3-WROOM-1 (Main MCU)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_esp32_s3_wroom_1",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "esp32-s3-wroom-1 (main mcu)"
+    },
+    {
+      "label": "Silicone Gaskets / O-Rings (IP67 Sealing)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_gaskets",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "silicone gaskets / o-rings (ip67 sealing)"
+    },
+    {
+      "label": "INMP441 I2S MEMS Microphone",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_inmp441",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "inmp441 i2s mems microphone"
+    },
+    {
+      "label": "IP5306 (PMIC)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_ip5306",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ip5306 (pmic)"
+    },
+    {
+      "label": "AMS1117-3.3 / AP2112K-3.3 (LDO Voltage Regulators)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_ldo_regulators",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ams1117-3.3 / ap2112k-3.3 (ldo voltage regulators)"
+    },
+    {
+      "label": "3.7V LiPo Battery (Power Cell)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_lipo_battery",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "3.7v lipo battery (power cell)"
+    },
+    {
+      "label": "ST LSM6DSOX (6-Axis IMU)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_lsm6dsox",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "st lsm6dsox (6-axis imu)"
+    },
+    {
+      "label": "MAX98357A I2S Class-D Amplifier",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_max98357a",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "max98357a i2s class-d amplifier"
+    },
+    {
+      "label": "4-Layer Custom PCB",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_pcb",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "4-layer custom pcb"
+    },
+    {
+      "label": "Piezo Buzzer (Alert)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_piezo_buzzer",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "piezo buzzer (alert)"
+    },
+    {
+      "label": "SIM A7670C (4G LTE Cat-1 Module)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_sim_a7670c",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "sim a7670c (4g lte cat-1 module)"
+    },
+    {
+      "label": "WS2812B RGB LED (Status Indicator)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_ws2812b_led",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "ws2812b rgb led (status indicator)"
+    },
+    {
+      "label": "Bill of Materials",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_bom_section",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "bill of materials"
+    },
+    {
+      "label": "Engineering Rationale, by Subsystem",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_rationale_section",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "engineering rationale, by subsystem"
+    },
+    {
+      "label": "Interruptible Crash-Alert Interface Design",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "A crash alert that can't be quickly cancelled by a conscious rider is a system that will eventually be ignored; the sealed abort button, buzzer and status LED make the countdown legible and interruptible, usable with a glove on.",
+      "id": "index_interruptible_alert_design",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "interruptible crash-alert interface design"
+    },
+    {
+      "label": "Phone-Independent Alerting (No Phone in the Loop)",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The ESP32-S3 runs the entire device independently, with no phone in the loop, so the alert path never depends on the rider's phone being present, charged, or intact.",
+      "id": "index_no_phone_dependency",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "phone-independent alerting (no phone in the loop)"
+    },
+    {
+      "label": "Power Continuity Through the Transmission Spike",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Transmitting over the mobile network draws a hard current spike the instant it fires; this stage exists so the moment of the alert is never the moment the device gives out.",
+      "id": "index_power_spike_continuity",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "power continuity through the transmission spike"
+    },
+    {
+      "label": "Weatherproofing as a Precondition, Not a Feature",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Weatherproofing isn't a feature, it's a precondition \u2014 a device that fails in the rain fails on exactly the kind of day a rider is most likely to need it.",
+      "id": "index_weatherproofing_precondition",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "weatherproofing as a precondition, not a feature"
+    },
+    {
+      "label": "Phone-Independent Cellular Alerting",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The alert path deliberately does not depend on a paired phone; an on-device cellular modem means the crash notification goes out even if the rider's phone is destroyed, dead, or simply not on them.",
+      "id": "manual_connectivity_rationale",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "phone-independent cellular alerting"
+    },
+    {
+      "label": "Interruptible Crash-Alert Interface Design",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "A crash alert a conscious rider can't quickly cancel is a system people learn to distrust and eventually disable; the sealed abort button, audible buzzer and status LED make the countdown legible and interruptible, usable with a glove on, in the rain, by someone who may be disoriented.",
+      "id": "manual_enclosure_rationale",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "interruptible crash-alert interface design"
+    },
+    {
+      "label": "Multi-Constellation GNSS Positioning",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Multi-constellation GNSS (GPS/GLONASS/Galileo/BeiDou) trades a small amount of extra power draw for a materially faster, more reliable fix under tree cover, between buildings, or in road cuts and overpasses common on motorcycle routes.",
+      "id": "manual_positioning_rationale",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "multi-constellation gnss positioning"
+    },
+    {
+      "label": "PMIC Transmission-Spike Protection",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The power management IC keeps the board's supply stable through the sharp current spike the instant the cellular modem keys up, so the exact moment the device needs to send its alert is never the moment it browns out.",
+      "id": "manual_power_rationale",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "pmic transmission-spike protection"
+    },
+    {
+      "label": "On-Chip MLC Crash Classification",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Crash detection runs on the IMU's own machine-learning core (MLC) rather than in ESP32 application code, for lower latency (no round trip through the main CPU/scheduler) and lower power (the ESP32 stays low-activity while the IMU watches motion continuously, waking the main processor only when a likely crash is flagged).",
+      "id": "manual_sensing_rationale",
+      "community": 0,
+      "community_name": "Helmet Module Hardware Design",
+      "norm_label": "on-chip mlc crash classification"
+    },
+    {
+      "label": "What Happens in a Crash (4-Step Sequence)",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_crash_sequence",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "what happens in a crash (4-step sequence)"
+    },
+    {
+      "label": "Bystander QR-Scan Emergency Lookup Demo",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_qr_scan_demo",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "bystander qr-scan emergency lookup demo"
+    },
+    {
+      "label": "MicroSD Module (Black-Box Storage)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_microsd",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "microsd module (black-box storage)"
+    },
+    {
+      "label": "Account Information (Name & Login Credentials)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_account_information",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "account information (name & login credentials)"
+    },
+    {
+      "label": "ASNHS (Project Institution)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_asnhs",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "asnhs (project institution)"
+    },
+    {
+      "label": "Contact / Deletion Requests (Alcheon Velmonte)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_contact",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "contact / deletion requests (alcheon velmonte)"
+    },
+    {
+      "label": "Device Information (Helmet Serial Number Linkage)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_device_information",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "device information (helmet serial number linkage)"
+    },
+    {
+      "label": "DSTF (Sponsoring Program, Placeholder)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_dstf",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "dstf (sponsoring program, placeholder)"
+    },
+    {
+      "label": "Incident Records (Crash Time, Impact Force, Location)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_incident_records",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "incident records (crash time, impact force, location)"
+    },
+    {
+      "label": "Location & Motion Data (Dashboard-Session GPS)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_location_motion_data",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "location & motion data (dashboard-session gps)"
+    },
+    {
+      "label": "Medical Information (Blood Type, Allergies, Conditions, Medications, Donor Status, Contacts)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_medical_information",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "medical information (blood type, allergies, conditions, medications, donor status, contacts)"
     },
     {
       "label": "Minimal Emergency-Triage View via QR Scan",
@@ -1051,23 +1838,81 @@
       "author": null,
       "contributor": null,
       "id": "privacy_qr_triage_view",
-      "community": 7,
-      "community_name": "Emergency Triage Concept",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
       "norm_label": "minimal emergency-triage view via qr scan"
     },
     {
-      "label": "Admin Command Terminal Dashboard",
-      "file_type": "code",
-      "source_file": "dashboard/admin.html",
+      "label": "Consent (Registration Confirmation)",
+      "file_type": "document",
+      "source_file": "privacy.html",
       "source_location": null,
       "source_url": null,
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_page",
-      "community": 8,
-      "community_name": "Admin Visibility Scope",
-      "norm_label": "admin command terminal dashboard"
+      "id": "privacy_consent_section",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "consent (registration confirmation)"
+    },
+    {
+      "label": "If You Are Under 18 (Guardian Awareness)",
+      "file_type": "document",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_minor_provision",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "if you are under 18 (guardian awareness)"
+    },
+    {
+      "label": "Data Collection & Consent Statement",
+      "file_type": "document",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "privacy_page",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "data collection & consent statement"
+    },
+    {
+      "label": "No App, No Login, No Excess (Bystander Lookup Design)",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The bystander lookup opens in any phone's camera or browser with no app, no login and no relationship to the rider required, showing only triage-critical fields so the rest of the record stays private.",
+      "id": "index_no_app_no_login_design",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "no app, no login, no excess (bystander lookup design)"
+    },
+    {
+      "label": "Local Black-Box Impact Logging",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The seconds immediately before and after an impact are logged locally regardless of whether the cellular alert succeeds, so a recoverable record survives even if network conditions fail exactly when they're needed most.",
+      "id": "manual_local_record_rationale",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "local black-box impact logging"
     },
     {
       "label": "Administrator Data Visibility Scope",
@@ -1078,11 +1923,335 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "rationale": "Admins can see device status, live location while a rider's dashboard is open, and crash flags for monitoring/demo purposes, but intentionally have no separate view into medical details beyond what the dashboard itself needs \u2014 scoping admin visibility to operational necessity rather than full medical access.",
+      "rationale": "Project administrators (the research team) can see device status, live location while a rider's dashboard is open, and whether a crash has been flagged, for monitoring and demonstration purposes \u2014 but do not have a separate view into medical details beyond what's needed to operate the dashboard.",
       "id": "privacy_admin_visibility_scope",
-      "community": 8,
-      "community_name": "Admin Visibility Scope",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
       "norm_label": "administrator data visibility scope"
+    },
+    {
+      "label": "Manual Account Deletion Process",
+      "file_type": "rationale",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Deletion of an account and all associated data is currently a manual process handled by the research team rather than a self-service button \u2014 a known limitation the project intends to address.",
+      "id": "privacy_data_deletion_process",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "manual account deletion process"
+    },
+    {
+      "label": "Row-Level Access Control / Restricted Public Lookup Function",
+      "file_type": "rationale",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Data is stored in a database with row-level access controls, so the database itself enforces who can read which records; the public emergency lookup uses a dedicated, restricted function rather than open access to the full database.",
+      "id": "privacy_row_level_access_control",
+      "community": 1,
+      "community_name": "Data Consent & Onboarding Flow",
+      "norm_label": "row-level access control / restricted public lookup function"
+    },
+    {
+      "label": "Auth Error Message Box (id=authError)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_autherror",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "auth error message box (id=autherror)"
+    },
+    {
+      "label": "Email Input (id=inEmail)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_inemail",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "email input (id=inemail)"
+    },
+    {
+      "label": "Full Name Input (id=inName)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_inname",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "full name input (id=inname)"
+    },
+    {
+      "label": "Password Input (id=inPass)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_inpass",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "password input (id=inpass)"
+    },
+    {
+      "label": "Submit Button (id=submitBtn)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_submitbtn",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "submit button (id=submitbtn)"
+    },
+    {
+      "label": "Register Tab (id=tabUp)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_tabup",
+      "community": 2,
+      "community_name": "Registry Auth Form Logic",
+      "norm_label": "register tab (id=tabup)"
+    },
+    {
+      "label": "Register Redirect Stub (register.html)",
+      "file_type": "code",
+      "source_file": "register.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "register_page",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "register redirect stub (register.html)"
+    },
+    {
+      "label": "Audiences: Riders, Families, First Responders",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_audiences_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "audiences: riders, families, first responders"
+    },
+    {
+      "label": "Sign In / Register Auth Card",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_auth_card",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "sign in / register auth card"
+    },
+    {
+      "label": "Giacomo (Helmet-Mounted Emergency-Response System)",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_giacomo",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "giacomo (helmet-mounted emergency-response system)"
+    },
+    {
+      "label": "Cardo Packtalk Pro (Competitor Product)",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_cardo_packtalk_pro",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "cardo packtalk pro (competitor product)"
+    },
+    {
+      "label": "The Apparatus (Hero Section)",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_apparatus_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "the apparatus (hero section)"
+    },
+    {
+      "label": "Giacomo Landing & Rider Safety Registry Page (index.html)",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_page",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "giacomo landing & rider safety registry page (index.html)"
+    },
+    {
+      "label": "The Registry (Sign-In / Register Section)",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_registry_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "the registry (sign-in / register section)"
+    },
+    {
+      "label": "The Scan (Bystander QR Demo Section)",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_scan_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "the scan (bystander qr demo section)"
+    },
+    {
+      "label": "The Sequence (Crash-Response Steps Section)",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_sequence_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "the sequence (crash-response steps section)"
+    },
+    {
+      "label": "Comparison Against Existing Solutions (Placeholder)",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_comparison_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "comparison against existing solutions (placeholder)"
+    },
+    {
+      "label": "Research Methodology (Placeholder)",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_methodology_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "research methodology (placeholder)"
+    },
+    {
+      "label": "Giacomo Technical Manual (manual.html)",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_page",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "giacomo technical manual (manual.html)"
+    },
+    {
+      "label": "Crash-Detection Validation Results (Placeholder)",
+      "file_type": "document",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "manual_validation_section",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "crash-detection validation results (placeholder)"
+    },
+    {
+      "label": "Giacomo Brand Logo (SVG)",
+      "file_type": "image",
+      "source_file": "assets/logo.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "assets_logo_giacomo_brand_mark",
+      "community": 3,
+      "community_name": "Landing Page & Manual",
+      "norm_label": "giacomo brand logo (svg)"
     }
   ],
   "links": [
@@ -1094,9 +2263,9 @@
       "source_location": "L166",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard_init",
-      "target": "js_admindashboard_renderui",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_renderui"
     },
     {
       "relation": "calls",
@@ -1106,8 +2275,68 @@
       "source_location": "L138",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard_renderui",
-      "target": "js_admindashboard_showcrashnotification",
+      "target": "js_admindashboard_showcrashnotification"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth_handleregister",
+      "target": "js_indexauth_showerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth_handleregister",
+      "target": "js_indexauth_setbusy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth_handlesignin",
+      "target": "js_indexauth_redirectbyrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth_handlesignin",
+      "target": "js_indexauth_setbusy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth_handlesignin",
+      "target": "js_indexauth_showerror",
       "confidence_score": 1.0
     },
     {
@@ -1118,9 +2347,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_settings_loadsettings",
-      "target": "js_settings_validatefield",
-      "confidence_score": 1.0
+      "target": "js_settings_validatefield"
     },
     {
       "relation": "calls",
@@ -1130,9 +2359,9 @@
       "source_location": "L145",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_parseurlfallback",
-      "confidence_score": 1.0
+      "target": "js_status_parseurlfallback"
     },
     {
       "relation": "calls",
@@ -1142,9 +2371,9 @@
       "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_showerr",
-      "confidence_score": 1.0
+      "target": "js_status_showerr"
     },
     {
       "relation": "calls",
@@ -1154,9 +2383,9 @@
       "source_location": "L214",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_renderregionalhotlines",
-      "confidence_score": 1.0
+      "target": "js_status_renderregionalhotlines"
     },
     {
       "relation": "calls",
@@ -1166,9 +2395,9 @@
       "source_location": "L82",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status_renderregionalhotlines",
-      "target": "js_status_calculatedistance",
-      "confidence_score": 1.0
+      "target": "js_status_calculatedistance"
     },
     {
       "relation": "calls",
@@ -1178,9 +2407,9 @@
       "source_location": "L105",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard_initdashboard",
-      "target": "js_userdashboard_starttelemetry",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_starttelemetry"
     },
     {
       "relation": "calls",
@@ -1190,9 +2419,9 @@
       "source_location": "L137",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard_initdashboard",
-      "target": "js_userdashboard_saveblackboxdata",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_saveblackboxdata"
     },
     {
       "relation": "calls",
@@ -1202,9 +2431,9 @@
       "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard_initdashboard",
-      "target": "js_userdashboard_checkonboarding",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_checkonboarding"
     },
     {
       "relation": "calls",
@@ -1214,9 +2443,9 @@
       "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard_initdashboard",
-      "target": "js_userdashboard_generateriderqr",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_generateriderqr"
     },
     {
       "relation": "imports",
@@ -1226,9 +2455,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "imports",
@@ -1250,21 +2479,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "js/register.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_register",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "imports",
@@ -1274,9 +2491,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "imports",
@@ -1286,9 +2503,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "imports",
@@ -1298,9 +2515,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "imports_from",
@@ -1310,9 +2527,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient"
     },
     {
       "relation": "imports_from",
@@ -1334,21 +2551,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "js/register.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_register",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient"
     },
     {
       "relation": "imports_from",
@@ -1358,9 +2563,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient"
     },
     {
       "relation": "imports_from",
@@ -1370,9 +2575,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient"
     },
     {
       "relation": "imports_from",
@@ -1382,9 +2587,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_supabaseclient",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient"
     },
     {
       "relation": "contains",
@@ -1393,9 +2598,9 @@
       "source_location": "L105",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_renderui",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_renderui"
     },
     {
       "relation": "contains",
@@ -1404,9 +2609,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetallcrashes",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_resetallcrashes"
     },
     {
       "relation": "contains",
@@ -1415,9 +2620,9 @@
       "source_location": "L144",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_loadhistory",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_loadhistory"
     },
     {
       "relation": "contains",
@@ -1426,9 +2631,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetsimulationdata",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_resetsimulationdata"
     },
     {
       "relation": "contains",
@@ -1437,9 +2642,9 @@
       "source_location": "L197",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetsimbtn",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_resetsimbtn"
     },
     {
       "relation": "contains",
@@ -1448,9 +2653,9 @@
       "source_location": "L205",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_highlightmatches",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_highlightmatches"
     },
     {
       "relation": "contains",
@@ -1459,9 +2664,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_showcrashnotification",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_showcrashnotification"
     },
     {
       "relation": "contains",
@@ -1470,9 +2675,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_usercontainer",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_usercontainer"
     },
     {
       "relation": "contains",
@@ -1481,9 +2686,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_logcontainer",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_logcontainer"
     },
     {
       "relation": "contains",
@@ -1492,9 +2697,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_statriders",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_statriders"
     },
     {
       "relation": "contains",
@@ -1503,9 +2708,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_statalerts",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_statalerts"
     },
     {
       "relation": "contains",
@@ -1514,9 +2719,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_searchinput",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_searchinput"
     },
     {
       "relation": "contains",
@@ -1525,9 +2730,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_currentriders",
-      "confidence_score": 1.0
+      "target": "js_admindashboard_currentriders"
     },
     {
       "relation": "contains",
@@ -1536,15 +2741,26 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_markers",
+      "target": "js_admindashboard_markers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_showerror",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/indexAuth.js",
-      "source_location": "L27",
+      "source_location": "L106",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_indexauth",
@@ -1555,11 +2771,110 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/indexAuth.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_clearerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_setbusy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_indexauth",
-      "target": "js_indexauth_loginform",
+      "target": "js_indexauth_submitbtn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_tabup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_handleregister",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_nameinput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_emailinput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_passinput",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_errorbox",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/indexAuth.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_indexauth",
+      "target": "js_indexauth_handlesignin",
       "confidence_score": 1.0
     },
     {
@@ -1569,9 +2884,9 @@
       "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_medical_onboarding_validatefield",
-      "confidence_score": 1.0
+      "target": "js_medical_onboarding_validatefield"
     },
     {
       "relation": "contains",
@@ -1580,9 +2895,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_medical_onboarding_onboardingform",
-      "confidence_score": 1.0
+      "target": "js_medical_onboarding_onboardingform"
     },
     {
       "relation": "contains",
@@ -1591,9 +2906,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_medical_onboarding_submitbtn",
-      "confidence_score": 1.0
+      "target": "js_medical_onboarding_submitbtn"
     },
     {
       "relation": "contains",
@@ -1602,20 +2917,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_medical_onboarding",
-      "target": "js_medical_onboarding_serialinput",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/register.js",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_register",
-      "target": "js_register_registerform",
-      "confidence_score": 1.0
+      "target": "js_medical_onboarding_serialinput"
     },
     {
       "relation": "contains",
@@ -1624,9 +2928,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_settings_validatefield",
-      "confidence_score": 1.0
+      "target": "js_settings_validatefield"
     },
     {
       "relation": "contains",
@@ -1635,9 +2939,9 @@
       "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_caraga_hotlines",
-      "confidence_score": 1.0
+      "target": "js_status_caraga_hotlines"
     },
     {
       "relation": "contains",
@@ -1646,9 +2950,9 @@
       "source_location": "L133",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_parseurlfallback",
-      "confidence_score": 1.0
+      "target": "js_status_parseurlfallback"
     },
     {
       "relation": "contains",
@@ -1657,9 +2961,9 @@
       "source_location": "L140",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_fetchstatus",
-      "confidence_score": 1.0
+      "target": "js_status_fetchstatus"
     },
     {
       "relation": "contains",
@@ -1668,9 +2972,9 @@
       "source_location": "L217",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_showerr",
-      "confidence_score": 1.0
+      "target": "js_status_showerr"
     },
     {
       "relation": "contains",
@@ -1679,9 +2983,9 @@
       "source_location": "L223",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_applylanguage",
-      "confidence_score": 1.0
+      "target": "js_status_applylanguage"
     },
     {
       "relation": "contains",
@@ -1690,9 +2994,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_translations",
-      "confidence_score": 1.0
+      "target": "js_status_translations"
     },
     {
       "relation": "contains",
@@ -1701,9 +3005,9 @@
       "source_location": "L271",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_togglestrobe",
-      "confidence_score": 1.0
+      "target": "js_status_togglestrobe"
     },
     {
       "relation": "contains",
@@ -1712,9 +3016,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_currentrider",
-      "confidence_score": 1.0
+      "target": "js_status_currentrider"
     },
     {
       "relation": "contains",
@@ -1723,9 +3027,9 @@
       "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_calculatedistance",
-      "confidence_score": 1.0
+      "target": "js_status_calculatedistance"
     },
     {
       "relation": "contains",
@@ -1734,9 +3038,9 @@
       "source_location": "L72",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_renderregionalhotlines",
-      "confidence_score": 1.0
+      "target": "js_status_renderregionalhotlines"
     },
     {
       "relation": "contains",
@@ -1745,9 +3049,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_supabaseclient",
-      "target": "js_supabaseclient_supabase",
-      "confidence_score": 1.0
+      "target": "js_supabaseclient_supabase"
     },
     {
       "relation": "contains",
@@ -1756,9 +3060,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_sw",
-      "target": "js_sw_assets",
-      "confidence_score": 1.0
+      "target": "js_sw_assets"
     },
     {
       "relation": "contains",
@@ -1767,9 +3071,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_checkonboarding",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_checkonboarding"
     },
     {
       "relation": "contains",
@@ -1778,9 +3082,9 @@
       "source_location": "L155",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_starttelemetry",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_starttelemetry"
     },
     {
       "relation": "contains",
@@ -1789,9 +3093,9 @@
       "source_location": "L221",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_saveblackboxdata",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_saveblackboxdata"
     },
     {
       "relation": "contains",
@@ -1800,9 +3104,9 @@
       "source_location": "L243",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_generateriderqr",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_generateriderqr"
     },
     {
       "relation": "contains",
@@ -1811,9 +3115,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_overlay",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_overlay"
     },
     {
       "relation": "contains",
@@ -1822,9 +3126,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_overlaybg",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_overlaybg"
     },
     {
       "relation": "contains",
@@ -1833,9 +3137,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_timerdisplay",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_timerdisplay"
     },
     {
       "relation": "contains",
@@ -1844,9 +3148,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_layout",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_layout"
     },
     {
       "relation": "contains",
@@ -1855,9 +3159,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_simbtn",
-      "confidence_score": 1.0
+      "target": "js_userdashboard_simbtn"
     },
     {
       "relation": "contains",
@@ -1866,9 +3170,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_short_name",
-      "confidence_score": 1.0
+      "target": "manifest_short_name"
     },
     {
       "relation": "contains",
@@ -1877,9 +3181,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_name",
-      "confidence_score": 1.0
+      "target": "manifest_name"
     },
     {
       "relation": "contains",
@@ -1888,9 +3192,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_icons",
-      "confidence_score": 1.0
+      "target": "manifest_icons"
     },
     {
       "relation": "contains",
@@ -1899,9 +3203,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_start_url",
-      "confidence_score": 1.0
+      "target": "manifest_start_url"
     },
     {
       "relation": "contains",
@@ -1910,9 +3214,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_background_color",
-      "confidence_score": 1.0
+      "target": "manifest_background_color"
     },
     {
       "relation": "contains",
@@ -1921,9 +3225,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_theme_color",
-      "confidence_score": 1.0
+      "target": "manifest_theme_color"
     },
     {
       "relation": "contains",
@@ -1932,9 +3236,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_display",
-      "confidence_score": 1.0
+      "target": "manifest_display"
     },
     {
       "relation": "contains",
@@ -1943,9 +3247,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_orientation",
-      "confidence_score": 1.0
+      "target": "manifest_orientation"
     },
     {
       "relation": "indirect_call",
@@ -1955,9 +3259,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
+      "confidence_score": 0.5,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_init",
-      "confidence_score": 0.5
+      "target": "js_admindashboard_init"
     },
     {
       "relation": "indirect_call",
@@ -1967,9 +3271,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
+      "confidence_score": 0.5,
       "source": "js_settings",
-      "target": "js_settings_loadsettings",
-      "confidence_score": 0.5
+      "target": "js_settings_loadsettings"
     },
     {
       "relation": "indirect_call",
@@ -1979,9 +3283,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
+      "confidence_score": 0.5,
       "source": "js_userdashboard",
-      "target": "js_userdashboard_initdashboard",
-      "confidence_score": 0.5
+      "target": "js_userdashboard_initdashboard"
     },
     {
       "relation": "references",
@@ -1990,6 +3294,7 @@
       "source_file": "dashboard/admin.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_admin_checksecurity",
       "target": "dashboard_user_page"
     },
@@ -2000,6 +3305,7 @@
       "source_file": "dashboard/admin.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_admin_checksecurity",
       "target": "index_page"
     },
@@ -2010,18 +3316,9 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_page",
       "target": "dashboard_user_page"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index_page",
-      "target": "register_page"
     },
     {
       "relation": "references",
@@ -2030,6 +3327,7 @@
       "source_file": "medical-onboarding.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "medical_onboarding_page",
       "target": "privacy_page"
     },
@@ -2040,58 +3338,9 @@
       "source_file": "status.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "status_share_location",
       "target": "status_regional_hotlines"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.65,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy_data_deletion_process",
-      "target": "dashboard_settings_page"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.75,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy_qr_triage_view",
-      "target": "status_triage_selector"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy_admin_visibility_scope",
-      "target": "dashboard_admin_page"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy_qr_triage_view",
-      "target": "status_firstaid_guidance"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy_row_level_access_control",
-      "target": "status_page"
     },
     {
       "relation": "references",
@@ -2100,6 +3349,7 @@
       "source_file": "dashboard/user.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_user_qrcode_section",
       "target": "status_page"
     },
@@ -2110,6 +3360,7 @@
       "source_file": "status.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "status_page",
       "target": "dashboard_settings_saveallform"
     },
@@ -2120,6 +3371,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_saveallform",
       "target": "medical_onboarding_profileform"
     },
@@ -2130,8 +3382,1279 @@
       "source_file": "status.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "status_page",
       "target": "medical_onboarding_profileform"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 0.2,
+      "source": "privacy_dstf",
+      "target": "privacy_asnhs"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_interruptible_alert_design",
+      "target": "index_abort_button"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_interruptible_alert_design",
+      "target": "index_piezo_buzzer"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_interruptible_alert_design",
+      "target": "index_ws2812b_led"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_no_app_no_login_design",
+      "target": "index_qr_scan_demo"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_no_phone_dependency",
+      "target": "index_esp32_s3"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_power_spike_continuity",
+      "target": "index_ip5306"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_weatherproofing_precondition",
+      "target": "index_ip67_gasket"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_connectivity_rationale",
+      "target": "manual_sim_a7670c"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_enclosure_rationale",
+      "target": "manual_abort_button"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_enclosure_rationale",
+      "target": "manual_gaskets"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_enclosure_rationale",
+      "target": "manual_piezo_buzzer"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_enclosure_rationale",
+      "target": "manual_ws2812b_led"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_local_record_rationale",
+      "target": "manual_microsd"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_positioning_rationale",
+      "target": "index_quectel_l76k"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_power_rationale",
+      "target": "manual_ip5306"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_sensing_rationale",
+      "target": "manual_lsm6dsox"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_abort_button"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_esp32_s3"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_ip5306"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_ip67_gasket"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_lipo_battery"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_lsm6dsox"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_microsd"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_piezo_buzzer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_quectel_l76k"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_sim_a7670c"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_assembly_exploded_diagram",
+      "target": "index_ws2812b_led"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_autherror"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_inemail"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_inname"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_inpass"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_submitbtn"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_auth_card",
+      "target": "index_tabup"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "assets_logo_giacomo_brand_mark"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_apparatus_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_assembly_exploded_diagram"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_audiences_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_auth_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_crash_sequence"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_giacomo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_qr_scan_demo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_registry_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_scan_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "index_sequence_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "js_indexauth"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "manual_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_page",
+      "target": "privacy_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_emailinput",
+      "target": "index_inemail"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_errorbox",
+      "target": "index_autherror"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_nameinput",
+      "target": "index_inname"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_passinput",
+      "target": "index_inpass"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_submitbtn",
+      "target": "index_submitbtn"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_indexauth_tabup",
+      "target": "index_tabup"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "index_quectel_l76k"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_abort_button"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_antennas"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_enclosure"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_esp32_s3_wroom_1"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_gaskets"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_inmp441"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_ip5306"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_ldo_regulators"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_lipo_battery"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_lsm6dsox"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_max98357a"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_microsd"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_pcb"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_piezo_buzzer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_sim_a7670c"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_bom_section",
+      "target": "manual_ws2812b_led"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_comparison_section",
+      "target": "manual_cardo_packtalk_pro"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "assets_logo_giacomo_brand_mark"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "index_apparatus_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "index_registry_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "index_scan_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "index_sequence_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "manual_bom_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "manual_comparison_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "manual_methodology_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "manual_rationale_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "manual_validation_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_page",
+      "target": "privacy_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_connectivity_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_enclosure_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_local_record_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_positioning_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_power_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "manual_rationale_section",
+      "target": "manual_sensing_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_account_information"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_admin_visibility_scope"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_asnhs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_consent_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_contact"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_data_deletion_process"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_device_information"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_dstf"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_incident_records"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_location_motion_data"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_medical_information"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_minor_provision"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_qr_triage_view"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "privacy_page",
+      "target": "privacy_row_level_access_control"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "register.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_page",
+      "target": "index_auth_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "register.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "register_page",
+      "target": "index_page"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 0.65,
+      "source": "manual_connectivity_rationale",
+      "target": "privacy_location_motion_data"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.75,
+      "source": "index_weatherproofing_precondition",
+      "target": "manual_enclosure"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.75,
+      "source": "index_crash_sequence",
+      "target": "privacy_location_motion_data"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_interruptible_alert_design",
+      "target": "manual_enclosure_rationale"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_ip67_gasket",
+      "target": "manual_gaskets"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_no_app_no_login_design",
+      "target": "privacy_qr_triage_view"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_no_phone_dependency",
+      "target": "manual_connectivity_rationale"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_auth_card",
+      "target": "privacy_device_information"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_auth_card",
+      "target": "privacy_medical_information"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "index_crash_sequence",
+      "target": "privacy_incident_records"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 0.85,
+      "source": "manual_local_record_rationale",
+      "target": "privacy_incident_records"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_abort_button",
+      "target": "manual_abort_button"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_esp32_s3",
+      "target": "manual_esp32_s3_wroom_1"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_ip5306",
+      "target": "manual_ip5306"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_lipo_battery",
+      "target": "manual_lipo_battery"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_lsm6dsox",
+      "target": "manual_lsm6dsox"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_microsd",
+      "target": "manual_microsd"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_piezo_buzzer",
+      "target": "manual_piezo_buzzer"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_power_spike_continuity",
+      "target": "manual_power_rationale"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_qr_scan_demo",
+      "target": "privacy_qr_triage_view"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_sim_a7670c",
+      "target": "manual_sim_a7670c"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 0.95,
+      "source": "index_ws2812b_led",
+      "target": "manual_ws2812b_led"
     }
   ],
   "hyperedges": [
@@ -2163,6 +4686,48 @@
       "source_file": "dashboard/admin.html"
     },
     {
+      "id": "interruptible_alert_interface_pattern",
+      "label": "Interruptible Crash-Alert Interface Pattern",
+      "nodes": [
+        "index_abort_button",
+        "index_piezo_buzzer",
+        "index_ws2812b_led",
+        "manual_enclosure_rationale"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "manual.html"
+    },
+    {
+      "id": "bystander_qr_lookup_flow",
+      "label": "Bystander QR Emergency-Lookup Flow",
+      "nodes": [
+        "index_qr_scan_demo",
+        "privacy_qr_triage_view",
+        "privacy_row_level_access_control",
+        "privacy_medical_information"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "privacy.html"
+    },
+    {
+      "id": "crash_detect_alert_hardware_chain",
+      "label": "Crash-Detection-to-Alert Hardware Chain",
+      "nodes": [
+        "manual_lsm6dsox",
+        "manual_esp32_s3_wroom_1",
+        "manual_sim_a7670c",
+        "manual_ip5306"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "manual.html"
+    },
+    {
       "id": "medical_profile_data_model",
       "label": "Shared Medical Profile Data Model (Settings, Onboarding, Public Status)",
       "nodes": [
@@ -2176,5 +4741,5 @@
       "source_file": "dashboard/settings.html"
     }
   ],
-  "built_at_commit": "bd146b1a14dc51b7707669a49293d3f92c857e37"
+  "built_at_commit": "8e99cdde8076adc6365e63f07faadb9bb031f9bf"
 }

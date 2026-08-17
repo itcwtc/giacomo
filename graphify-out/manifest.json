@@ -1,61 +1,55 @@
 {
   "js/adminDashboard.js": {
     "mtime": 1786871673.4361706,
-    "seen": 1786879582.2718055,
+    "seen": 1786937821.4883726,
     "ast_hash": "dffd5e39b24169b0e9a9e17d8c2d35a4",
     "semantic_hash": "dffd5e39b24169b0e9a9e17d8c2d35a4"
   },
   "js/indexAuth.js": {
-    "mtime": 1786628740.5239916,
-    "seen": 1786879582.2718105,
-    "ast_hash": "ed5488bf0dea9cf62fd9c2107b8fe954",
-    "semantic_hash": "ed5488bf0dea9cf62fd9c2107b8fe954"
+    "mtime": 1786933007.2424119,
+    "seen": 1786937821.4883802,
+    "ast_hash": "a71c99bc6a4382bff1ccca69c2875712",
+    "semantic_hash": "a71c99bc6a4382bff1ccca69c2875712"
   },
   "js/medical-onboarding.js": {
     "mtime": 1786875958.4812517,
-    "seen": 1786879582.2718134,
+    "seen": 1786937821.4883835,
     "ast_hash": "957f182a63f194dd8e02d01ef75ccaf1",
     "semantic_hash": "957f182a63f194dd8e02d01ef75ccaf1"
   },
-  "js/register.js": {
-    "mtime": 1786875884.8636115,
-    "seen": 1786879582.2718146,
-    "ast_hash": "cb5009d403ffc23df6267b7f5492a00c",
-    "semantic_hash": "cb5009d403ffc23df6267b7f5492a00c"
-  },
   "js/settings.js": {
     "mtime": 1786628740.526991,
-    "seen": 1786879582.2718158,
+    "seen": 1786937821.4883852,
     "ast_hash": "c4caffcc211720792679b34eac3db72e",
     "semantic_hash": "c4caffcc211720792679b34eac3db72e"
   },
   "js/status.js": {
-    "mtime": 1786868486.4387102,
-    "seen": 1786879582.2718167,
+    "mtime": 1786879619.8398366,
+    "seen": 1786937821.488387,
     "ast_hash": "cc6c20dc526728a15e735cb7d1edff93",
     "semantic_hash": "cc6c20dc526728a15e735cb7d1edff93"
   },
   "js/supabaseClient.js": {
     "mtime": 1786628740.5279884,
-    "seen": 1786879582.271818,
+    "seen": 1786937821.4883885,
     "ast_hash": "dbc3b7f8f5a8e94003c8507975eb2470",
     "semantic_hash": "dbc3b7f8f5a8e94003c8507975eb2470"
   },
   "js/sw.js": {
     "mtime": 1786628740.5294976,
-    "seen": 1786879582.271819,
+    "seen": 1786937821.48839,
     "ast_hash": "15dbfefbb5830397e29d2247bb293cbb",
     "semantic_hash": "15dbfefbb5830397e29d2247bb293cbb"
   },
   "js/userDashboard.js": {
     "mtime": 1786871695.5583074,
-    "seen": 1786879582.2718198,
+    "seen": 1786937821.4883914,
     "ast_hash": "29daf76484076197ca2a80ac00833b38",
     "semantic_hash": "29daf76484076197ca2a80ac00833b38"
   },
   "manifest.json": {
     "mtime": 1786628147.675115,
-    "seen": 1786879582.2718208,
+    "seen": 1786937821.4883926,
     "ast_hash": "43728f019ae9dac67db2ef65c79e2b44",
     "semantic_hash": "43728f019ae9dac67db2ef65c79e2b44"
   },
@@ -78,10 +72,10 @@
     "semantic_hash": "65f9bb4404d776583beefbc1c02466aa"
   },
   "index.html": {
-    "mtime": 1786628740.520592,
-    "seen": 1786879582.2718248,
-    "ast_hash": "540bc04b56c6460ae882e61a3635ed21",
-    "semantic_hash": "540bc04b56c6460ae882e61a3635ed21"
+    "mtime": 1786936986.1092844,
+    "seen": 1786937821.4883945,
+    "ast_hash": "41570e6dd908c3e8f06511657d0a28ef",
+    "semantic_hash": "41570e6dd908c3e8f06511657d0a28ef"
   },
   "medical-onboarding.html": {
     "mtime": 1786875950.2712722,
@@ -90,21 +84,33 @@
     "semantic_hash": "0c411320bd008f2004a7ca9656c8e140"
   },
   "privacy.html": {
-    "mtime": 1786876436.2925715,
-    "seen": 1786879582.271827,
-    "ast_hash": "15aa17a39f46382d58becbf3a1cf8100",
-    "semantic_hash": "15aa17a39f46382d58becbf3a1cf8100"
+    "mtime": 1786933098.4924707,
+    "seen": 1786937821.4883976,
+    "ast_hash": "d0df83862cabeec47ba370bbec7b41d6",
+    "semantic_hash": "d0df83862cabeec47ba370bbec7b41d6"
   },
   "register.html": {
-    "mtime": 1786875884.8586135,
-    "seen": 1786879582.271828,
-    "ast_hash": "357322fa88bbbb1bb345a0f197208437",
-    "semantic_hash": "357322fa88bbbb1bb345a0f197208437"
+    "mtime": 1786933016.595099,
+    "seen": 1786937821.488399,
+    "ast_hash": "82e9a89b465eda78ffda278109e24697",
+    "semantic_hash": "82e9a89b465eda78ffda278109e24697"
   },
   "status.html": {
     "mtime": 1786629102.7545633,
     "seen": 1786879582.2718287,
     "ast_hash": "c2c3b6d631395de38eff9741ced4bb96",
     "semantic_hash": "c2c3b6d631395de38eff9741ced4bb96"
+  },
+  "manual.html": {
+    "mtime": 1786937018.7117648,
+    "seen": 1786937821.488396,
+    "ast_hash": "601b37dd97152d5480af41a3d305b193",
+    "semantic_hash": "601b37dd97152d5480af41a3d305b193"
+  },
+  "assets/logo.svg": {
+    "mtime": 1786936738.833194,
+    "seen": 1786937821.4884005,
+    "ast_hash": "a63150944a1be7de88d28059f0831bb4",
+    "semantic_hash": "a63150944a1be7de88d28059f0831bb4"
   }
 }
