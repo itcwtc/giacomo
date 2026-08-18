@@ -68,17 +68,9 @@ async function initDashboard() {
         .eq('id', user.id)
         .single();
 
-    const { data: medProfile } = await supabase
-        .from('medical_profiles')
-        .select('blood_type, contact_1_phone')
-        .eq('user_id', user.id)
-        .maybeSingle();
-    
     const snDisplay = document.getElementById('display-sn');
     if (profile?.serial_number) {
         if (snDisplay) snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
-        
-        // Pass serial number, blood type, and primary contact for offline fallback
         generateRiderQR(profile.serial_number);
     }
 

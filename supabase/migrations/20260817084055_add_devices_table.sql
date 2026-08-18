@@ -2,6 +2,10 @@
 create table if not exists devices (
   serial_number text primary key,
   is_claimed boolean not null default false,
+  -- NO ACTION on delete (unlike profiles.id / medical_profiles.user_id,
+  -- which CASCADE) — deleting a user who has claimed a device will fail
+  -- with a foreign-key violation unless this row is handled first. See
+  -- CLAUDE.md for the correct way to delete an auth.users row.
   claimed_by uuid references auth.users(id),
   claimed_at timestamptz,
   created_at timestamptz not null default now()

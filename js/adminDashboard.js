@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient.js';
+import { ICONS } from './icons.js';
 
 const userContainer = document.getElementById('users-container');
 const logContainer = document.getElementById('logs-container');
@@ -8,18 +9,28 @@ const searchInput = document.getElementById('admin-search');
 
 let map, markers = {}, currentRiders = [];
 
+let adminStatusTimer = null;
+function setAdminStatus(message, kind) {
+    const node = document.getElementById('admin-status');
+    if (!node) return;
+    node.textContent = message;
+    node.className = 'admin-status show' + (kind ? ' ' + kind : '');
+    clearTimeout(adminStatusTimer);
+    adminStatusTimer = setTimeout(() => { node.className = 'admin-status'; }, 4000);
+}
+
 async function resetAllCrashes() {
     const { error } = await supabase.from('profiles').update({ is_crashed: false }).eq('is_crashed', true);
-    if (error) console.error("Error resetting crashes:", error);
-    else alert("All crash alerts cleared.");
+    if (error) { console.error("Error resetting crashes:", error); setAdminStatus("Reset failed: " + error.message, 'err'); }
+    else setAdminStatus("All crash alerts cleared.", 'ok');
 }
 
 // Clears only simulated/demo data via the reset_simulation_data() RPC
 // (server-side admin-role check happens inside the function itself).
 async function resetSimulationData() {
     const { error } = await supabase.rpc('reset_simulation_data');
-    if (error) console.error("Error resetting simulation data:", error);
-    else alert("Simulated riders and incidents reset to baseline.");
+    if (error) { console.error("Error resetting simulation data:", error); setAdminStatus("Reset failed: " + error.message, 'err'); }
+    else setAdminStatus("Simulated riders and incidents reset to baseline.", 'ok');
 }
 
 // --- 🛠️ FIXED NOTIFICATION LOGIC ---
@@ -40,7 +51,7 @@ async function showCrashNotification(user) {
     notif.id = `notif-${user.id}`;
     notif.className = 'crash-popup';
     notif.innerHTML = `
-        <div class="popup-title">⚠️ CRASH ALERT</div>
+        <div class="popup-title"><span class="icon">${ICONS.warning}</span> CRASH ALERT</div>
         <div class="popup-name">${user.full_name || 'Rider'}</div>
         <button class="popup-btn view-btn" id="go-${user.id}">Locate Signal</button>
         <button class="popup-btn street-btn" id="street-${user.id}">Street View</button>
@@ -68,14 +79,14 @@ async function showCrashNotification(user) {
             if (markers[user.id]) {
                 if (log) {
                     const incidentTime = new Date(log.timestamp).toLocaleTimeString();
-                    const simTag = log.is_simulated ? `<div style="font-size:9px; color:#eab308; margin-top:4px;">⚠ SIMULATED DATA</div>` : '';
+                    const simTag = log.is_simulated ? `<div style="font-size:9px; color:#eab308; margin-top:4px;"><span class="icon">${ICONS.warning}</span> SIMULATED DATA</div>` : '';
                     markers[user.id].bindPopup(`
                         <div style="text-align:center; min-width:130px;">
                             <b style="color:var(--danger); font-size:10px;">IMPACT DETECTED</b><br>
                             <span style="font-size:22px; font-weight:900;">${log.velocity} G</span><br>
                             <span style="font-size:11px; color:#64748b;">Elev: ${log.elevation}m</span>
                             <hr style="border:0; border-top:1px solid #334155; margin:8px 0;">
-                            <span style="font-size:10px; color:#00e5ff;">🕒 ${incidentTime}</span>
+                            <span style="font-size:10px; color:#00e5ff;"><span class="icon">${ICONS.clock}</span> ${incidentTime}</span>
                             ${simTag}
                         </div>
                     `).openPopup();
@@ -191,11 +202,7 @@ document.getElementById('admin-logout').onclick = async () => {
 };
 
 document.getElementById('btn-reset-all').onclick = resetAllCrashes;
-
-// Optional: wire this up once you add a matching button to admin.html
-// e.g. <button id="btn-reset-sim">Reset Simulation Data</button>
-const resetSimBtn = document.getElementById('btn-reset-sim');
-if (resetSimBtn) resetSimBtn.onclick = resetSimulationData;
+document.getElementById('btn-reset-sim').onclick = resetSimulationData;
 
 setInterval(() => {
     const clock = document.getElementById('mission-clock');

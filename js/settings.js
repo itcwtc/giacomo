@@ -16,6 +16,13 @@ function validateField(input, regex) {
     }
 }
 
+function setStatus(message, kind) {
+    const node = document.getElementById('save-status');
+    if (!node) return;
+    node.textContent = message;
+    node.className = 'save-status show' + (kind ? ' ' + kind : '');
+}
+
 async function loadSettings() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
@@ -102,9 +109,9 @@ document.getElementById('save-all').onclick = async () => {
     const [r1, r2] = await Promise.all([profileUpdate, medicalUpdate]);
 
     if (!r1.error && !r2.error) {
-        alert("SYNC COMPLETE: Emergency data updated.");
+        setStatus("SYNC COMPLETE: Emergency data updated.", 'ok');
     } else {
-        alert("Sync Failed: Check connection.");
+        setStatus("Sync failed: check your connection and try again.", 'err');
     }
 
     btn.innerText = "Save All Changes";

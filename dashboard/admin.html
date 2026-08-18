@@ -7,8 +7,7 @@
     <title>GIACOMO — Command Terminal</title>
     <link rel="icon" href="data:,"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script type="module">
         import { supabase } from '../js/supabaseClient.js';
 
@@ -116,6 +115,11 @@
     .emergency-flash { animation: alert-flash 1s infinite; }
 
     #btn-reset-all:hover { color: #fff !important; background: rgba(255,255,255,0.05) !important; }
+
+    .admin-status { margin: 0 20px 12px 20px; padding: 10px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; display: none; }
+    .admin-status.show { display: block; }
+    .admin-status.ok { color: #4ade80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); }
+    .admin-status.err { color: var(--danger); background: rgba(255,46,67,0.08); border: 1px solid rgba(255,46,67,0.3); }
 </style>
 </head>
 <body>
@@ -145,6 +149,8 @@
             <div class="search-box"><input type="text" id="admin-search" placeholder="Search User..."></div>
 
             <button id="btn-reset-sim" style="margin: 0 20px 15px 20px; width: calc(100% - 40px); padding: 10px; background: rgba(234,179,8,0.08); border: 1px solid #eab308; color: #eab308; font-size: 9px; font-weight: 800; cursor: pointer; text-transform: uppercase; border-radius: 6px; letter-spacing: 0.5px;">Reset Simulation Data</button>
+
+            <div id="admin-status" class="admin-status" role="status" aria-live="polite"></div>
 
             <div id="users-container"></div>
             <div id="logs-container" style="display:none;"></div>

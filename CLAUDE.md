@@ -1,3 +1,9 @@
+## Working conventions
+
+- **Changelog on every change.** Every modification — every file touched, what changed, why — gets reported as a changelog. This applies to every prompt/task, not just large ones.
+- **Commit and push are manual.** Never run `git commit` or `git push` in this repo — the user reviews and commits themselves.
+- **Deleting an `auth.users` row.** Never `DELETE FROM auth.users` directly. Use the Supabase Dashboard (Authentication → Users) or the Auth Admin API (`supabase.auth.admin.deleteUser(id)`, requires a `service_role` key). Raw SQL bypasses Supabase's own cleanup (Storage-ownership checks, sessions, identities, MFA factors), and it does **not** get around the FK constraint on `devices.claimed_by` — see the comment in `supabase/migrations/20260817084055_add_devices_table.sql`. If the target user has a claimed device, the delete fails with a foreign-key violation either way until that row is handled first.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.

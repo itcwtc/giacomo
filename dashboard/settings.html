@@ -41,6 +41,11 @@
         .switch input:checked + .track::before { transform: translateX(18px); background: var(--accent); }
         .a11y-status { font-size: 10px; color: #10b981; min-height: 14px; margin-top: 4px; }
 
+        .save-status { margin-top: 14px; font-size: 12px; line-height: 1.5; padding: 12px 14px; border-radius: 10px; display: none; }
+        .save-status.show { display: block; }
+        .save-status.ok { color: #10b981; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+        .save-status.err { color: var(--danger); background: rgba(255,46,67,0.08); border: 1px solid rgba(255,46,67,0.3); }
+
         /* ============ ACCORDION — "file-tab" treatment ============
            Note: I couldn't find a distinct pre-built "file-tab / case-file"
            motif already implemented anywhere in the dashboard beyond
@@ -192,6 +197,7 @@
         </div>
 
         <button id="save-all" class="btn">Save All Changes</button>
+        <div id="save-status" class="save-status" role="status" aria-live="polite"></div>
         <a href="user.html" class="back-link">← Return to Dashboard</a>
     </div>
     <script type="module" src="../js/settings.js"></script>

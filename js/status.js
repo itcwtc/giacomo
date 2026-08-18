@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient.js';
+import { ICONS, dotIcon, hydrateIcons } from './icons.js';
 
 // STATE STORAGE
 let currentRider = {
@@ -26,7 +27,7 @@ const CARAGA_HOTLINES = [
 const TRANSLATIONS = {
     en: {
         bannerTitle: "CRITICAL FIRST RESPONDER NOTICE",
-        bannerBody: "Do <strong>NOT</strong> remove helmet or move rider's neck unless breathing is blocked. Incorrect removal causes permanent spinal paralysis.",
+        bannerBody: "Do <strong>not</strong> remove the helmet unless the rider isn't breathing and you need to give CPR. Removing it improperly, or moving the neck unnecessarily, can worsen a spinal injury.",
         guidance: [
             "<strong>Airway Check:</strong> Look through visor for breathing movement without tilting the rider's head.",
             "<strong>Relieve Strain:</strong> Unclip the helmet chin strap if accessible, but leave the outer shell on.",
@@ -35,7 +36,9 @@ const TRANSLATIONS = {
     },
     tl: {
         bannerTitle: "BABALA SA UNANG PAPAALAM / BYSTANDER",
-        bannerBody: "<strong>HUWAG</strong> alisin ang helmet o igalaw ang leeg ng rider maliban kung hindi siya humihinga. Ang maling pag-alis ay nagdudulot ng permanenteng paralisis.",
+        // Machine-assisted translation, not reviewed by a native/clinical
+        // translator — flag for review given this is safety-critical copy.
+        bannerBody: "<strong>Huwag</strong> alisin ang helmet maliban kung hindi na humihinga ang rider at kailangan mo nang magbigay ng CPR. Ang maling pag-alis, o ang hindi kinakailangang paggalaw ng leeg, ay maaaring lumala ang pinsala sa gulugod.",
         guidance: [
             "<strong>Pagsuri ng Hininga:</strong> Tumingin sa visor kung tumataas ang dibdib nang hindi ginagalaw ang ulo.",
             "<strong>Bawasan ang Sakal:</strong> Tanggalin lamang ang lock ng strap ng helmet kung abot, ngunit iwanan ang helmet sa ulo.",
@@ -44,7 +47,9 @@ const TRANSLATIONS = {
     },
     ceb: {
         bannerTitle: "PAHAMGNO SA UNANG TABANG",
-        bannerBody: "<strong>AYAW</strong> kuhaa ang helmet o lihoka ang liog sa rider gawas kon dili siya naginhawa. Ang sayop nga pagkuha makadaut sa bukit ug kasina.",
+        // Machine-assisted translation, not reviewed by a native/clinical
+        // translator — flag for review given this is safety-critical copy.
+        bannerBody: "<strong>Ayaw</strong> kuhaa ang helmet gawas kon wala na naginhawa ang rider ug kinahanglan na nimo maghatag og CPR. Ang sayop nga pagkuha, o ang dili kinahanglan nga paglihok sa liog, mahimong mopagrabe sa kadaot sa bukobuko.",
         guidance: [
             "<strong>Susiha ang Ginhawa:</strong> Tan-awa sa visor kon naglihok ang dughan nga wala gilihok ang ulo.",
             "<strong>Luhagi ang Strap:</strong> Tangtanga ang lock sa strap kon maabot, apan ibabilin ang helmet sa ulo.",
@@ -68,12 +73,21 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     return R * c;
 }
 
+// Facilities farther than this from the bystander are almost certainly
+// the wrong ones to call — showing them anyway silently sends someone
+// scanning far outside Caraga toward a Butuan/Surigao/Tandag hospital
+// number. Past this radius, swap the list for the national hotline instead.
+const OUT_OF_RANGE_KM = 100;
+
 // RENDER REGIONAL HOTLINES (OPTIONALLY SORTED BY DISTANCE)
+// Returns { outOfRange, distance? } so the caller can report the right
+// status message — this list is Caraga-only, it never swaps datasets.
 function renderRegionalHotlines(userLat = null, userLng = null) {
     const container = document.getElementById('regional-hotlines-container');
+    const sectionTitle = document.getElementById('hotlines-section-title');
     const recSection = document.getElementById('recommended-responder-section');
     const recCard = document.getElementById('recommended-responder-card');
-    
+
     let list = [...CARAGA_HOTLINES];
 
     if (userLat !== null && userLng !== null) {
@@ -82,17 +96,37 @@ function renderRegionalHotlines(userLat = null, userLng = null) {
             distance: calculateDistance(userLat, userLng, item.lat, item.lng)
         })).sort((a, b) => a.distance - b.distance);
 
-        // Highlight nearest responder
         const nearest = list[0];
+
+        if (nearest.distance > OUT_OF_RANGE_KM) {
+            recSection.style.display = 'block';
+            recCard.innerHTML = `
+                <div class="info-card out-of-range-notice">
+                    <div class="desc">You're ${nearest.distance.toFixed(0)} km from the nearest listed Caraga facility — these hotlines likely don't apply here.</div>
+                    <a href="tel:911" class="contact-btn recommended-btn" style="margin-top:12px;">
+                        <div class="contact-info">
+                            <span>NATIONAL EMERGENCY HOTLINE</span>
+                            <div class="facility-name">CALL 911</div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            container.innerHTML = "";
+            sectionTitle.style.display = 'none';
+            return { outOfRange: true, distance: nearest.distance };
+        }
+
+        sectionTitle.style.display = '';
+        // Highlight nearest responder
         recSection.style.display = 'block';
         recCard.innerHTML = `
             <a href="tel:${nearest.phone}" class="contact-btn recommended-btn">
                 <div class="contact-info">
-                    <span class="badge-nearest">⚡ NEAREST RESPONDER (${nearest.distance.toFixed(1)} km)</span>
+                    <span class="badge-nearest"><span class="icon">${ICONS.bolt}</span> NEAREST RESPONDER (${nearest.distance.toFixed(1)} km)</span>
                     <div class="facility-name">${nearest.name.toUpperCase()}</div>
                     <span class="facility-cat">${nearest.category}</span>
                 </div>
-                <div class="call-icon">📞</div>
+                <div class="call-icon">${ICONS.phone}</div>
             </a>
         `;
 
@@ -109,10 +143,12 @@ function renderRegionalHotlines(userLat = null, userLng = null) {
                     <span>${facility.category.toUpperCase()} ${distTag}</span>
                     <div>${facility.name}</div>
                 </div>
-                <div class="call-icon secondary">📞</div>
+                <div class="call-icon secondary">${ICONS.phone}</div>
             </a>
         `;
     });
+
+    return { outOfRange: false };
 }
 
 // URL PARAM PARSER (serial number only — see note below)
@@ -202,7 +238,7 @@ async function fetchStatus() {
                         <span>PERSONAL EMERGENCY CONTACT ${i}</span>
                         <div>${name.toUpperCase()}</div>
                     </div>
-                    <div class="call-icon">📞</div>
+                    <div class="call-icon">${ICONS.phone}</div>
                 </a>`;
         }
     }
@@ -232,7 +268,7 @@ function applyLanguage(lang) {
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.dataset.lang === lang) {
-            btn.style.background = '#ff2e43';
+            btn.style.background = '#c8342b';
             btn.style.color = '#ffffff';
         } else {
             btn.style.background = 'transparent';
@@ -247,17 +283,17 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 // TRIAGE QUICK SELECTOR HANDLERS
 document.getElementById('triage-conscious').onclick = () => {
-    document.getElementById('banner-title-text').innerText = "🟢 TRIAGE: CONSCIOUS RIDER";
+    document.getElementById('banner-title-text').innerHTML = `<span class="icon">${dotIcon('#22c55e')}</span> TRIAGE: CONSCIOUS RIDER`;
     document.getElementById('banner-body-text').innerHTML = "Keep the rider seated and calm. Do <strong>NOT</strong> remove helmet unless requested. Check for hidden fractures or numbness.";
 };
 
 document.getElementById('triage-unconscious').onclick = () => {
-    document.getElementById('banner-title-text').innerText = "🟡 TRIAGE: UNCONSCIOUS RIDER";
+    document.getElementById('banner-title-text').innerHTML = `<span class="icon">${dotIcon('#eab308')}</span> TRIAGE: UNCONSCIOUS RIDER`;
     document.getElementById('banner-body-text').innerHTML = "CRITICAL: Do <strong>NOT</strong> move head or neck. Check if chest is rising. Call 911 / Caraga Emergency Hospital immediately!";
 };
 
 document.getElementById('triage-bleeding').onclick = () => {
-    document.getElementById('banner-title-text').innerText = "🔴 TRIAGE: SEVERE BLEEDING";
+    document.getElementById('banner-title-text').innerHTML = `<span class="icon">${dotIcon('#ef4444')}</span> TRIAGE: SEVERE BLEEDING`;
     document.getElementById('banner-body-text').innerHTML = "Apply firm, direct pressure on the bleeding wound using a clean cloth immediately. Keep rider still and elevated if possible.";
 };
 
@@ -268,25 +304,48 @@ let strobeState = false;
 document.getElementById('toggle-strobe-btn').onclick = () => toggleStrobe();
 document.getElementById('strobe-overlay').onclick = () => toggleStrobe();
 
+function prefersReducedMotion() {
+    return document.documentElement.getAttribute('data-reduce-motion') === 'true'
+        || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+// Tick interval chosen to sit with real margin under WCAG 2.3.1's 3-
+// flashes-per-second general-flash threshold, not just barely under it:
+// one full off/on cycle takes 2 ticks, so 250ms/tick = 2 flashes/sec
+// (the previous 180ms was ~2.78/sec — technically under 3, but this is a
+// full-viewport saturated-red transition, the exact highest-risk pattern
+// the threshold exists for, so it shouldn't be left this close to it).
+const STROBE_TICK_MS = 250;
+
 function toggleStrobe() {
     const overlay = document.getElementById('strobe-overlay');
     if (strobeInterval) {
         clearInterval(strobeInterval);
         strobeInterval = null;
         overlay.style.display = 'none';
-    } else {
-        overlay.style.display = 'block';
-        strobeInterval = setInterval(() => {
-            if (strobeState) {
-                overlay.style.backgroundColor = '#dc2626';
-                overlay.style.color = '#ffffff';
-            } else {
-                overlay.style.backgroundColor = '#ffffff';
-                overlay.style.color = '#000000';
-            }
-            strobeState = !strobeState;
-        }, 180);
+        return;
     }
+
+    overlay.style.display = 'block';
+
+    if (prefersReducedMotion()) {
+        // Static beacon instead of a flash — still a visible night-time
+        // marker, without the strobing pattern reduce-motion exists to avoid.
+        overlay.style.backgroundColor = '#dc2626';
+        overlay.style.color = '#ffffff';
+        return;
+    }
+
+    strobeInterval = setInterval(() => {
+        if (strobeState) {
+            overlay.style.backgroundColor = '#dc2626';
+            overlay.style.color = '#ffffff';
+        } else {
+            overlay.style.backgroundColor = '#ffffff';
+            overlay.style.color = '#000000';
+        }
+        strobeState = !strobeState;
+    }, STROBE_TICK_MS);
 }
 
 // VCARD GENERATOR
@@ -331,17 +390,20 @@ document.getElementById('share-location').onclick = () => {
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
 
-        renderRegionalHotlines(lat, lng);
+        const result = renderRegionalHotlines(lat, lng);
 
         const mapLink = `https://www.google.com/maps?q=${lat},${lng}`;
         const msg = `EMERGENCY: I found a crashed rider (${currentRider.fullName}). Location: ${mapLink}`;
-        
+
         if (navigator.share) {
             navigator.share({ title: 'Giacomo Emergency Location', text: msg, url: mapLink });
-        } else { 
-            window.open(`sms:?body=${encodeURIComponent(msg)}`, '_blank'); 
+        } else {
+            window.open(`sms:?body=${encodeURIComponent(msg)}`, '_blank');
         }
-        statusText.innerText = "LOCATION SENT & HOTLINES SORTED BY PROXIMITY";
+
+        statusText.innerText = result.outOfRange
+            ? `LOCATION SENT — YOU'RE ~${result.distance.toFixed(0)}KM OUTSIDE THE CARAGA COVERAGE AREA`
+            : "LOCATION SENT & CARAGA HOTLINES SORTED BY PROXIMITY";
     }, () => { statusText.innerText = "LOCATION PERMISSION DENIED"; });
 };
 
@@ -355,4 +417,5 @@ if ('serviceWorker' in navigator) {
 }
 
 // INITIALIZE
+hydrateIcons();
 fetchStatus();

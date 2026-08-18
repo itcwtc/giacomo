@@ -77,144 +77,6 @@ label{color:var(--muted);font-size:13px}
   .main-nav{display:none}
   .brand-sub{display:none}
 }
-/* ================= NAVIGATION ================= */
-
-.menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 1001;
-  font-size: 24px;
-  background: #111;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -240px;
-  width: 220px;
-  height: 100vh;
-  background: #0f172a;
-  color: white;
-  padding: 20px;
-  transition: 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-.logo {
-  margin-bottom: 30px;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nav-link {
-  color: #cbd5e1;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-
-.nav-link:hover {
-  background: #1e293b;
-}
-
-.nav-link.active {
-  background: #2563eb;
-  color: white;
-}
-
-.main-content {
-  padding: 80px 20px 20px 20px;
-}
-
-/* Status Cards */
-
-.status-card {
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  color: white;
-}
-
-.status-card.safe { background: #16a34a; }
-.status-card.emergency { background: #dc2626; }
-.status-card.offline { background: #64748b; }
-
-/* Admin Grid */
-
-.user-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-}
-
-.user-card {
-  padding: 15px;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-}
-
-.user-card.safe { background: #16a34a; }
-.user-card.emergency { background: #dc2626; }
-.user-card.offline { background: #64748b; }
-
-/* Desktop behavior */
-@media (min-width: 768px) {
-  .sidebar {
-    left: 0;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-
-  .main-content {
-    margin-left: 220px;
-  }
-}
-/* ================= CONTACTS ================= */
-
-.panel input {
-  padding: 8px;
-  margin-right: 5px;
-}
-
-.panel button {
-  padding: 8px 12px;
-}
-
-.contacts-list {
-  margin-top: 15px;
-  display: grid;
-  gap: 10px;
-}
-
-.contact-card {
-  background: #1e293b;
-  padding: 12px;
-  border-radius: 6px;
-  color: white;
-}
-
-.contact-card button {
-  margin-right: 5px;
-  margin-top: 5px;
-}
 @keyframes slideIn {
   from { transform: translateX(120%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
@@ -356,14 +218,109 @@ label{color:var(--muted);font-size:13px}
   padding: 15px;
 }
 
+/* Scoped override, not a global --neon change: this page should read
+   #c8342b (the --signal red used everywhere else in the app), while the
+   shared :root --neon stays untouched for anything else still keyed to it. */
+.emergency-page {
+  --neon: #c8342b;
+  /* Spacing scale — replaces this page's previous ad hoc inline margins
+     (10px/12px/15px/20px side by side with no shared logic). */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 16px; --sp-4: 24px; --sp-5: 32px;
+}
+
+/* Icon slot — sized to inherit the surrounding font-size via 1em, so it
+   drops into text flow the same way the emoji it replaced did. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -0.15em;
+}
+
+/* ---- Button system: primary / danger / secondary ----
+   One shared shape (radius, focus ring, hover feedback) instead of a
+   different inline style block per button. */
+.emergency-page .btn-primary,
+.emergency-page .btn-danger,
+.emergency-page .btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: filter .15s ease, background-color .15s ease;
+}
+.emergency-page .btn-primary:focus-visible,
+.emergency-page .btn-danger:focus-visible,
+.emergency-page .btn-secondary:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.emergency-page .btn-primary {
+  width: 100%;
+  background: var(--accent);
+  color: #000000;
+  border: none;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 12px;
+}
+.emergency-page .btn-primary:hover { filter: brightness(1.08); }
+
+.emergency-page .btn-danger {
+  width: 100%;
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 12px;
+  margin-top: var(--sp-3);
+}
+.emergency-page .btn-danger:hover { filter: brightness(1.1); }
+
+.emergency-page .btn-secondary {
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #475569;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+.emergency-page .btn-secondary:hover { background: #263548; }
+
+.emergency-page .btn-secondary.btn-sm {
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+/* Strobe overlay — same simple high-contrast look, real hierarchy instead
+   of one centered text block. */
+.strobe-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.strobe-sub {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: .85;
+  margin-top: var(--sp-2);
+}
+
 /* First-Aid Warning Banner */
 .first-aid-banner {
-  background: #ff2e43;
+  background: var(--neon);
   color: #ffffff;
   padding: 16px;
   border-radius: 0 0 16px 16px;
   margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(255, 46, 67, 0.3);
+  box-shadow: 0 6px 20px rgba(200, 52, 43, 0.3);
 }
 
 .banner-content {
@@ -420,12 +377,43 @@ label{color:var(--muted);font-size:13px}
   margin-bottom: 6px;
 }
 
+/* Citation line — deliberately matches index.html's .cite treatment
+   (mono, small, muted) even though this page doesn't load the editorial
+   webfonts; var(--mono) degrades to system monospace here, which is fine. */
+.source-line {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .08em;
+  color: var(--muted-ed);
+}
+
+.source-line a {
+  color: var(--muted-ed);
+  text-decoration: underline;
+  text-decoration-color: rgba(154, 168, 159, .4);
+}
+
+.source-line a:hover {
+  color: #ffffff;
+}
+
+/* Out-of-Caraga-range fallback (renderRegionalHotlines' 100km cutoff) */
+.out-of-range-notice .desc {
+  text-transform: none;
+  font-size: 12px;
+  color: #e2e8f0;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 /* Impact Clock & Header */
 .impact-clock-box {
-  background: rgba(255, 46, 67, 0.1);
+  background: rgba(200, 52, 43, 0.1);
   border: 1px solid var(--neon);
   padding: 16px;
-  border-radius: 18px;
+  border-radius: 16px;
   margin-bottom: 15px;
   text-align: center;
   display: none;
@@ -463,7 +451,7 @@ label{color:var(--muted);font-size:13px}
   border-radius: 20px;
   margin-bottom: 20px;
   text-align: center;
-  background: rgba(255, 46, 67, 0.05);
+  background: rgba(200, 52, 43, 0.05);
 }
 
 .emergency-page .emergency-header h1 {
