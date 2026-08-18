@@ -343,30 +343,6 @@
       "norm_label": "writecookie()"
     },
     {
-      "label": "loadSettings()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L19",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "Accessibility Controls Logic",
-      "norm_label": "loadsettings()",
-      "id": "js_settings_loadsettings"
-    },
-    {
-      "label": "validateField()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L6",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "Accessibility Controls Logic",
-      "norm_label": "validatefield()",
-      "id": "js_settings_validatefield"
-    },
-    {
       "label": "announce()",
       "file_type": "code",
       "source_file": "js/medical-onboarding.js",
@@ -514,169 +490,253 @@
       "label": "highlightMatches()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L205",
+      "source_location": "L212",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_highlightmatches",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "highlightmatches()",
-      "id": "js_admindashboard_highlightmatches"
+      "norm_label": "highlightmatches()"
     },
     {
       "label": "init()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L158",
+      "source_location": "L169",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_init",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "init()",
-      "id": "js_admindashboard_init"
+      "norm_label": "init()"
     },
     {
       "label": "loadHistory()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L144",
+      "source_location": "L155",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_loadhistory",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "loadhistory()",
-      "id": "js_admindashboard_loadhistory"
+      "norm_label": "loadhistory()"
     },
     {
       "label": "renderUI()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L105",
+      "source_location": "L116",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_renderui",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "renderui()",
-      "id": "js_admindashboard_renderui"
+      "norm_label": "renderui()"
     },
     {
       "label": "resetAllCrashes()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L11",
+      "source_location": "L22",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_resetallcrashes",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetallcrashes()",
-      "id": "js_admindashboard_resetallcrashes"
+      "norm_label": "resetallcrashes()"
     },
     {
       "label": "resetSimulationData()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L19",
+      "source_location": "L30",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_resetsimulationdata",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetsimulationdata()",
-      "id": "js_admindashboard_resetsimulationdata"
+      "norm_label": "resetsimulationdata()"
+    },
+    {
+      "label": "setAdminStatus()",
+      "file_type": "code",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L13",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_admindashboard_setadminstatus",
+      "community": 6,
+      "community_name": "Admin Dashboard Logic",
+      "norm_label": "setadminstatus()"
     },
     {
       "label": "showCrashNotification()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L26",
+      "source_location": "L37",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_admindashboard_showcrashnotification",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "showcrashnotification()",
-      "id": "js_admindashboard_showcrashnotification"
+      "norm_label": "showcrashnotification()"
+    },
+    {
+      "label": "dotIcon()",
+      "file_type": "code",
+      "source_file": "js/icons.js",
+      "source_location": "L24",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_icons_doticon",
+      "community": 7,
+      "community_name": "Public Status Page Logic",
+      "norm_label": "doticon()"
+    },
+    {
+      "label": "hydrateIcons()",
+      "file_type": "code",
+      "source_file": "js/icons.js",
+      "source_location": "L32",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_icons_hydrateicons",
+      "community": 7,
+      "community_name": "Public Status Page Logic",
+      "norm_label": "hydrateicons()"
     },
     {
       "label": "applyLanguage()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L223",
+      "source_location": "L259",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_applylanguage",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "applylanguage()",
-      "id": "js_status_applylanguage"
+      "norm_label": "applylanguage()"
     },
     {
       "label": "calculateDistance()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L59",
+      "source_location": "L64",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_calculatedistance",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "calculatedistance()",
-      "id": "js_status_calculatedistance"
+      "norm_label": "calculatedistance()"
     },
     {
       "label": "fetchStatus()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L140",
+      "source_location": "L176",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_fetchstatus",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "fetchstatus()",
-      "id": "js_status_fetchstatus"
+      "norm_label": "fetchstatus()"
     },
     {
       "label": "parseUrlFallback()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L133",
+      "source_location": "L169",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_parseurlfallback",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "parseurlfallback()",
-      "id": "js_status_parseurlfallback"
+      "norm_label": "parseurlfallback()"
+    },
+    {
+      "label": "prefersReducedMotion()",
+      "file_type": "code",
+      "source_file": "js/status.js",
+      "source_location": "L307",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_status_prefersreducedmotion",
+      "community": 7,
+      "community_name": "Public Status Page Logic",
+      "norm_label": "prefersreducedmotion()"
     },
     {
       "label": "renderRegionalHotlines()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L72",
+      "source_location": "L85",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_renderregionalhotlines",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "renderregionalhotlines()",
-      "id": "js_status_renderregionalhotlines"
+      "norm_label": "renderregionalhotlines()"
     },
     {
       "label": "showErr()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L217",
+      "source_location": "L253",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_showerr",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "showerr()",
-      "id": "js_status_showerr"
+      "norm_label": "showerr()"
     },
     {
       "label": "toggleStrobe()",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L271",
+      "source_location": "L320",
       "_callable": true,
       "_origin": "ast",
+      "id": "js_status_togglestrobe",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "togglestrobe()",
-      "id": "js_status_togglestrobe"
+      "norm_label": "togglestrobe()"
+    },
+    {
+      "label": "loadSettings()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_loadsettings",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "loadsettings()"
+    },
+    {
+      "label": "setStatus()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L19",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_setstatus",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "setstatus()"
+    },
+    {
+      "label": "validateField()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_validatefield",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "validatefield()"
     },
     {
       "label": "checkOnboarding()",
@@ -694,7 +754,7 @@
       "label": "generateRiderQR()",
       "file_type": "code",
       "source_file": "js/userDashboard.js",
-      "source_location": "L236",
+      "source_location": "L228",
       "_callable": true,
       "_origin": "ast",
       "id": "js_userdashboard_generateriderqr",
@@ -718,7 +778,7 @@
       "label": "saveBlackBoxData()",
       "file_type": "code",
       "source_file": "js/userDashboard.js",
-      "source_location": "L214",
+      "source_location": "L206",
       "_callable": true,
       "_origin": "ast",
       "id": "js_userdashboard_saveblackboxdata",
@@ -730,7 +790,7 @@
       "label": "startTelemetry()",
       "file_type": "code",
       "source_file": "js/userDashboard.js",
-      "source_location": "L148",
+      "source_location": "L140",
       "_callable": true,
       "_origin": "ast",
       "id": "js_userdashboard_starttelemetry",
@@ -909,10 +969,10 @@
       "source_file": "js/sw.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "js_sw",
       "community": 11,
       "community_name": "Service Worker Caching",
-      "norm_label": "sw.js",
-      "id": "js_sw"
+      "norm_label": "sw.js"
     },
     {
       "label": "ASSETS",
@@ -920,10 +980,10 @@
       "source_file": "js/sw.js",
       "source_location": "L2",
       "_origin": "ast",
+      "id": "js_sw_assets",
       "community": 11,
       "community_name": "Service Worker Caching",
-      "norm_label": "assets",
-      "id": "js_sw_assets"
+      "norm_label": "assets"
     },
     {
       "label": "accordion.js",
@@ -1025,39 +1085,6 @@
       "norm_label": "preferences.js"
     },
     {
-      "label": "settings.js",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "Accessibility Controls Logic",
-      "norm_label": "settings.js",
-      "id": "js_settings"
-    },
-    {
-      "label": "supabaseClient.js",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "Accessibility Controls Logic",
-      "norm_label": "supabaseclient.js",
-      "id": "js_supabaseclient"
-    },
-    {
-      "label": "supabase",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "Accessibility Controls Logic",
-      "norm_label": "supabase",
-      "id": "js_supabaseclient_supabase"
-    },
-    {
       "label": "medical-onboarding.js",
       "file_type": "code",
       "source_file": "js/medical-onboarding.js",
@@ -1118,98 +1145,109 @@
       "source_file": "js/adminDashboard.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "js_admindashboard",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "admindashboard.js",
-      "id": "js_admindashboard"
+      "norm_label": "admindashboard.js"
     },
     {
       "label": "currentRiders",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
+      "id": "js_admindashboard_currentriders",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "currentriders",
-      "id": "js_admindashboard_currentriders"
+      "norm_label": "currentriders"
     },
     {
       "label": "logContainer",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L4",
+      "source_location": "L5",
       "_origin": "ast",
+      "id": "js_admindashboard_logcontainer",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "logcontainer",
-      "id": "js_admindashboard_logcontainer"
+      "norm_label": "logcontainer"
     },
     {
       "label": "markers",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
+      "id": "js_admindashboard_markers",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "markers",
-      "id": "js_admindashboard_markers"
-    },
-    {
-      "label": "resetSimBtn",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L197",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetsimbtn",
-      "id": "js_admindashboard_resetsimbtn"
+      "norm_label": "markers"
     },
     {
       "label": "searchInput",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L7",
+      "source_location": "L8",
       "_origin": "ast",
+      "id": "js_admindashboard_searchinput",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "searchinput",
-      "id": "js_admindashboard_searchinput"
+      "norm_label": "searchinput"
     },
     {
       "label": "statAlerts",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast",
+      "id": "js_admindashboard_statalerts",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "statalerts",
-      "id": "js_admindashboard_statalerts"
+      "norm_label": "statalerts"
     },
     {
       "label": "statRiders",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
+      "id": "js_admindashboard_statriders",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "statriders",
-      "id": "js_admindashboard_statriders"
+      "norm_label": "statriders"
     },
     {
       "label": "userContainer",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
+      "id": "js_admindashboard_usercontainer",
       "community": 6,
       "community_name": "Admin Dashboard Logic",
-      "norm_label": "usercontainer",
-      "id": "js_admindashboard_usercontainer"
+      "norm_label": "usercontainer"
+    },
+    {
+      "label": "icons.js",
+      "file_type": "code",
+      "source_file": "js/icons.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "js_icons",
+      "community": 7,
+      "community_name": "Public Status Page Logic",
+      "norm_label": "icons.js"
+    },
+    {
+      "label": "ICONS",
+      "file_type": "code",
+      "source_file": "js/icons.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "js_icons_icons",
+      "community": 7,
+      "community_name": "Public Status Page Logic",
+      "norm_label": "icons"
     },
     {
       "label": "status.js",
@@ -1217,43 +1255,76 @@
       "source_file": "js/status.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "js_status",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "status.js",
-      "id": "js_status"
+      "norm_label": "status.js"
     },
     {
       "label": "CARAGA_HOTLINES",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L12",
+      "source_location": "L13",
       "_origin": "ast",
+      "id": "js_status_caraga_hotlines",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "caraga_hotlines",
-      "id": "js_status_caraga_hotlines"
+      "norm_label": "caraga_hotlines"
     },
     {
       "label": "currentRider",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L4",
+      "source_location": "L5",
       "_origin": "ast",
+      "id": "js_status_currentrider",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "currentrider",
-      "id": "js_status_currentrider"
+      "norm_label": "currentrider"
     },
     {
       "label": "TRANSLATIONS",
       "file_type": "code",
       "source_file": "js/status.js",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
+      "id": "js_status_translations",
       "community": 7,
       "community_name": "Public Status Page Logic",
-      "norm_label": "translations",
-      "id": "js_status_translations"
+      "norm_label": "translations"
+    },
+    {
+      "label": "settings.js",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "js_settings",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "settings.js"
+    },
+    {
+      "label": "supabaseClient.js",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "js_supabaseclient",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "supabaseclient.js"
+    },
+    {
+      "label": "supabase",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "js_supabaseclient_supabase",
+      "community": 8,
+      "community_name": "Rider Dashboard Logic",
+      "norm_label": "supabase"
     },
     {
       "label": "userDashboard.js",
@@ -1327,32 +1398,32 @@
       "source_file": "manifest.json",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "manifest",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "manifest.json",
-      "id": "manifest"
+      "norm_label": "manifest.json"
     },
     {
       "label": "background_color",
       "file_type": "code",
       "source_file": "manifest.json",
-      "source_location": "L6",
+      "source_location": "L9",
       "_origin": "ast",
+      "id": "manifest_background_color",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "background_color",
-      "id": "manifest_background_color"
+      "norm_label": "background_color"
     },
     {
       "label": "display",
       "file_type": "code",
       "source_file": "manifest.json",
-      "source_location": "L8",
+      "source_location": "L11",
       "_origin": "ast",
+      "id": "manifest_display",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "display",
-      "id": "manifest_display"
+      "norm_label": "display"
     },
     {
       "label": "icons",
@@ -1360,10 +1431,10 @@
       "source_file": "manifest.json",
       "source_location": "L4",
       "_origin": "ast",
+      "id": "manifest_icons",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "icons",
-      "id": "manifest_icons"
+      "norm_label": "icons"
     },
     {
       "label": "name",
@@ -1371,21 +1442,21 @@
       "source_file": "manifest.json",
       "source_location": "L3",
       "_origin": "ast",
+      "id": "manifest_name",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "name",
-      "id": "manifest_name"
+      "norm_label": "name"
     },
     {
       "label": "orientation",
       "file_type": "code",
       "source_file": "manifest.json",
-      "source_location": "L9",
+      "source_location": "L12",
       "_origin": "ast",
+      "id": "manifest_orientation",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "orientation",
-      "id": "manifest_orientation"
+      "norm_label": "orientation"
     },
     {
       "label": "short_name",
@@ -1393,32 +1464,587 @@
       "source_file": "manifest.json",
       "source_location": "L2",
       "_origin": "ast",
+      "id": "manifest_short_name",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "short_name",
-      "id": "manifest_short_name"
+      "norm_label": "short_name"
     },
     {
       "label": "start_url",
       "file_type": "code",
       "source_file": "manifest.json",
-      "source_location": "L5",
+      "source_location": "L8",
       "_origin": "ast",
+      "id": "manifest_start_url",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "start_url",
-      "id": "manifest_start_url"
+      "norm_label": "start_url"
     },
     {
       "label": "theme_color",
       "file_type": "code",
       "source_file": "manifest.json",
-      "source_location": "L7",
+      "source_location": "L10",
       "_origin": "ast",
+      "id": "manifest_theme_color",
       "community": 9,
       "community_name": "PWA Manifest",
-      "norm_label": "theme_color",
-      "id": "manifest_theme_color"
+      "norm_label": "theme_color"
+    },
+    {
+      "label": "js/accessibility-controls.js",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "js/accessibility-controls.js",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accessibility_controls_js"
+    },
+    {
+      "label": "index.html",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "index.html",
+      "_origin": "semantic",
+      "id": "index"
+    },
+    {
+      "label": "Index accessibility-prefs cookie bootstrap",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "index accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "index_cookie_prefs_script"
+    },
+    {
+      "label": "js/indexAuth.js",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "js/indexauth.js",
+      "_origin": "semantic",
+      "id": "index_index_auth_js"
+    },
+    {
+      "label": "js/preferences.js syncPreferences (index)",
+      "file_type": "code",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "js/preferences.js syncpreferences (index)",
+      "_origin": "semantic",
+      "id": "index_preferences_js"
+    },
+    {
+      "label": "manual.html",
+      "file_type": "code",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "manual.html",
+      "_origin": "semantic",
+      "id": "manual"
+    },
+    {
+      "label": "Manual accessibility-prefs cookie bootstrap",
+      "file_type": "code",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "manual accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "manual_cookie_prefs_script"
+    },
+    {
+      "label": "js/preferences.js syncPreferences (manual)",
+      "file_type": "code",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "js/preferences.js syncpreferences (manual)",
+      "_origin": "semantic",
+      "id": "manual_preferences_js"
+    },
+    {
+      "label": "Privacy accessibility-prefs cookie bootstrap",
+      "file_type": "code",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "privacy accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "privacy_cookie_prefs_script"
+    },
+    {
+      "label": "js/preferences.js syncPreferences (privacy)",
+      "file_type": "code",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "js/preferences.js syncpreferences (privacy)",
+      "_origin": "semantic",
+      "id": "privacy_preferences_js"
+    },
+    {
+      "label": "Accessibility accordion section",
+      "file_type": "concept",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "accessibility accordion section",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accessibility_section"
+    },
+    {
+      "label": "Scroll-driven exploded hardware assembly view",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "scroll-driven exploded hardware assembly view",
+      "_origin": "semantic",
+      "id": "index_assembly_exploded_view"
+    },
+    {
+      "label": "Registry sign-in/register card",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "registry sign-in/register card",
+      "_origin": "semantic",
+      "id": "index_auth_form"
+    },
+    {
+      "label": "Bill of materials table",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "bill of materials table",
+      "_origin": "semantic",
+      "id": "manual_bom_table"
+    },
+    {
+      "label": "Comparison against existing solutions placeholder",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "comparison against existing solutions placeholder",
+      "_origin": "semantic",
+      "id": "manual_comparison_placeholder"
+    },
+    {
+      "label": "Research methodology placeholder",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "research methodology placeholder",
+      "_origin": "semantic",
+      "id": "manual_methodology_placeholder"
+    },
+    {
+      "label": "Crash-detection validation results placeholder",
+      "file_type": "concept",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "crash-detection validation results placeholder",
+      "_origin": "semantic",
+      "id": "manual_validation_placeholder"
+    },
+    {
+      "label": "Consent statement on registration",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "consent statement on registration",
+      "_origin": "semantic",
+      "id": "privacy_consent_section"
+    },
+    {
+      "label": "What we collect (data categories)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "what we collect (data categories)",
+      "_origin": "semantic",
+      "id": "privacy_data_collected"
+    },
+    {
+      "label": "Your rights (review, correct, delete)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "your rights (review, correct, delete)",
+      "_origin": "semantic",
+      "id": "privacy_your_rights"
+    },
+    {
+      "label": "privacy.html",
+      "file_type": "document",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "privacy.html",
+      "_origin": "semantic",
+      "id": "privacy"
+    },
+    {
+      "label": "rem-based mobile caption floor fix (index)",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "rem-based mobile caption floor fix (index)",
+      "_origin": "semantic",
+      "id": "index_mobile_caption_rem_fix"
+    },
+    {
+      "label": "SHOW/HIDE reserved-width fix",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "show/hide reserved-width fix",
+      "_origin": "semantic",
+      "id": "index_pwd_toggle_width_fix"
+    },
+    {
+      "label": "Phone-screen overflow:hidden removal",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "phone-screen overflow:hidden removal",
+      "_origin": "semantic",
+      "id": "index_screen_overflow_fix"
+    },
+    {
+      "label": "Engineering rationale by subsystem",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "engineering rationale by subsystem",
+      "_origin": "semantic",
+      "id": "manual_engineering_rationale"
+    },
+    {
+      "label": "rem-based mobile caption floor fix (manual)",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "rem-based mobile caption floor fix (manual)",
+      "_origin": "semantic",
+      "id": "manual_mobile_caption_rem_fix"
+    },
+    {
+      "label": "BOM part-name nowrap decision",
+      "file_type": "rationale",
+      "source_file": "manual.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "bom part-name nowrap decision",
+      "_origin": "semantic",
+      "id": "manual_table_nowrap_rationale"
+    },
+    {
+      "label": "Two-column field-row flex-wrap fix",
+      "file_type": "rationale",
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "two-column field-row flex-wrap fix",
+      "_origin": "semantic",
+      "id": "medical_onboarding_fld_row_wrap_fix"
+    },
+    {
+      "label": "Missing mobile breakpoint rem fix",
+      "file_type": "rationale",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "Landing Page Accessibility Fixes",
+      "norm_label": "missing mobile breakpoint rem fix",
+      "_origin": "semantic",
+      "id": "privacy_kicker_mobile_fix"
+    },
+    {
+      "label": "graphify explain command",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify explain command",
+      "_origin": "semantic",
+      "id": "claude_md_graphify_explain"
+    },
+    {
+      "label": "graphify Knowledge Graph",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify knowledge graph",
+      "_origin": "semantic",
+      "id": "claude_md_graphify_out"
+    },
+    {
+      "label": "graphify path command",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify path command",
+      "_origin": "semantic",
+      "id": "claude_md_graphify_path"
+    },
+    {
+      "label": "graphify query command",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify query command",
+      "_origin": "semantic",
+      "id": "claude_md_graphify_query"
+    },
+    {
+      "label": "graphify update command",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify update command",
+      "_origin": "semantic",
+      "id": "claude_md_graphify_update"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "claude.md",
+      "_origin": "semantic",
+      "id": "claude_md"
+    },
+    {
+      "label": "GRAPH_REPORT.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graph_report.md",
+      "_origin": "semantic",
+      "id": "claude_md_graph_report"
+    },
+    {
+      "label": "graphify wiki index",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 10,
+      "community_name": "Graphify Meta Documentation",
+      "norm_label": "graphify wiki index",
+      "_origin": "semantic",
+      "id": "claude_md_wiki_index"
     },
     {
       "label": "Caraga Regional Emergency Hotlines List",
@@ -1541,524 +2167,6 @@
       "id": "status_vcard_download"
     },
     {
-      "label": "js/accessibility-controls.js",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_settings_accessibility_controls_js",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "js/accessibility-controls.js"
-    },
-    {
-      "label": "index.html",
-      "file_type": "code",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "index.html"
-    },
-    {
-      "label": "Index accessibility-prefs cookie bootstrap",
-      "file_type": "code",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_cookie_prefs_script",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "index accessibility-prefs cookie bootstrap"
-    },
-    {
-      "label": "js/indexAuth.js",
-      "file_type": "code",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_index_auth_js",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "js/indexauth.js"
-    },
-    {
-      "label": "js/preferences.js syncPreferences (index)",
-      "file_type": "code",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_preferences_js",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "js/preferences.js syncpreferences (index)"
-    },
-    {
-      "label": "manual.html",
-      "file_type": "code",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "manual.html"
-    },
-    {
-      "label": "Manual accessibility-prefs cookie bootstrap",
-      "file_type": "code",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_cookie_prefs_script",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "manual accessibility-prefs cookie bootstrap"
-    },
-    {
-      "label": "js/preferences.js syncPreferences (manual)",
-      "file_type": "code",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_preferences_js",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "js/preferences.js syncpreferences (manual)"
-    },
-    {
-      "label": "Privacy accessibility-prefs cookie bootstrap",
-      "file_type": "code",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_cookie_prefs_script",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "privacy accessibility-prefs cookie bootstrap"
-    },
-    {
-      "label": "js/preferences.js syncPreferences (privacy)",
-      "file_type": "code",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_preferences_js",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "js/preferences.js syncpreferences (privacy)"
-    },
-    {
-      "label": "Accessibility accordion section",
-      "file_type": "concept",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "dashboard_settings_accessibility_section",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "accessibility accordion section"
-    },
-    {
-      "label": "Scroll-driven exploded hardware assembly view",
-      "file_type": "concept",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_assembly_exploded_view",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "scroll-driven exploded hardware assembly view"
-    },
-    {
-      "label": "Registry sign-in/register card",
-      "file_type": "concept",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_auth_form",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "registry sign-in/register card"
-    },
-    {
-      "label": "Bill of materials table",
-      "file_type": "concept",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_bom_table",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "bill of materials table"
-    },
-    {
-      "label": "Comparison against existing solutions placeholder",
-      "file_type": "concept",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_comparison_placeholder",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "comparison against existing solutions placeholder"
-    },
-    {
-      "label": "Research methodology placeholder",
-      "file_type": "concept",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_methodology_placeholder",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "research methodology placeholder"
-    },
-    {
-      "label": "Crash-detection validation results placeholder",
-      "file_type": "concept",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_validation_placeholder",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "crash-detection validation results placeholder"
-    },
-    {
-      "label": "Consent statement on registration",
-      "file_type": "concept",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_consent_section",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "consent statement on registration"
-    },
-    {
-      "label": "What we collect (data categories)",
-      "file_type": "concept",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_data_collected",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "what we collect (data categories)"
-    },
-    {
-      "label": "Your rights (review, correct, delete)",
-      "file_type": "concept",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_your_rights",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "your rights (review, correct, delete)"
-    },
-    {
-      "label": "privacy.html",
-      "file_type": "document",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "privacy.html"
-    },
-    {
-      "label": "rem-based mobile caption floor fix (index)",
-      "file_type": "rationale",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_mobile_caption_rem_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "rem-based mobile caption floor fix (index)"
-    },
-    {
-      "label": "SHOW/HIDE reserved-width fix",
-      "file_type": "rationale",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_pwd_toggle_width_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "show/hide reserved-width fix"
-    },
-    {
-      "label": "Phone-screen overflow:hidden removal",
-      "file_type": "rationale",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "index_screen_overflow_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "phone-screen overflow:hidden removal"
-    },
-    {
-      "label": "Engineering rationale by subsystem",
-      "file_type": "rationale",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_engineering_rationale",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "engineering rationale by subsystem"
-    },
-    {
-      "label": "rem-based mobile caption floor fix (manual)",
-      "file_type": "rationale",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_mobile_caption_rem_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "rem-based mobile caption floor fix (manual)"
-    },
-    {
-      "label": "BOM part-name nowrap decision",
-      "file_type": "rationale",
-      "source_file": "manual.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "manual_table_nowrap_rationale",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "bom part-name nowrap decision"
-    },
-    {
-      "label": "Two-column field-row flex-wrap fix",
-      "file_type": "rationale",
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "medical_onboarding_fld_row_wrap_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "two-column field-row flex-wrap fix"
-    },
-    {
-      "label": "Missing mobile breakpoint rem fix",
-      "file_type": "rationale",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "privacy_kicker_mobile_fix",
-      "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
-      "norm_label": "missing mobile breakpoint rem fix"
-    },
-    {
-      "label": "graphify explain command",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graphify_explain",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify explain command"
-    },
-    {
-      "label": "graphify Knowledge Graph",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graphify_out",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify knowledge graph"
-    },
-    {
-      "label": "graphify path command",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graphify_path",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify path command"
-    },
-    {
-      "label": "graphify query command",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graphify_query",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify query command"
-    },
-    {
-      "label": "graphify update command",
-      "file_type": "concept",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graphify_update",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify update command"
-    },
-    {
-      "label": "CLAUDE.md",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "claude.md"
-    },
-    {
-      "label": "GRAPH_REPORT.md",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_graph_report",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graph_report.md"
-    },
-    {
-      "label": "graphify wiki index",
-      "file_type": "document",
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "claude_md_wiki_index",
-      "community": 10,
-      "community_name": "Graphify Meta Documentation",
-      "norm_label": "graphify wiki index"
-    },
-    {
       "label": "dashboard/settings.html",
       "file_type": "code",
       "source_file": "dashboard/settings.html",
@@ -2067,10 +2175,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "dashboard/settings.html"
+      "norm_label": "dashboard/settings.html",
+      "_origin": "semantic",
+      "id": "dashboard_settings"
     },
     {
       "label": "accessibility.css link (settings)",
@@ -2081,10 +2190,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_accessibility_css",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "accessibility.css link (settings)"
+      "norm_label": "accessibility.css link (settings)",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accessibility_css"
     },
     {
       "label": "js/accordion.js",
@@ -2095,10 +2205,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_accordion_js",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "js/accordion.js"
+      "norm_label": "js/accordion.js",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accordion_js"
     },
     {
       "label": "Settings accessibility-prefs cookie bootstrap",
@@ -2109,10 +2220,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_cookie_prefs_script",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "settings accessibility-prefs cookie bootstrap"
+      "norm_label": "settings accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "dashboard_settings_cookie_prefs_script"
     },
     {
       "label": "js/settings.js",
@@ -2123,10 +2235,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_settings_js",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "js/settings.js"
+      "norm_label": "js/settings.js",
+      "_origin": "semantic",
+      "id": "dashboard_settings_settings_js"
     },
     {
       "label": "medical-onboarding.html",
@@ -2137,10 +2250,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "medical-onboarding.html"
+      "norm_label": "medical-onboarding.html",
+      "_origin": "semantic",
+      "id": "medical_onboarding"
     },
     {
       "label": "Onboarding accessibility-prefs cookie bootstrap",
@@ -2151,10 +2265,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_cookie_prefs_script",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "onboarding accessibility-prefs cookie bootstrap"
+      "norm_label": "onboarding accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "medical_onboarding_cookie_prefs_script"
     },
     {
       "label": "js/medical-onboarding.js",
@@ -2165,10 +2280,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_medical_onboarding_js",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "js/medical-onboarding.js"
+      "norm_label": "js/medical-onboarding.js",
+      "_origin": "semantic",
+      "id": "medical_onboarding_medical_onboarding_js"
     },
     {
       "label": "js/preferences.js syncPreferences (onboarding)",
@@ -2179,10 +2295,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_preferences_js",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "js/preferences.js syncpreferences (onboarding)"
+      "norm_label": "js/preferences.js syncpreferences (onboarding)",
+      "_origin": "semantic",
+      "id": "medical_onboarding_preferences_js"
     },
     {
       "label": "Admin Live Feed/History tab-nav",
@@ -2193,10 +2310,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_tab_nav",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "admin live feed/history tab-nav"
+      "norm_label": "admin live feed/history tab-nav",
+      "_origin": "semantic",
+      "id": "dashboard_admin_tab_nav"
     },
     {
       "label": "Emergency Contacts accordion section",
@@ -2207,10 +2325,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_emergency_contacts_section",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "emergency contacts accordion section"
+      "norm_label": "emergency contacts accordion section",
+      "_origin": "semantic",
+      "id": "dashboard_settings_emergency_contacts_section"
     },
     {
       "label": "Medical Data accordion section",
@@ -2221,10 +2340,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_medical_data_section",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "medical data accordion section"
+      "norm_label": "medical data accordion section",
+      "_origin": "semantic",
+      "id": "dashboard_settings_medical_data_section"
     },
     {
       "label": "Rider Identity accordion section",
@@ -2235,10 +2355,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_rider_identity_section",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "rider identity accordion section"
+      "norm_label": "rider identity accordion section",
+      "_origin": "semantic",
+      "id": "dashboard_settings_rider_identity_section"
     },
     {
       "label": "The Scan bystander demo card",
@@ -2249,10 +2370,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_scan_card",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "the scan bystander demo card"
+      "norm_label": "the scan bystander demo card",
+      "_origin": "semantic",
+      "id": "index_scan_card"
     },
     {
       "label": "Consent checkbox block",
@@ -2263,10 +2385,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_consent_block",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "consent checkbox block"
+      "norm_label": "consent checkbox block",
+      "_origin": "semantic",
+      "id": "medical_onboarding_consent_block"
     },
     {
       "label": "Step 2: Emergency contacts panel",
@@ -2277,10 +2400,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_contacts_step",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "step 2: emergency contacts panel"
+      "norm_label": "step 2: emergency contacts panel",
+      "_origin": "semantic",
+      "id": "medical_onboarding_contacts_step"
     },
     {
       "label": "Step 3: Device & consent panel",
@@ -2291,10 +2415,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_device_step",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "step 3: device & consent panel"
+      "norm_label": "step 3: device & consent panel",
+      "_origin": "semantic",
+      "id": "medical_onboarding_device_step"
     },
     {
       "label": "Live bystander-view preview card",
@@ -2305,10 +2430,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_live_preview",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "live bystander-view preview card"
+      "norm_label": "live bystander-view preview card",
+      "_origin": "semantic",
+      "id": "medical_onboarding_live_preview"
     },
     {
       "label": "Step 1: Medical details panel",
@@ -2319,10 +2445,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_medical_step",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "step 1: medical details panel"
+      "norm_label": "step 1: medical details panel",
+      "_origin": "semantic",
+      "id": "medical_onboarding_medical_step"
     },
     {
       "label": "Seal-device confirmation modal",
@@ -2333,10 +2460,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_seal_modal",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "seal-device confirmation modal"
+      "norm_label": "seal-device confirmation modal",
+      "_origin": "semantic",
+      "id": "medical_onboarding_seal_modal"
     },
     {
       "label": "Post-seal confirmation state",
@@ -2347,10 +2475,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_sealed_state",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "post-seal confirmation state"
+      "norm_label": "post-seal confirmation state",
+      "_origin": "semantic",
+      "id": "medical_onboarding_sealed_state"
     },
     {
       "label": "3-step onboarding stepper",
@@ -2361,10 +2490,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "medical_onboarding_steps_bar",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "3-step onboarding stepper"
+      "norm_label": "3-step onboarding stepper",
+      "_origin": "semantic",
+      "id": "medical_onboarding_steps_bar"
     },
     {
       "label": "Who can see what (access model)",
@@ -2375,10 +2505,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "privacy_who_can_see",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "who can see what (access model)"
+      "norm_label": "who can see what (access model)",
+      "_origin": "semantic",
+      "id": "privacy_who_can_see"
     },
     {
       "label": "File-tab accordion pattern (design rationale)",
@@ -2389,10 +2520,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_settings_accordion_pattern",
       "community": 2,
       "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "file-tab accordion pattern (design rationale)"
+      "norm_label": "file-tab accordion pattern (design rationale)",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accordion_pattern"
     },
     {
       "label": "dashboard/admin.html",
@@ -2403,10 +2535,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "dashboard/admin.html"
+      "norm_label": "dashboard/admin.html",
+      "_origin": "semantic",
+      "id": "dashboard_admin"
     },
     {
       "label": "accessibility.css link (admin)",
@@ -2417,10 +2550,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_accessibility_css",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "accessibility.css link (admin)"
+      "norm_label": "accessibility.css link (admin)",
+      "_origin": "semantic",
+      "id": "dashboard_admin_accessibility_css"
     },
     {
       "label": "js/adminDashboard.js",
@@ -2431,10 +2565,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_admin_dashboard_js",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "js/admindashboard.js"
+      "norm_label": "js/admindashboard.js",
+      "_origin": "semantic",
+      "id": "dashboard_admin_admin_dashboard_js"
     },
     {
       "label": "Admin accessibility-prefs cookie bootstrap",
@@ -2445,10 +2580,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_cookie_prefs_script",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "admin accessibility-prefs cookie bootstrap"
+      "norm_label": "admin accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "dashboard_admin_cookie_prefs_script"
     },
     {
       "label": "js/preferences.js syncPreferences (admin)",
@@ -2459,10 +2595,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_preferences_js",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "js/preferences.js syncpreferences (admin)"
+      "norm_label": "js/preferences.js syncpreferences (admin)",
+      "_origin": "semantic",
+      "id": "dashboard_admin_preferences_js"
     },
     {
       "label": "js/supabaseClient.js (admin)",
@@ -2473,10 +2610,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_supabase_client_js",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "js/supabaseclient.js (admin)"
+      "norm_label": "js/supabaseclient.js (admin)",
+      "_origin": "semantic",
+      "id": "dashboard_admin_supabase_client_js"
     },
     {
       "label": "dashboard/user.html",
@@ -2487,10 +2625,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "dashboard/user.html"
+      "norm_label": "dashboard/user.html",
+      "_origin": "semantic",
+      "id": "dashboard_user"
     },
     {
       "label": "accessibility.css link (user)",
@@ -2501,10 +2640,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_accessibility_css",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "accessibility.css link (user)"
+      "norm_label": "accessibility.css link (user)",
+      "_origin": "semantic",
+      "id": "dashboard_user_accessibility_css"
     },
     {
       "label": "User accessibility-prefs cookie bootstrap",
@@ -2515,10 +2655,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_cookie_prefs_script",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "user accessibility-prefs cookie bootstrap"
+      "norm_label": "user accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "dashboard_user_cookie_prefs_script"
     },
     {
       "label": "js/preferences.js syncPreferences (user)",
@@ -2529,10 +2670,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_preferences_js",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "js/preferences.js syncpreferences (user)"
+      "norm_label": "js/preferences.js syncpreferences (user)",
+      "_origin": "semantic",
+      "id": "dashboard_user_preferences_js"
     },
     {
       "label": "js/userDashboard.js",
@@ -2543,10 +2685,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_user_dashboard_js",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "js/userdashboard.js"
+      "norm_label": "js/userdashboard.js",
+      "_origin": "semantic",
+      "id": "dashboard_user_user_dashboard_js"
     },
     {
       "label": "checkSecurity admin-role gate",
@@ -2557,10 +2700,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_check_security",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "checksecurity admin-role gate"
+      "norm_label": "checksecurity admin-role gate",
+      "_origin": "semantic",
+      "id": "dashboard_admin_check_security"
     },
     {
       "label": "Admin crash-popup alert UI",
@@ -2571,10 +2715,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_admin_crash_popup",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "admin crash-popup alert ui"
+      "norm_label": "admin crash-popup alert ui",
+      "_origin": "semantic",
+      "id": "dashboard_admin_crash_popup"
     },
     {
       "label": "Crash-detected countdown overlay",
@@ -2585,10 +2730,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_emergency_overlay",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "crash-detected countdown overlay"
+      "norm_label": "crash-detected countdown overlay",
+      "_origin": "semantic",
+      "id": "dashboard_user_emergency_overlay"
     },
     {
       "label": "Helmet & Bike ID QR section",
@@ -2599,10 +2745,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboard_user_qr_section",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "helmet & bike id qr section"
+      "norm_label": "helmet & bike id qr section",
+      "_origin": "semantic",
+      "id": "dashboard_user_qr_section"
     },
     {
       "label": "Row-level access control / restricted lookup function",
@@ -2613,10 +2760,11 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "privacy_protection_mechanism",
       "community": 5,
       "community_name": "Dashboard Accessibility Bootstrap",
-      "norm_label": "row-level access control / restricted lookup function"
+      "norm_label": "row-level access control / restricted lookup function",
+      "_origin": "semantic",
+      "id": "privacy_protection_mechanism"
     }
   ],
   "links": [
@@ -2649,24 +2797,60 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L166",
+      "source_location": "L177",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard_init",
-      "target": "js_admindashboard_renderui"
+      "target": "js_admindashboard_renderui",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L138",
+      "source_location": "L149",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard_renderui",
-      "target": "js_admindashboard_showcrashnotification"
+      "target": "js_admindashboard_showcrashnotification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_admindashboard_resetallcrashes",
+      "target": "js_admindashboard_setadminstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_admindashboard_resetsimulationdata",
+      "target": "js_admindashboard_setadminstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/icons.js",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_icons_hydrateicons",
+      "target": "js_icons_doticon",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3033,67 +3217,79 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/settings.js",
-      "source_location": "L32",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_settings_loadsettings",
-      "target": "js_settings_validatefield"
+      "target": "js_settings_validatefield",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L145",
+      "source_location": "L181",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_parseurlfallback"
+      "target": "js_status_parseurlfallback",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L148",
+      "source_location": "L184",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_showerr"
+      "target": "js_status_showerr",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L214",
+      "source_location": "L250",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status_fetchstatus",
-      "target": "js_status_renderregionalhotlines"
+      "target": "js_status_renderregionalhotlines",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L82",
+      "source_location": "L96",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status_renderregionalhotlines",
-      "target": "js_status_calculatedistance"
+      "target": "js_status_calculatedistance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L331",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status_togglestrobe",
+      "target": "js_status_prefersreducedmotion",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L130",
+      "source_location": "L122",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard_initdashboard",
@@ -3117,7 +3313,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L82",
+      "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard_initdashboard",
@@ -3129,7 +3325,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L98",
+      "source_location": "L90",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard_initdashboard",
@@ -3192,9 +3388,21 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_supabaseclient_supabase"
+      "target": "js_supabaseclient_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_admindashboard",
+      "target": "js_icons_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3240,9 +3448,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_supabaseclient_supabase"
+      "target": "js_supabaseclient_supabase",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3252,9 +3460,45 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_supabaseclient_supabase"
+      "target": "js_supabaseclient_supabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status",
+      "target": "js_icons_doticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status",
+      "target": "js_icons_hydrateicons",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status",
+      "target": "js_icons_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3300,9 +3544,21 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_supabaseclient"
+      "target": "js_supabaseclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_admindashboard",
+      "target": "js_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -3348,9 +3604,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_supabaseclient"
+      "target": "js_supabaseclient",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -3360,9 +3616,21 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_supabaseclient"
+      "target": "js_supabaseclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status",
+      "target": "js_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -3479,89 +3747,100 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L105",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_renderui"
+      "target": "js_admindashboard_currentriders",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L11",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetallcrashes"
+      "target": "js_admindashboard_markers",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L144",
+      "source_location": "L116",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_loadhistory"
+      "target": "js_admindashboard_renderui",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L19",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetsimulationdata"
+      "target": "js_admindashboard_setadminstatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L197",
+      "source_location": "L155",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetsimbtn"
+      "target": "js_admindashboard_loadhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L205",
+      "source_location": "L212",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_highlightmatches"
+      "target": "js_admindashboard_highlightmatches",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L26",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_showcrashnotification"
+      "target": "js_admindashboard_resetallcrashes",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L3",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_usercontainer"
+      "target": "js_admindashboard_resetsimulationdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/adminDashboard.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_admindashboard",
+      "target": "js_admindashboard_showcrashnotification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3570,9 +3849,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_logcontainer"
+      "target": "js_admindashboard_usercontainer",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3581,9 +3860,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_statriders"
+      "target": "js_admindashboard_logcontainer",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3592,9 +3871,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_statalerts"
+      "target": "js_admindashboard_statriders",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3603,31 +3882,53 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_searchinput"
+      "target": "js_admindashboard_statalerts",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L9",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_currentriders"
+      "target": "js_admindashboard_searchinput",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "js/adminDashboard.js",
+      "source_file": "js/icons.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_icons",
+      "target": "js_icons_doticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/icons.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_icons",
+      "target": "js_icons_hydrateicons",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/icons.js",
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "js_admindashboard",
-      "target": "js_admindashboard_markers"
+      "source": "js_icons",
+      "target": "js_icons_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4161,122 +4462,144 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/settings.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_settings",
+      "target": "js_settings_setstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/settings.js",
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_settings",
-      "target": "js_settings_validatefield"
+      "target": "js_settings_validatefield",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_caraga_hotlines"
+      "target": "js_status_caraga_hotlines",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L133",
+      "source_location": "L169",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_parseurlfallback"
+      "target": "js_status_parseurlfallback",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L140",
+      "source_location": "L176",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_fetchstatus"
+      "target": "js_status_fetchstatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L217",
+      "source_location": "L253",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_showerr"
+      "target": "js_status_showerr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L223",
+      "source_location": "L259",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_applylanguage"
+      "target": "js_status_applylanguage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_translations"
+      "target": "js_status_translations",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L271",
+      "source_location": "L307",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_togglestrobe"
+      "target": "js_status_prefersreducedmotion",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L4",
+      "source_location": "L320",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_currentrider"
+      "target": "js_status_togglestrobe",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L59",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_calculatedistance"
+      "target": "js_status_currentrider",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/status.js",
-      "source_location": "L72",
+      "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_status",
-      "target": "js_status_renderregionalhotlines"
+      "target": "js_status_calculatedistance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "js/status.js",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "js_status",
+      "target": "js_status_renderregionalhotlines",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4285,9 +4608,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_supabaseclient",
-      "target": "js_supabaseclient_supabase"
+      "target": "js_supabaseclient_supabase",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4296,9 +4619,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "js_sw",
-      "target": "js_sw_assets"
+      "target": "js_sw_assets",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4315,7 +4638,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L148",
+      "source_location": "L140",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard",
@@ -4326,7 +4649,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L214",
+      "source_location": "L206",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard",
@@ -4337,7 +4660,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L236",
+      "source_location": "L228",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_userdashboard",
@@ -4403,12 +4726,45 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "manifest.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "manifest",
+      "target": "manifest_theme_color",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "manifest.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "manifest",
+      "target": "manifest_display",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "manifest.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "manifest",
+      "target": "manifest_orientation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "manifest.json",
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_short_name"
+      "target": "manifest_short_name",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4417,9 +4773,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_name"
+      "target": "manifest_name",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4428,42 +4784,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_icons"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "manifest.json",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "manifest",
-      "target": "manifest_start_url"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "manifest.json",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "manifest",
-      "target": "manifest_background_color"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "manifest.json",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "manifest",
-      "target": "manifest_theme_color"
+      "target": "manifest_icons",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4472,9 +4795,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_display"
+      "target": "manifest_start_url",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4483,21 +4806,21 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "manifest",
-      "target": "manifest_orientation"
+      "target": "manifest_background_color",
+      "confidence_score": 1.0
     },
     {
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L218",
+      "source_location": "L225",
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
-      "confidence_score": 0.5,
       "source": "js_admindashboard",
-      "target": "js_admindashboard_init"
+      "target": "js_admindashboard_init",
+      "confidence_score": 0.5
     },
     {
       "relation": "indirect_call",
@@ -4527,25 +4850,1026 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "js/settings.js",
-      "source_location": "L114",
+      "source_location": "L121",
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
-      "confidence_score": 0.5,
       "source": "js_settings",
-      "target": "js_settings_loadsettings"
+      "target": "js_settings_loadsettings",
+      "confidence_score": 0.5
     },
     {
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "js/userDashboard.js",
-      "source_location": "L327",
+      "source_location": "L319",
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
       "source": "js_userdashboard",
       "target": "js_userdashboard_initdashboard",
       "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_graphify_explain",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_graphify_path",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_graphify_query",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_graphify_update",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_admin_dashboard_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_preferences_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_supabase_client_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin_check_security",
+      "target": "dashboard_admin_supabase_client_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings",
+      "target": "dashboard_settings_settings_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accessibility_section",
+      "target": "dashboard_settings_accessibility_controls_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_js",
+      "target": "dashboard_settings_accessibility_section"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_js",
+      "target": "dashboard_settings_emergency_contacts_section"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_js",
+      "target": "dashboard_settings_medical_data_section"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_js",
+      "target": "dashboard_settings_rider_identity_section"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_preferences_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_user_dashboard_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_index_auth_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_preferences_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_preferences_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_medical_onboarding_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_preferences_js"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_device_step",
+      "target": "medical_onboarding_seal_modal"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_preferences_js"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_check_security"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings",
+      "target": "dashboard_settings_accordion_pattern"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_pattern",
+      "target": "dashboard_settings_accordion_js"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_seal_modal",
+      "target": "medical_onboarding_sealed_state"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual_engineering_rationale",
+      "target": "manual_bom_table"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graph_report"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graphify_explain"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graphify_path"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graphify_query"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_graphify_update"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md",
+      "target": "claude_md_wiki_index"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_graph_report",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "claude_md_wiki_index",
+      "target": "claude_md_graphify_out"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_accessibility_css"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_crash_popup"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_admin",
+      "target": "dashboard_admin_tab_nav"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings",
+      "target": "dashboard_settings_accessibility_css"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings",
+      "target": "dashboard_settings_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_settings_accordion_pattern",
+      "target": "dashboard_admin_tab_nav"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_accessibility_css"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_emergency_overlay"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "dashboard/user.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "dashboard_user",
+      "target": "dashboard_user_qr_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_assembly_exploded_view"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_auth_form"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_mobile_caption_rem_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_pwd_toggle_width_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_scan_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "index_screen_overflow_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "manual"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "index",
+      "target": "privacy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_bom_table"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_comparison_placeholder"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_engineering_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_methodology_placeholder"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_mobile_caption_rem_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_table_nowrap_rationale"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "manual_validation_placeholder"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual",
+      "target": "privacy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "manual.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "manual_mobile_caption_rem_fix",
+      "target": "index_mobile_caption_rem_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_consent_block"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_contacts_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_device_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_fld_row_wrap_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_live_preview"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_medical_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_seal_modal"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_sealed_state"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding",
+      "target": "medical_onboarding_steps_bar"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_consent_block",
+      "target": "privacy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_device_step",
+      "target": "medical_onboarding_consent_block"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_live_preview",
+      "target": "index_scan_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_sealed_state",
+      "target": "dashboard_user"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_steps_bar",
+      "target": "medical_onboarding_contacts_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_steps_bar",
+      "target": "medical_onboarding_device_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "medical-onboarding.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "medical_onboarding_steps_bar",
+      "target": "medical_onboarding_medical_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_consent_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_cookie_prefs_script"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_data_collected"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_kicker_mobile_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_protection_mechanism"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_who_can_see"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "privacy.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "privacy",
+      "target": "privacy_your_rights"
     },
     {
       "relation": "references",
@@ -4559,922 +5883,13 @@
       "target": "status_regional_hotlines"
     },
     {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graphify_explain",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graphify_path",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graphify_query",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graphify_update",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_admin_dashboard_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_preferences_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_supabase_client_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin_check_security",
-      "target": "dashboard_admin_supabase_client_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings",
-      "target": "dashboard_settings_settings_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accessibility_section",
-      "target": "dashboard_settings_accessibility_controls_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_js",
-      "target": "dashboard_settings_accessibility_section"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_js",
-      "target": "dashboard_settings_emergency_contacts_section"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_js",
-      "target": "dashboard_settings_medical_data_section"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_js",
-      "target": "dashboard_settings_rider_identity_section"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_preferences_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_user_dashboard_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_index_auth_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_preferences_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_preferences_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_medical_onboarding_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_preferences_js"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_device_step",
-      "target": "medical_onboarding_seal_modal"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_preferences_js"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_check_security"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings",
-      "target": "dashboard_settings_accordion_pattern"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_pattern",
-      "target": "dashboard_settings_accordion_js"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_seal_modal",
-      "target": "medical_onboarding_sealed_state"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual_engineering_rationale",
-      "target": "manual_bom_table"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graph_report"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graphify_explain"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graphify_path"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graphify_query"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_graphify_update"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md",
-      "target": "claude_md_wiki_index"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_graph_report",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "claude_md_wiki_index",
-      "target": "claude_md_graphify_out"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_accessibility_css"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_crash_popup"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_admin",
-      "target": "dashboard_admin_tab_nav"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings",
-      "target": "dashboard_settings_accessibility_css"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings",
-      "target": "dashboard_settings_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_settings_accordion_pattern",
-      "target": "dashboard_admin_tab_nav"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_accessibility_css"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_emergency_overlay"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "dashboard/user.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboard_user",
-      "target": "dashboard_user_qr_section"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_assembly_exploded_view"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_auth_form"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_mobile_caption_rem_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_pwd_toggle_width_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_scan_card"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "index_screen_overflow_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "manual"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "index.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "index",
-      "target": "privacy"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_bom_table"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_comparison_placeholder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_engineering_rationale"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_methodology_placeholder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_mobile_caption_rem_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_table_nowrap_rationale"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "manual_validation_placeholder"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual",
-      "target": "privacy"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "manual.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "manual_mobile_caption_rem_fix",
-      "target": "index_mobile_caption_rem_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_consent_block"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_contacts_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_device_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_fld_row_wrap_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_live_preview"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_medical_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_seal_modal"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_sealed_state"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding",
-      "target": "medical_onboarding_steps_bar"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_consent_block",
-      "target": "privacy"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_device_step",
-      "target": "medical_onboarding_consent_block"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_live_preview",
-      "target": "index_scan_card"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_sealed_state",
-      "target": "dashboard_user"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_steps_bar",
-      "target": "medical_onboarding_contacts_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_steps_bar",
-      "target": "medical_onboarding_device_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "medical-onboarding.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "medical_onboarding_steps_bar",
-      "target": "medical_onboarding_medical_step"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_consent_section"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_cookie_prefs_script"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_data_collected"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_kicker_mobile_fix"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_protection_mechanism"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_who_can_see"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "privacy.html",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "privacy",
-      "target": "privacy_your_rights"
-    },
-    {
       "relation": "shares_data_with",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "medical-onboarding.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "medical_onboarding_live_preview",
       "target": "medical_onboarding_contacts_step"
     },
@@ -5485,6 +5900,7 @@
       "source_file": "medical-onboarding.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "medical_onboarding_live_preview",
       "target": "medical_onboarding_medical_step"
     },
@@ -5495,6 +5911,7 @@
       "source_file": "index.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "index_auth_form",
       "target": "medical_onboarding"
     },
@@ -5505,6 +5922,7 @@
       "source_file": "privacy.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "privacy_protection_mechanism",
       "target": "dashboard_admin_check_security"
     },
@@ -5515,6 +5933,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "index_mobile_caption_rem_fix"
     },
@@ -5525,6 +5944,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "index_pwd_toggle_width_fix"
     },
@@ -5535,6 +5955,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "index_screen_overflow_fix"
     },
@@ -5545,6 +5966,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "manual_mobile_caption_rem_fix"
     },
@@ -5555,6 +5977,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "medical_onboarding_fld_row_wrap_fix"
     },
@@ -5565,6 +5988,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_accessibility_section",
       "target": "privacy_kicker_mobile_fix"
     },
@@ -5575,6 +5999,7 @@
       "source_file": "dashboard/admin.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_admin_crash_popup",
       "target": "dashboard_user_emergency_overlay"
     },
@@ -5585,6 +6010,7 @@
       "source_file": "privacy.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "privacy_who_can_see",
       "target": "index_scan_card"
     },
@@ -5595,6 +6021,7 @@
       "source_file": "privacy.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "privacy_who_can_see",
       "target": "medical_onboarding_live_preview"
     },
@@ -5605,6 +6032,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_emergency_contacts_section",
       "target": "medical_onboarding_contacts_step"
     },
@@ -5615,6 +6043,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_medical_data_section",
       "target": "medical_onboarding_medical_step"
     },
@@ -5625,6 +6054,7 @@
       "source_file": "dashboard/settings.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "dashboard_settings_rider_identity_section",
       "target": "medical_onboarding_device_step"
     },
@@ -5635,6 +6065,7 @@
       "source_file": "index.html",
       "source_location": null,
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "index_assembly_exploded_view",
       "target": "manual_bom_table"
     }
@@ -5701,5 +6132,5 @@
       "source_file": "index.html"
     }
   ],
-  "built_at_commit": "bc745b5055b0d8212103ec10cc355a68434473c4"
+  "built_at_commit": "41d6468ae04eba4293ce1c6b437c5d6605dc4989"
 }

@@ -171,15 +171,22 @@ async function init() {
     L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
     
     setTimeout(() => { map.invalidateSize(); }, 500);
-    
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user');
+
+    // role='user' alone isn't enough — that also matches accounts that
+    // registered but never finished onboarding (no device_sealed_at),
+    // which would otherwise sit in this list and the "Riders Active"
+    // count forever with nothing to show (no serial, no location) and
+    // no way to clear them short of a manual DB cleanup. Same
+    // device_sealed_at-as-single-source-of-truth rule as the onboarding
+    // gate in userDashboard.js's checkOnboarding().
+    const { data: profiles } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user').not('device_sealed_at', 'is', null);
     currentRiders = profiles || [];
     renderUI(currentRiders);
 
     // Listens to ALL events (INSERTs for new users and UPDATEs for crash status)
     supabase.channel('admin-chan')
         .on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, async () => {
-            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user');
+            const { data: refreshed } = await supabase.from('profiles').select('id, full_name, lat, lon, is_crashed, serial_number, is_simulated').eq('role', 'user').not('device_sealed_at', 'is', null);
             currentRiders = refreshed || [];
             renderUI(currentRiders);
         }).subscribe();

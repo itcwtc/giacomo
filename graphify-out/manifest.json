@@ -1,158 +1,158 @@
 {
   "js/adminDashboard.js": {
-    "mtime": 1787036763.9815633,
-    "seen": 1787037575.1632159,
-    "ast_hash": "0893791644d2ca0121c2b6d22f445b8a",
+    "mtime": 1787062606.9846346,
+    "seen": 1787062685.7301712,
+    "ast_hash": "bec2ca9f1a183e3d37ae56639ea55386",
     "semantic_hash": ""
   },
   "js/indexAuth.js": {
     "mtime": 1786960295.0913932,
-    "seen": 1787037575.1632183,
+    "seen": 1787062685.7301784,
     "ast_hash": "df8d0ce97386e5e6e82ec64c715dd0f3",
     "semantic_hash": "df8d0ce97386e5e6e82ec64c715dd0f3"
   },
   "js/medical-onboarding.js": {
     "mtime": 1786960490.8043866,
-    "seen": 1787037575.1632192,
+    "seen": 1787062685.730181,
     "ast_hash": "6db00dfe3f7457ad181e662c6f75e291",
     "semantic_hash": "6db00dfe3f7457ad181e662c6f75e291"
   },
   "js/settings.js": {
     "mtime": 1787027940.4205196,
-    "seen": 1787037575.163221,
+    "seen": 1787062685.7301853,
     "ast_hash": "4d8f55fdd24d3b9074401192d5f9396e",
     "semantic_hash": ""
   },
   "js/status.js": {
     "mtime": 1787037186.2416897,
-    "seen": 1787037575.1632216,
+    "seen": 1787062685.7301874,
     "ast_hash": "b17330ab86205437a465e29d1a97119a",
     "semantic_hash": ""
   },
   "js/supabaseClient.js": {
     "mtime": 1786628740.5279884,
-    "seen": 1787037575.1632223,
+    "seen": 1787062685.7301898,
     "ast_hash": "dbc3b7f8f5a8e94003c8507975eb2470",
     "semantic_hash": "dbc3b7f8f5a8e94003c8507975eb2470"
   },
   "js/sw.js": {
     "mtime": 1786628740.5294976,
-    "seen": 1787037575.163223,
+    "seen": 1787062685.7301922,
     "ast_hash": "15dbfefbb5830397e29d2247bb293cbb",
     "semantic_hash": "15dbfefbb5830397e29d2247bb293cbb"
   },
   "js/userDashboard.js": {
     "mtime": 1787027957.13935,
-    "seen": 1787037575.1632237,
+    "seen": 1787062685.7301948,
     "ast_hash": "63a82a0de7c9144b5d1b1b085afcf0da",
     "semantic_hash": ""
   },
   "manifest.json": {
     "mtime": 1787036517.9206872,
-    "seen": 1787037575.1632245,
+    "seen": 1787062685.730197,
     "ast_hash": "2b3e71a7775789414183bfd4a38efaa4",
     "semantic_hash": ""
   },
   "dashboard/admin.html": {
     "mtime": 1787027973.4730275,
-    "seen": 1787037575.1632326,
+    "seen": 1787062685.7302012,
     "ast_hash": "ad509659d70bbae3857d162d0ab53fcc",
     "semantic_hash": ""
   },
   "dashboard/settings.html": {
     "mtime": 1787027937.6975632,
-    "seen": 1787037575.1632333,
+    "seen": 1787062685.7302036,
     "ast_hash": "bc8aca8140a23900c5f2dc83399cdff4",
     "semantic_hash": ""
   },
   "dashboard/user.html": {
     "mtime": 1786960775.6382992,
-    "seen": 1787037575.163234,
+    "seen": 1787062685.7302058,
     "ast_hash": "cc8e6e2422406492014e10f41419d596",
     "semantic_hash": "cc8e6e2422406492014e10f41419d596"
   },
   "index.html": {
-    "mtime": 1786962474.003251,
-    "seen": 1787037575.1632347,
-    "ast_hash": "4efd1722474a56b0107958d690a9e57a",
-    "semantic_hash": "4efd1722474a56b0107958d690a9e57a"
+    "mtime": 1787045645.8601274,
+    "seen": 1787062685.730208,
+    "ast_hash": "8a56ad33ba4c71f9cb3a726db22293c1",
+    "semantic_hash": ""
   },
   "medical-onboarding.html": {
     "mtime": 1786962677.0319016,
-    "seen": 1787037575.1632366,
+    "seen": 1787062685.7302127,
     "ast_hash": "af45133bc7ec7c82f9b2ff66a565c638",
     "semantic_hash": "af45133bc7ec7c82f9b2ff66a565c638"
   },
   "privacy.html": {
     "mtime": 1786972705.8676238,
-    "seen": 1787037575.163237,
+    "seen": 1787062685.7302146,
     "ast_hash": "4c042b542904ab0d0861389856c96022",
     "semantic_hash": ""
   },
   "register.html": {
     "mtime": 1786933016.595099,
-    "seen": 1787037575.1632378,
+    "seen": 1787062685.7302167,
     "ast_hash": "82e9a89b465eda78ffda278109e24697",
     "semantic_hash": "82e9a89b465eda78ffda278109e24697"
   },
   "status.html": {
     "mtime": 1787037176.0370271,
-    "seen": 1787037575.1632388,
+    "seen": 1787062685.7302213,
     "ast_hash": "7ca568a5a2a7565893b5e9e34fd3fb0b",
     "semantic_hash": ""
   },
   "manual.html": {
     "mtime": 1786972926.6108286,
-    "seen": 1787037575.1632357,
+    "seen": 1787062685.7302103,
     "ast_hash": "d83ed35832983adc349322cbcaf13977",
     "semantic_hash": ""
   },
   "assets/logo.svg": {
     "mtime": 1786936738.833194,
-    "seen": 1787037575.1632407,
+    "seen": 1787062685.7302277,
     "ast_hash": "a63150944a1be7de88d28059f0831bb4",
     "semantic_hash": "a63150944a1be7de88d28059f0831bb4"
   },
   "js/accessibility-controls.js": {
     "mtime": 1786960825.1659834,
-    "seen": 1787037575.1632092,
+    "seen": 1787062685.730154,
     "ast_hash": "30c5e5bce1b81544c71c88533971fe1d",
     "semantic_hash": "30c5e5bce1b81544c71c88533971fe1d"
   },
   "js/accordion.js": {
     "mtime": 1786962795.0433009,
-    "seen": 1787037575.1632137,
+    "seen": 1787062685.7301655,
     "ast_hash": "ae3f1cb7fddb3b7db52d1803401d54bd",
     "semantic_hash": "ae3f1cb7fddb3b7db52d1803401d54bd"
   },
   "js/preferences.js": {
     "mtime": 1786960622.1554265,
-    "seen": 1787037575.1632202,
+    "seen": 1787062685.7301831,
     "ast_hash": "2482629a96f231ef8559c8b1f6cc30e1",
     "semantic_hash": "2482629a96f231ef8559c8b1f6cc30e1"
   },
   "supabase/migrations/20260816045201_giacomo_schema_lockdown_step1.sql": {
     "mtime": 1786960113.060466,
     "seen": 1787037575.1632254,
-    "ast_hash": "f80c608fac1e8b99f820e494b826a117",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260816074820_drop_unused_legacy_tables.sql": {
     "mtime": 1786960120.9380133,
     "seen": 1787037575.1632261,
-    "ast_hash": "7da26074211a018590d267154d2dc593",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260816075857_fix_admin_profiles_visibility.sql": {
     "mtime": 1786960131.2637377,
     "seen": 1787037575.1632268,
-    "ast_hash": "1cb0a9e051f1462a5ce35dda228db2fa",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260816085646_fix_infinite_recursion_admin_policy.sql": {
     "mtime": 1786960139.352828,
     "seen": 1787037575.1632276,
-    "ast_hash": "4e4bd4ef6b31a193bccdae064d955f6d",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260817084055_add_devices_table.sql": {
@@ -164,49 +164,49 @@
   "supabase/migrations/20260817094913_drop_log_crash_event.sql": {
     "mtime": 1786960166.9267273,
     "seen": 1787037575.1632285,
-    "ast_hash": "eff2603a4bd5eb1b4e2753e6b983b555",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260817095202_add_onboarding_progress_columns.sql": {
     "mtime": 1786960334.888967,
     "seen": 1787037575.1632292,
-    "ast_hash": "6da41d45d994492d38cb938ffbe5c71e",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "supabase/migrations/20260817095633_add_user_preferences_table.sql": {
     "mtime": 1786960605.31309,
     "seen": 1787037575.16323,
-    "ast_hash": "2e09a158a2e3da6a6b5c349504248c76",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
     "mtime": 1787020213.7494793,
-    "seen": 1787037575.1632314,
+    "seen": 1787062685.7301993,
     "ast_hash": "02ed4a3dd0751f5c97f2e625b46ee890",
     "semantic_hash": ""
   },
   "js/icons.js": {
     "mtime": 1787037058.767763,
-    "seen": 1787037575.163217,
+    "seen": 1787062685.7301748,
     "ast_hash": "a05d2203834811806ff7465b55106fcb",
     "semantic_hash": ""
   },
   "assets/icon-192.png": {
     "mtime": 1787036509.6845782,
-    "seen": 1787037575.1632395,
+    "seen": 1787062685.7302234,
     "ast_hash": "f5ca012866cdc184cc89494b17dc7794",
     "semantic_hash": ""
   },
   "assets/icon-512.png": {
     "mtime": 1787036511.1401353,
-    "seen": 1787037575.1632402,
+    "seen": 1787062685.7302253,
     "ast_hash": "5fc57951fe646c246d98ce4735240871",
     "semantic_hash": ""
   },
   "supabase/migrations/20260817110642_backfill_existing_accounts_into_onboarding.sql": {
     "mtime": 1786964868.72315,
     "seen": 1787037575.1632307,
-    "ast_hash": "5a85dcd3ee9a49b74f4b2ff950dad0c3",
+    "ast_hash": "",
     "semantic_hash": ""
   }
 }
