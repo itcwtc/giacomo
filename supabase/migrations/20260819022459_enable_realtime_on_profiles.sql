@@ -1,0 +1,11 @@
+-- Enables Supabase Realtime for the profiles table. Without this, Postgres
+-- has nothing to relay to Realtime regardless of how correct the client
+-- subscription code is -- confirmed via a live dual-dashboard test (the
+-- admin dashboard's Realtime WebSocket connected fine, but zero frames
+-- ever arrived after triggering Simulate Crash on a rider account) and
+-- directly via pg_publication_tables showing profiles absent from the
+-- supabase_realtime publication (which exists but had zero member tables).
+-- adminDashboard.js's .channel('admin-chan').on('postgres_changes', ...)
+-- subscription has depended on this since it was written; it never
+-- actually worked before this migration.
+alter publication supabase_realtime add table profiles;
