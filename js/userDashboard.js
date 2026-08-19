@@ -142,7 +142,11 @@ async function initDashboard() {
                     if (timeLeft <= 0) {
                         clearInterval(countdownInterval);
                         if (timerDisplay) timerDisplay.innerText = "SENT";
-                        await supabase.from('profiles').update({ is_crashed: true }).eq('id', user.id);
+                        // is_simulated travels with is_crashed here so the two never
+                        // drift apart — a database trigger enforces the reverse
+                        // direction (is_crashed=false always clears is_simulated too)
+                        // regardless of which path resolves the crash.
+                        await supabase.from('profiles').update({ is_crashed: true, is_simulated: true }).eq('id', user.id);
                         await saveBlackBoxData(user.id);
                     }
                 }, 1000);

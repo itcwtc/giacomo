@@ -19,8 +19,12 @@ function setAdminStatus(message, kind) {
     adminStatusTimer = setTimeout(() => { node.className = 'admin-status'; }, 4000);
 }
 
+// SECURITY DEFINER RPC, not a direct client UPDATE — the direct update was
+// silently restricted by RLS's owner-only policy to the admin's own row
+// (confirmed live: reported success, changed nothing). The RPC checks
+// is_admin() itself and bypasses RLS to actually reach every rider's row.
 async function resetAllCrashes() {
-    const { error } = await supabase.from('profiles').update({ is_crashed: false }).eq('is_crashed', true);
+    const { error } = await supabase.rpc('reset_all_crashes');
     if (error) { console.error("Error resetting crashes:", error); setAdminStatus("Reset failed: " + error.message, 'err'); }
     else setAdminStatus("All crash alerts cleared.", 'ok');
 }
@@ -208,7 +212,20 @@ document.getElementById('admin-logout').onclick = async () => {
     window.location.href = '../index.html'; 
 };
 
-document.getElementById('btn-reset-all').onclick = resetAllCrashes;
+// Reset affects every real rider's crash state, not just test/simulated
+// data — in-page confirmation before it fires, same pattern as the
+// onboarding seal step (never a native confirm()).
+document.getElementById('btn-reset-all').onclick = () => {
+    document.getElementById('reset-confirm-overlay').style.display = 'flex';
+};
+document.getElementById('reset-confirm-cancel').onclick = () => {
+    document.getElementById('reset-confirm-overlay').style.display = 'none';
+};
+document.getElementById('reset-confirm-ok').onclick = async () => {
+    document.getElementById('reset-confirm-overlay').style.display = 'none';
+    await resetAllCrashes();
+};
+
 document.getElementById('btn-reset-sim').onclick = resetSimulationData;
 
 setInterval(() => {
