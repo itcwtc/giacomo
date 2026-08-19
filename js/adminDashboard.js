@@ -23,18 +23,13 @@ function setAdminStatus(message, kind) {
 // silently restricted by RLS's owner-only policy to the admin's own row
 // (confirmed live: reported success, changed nothing). The RPC checks
 // is_admin() itself and bypasses RLS to actually reach every rider's row.
+// Also clears simulated incident_logs history — this absorbed what used
+// to be the separate "Reset Simulation Data" button/RPC, so this is now
+// the one admin-gated reset action instead of two.
 async function resetAllCrashes() {
     const { error } = await supabase.rpc('reset_all_crashes');
     if (error) { console.error("Error resetting crashes:", error); setAdminStatus("Reset failed: " + error.message, 'err'); }
-    else setAdminStatus("All crash alerts cleared.", 'ok');
-}
-
-// Clears only simulated/demo data via the reset_simulation_data() RPC
-// (server-side admin-role check happens inside the function itself).
-async function resetSimulationData() {
-    const { error } = await supabase.rpc('reset_simulation_data');
-    if (error) { console.error("Error resetting simulation data:", error); setAdminStatus("Reset failed: " + error.message, 'err'); }
-    else setAdminStatus("Simulated riders and incidents reset to baseline.", 'ok');
+    else setAdminStatus("Crash alerts cleared and simulated history reset.", 'ok');
 }
 
 // --- 🛠️ FIXED NOTIFICATION LOGIC ---
@@ -225,8 +220,6 @@ document.getElementById('reset-confirm-ok').onclick = async () => {
     document.getElementById('reset-confirm-overlay').style.display = 'none';
     await resetAllCrashes();
 };
-
-document.getElementById('btn-reset-sim').onclick = resetSimulationData;
 
 setInterval(() => {
     const clock = document.getElementById('mission-clock');

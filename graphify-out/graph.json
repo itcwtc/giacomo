@@ -243,7 +243,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_persist",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "persist()"
     },
     {
@@ -255,7 +255,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_rendercontrols",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "rendercontrols()"
     },
     {
@@ -267,7 +267,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_showstatus",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "showstatus()"
     },
     {
@@ -279,7 +279,7 @@
       "_origin": "ast",
       "id": "js_preferences_applyprefs",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "applyprefs()"
     },
     {
@@ -291,7 +291,7 @@
       "_origin": "ast",
       "id": "js_preferences_currentprefsfromcookie",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "currentprefsfromcookie()"
     },
     {
@@ -303,7 +303,7 @@
       "_origin": "ast",
       "id": "js_preferences_readcookie",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "readcookie()"
     },
     {
@@ -315,7 +315,7 @@
       "_origin": "ast",
       "id": "js_preferences_savepreferences",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "savepreferences()"
     },
     {
@@ -327,7 +327,7 @@
       "_origin": "ast",
       "id": "js_preferences_syncpreferences",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "syncpreferences()"
     },
     {
@@ -339,8 +339,44 @@
       "_origin": "ast",
       "id": "js_preferences_writecookie",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "writecookie()"
+    },
+    {
+      "label": "loadSettings()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L33",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_loadsettings",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "loadsettings()"
+    },
+    {
+      "label": "setStatus()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L19",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_setstatus",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "setstatus()"
+    },
+    {
+      "label": "validateField()",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "js_settings_validatefield",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "validatefield()"
     },
     {
       "label": "announce()",
@@ -490,73 +526,61 @@
       "label": "highlightMatches()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L236",
+      "source_location": "L229",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_highlightmatches",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "highlightmatches()"
     },
     {
       "label": "init()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L173",
+      "source_location": "L168",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_init",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "init()"
     },
     {
       "label": "loadHistory()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L159",
+      "source_location": "L154",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_loadhistory",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "loadhistory()"
     },
     {
       "label": "renderUI()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L120",
+      "source_location": "L115",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_renderui",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "renderui()"
     },
     {
       "label": "resetAllCrashes()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L26",
+      "source_location": "L29",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_resetallcrashes",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "resetallcrashes()"
-    },
-    {
-      "label": "resetSimulationData()",
-      "file_type": "code",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L34",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_admindashboard_resetsimulationdata",
-      "community": 6,
-      "community_name": "Admin Dashboard Logic",
-      "norm_label": "resetsimulationdata()"
     },
     {
       "label": "setAdminStatus()",
@@ -567,19 +591,19 @@
       "_origin": "ast",
       "id": "js_admindashboard_setadminstatus",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "setadminstatus()"
     },
     {
       "label": "showCrashNotification()",
       "file_type": "code",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L41",
+      "source_location": "L36",
       "_callable": true,
       "_origin": "ast",
       "id": "js_admindashboard_showcrashnotification",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "showcrashnotification()"
     },
     {
@@ -703,42 +727,6 @@
       "norm_label": "togglestrobe()"
     },
     {
-      "label": "loadSettings()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L33",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_settings_loadsettings",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "loadsettings()"
-    },
-    {
-      "label": "setStatus()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L19",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_settings_setstatus",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "setstatus()"
-    },
-    {
-      "label": "validateField()",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L6",
-      "_callable": true,
-      "_origin": "ast",
-      "id": "js_settings_validatefield",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "validatefield()"
-    },
-    {
       "label": "checkOnboarding()",
       "file_type": "code",
       "source_file": "js/userDashboard.js",
@@ -747,7 +735,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_checkonboarding",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "checkonboarding()"
     },
     {
@@ -759,7 +747,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_generateriderqr",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "generateriderqr()"
     },
     {
@@ -771,7 +759,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_initdashboard",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "initdashboard()"
     },
     {
@@ -783,7 +771,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_saveblackboxdata",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "saveblackboxdata()"
     },
     {
@@ -795,7 +783,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_starttelemetry",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "starttelemetry()"
     },
     {
@@ -1004,7 +992,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "accessibility-controls.js"
     },
     {
@@ -1015,7 +1003,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_contrasttoggle",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "contrasttoggle"
     },
     {
@@ -1026,7 +1014,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_motiontoggle",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "motiontoggle"
     },
     {
@@ -1037,7 +1025,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_prefs",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "prefs"
     },
     {
@@ -1048,7 +1036,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_scalebuttons",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "scalebuttons"
     },
     {
@@ -1059,7 +1047,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_scalegroup",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "scalegroup"
     },
     {
@@ -1070,7 +1058,7 @@
       "_origin": "ast",
       "id": "js_accessibility_controls_status",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "status"
     },
     {
@@ -1081,8 +1069,41 @@
       "_origin": "ast",
       "id": "js_preferences",
       "community": 3,
-      "community_name": "Accessibility Controls Logic",
+      "community_name": "accessibility-controls.js",
       "norm_label": "preferences.js"
+    },
+    {
+      "label": "settings.js",
+      "file_type": "code",
+      "source_file": "js/settings.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "js_settings",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "settings.js"
+    },
+    {
+      "label": "supabaseClient.js",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "js_supabaseclient",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "supabaseclient.js"
+    },
+    {
+      "label": "supabase",
+      "file_type": "code",
+      "source_file": "js/supabaseClient.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "js_supabaseclient_supabase",
+      "community": 3,
+      "community_name": "accessibility-controls.js",
+      "norm_label": "supabase"
     },
     {
       "label": "medical-onboarding.js",
@@ -1147,7 +1168,7 @@
       "_origin": "ast",
       "id": "js_admindashboard",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "admindashboard.js"
     },
     {
@@ -1158,7 +1179,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_currentriders",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "currentriders"
     },
     {
@@ -1169,7 +1190,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_logcontainer",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "logcontainer"
     },
     {
@@ -1180,7 +1201,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_markers",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "markers"
     },
     {
@@ -1191,7 +1212,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_searchinput",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "searchinput"
     },
     {
@@ -1202,7 +1223,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_statalerts",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "statalerts"
     },
     {
@@ -1213,7 +1234,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_statriders",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "statriders"
     },
     {
@@ -1224,7 +1245,7 @@
       "_origin": "ast",
       "id": "js_admindashboard_usercontainer",
       "community": 6,
-      "community_name": "Admin Dashboard Logic",
+      "community_name": "adminDashboard.js",
       "norm_label": "usercontainer"
     },
     {
@@ -1294,39 +1315,6 @@
       "norm_label": "translations"
     },
     {
-      "label": "settings.js",
-      "file_type": "code",
-      "source_file": "js/settings.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "js_settings",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "settings.js"
-    },
-    {
-      "label": "supabaseClient.js",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "js_supabaseclient",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "supabaseclient.js"
-    },
-    {
-      "label": "supabase",
-      "file_type": "code",
-      "source_file": "js/supabaseClient.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "js_supabaseclient_supabase",
-      "community": 8,
-      "community_name": "Rider Dashboard Logic",
-      "norm_label": "supabase"
-    },
-    {
       "label": "userDashboard.js",
       "file_type": "code",
       "source_file": "js/userDashboard.js",
@@ -1334,7 +1322,7 @@
       "_origin": "ast",
       "id": "js_userdashboard",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "userdashboard.js"
     },
     {
@@ -1345,7 +1333,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_layout",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "layout"
     },
     {
@@ -1356,7 +1344,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_overlay",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "overlay"
     },
     {
@@ -1367,7 +1355,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_overlaybg",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "overlaybg"
     },
     {
@@ -1378,7 +1366,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_simbtn",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "simbtn"
     },
     {
@@ -1389,7 +1377,7 @@
       "_origin": "ast",
       "id": "js_userdashboard_timerdisplay",
       "community": 8,
-      "community_name": "Rider Dashboard Logic",
+      "community_name": "userDashboard.js",
       "norm_label": "timerdisplay"
     },
     {
@@ -1501,7 +1489,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "js/accessibility-controls.js",
       "_origin": "semantic",
       "id": "dashboard_settings_accessibility_controls_js"
@@ -1516,7 +1504,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "index.html",
       "_origin": "semantic",
       "id": "index"
@@ -1531,7 +1519,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "index accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "index_cookie_prefs_script"
@@ -1546,7 +1534,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "js/indexauth.js",
       "_origin": "semantic",
       "id": "index_index_auth_js"
@@ -1561,7 +1549,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "js/preferences.js syncpreferences (index)",
       "_origin": "semantic",
       "id": "index_preferences_js"
@@ -1576,7 +1564,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "manual.html",
       "_origin": "semantic",
       "id": "manual"
@@ -1591,7 +1579,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "manual accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "manual_cookie_prefs_script"
@@ -1606,7 +1594,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "js/preferences.js syncpreferences (manual)",
       "_origin": "semantic",
       "id": "manual_preferences_js"
@@ -1621,7 +1609,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "privacy accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "privacy_cookie_prefs_script"
@@ -1636,7 +1624,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "js/preferences.js syncpreferences (privacy)",
       "_origin": "semantic",
       "id": "privacy_preferences_js"
@@ -1651,7 +1639,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "accessibility accordion section",
       "_origin": "semantic",
       "id": "dashboard_settings_accessibility_section"
@@ -1666,7 +1654,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "scroll-driven exploded hardware assembly view",
       "_origin": "semantic",
       "id": "index_assembly_exploded_view"
@@ -1681,10 +1669,25 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "registry sign-in/register card",
       "_origin": "semantic",
       "id": "index_auth_form"
+    },
+    {
+      "label": "The Scan bystander demo card",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "index.html",
+      "norm_label": "the scan bystander demo card",
+      "_origin": "semantic",
+      "id": "index_scan_card"
     },
     {
       "label": "Bill of materials table",
@@ -1696,7 +1699,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "bill of materials table",
       "_origin": "semantic",
       "id": "manual_bom_table"
@@ -1711,7 +1714,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "comparison against existing solutions placeholder",
       "_origin": "semantic",
       "id": "manual_comparison_placeholder"
@@ -1726,7 +1729,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "research methodology placeholder",
       "_origin": "semantic",
       "id": "manual_methodology_placeholder"
@@ -1741,7 +1744,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "crash-detection validation results placeholder",
       "_origin": "semantic",
       "id": "manual_validation_placeholder"
@@ -1756,7 +1759,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "consent statement on registration",
       "_origin": "semantic",
       "id": "privacy_consent_section"
@@ -1771,10 +1774,25 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "what we collect (data categories)",
       "_origin": "semantic",
       "id": "privacy_data_collected"
+    },
+    {
+      "label": "Who can see what (access model)",
+      "file_type": "concept",
+      "source_file": "privacy.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "community_name": "index.html",
+      "norm_label": "who can see what (access model)",
+      "_origin": "semantic",
+      "id": "privacy_who_can_see"
     },
     {
       "label": "Your rights (review, correct, delete)",
@@ -1786,7 +1804,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "your rights (review, correct, delete)",
       "_origin": "semantic",
       "id": "privacy_your_rights"
@@ -1801,7 +1819,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "privacy.html",
       "_origin": "semantic",
       "id": "privacy"
@@ -1816,7 +1834,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "rem-based mobile caption floor fix (index)",
       "_origin": "semantic",
       "id": "index_mobile_caption_rem_fix"
@@ -1831,7 +1849,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "show/hide reserved-width fix",
       "_origin": "semantic",
       "id": "index_pwd_toggle_width_fix"
@@ -1846,7 +1864,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "phone-screen overflow:hidden removal",
       "_origin": "semantic",
       "id": "index_screen_overflow_fix"
@@ -1861,7 +1879,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "engineering rationale by subsystem",
       "_origin": "semantic",
       "id": "manual_engineering_rationale"
@@ -1876,7 +1894,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "rem-based mobile caption floor fix (manual)",
       "_origin": "semantic",
       "id": "manual_mobile_caption_rem_fix"
@@ -1891,7 +1909,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "bom part-name nowrap decision",
       "_origin": "semantic",
       "id": "manual_table_nowrap_rationale"
@@ -1906,7 +1924,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "two-column field-row flex-wrap fix",
       "_origin": "semantic",
       "id": "medical_onboarding_fld_row_wrap_fix"
@@ -1921,7 +1939,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "community_name": "Landing Page Accessibility Fixes",
+      "community_name": "index.html",
       "norm_label": "missing mobile breakpoint rem fix",
       "_origin": "semantic",
       "id": "privacy_kicker_mobile_fix"
@@ -2167,36 +2185,6 @@
       "id": "status_vcard_download"
     },
     {
-      "label": "dashboard/settings.html",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "dashboard/settings.html",
-      "_origin": "semantic",
-      "id": "dashboard_settings"
-    },
-    {
-      "label": "accessibility.css link (settings)",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "accessibility.css link (settings)",
-      "_origin": "semantic",
-      "id": "dashboard_settings_accessibility_css"
-    },
-    {
       "label": "js/accordion.js",
       "file_type": "code",
       "source_file": "dashboard/settings.html",
@@ -2206,40 +2194,10 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "js/accordion.js",
       "_origin": "semantic",
       "id": "dashboard_settings_accordion_js"
-    },
-    {
-      "label": "Settings accessibility-prefs cookie bootstrap",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "settings accessibility-prefs cookie bootstrap",
-      "_origin": "semantic",
-      "id": "dashboard_settings_cookie_prefs_script"
-    },
-    {
-      "label": "js/settings.js",
-      "file_type": "code",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "js/settings.js",
-      "_origin": "semantic",
-      "id": "dashboard_settings_settings_js"
     },
     {
       "label": "medical-onboarding.html",
@@ -2251,7 +2209,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "medical-onboarding.html",
       "_origin": "semantic",
       "id": "medical_onboarding"
@@ -2266,7 +2224,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "onboarding accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "medical_onboarding_cookie_prefs_script"
@@ -2281,7 +2239,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "js/medical-onboarding.js",
       "_origin": "semantic",
       "id": "medical_onboarding_medical_onboarding_js"
@@ -2296,25 +2254,10 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "js/preferences.js syncpreferences (onboarding)",
       "_origin": "semantic",
       "id": "medical_onboarding_preferences_js"
-    },
-    {
-      "label": "Admin Live Feed/History tab-nav",
-      "file_type": "concept",
-      "source_file": "dashboard/admin.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "admin live feed/history tab-nav",
-      "_origin": "semantic",
-      "id": "dashboard_admin_tab_nav"
     },
     {
       "label": "Emergency Contacts accordion section",
@@ -2326,7 +2269,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "emergency contacts accordion section",
       "_origin": "semantic",
       "id": "dashboard_settings_emergency_contacts_section"
@@ -2341,7 +2284,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "medical data accordion section",
       "_origin": "semantic",
       "id": "dashboard_settings_medical_data_section"
@@ -2356,25 +2299,10 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "rider identity accordion section",
       "_origin": "semantic",
       "id": "dashboard_settings_rider_identity_section"
-    },
-    {
-      "label": "The Scan bystander demo card",
-      "file_type": "concept",
-      "source_file": "index.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "the scan bystander demo card",
-      "_origin": "semantic",
-      "id": "index_scan_card"
     },
     {
       "label": "Consent checkbox block",
@@ -2386,7 +2314,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "consent checkbox block",
       "_origin": "semantic",
       "id": "medical_onboarding_consent_block"
@@ -2401,7 +2329,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "step 2: emergency contacts panel",
       "_origin": "semantic",
       "id": "medical_onboarding_contacts_step"
@@ -2416,7 +2344,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "step 3: device & consent panel",
       "_origin": "semantic",
       "id": "medical_onboarding_device_step"
@@ -2431,7 +2359,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "live bystander-view preview card",
       "_origin": "semantic",
       "id": "medical_onboarding_live_preview"
@@ -2446,7 +2374,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "step 1: medical details panel",
       "_origin": "semantic",
       "id": "medical_onboarding_medical_step"
@@ -2461,7 +2389,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "seal-device confirmation modal",
       "_origin": "semantic",
       "id": "medical_onboarding_seal_modal"
@@ -2476,7 +2404,7 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "post-seal confirmation state",
       "_origin": "semantic",
       "id": "medical_onboarding_sealed_state"
@@ -2491,40 +2419,10 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
+      "community_name": "medical-onboarding.html",
       "norm_label": "3-step onboarding stepper",
       "_origin": "semantic",
       "id": "medical_onboarding_steps_bar"
-    },
-    {
-      "label": "Who can see what (access model)",
-      "file_type": "concept",
-      "source_file": "privacy.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "who can see what (access model)",
-      "_origin": "semantic",
-      "id": "privacy_who_can_see"
-    },
-    {
-      "label": "File-tab accordion pattern (design rationale)",
-      "file_type": "rationale",
-      "source_file": "dashboard/settings.html",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "community_name": "Settings Accordion & Case-File UI",
-      "norm_label": "file-tab accordion pattern (design rationale)",
-      "_origin": "semantic",
-      "id": "dashboard_settings_accordion_pattern"
     },
     {
       "label": "dashboard/admin.html",
@@ -2536,7 +2434,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "dashboard/admin.html",
       "_origin": "semantic",
       "id": "dashboard_admin"
@@ -2551,7 +2449,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "accessibility.css link (admin)",
       "_origin": "semantic",
       "id": "dashboard_admin_accessibility_css"
@@ -2566,7 +2464,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "js/admindashboard.js",
       "_origin": "semantic",
       "id": "dashboard_admin_admin_dashboard_js"
@@ -2581,7 +2479,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "admin accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "dashboard_admin_cookie_prefs_script"
@@ -2596,7 +2494,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "js/preferences.js syncpreferences (admin)",
       "_origin": "semantic",
       "id": "dashboard_admin_preferences_js"
@@ -2611,10 +2509,70 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "js/supabaseclient.js (admin)",
       "_origin": "semantic",
       "id": "dashboard_admin_supabase_client_js"
+    },
+    {
+      "label": "dashboard/settings.html",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "dashboard/settings.html",
+      "_origin": "semantic",
+      "id": "dashboard_settings"
+    },
+    {
+      "label": "accessibility.css link (settings)",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "accessibility.css link (settings)",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accessibility_css"
+    },
+    {
+      "label": "Settings accessibility-prefs cookie bootstrap",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "settings accessibility-prefs cookie bootstrap",
+      "_origin": "semantic",
+      "id": "dashboard_settings_cookie_prefs_script"
+    },
+    {
+      "label": "js/settings.js",
+      "file_type": "code",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "js/settings.js",
+      "_origin": "semantic",
+      "id": "dashboard_settings_settings_js"
     },
     {
       "label": "dashboard/user.html",
@@ -2626,7 +2584,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "dashboard/user.html",
       "_origin": "semantic",
       "id": "dashboard_user"
@@ -2641,7 +2599,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "accessibility.css link (user)",
       "_origin": "semantic",
       "id": "dashboard_user_accessibility_css"
@@ -2656,7 +2614,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "user accessibility-prefs cookie bootstrap",
       "_origin": "semantic",
       "id": "dashboard_user_cookie_prefs_script"
@@ -2671,7 +2629,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "js/preferences.js syncpreferences (user)",
       "_origin": "semantic",
       "id": "dashboard_user_preferences_js"
@@ -2686,7 +2644,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "js/userdashboard.js",
       "_origin": "semantic",
       "id": "dashboard_user_user_dashboard_js"
@@ -2701,7 +2659,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "checksecurity admin-role gate",
       "_origin": "semantic",
       "id": "dashboard_admin_check_security"
@@ -2716,10 +2674,25 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "admin crash-popup alert ui",
       "_origin": "semantic",
       "id": "dashboard_admin_crash_popup"
+    },
+    {
+      "label": "Admin Live Feed/History tab-nav",
+      "file_type": "concept",
+      "source_file": "dashboard/admin.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "admin live feed/history tab-nav",
+      "_origin": "semantic",
+      "id": "dashboard_admin_tab_nav"
     },
     {
       "label": "Crash-detected countdown overlay",
@@ -2731,7 +2704,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "crash-detected countdown overlay",
       "_origin": "semantic",
       "id": "dashboard_user_emergency_overlay"
@@ -2746,10 +2719,25 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "helmet & bike id qr section",
       "_origin": "semantic",
       "id": "dashboard_user_qr_section"
+    },
+    {
+      "label": "File-tab accordion pattern (design rationale)",
+      "file_type": "rationale",
+      "source_file": "dashboard/settings.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 5,
+      "community_name": "dashboard/admin.html",
+      "norm_label": "file-tab accordion pattern (design rationale)",
+      "_origin": "semantic",
+      "id": "dashboard_settings_accordion_pattern"
     },
     {
       "label": "Row-level access control / restricted lookup function",
@@ -2761,7 +2749,7 @@
       "author": null,
       "contributor": null,
       "community": 5,
-      "community_name": "Dashboard Accessibility Bootstrap",
+      "community_name": "dashboard/admin.html",
       "norm_label": "row-level access control / restricted lookup function",
       "_origin": "semantic",
       "id": "privacy_protection_mechanism"
@@ -2797,7 +2785,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L188",
+      "source_location": "L183",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard_init",
@@ -2809,7 +2797,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L153",
+      "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard_renderui",
@@ -2821,22 +2809,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L28",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard_resetallcrashes",
-      "target": "js_admindashboard_setadminstatus",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L36",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_admindashboard_resetsimulationdata",
       "target": "js_admindashboard_setadminstatus",
       "confidence_score": 1.0
     },
@@ -3769,7 +3745,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L120",
+      "source_location": "L115",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard",
@@ -3791,7 +3767,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L159",
+      "source_location": "L154",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard",
@@ -3802,7 +3778,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L236",
+      "source_location": "L229",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard",
@@ -3813,7 +3789,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L26",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard",
@@ -3824,11 +3800,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L34",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "js_admindashboard",
-      "target": "js_admindashboard_resetsimulationdata",
+      "target": "js_admindashboard_showcrashnotification",
       "confidence_score": 1.0
     },
     {
@@ -3840,17 +3816,6 @@
       "_origin": "ast",
       "source": "js_admindashboard",
       "target": "js_admindashboard_usercontainer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "js/adminDashboard.js",
-      "source_location": "L41",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "js_admindashboard",
-      "target": "js_admindashboard_showcrashnotification",
       "confidence_score": 1.0
     },
     {
@@ -4814,7 +4779,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "js/adminDashboard.js",
-      "source_location": "L249",
+      "source_location": "L242",
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
@@ -6132,5 +6097,5 @@
       "source_file": "index.html"
     }
   ],
-  "built_at_commit": "1116b0dd78b6097dc11c0c9771590e62f4b04c27"
+  "built_at_commit": "58c9a68b4d3e9b1131973bfe50ad8b3fefb12b77"
 }
