@@ -23,9 +23,17 @@ function setStatus(message, kind) {
     node.className = 'save-status show' + (kind ? ' ' + kind : '');
 }
 
+// Captured once, on page load, and reused everywhere below — not re-fetched
+// per action. Re-fetching supabase.auth.getUser() at click time is exactly
+// the pattern that let a save on this page land on a different account's
+// row if a second account had logged in in another tab since this page
+// loaded (confirmed live; see js/supabaseClient.js for the actual fix).
+let currentUser = null;
+
 async function loadSettings() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
+    currentUser = user;
 
     const [profRes, medRes] = await Promise.all([
         supabase.from('profiles').select('*').eq('id', user.id).single(),
@@ -75,7 +83,8 @@ document.querySelectorAll('.phone-edit').forEach(input => {
 
 document.getElementById('save-all').onclick = async () => {
     const btn = document.getElementById('save-all');
-    const { data: { user } } = await supabase.auth.getUser();
+    if (!currentUser) { setStatus("Not signed in — reload the page and try again.", 'err'); return; }
+    const user = currentUser;
 
     btn.innerText = "SYNCING...";
     btn.disabled = true;

@@ -8,6 +8,9 @@ const motionToggle = document.getElementById('reduceMotionToggle');
 const status = document.getElementById('a11yStatus');
 
 let prefs = { textScale: 'normal', highContrast: false, reduceMotion: false };
+// Captured once in init() below, reused by persist() — see preferences.js
+// for why this isn't re-fetched at click/change time.
+let currentUserId = null;
 
 function renderControls() {
     scaleButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.scale === prefs.textScale));
@@ -22,7 +25,7 @@ function showStatus(message) {
 
 async function persist() {
     showStatus('Saving...');
-    const { error } = await savePreferences(prefs);
+    const { error } = await savePreferences(prefs, currentUserId);
     showStatus(error ? 'Couldn\'t save — try again.' : 'Saved.');
 }
 
@@ -53,6 +56,7 @@ motionToggle.addEventListener('change', () => {
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
+    currentUserId = user.id;
 
     const synced = await syncPreferences();
     if (synced) {

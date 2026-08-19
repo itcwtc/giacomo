@@ -58,12 +58,16 @@ export async function syncPreferences() {
     return prefs;
 }
 
-export async function savePreferences(prefs) {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: new Error('Not signed in') };
+// userId is required, not re-fetched here: the caller captures it once at
+// page load (see accessibility-controls.js) and reuses it for every save.
+// Re-fetching supabase.auth.getUser() inside a function called from a click
+// handler is exactly the pattern that let a write land on a different
+// account's row after a second account logged in in another tab.
+export async function savePreferences(prefs, userId) {
+    if (!userId) return { error: new Error('Not signed in') };
 
     const { error } = await supabase.from('user_preferences').upsert({
-        user_id: user.id,
+        user_id: userId,
         text_scale: prefs.textScale,
         high_contrast: prefs.highContrast,
         reduce_motion: prefs.reduceMotion,
