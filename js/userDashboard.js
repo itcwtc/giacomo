@@ -61,79 +61,106 @@ async function initDashboard() {
     const wrapper = document.getElementById('dashboard-wrapper');
     if (wrapper) wrapper.style.display = 'block';
 
-    // 4. Fetch device serial number & medical data for dynamic QR Code
-    const { data: profile } = await supabase
-        .from('profiles')
-        .select('serial_number')
-        .eq('id', user.id)
-        .single();
+    // Steps 4-8 are each independent pieces of the dashboard — a failure
+    // in any one (e.g. the QR library's CDN being blocked by an
+    // ad-blocker/firewall) used to throw uncaught and silently abort
+    // everything after it in this function, taking the map, telemetry,
+    // and Settings/Logout/Simulate-Crash wiring down with it. Isolating
+    // each stage means a failure stays contained to that stage.
 
-    const snDisplay = document.getElementById('display-sn');
-    if (profile?.serial_number) {
-        if (snDisplay) snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
-        generateRiderQR(profile.serial_number);
+    // 4. Fetch device serial number & render the QR code
+    try {
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('serial_number')
+            .eq('id', user.id)
+            .single();
+
+        const snDisplay = document.getElementById('display-sn');
+        if (profile?.serial_number) {
+            if (snDisplay) snDisplay.innerText = `DEVICE: ${profile.serial_number}`;
+            generateRiderQR(profile.serial_number);
+        }
+    } catch (err) {
+        console.error('Device serial / QR section failed to initialize:', err);
     }
 
     // 5. Initialize Leaflet Map
-    const mapElement = document.getElementById('map');
-    if (mapElement) {
-        map = L.map('map', { zoomControl: false, attributionControl: false }).setView([8.2200, 125.7500], 16);
-        L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
-        setTimeout(() => { map.invalidateSize(); }, 200);
+    try {
+        const mapElement = document.getElementById('map');
+        if (mapElement) {
+            map = L.map('map', { zoomControl: false, attributionControl: false }).setView([8.2200, 125.7500], 16);
+            L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0','mt1','mt2','mt3'] }).addTo(map);
+            setTimeout(() => { map.invalidateSize(); }, 200);
 
-        userMarker = L.circleMarker([8.2200, 125.7500], {
-            radius: 8, fillColor: "#00e5ff", color: "#fff", weight: 2, fillOpacity: 1
-        }).addTo(map);
+            userMarker = L.circleMarker([8.2200, 125.7500], {
+                radius: 8, fillColor: "#00e5ff", color: "#fff", weight: 2, fillOpacity: 1
+            }).addTo(map);
+        }
+    } catch (err) {
+        console.error('Map failed to initialize:', err);
     }
 
     // 6. Start Live Telemetry (real GPS when available, simulated fallback otherwise)
-    startTelemetry(user.id);
-
-    // 7. Navigation & Event Handlers
-    const settingsBtn = document.getElementById('settings-btn');
-    if (settingsBtn) {
-        settingsBtn.onclick = () => window.location.href = 'settings.html';
+    try {
+        startTelemetry(user.id);
+    } catch (err) {
+        console.error('Telemetry failed to start:', err);
     }
 
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.onclick = async () => { 
-            await supabase.auth.signOut(); 
-            window.location.href = '../index.html'; 
-        };
+    // 7. Navigation & Event Handlers
+    try {
+        const settingsBtn = document.getElementById('settings-btn');
+        if (settingsBtn) {
+            settingsBtn.onclick = () => window.location.href = 'settings.html';
+        }
+
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.onclick = async () => {
+                await supabase.auth.signOut();
+                window.location.href = '../index.html';
+            };
+        }
+    } catch (err) {
+        console.error('Nav button wiring failed:', err);
     }
 
     // 8. Crash Simulation Handler
-    if (simBtn) {
-        simBtn.onclick = async () => {
-            let timeLeft = 10;
-            if (overlay) overlay.style.display = 'flex';
-            if (overlayBg) overlayBg.style.display = 'block';
-            if (layout) layout.classList.add('panic-mode');
-            if (timerDisplay) timerDisplay.innerText = timeLeft;
-
-            countdownInterval = setInterval(async () => {
-                timeLeft--;
+    try {
+        if (simBtn) {
+            simBtn.onclick = async () => {
+                let timeLeft = 10;
+                if (overlay) overlay.style.display = 'flex';
+                if (overlayBg) overlayBg.style.display = 'block';
+                if (layout) layout.classList.add('panic-mode');
                 if (timerDisplay) timerDisplay.innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    if (timerDisplay) timerDisplay.innerText = "SENT";
-                    await supabase.from('profiles').update({ is_crashed: true }).eq('id', user.id);
-                    await saveBlackBoxData(user.id);
-                }
-            }, 1000);
-        };
-    }
 
-    const cancelBtn = document.getElementById('cancel-crash');
-    if (cancelBtn) {
-        cancelBtn.onclick = async () => {
-            clearInterval(countdownInterval);
-            if (overlay) overlay.style.display = 'none'; 
-            if (overlayBg) overlayBg.style.display = 'none';
-            if (layout) layout.classList.remove('panic-mode');
-            await supabase.from('profiles').update({ is_crashed: false }).eq('id', user.id);
-        };
+                countdownInterval = setInterval(async () => {
+                    timeLeft--;
+                    if (timerDisplay) timerDisplay.innerText = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownInterval);
+                        if (timerDisplay) timerDisplay.innerText = "SENT";
+                        await supabase.from('profiles').update({ is_crashed: true }).eq('id', user.id);
+                        await saveBlackBoxData(user.id);
+                    }
+                }, 1000);
+            };
+        }
+
+        const cancelBtn = document.getElementById('cancel-crash');
+        if (cancelBtn) {
+            cancelBtn.onclick = async () => {
+                clearInterval(countdownInterval);
+                if (overlay) overlay.style.display = 'none';
+                if (overlayBg) overlayBg.style.display = 'none';
+                if (layout) layout.classList.remove('panic-mode');
+                await supabase.from('profiles').update({ is_crashed: false }).eq('id', user.id);
+            };
+        }
+    } catch (err) {
+        console.error('Crash-simulation handlers failed to wire up:', err);
     }
 }
 
@@ -238,17 +265,35 @@ function generateRiderQR(serialNumber) {
     const qrcodeContainer = document.getElementById("qrcode");
     const sizeSlider = document.getElementById("qr-size-slider");
     const sizeLabel = document.getElementById("size-label");
-    
+
     if (!qrcodeContainer) return;
-    
+
+    // Renders straight to an SVG string (qrcode-svg) — never touches a
+    // <canvas>, so there's nothing for canvas-fingerprinting protection
+    // (Brave Shields, Firefox resistFingerprinting) to degrade. Wrapped
+    // regardless, so any other failure (library didn't load at all, bad
+    // input) degrades to a working link instead of a permanently blank box.
     const renderQR = (size) => {
-        qrcodeContainer.innerHTML = ""; 
-        return new QRCode(qrcodeContainer, {
-            text: publicUrl, 
-            width: parseInt(size), height: parseInt(size),
-            colorDark : "#000000", colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
+        const px = parseInt(size, 10);
+        try {
+            const qr = new QRCode({
+                content: publicUrl,
+                width: px,
+                height: px,
+                padding: 1,
+                color: '#000000',
+                background: '#ffffff',
+                ecl: 'H'
+            });
+            qrcodeContainer.innerHTML = qr.svg();
+        } catch (err) {
+            console.error('QR rendering failed:', err);
+            qrcodeContainer.innerHTML = `
+                <div class="qr-fallback">
+                    QR code unavailable.<br>
+                    <a href="${publicUrl}" target="_blank" rel="noopener">Open emergency profile directly</a>
+                </div>`;
+        }
     };
 
     // Initial Render
@@ -266,10 +311,8 @@ function generateRiderQR(serialNumber) {
     const printBtn = document.getElementById('print-qr');
     if (printBtn) {
         printBtn.onclick = () => {
-            const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
-            if (!qrContent) return;
-            const imgData = qrContent.src || qrContent.toDataURL("image/png");
-            
+            const svgEl = qrcodeContainer.querySelector('svg');
+            if (!svgEl) return;
             const printWin = window.open('', '_blank');
             printWin.document.write(`
                 <html>
@@ -281,6 +324,7 @@ function generateRiderQR(serialNumber) {
                         .sub { font-size: 10px; text-transform: uppercase; font-weight: bold; margin-bottom: 20px; }
                         .instructions { font-size: 12px; max-width: 250px; margin: 20px auto; line-height: 1.5; color: #333; }
                         .sn { font-family: monospace; font-size: 12px; margin-top: 10px; font-weight: bold; }
+                        .print-card svg { width: 200px; height: 200px; }
                         @media print { .no-print { display: none; } }
                     </style>
                 </head>
@@ -288,7 +332,7 @@ function generateRiderQR(serialNumber) {
                     <div class="print-card">
                         <h1>GIACOMO</h1>
                         <div class="sub">Medical ID Protocol</div>
-                        <img src="${imgData}" style="width: 200px; height: 200px;" />
+                        ${svgEl.outerHTML}
                         <div class="sn">DEVICE SN: ${serialNumber}</div>
                         <div class="instructions">
                             <strong>BYSTANDER NOTICE:</strong><br>
@@ -302,16 +346,21 @@ function generateRiderQR(serialNumber) {
         };
     }
 
-    // Download Handler
+    // Download Handler — saves the actual SVG, not a rasterized PNG, so
+    // this path never touches canvas either.
     const downloadBtn = document.getElementById('download-qr');
     if (downloadBtn) {
         downloadBtn.onclick = () => {
-            const qrContent = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
-            if (!qrContent) return;
+            const svgEl = qrcodeContainer.querySelector('svg');
+            if (!svgEl) return;
+            const svgMarkup = new XMLSerializer().serializeToString(svgEl);
+            const blob = new Blob([svgMarkup], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
-            link.href = qrContent.src || qrContent.toDataURL("image/png");
-            link.download = `Giacomo-QR-${serialNumber}.png`;
+            link.href = url;
+            link.download = `Giacomo-QR-${serialNumber}.svg`;
             link.click();
+            URL.revokeObjectURL(url);
         };
     }
 }
